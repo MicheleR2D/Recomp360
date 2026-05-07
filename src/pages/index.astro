@@ -1,0 +1,846 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const TYPEFORM_INFO = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+
+const classes = [
+  { name: 'Cross Cardio',        icon: '⚡' },
+  { name: 'Functional Training', icon: '🏋️' },
+  { name: 'Interval Training',   icon: '🔥' },
+  { name: 'Met-Con',             icon: '💥' },
+  { name: 'Pilates',             icon: '🧘' },
+  { name: 'Postural',            icon: '⚖️' },
+  { name: 'Pre-Boxing',          icon: '🥊' },
+  { name: 'Zumba',               icon: '🎵' },
+];
+
+const reviews = [
+  { name: 'Marco T.',    location: 'Roma', stars: 5, text: 'Il metodo MyRecomp ha completamente cambiato il mio approccio all\'allenamento. In 3 mesi ho raggiunto risultati che non pensavo possibili.' },
+  { name: 'Giulia R.',   location: 'Roma', stars: 5, text: 'Finalmente una palestra che non è solo una palestra. Il team di professionisti ti segue davvero a 360 gradi.' },
+  { name: 'Alessandro M.', location: 'Roma', stars: 5, text: 'L\'ambiente è moderno e pulito, i trainer sono preparatissimi. La valutazione tecnica iniziale è stata fondamentale per impostare il mio percorso.' },
+];
+
+const stats = [
+  { value: '360°', label: 'Cura del tuo percorso' },
+  { value: '8+',   label: 'Discipline disponibili' },
+  { value: '100%', label: 'Attrezzatura last-gen' },
+  { value: '5★',   label: 'Valutazione media clienti' },
+];
+---
+
+<Layout>
+  <Nav />
+
+  <!-- ─── 1. HERO ───────────────────────────────────────────────────────── -->
+  <section id="hero" class="hero">
+    <div class="hero__bg">
+      <video
+        class="hero__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="/images/hero-poster.jpg"
+      >
+        <!-- Sostituisci con il video istituzionale reale -->
+        <source src="/video/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="container hero__content">
+      <p class="hero__eyebrow">Roma · Zona Prenestina</p>
+      <h1 class="hero__title">
+        IL METODO CHE<br />
+        <span class="hero__accent">TRASFORMA</span><br />
+        I TUOI OBIETTIVI
+      </h1>
+      <p class="hero__sub">
+        Non una palestra. Un metodo. Recomp360 unisce la libertà della sala attrezzi
+        con l'expertise di uno studio di personal training.
+      </p>
+      <div class="hero__ctas">
+        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+          Inizia Ora — €17
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href={TYPEFORM_INFO} target="_blank" rel="noopener" class="btn btn--outline">
+          Scopri di Più
+        </a>
+      </div>
+      <p class="hero__fine">7 allenamenti + valutazione tecnica inclusa · Valido 14 giorni</p>
+    </div>
+
+    <div class="hero__scroll">
+      <div class="hero__scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── 2. PHILOSOPHY ─────────────────────────────────────────────────── -->
+  <section id="philosophy" class="section section--alt">
+    <div class="container">
+      <div class="philosophy__grid">
+        <div class="philosophy__text">
+          <p class="section__label">Chi Siamo</p>
+          <h2>CI PRENDIAMO<br />CURA DI TE<br /><span class="text-accent">A 360°</span></h2>
+          <div class="divider"></div>
+          <p style="margin-top:32px">
+            Recomp360 non è la solita palestra. Siamo un concept ibrido che combina
+            la libertà e la varietà di una sala attrezzi moderna con l'organizzazione,
+            la personalizzazione e l'expertise di un centro di personal training.
+          </p>
+          <p style="margin-top:16px">
+            Il nostro approccio è olistico: trainer specializzati, nutrizionista,
+            fisioterapista, posturologa e osteopata lavorano in sinergia per guidarti
+            verso i tuoi obiettivi in modo sicuro e duraturo.
+          </p>
+          <a href={TYPEFORM_INFO} target="_blank" rel="noopener" class="btn btn--ghost" style="margin-top:36px">
+            Parla con noi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="philosophy__stats">
+          {stats.map(s => (
+            <div class="stat-card">
+              <span class="stat-card__value">{s.value}</span>
+              <span class="stat-card__label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="services-row">
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h4>Nutrizionista</h4>
+          <p style="margin-top:12px;font-size:15px">Piani alimentari personalizzati per supportare la tua ricomposizione corporea.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Fisioterapia</h4>
+          <p style="margin-top:12px;font-size:15px">Prevenzione e recupero dagli infortuni con un team di professionisti certificati.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h4>Posturologia & Osteopatia</h4>
+          <p style="margin-top:12px;font-size:15px">Valutazione posturale e trattamenti osteopatici per muoverti meglio ogni giorno.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. MYRECOMP METHOD ────────────────────────────────────────────── -->
+  <section id="myrecomp" class="section">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Il Metodo Proprietario</p>
+        <h2>MY<span class="text-accent">RECOMP</span></h2>
+        <div class="divider"></div>
+        <p style="margin-top:24px;max-width:560px">
+          MyRecomp è il nostro programma strutturato di ricomposizione corporea.
+          Non solo allenamento: una valutazione tecnica iniziale, un percorso progressivo
+          e il monitoraggio costante dei tuoi risultati.
+        </p>
+      </div>
+
+      <div class="myrecomp__grid">
+        <div class="myrecomp__card myrecomp__card--featured">
+          <span class="myrecomp__badge">Core</span>
+          <h3>Personal Training</h3>
+          <p>Sessioni 1:1 con un trainer dedicato. Programma costruito su misura per il tuo corpo, i tuoi obiettivi e il tuo stile di vita.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Valutazione tecnica iniziale</li>
+            <li><span class="check">✓</span> Scheda personalizzata</li>
+            <li><span class="check">✓</span> Monitoraggio progressi</li>
+            <li><span class="check">✓</span> Supporto nutrizionista</li>
+          </ul>
+        </div>
+
+        <div class="myrecomp__card">
+          <span class="myrecomp__badge myrecomp__badge--alt">Gruppo</span>
+          <h3>Small Group Training</h3>
+          <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Gruppi di max 6 persone</li>
+            <li><span class="check">✓</span> Lavoro tecnico e metabolico</li>
+            <li><span class="check">✓</span> Trainer dedicato</li>
+            <li><span class="check">✓</span> Orari flessibili</li>
+          </ul>
+        </div>
+
+        <div class="myrecomp__card">
+          <span class="myrecomp__badge myrecomp__badge--alt">Accesso</span>
+          <h3>Sala Attrezzi Libera</h3>
+          <p>Accesso alla sala con attrezzatura last-generation. Libertà di allenarti secondo i tuoi tempi, con il supporto del team.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Attrezzatura last-gen</li>
+            <li><span class="check">✓</span> Zone funzionali dedicate</li>
+            <li><span class="check">✓</span> Staff sempre presente</li>
+            <li><span class="check">✓</span> Ambiente pulito e curato</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. CLASSES ───────────────────────────────────────────────────── -->
+  <section id="classes" class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Attività di Gruppo</p>
+        <h2>CLASSI<br /><span class="text-accent">FITNESS</span></h2>
+        <div class="divider"></div>
+        <p style="margin-top:24px">
+          Otto discipline per non annoiarti mai. Ogni classe è guidata da istruttori
+          specializzati e calibrata per massimizzare i tuoi risultati.
+        </p>
+      </div>
+
+      <div class="classes__grid">
+        {classes.map(c => (
+          <div class="class-tile">
+            <span class="class-tile__icon">{c.icon}</span>
+            <h4>{c.name}</h4>
+          </div>
+        ))}
+      </div>
+
+      <div class="classes__cta">
+        <a href={TYPEFORM_INFO} target="_blank" rel="noopener" class="btn btn--outline">
+          Vedi Orari e Iscrizioni
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. GYM FLOOR ─────────────────────────────────────────────────── -->
+  <section id="gym" class="section">
+    <div class="container">
+      <div class="gym__grid">
+        <div class="gym__image-stack">
+          <div class="gym__img-placeholder gym__img-main">
+            <span>📸 Foto sala pesi</span>
+          </div>
+          <div class="gym__img-placeholder gym__img-sm">
+            <span>📸 Zona funzionale</span>
+          </div>
+        </div>
+
+        <div class="gym__text">
+          <p class="section__label">Sala Attrezzi</p>
+          <h2>ATTREZZATURA<br /><span class="text-accent">LAST-GEN</span></h2>
+          <div class="divider"></div>
+          <p style="margin-top:32px">
+            La nostra sala è attrezzata con macchinari di ultima generazione per garantire
+            sessioni di allenamento tecnicamente corrette ed efficaci. Zone dedicate al
+            lavoro tecnico e metabolico, in un ambiente moderno e curato nei minimi dettagli.
+          </p>
+          <div class="gym__features">
+            <div class="gym__feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Macchinari last-generation
+            </div>
+            <div class="gym__feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Zona functional training
+            </div>
+            <div class="gym__feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Ambiente pulito e igienizzato
+            </div>
+            <div class="gym__feature">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Staff qualificato sempre presente
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. OFFER ─────────────────────────────────────────────────────── -->
+  <section id="offer" class="section offer-section">
+    <div class="offer-section__bg"></div>
+    <div class="container offer-section__content">
+      <p class="section__label" style="color:rgba(255,255,255,0.7)">Inizia Adesso</p>
+      <h2 style="color:#fff">PROVA RECOMP360<br />PER <span style="color:#FFFFFF">€17</span></h2>
+      <p style="color:rgba(255,255,255,0.75);margin-top:20px;max-width:500px">
+        Scopri il metodo con 7 allenamenti in 14 giorni. Include la valutazione
+        tecnica iniziale con un trainer dedicato.
+      </p>
+      <ul class="offer-list">
+        <li><span>✓</span> 7 sessioni di allenamento</li>
+        <li><span>✓</span> Valutazione tecnica inclusa</li>
+        <li><span>✓</span> Valido 14 giorni dall'attivazione</li>
+        <li><span>✓</span> Accesso a tutte le zone</li>
+      </ul>
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn offer-btn">
+        Attiva la Prova — €17
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── 7. FACILITY ───────────────────────────────────────────────────── -->
+  <section id="facility" class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">La Struttura</p>
+        <h2>UN AMBIENTE<br /><span class="text-accent">PENSATO PER TE</span></h2>
+        <div class="divider"></div>
+        <p style="margin-top:24px">
+          Ogni dettaglio della nostra struttura è stato progettato per offrirti
+          l'esperienza di allenamento migliore: spazi ampi, pulizia rigorosa
+          e un'atmosfera che ti mette nelle condizioni di dare il massimo.
+        </p>
+      </div>
+
+      <div class="facility__grid">
+        <div class="facility__img-placeholder facility__img-lg">
+          <span>📸 Vista generale struttura</span>
+        </div>
+        <div class="facility__img-placeholder">
+          <span>📸 Zona classi</span>
+        </div>
+        <div class="facility__img-placeholder">
+          <span>📸 Spogliatoi</span>
+        </div>
+        <div class="facility__img-placeholder">
+          <span>📸 Reception</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 8. REVIEWS ───────────────────────────────────────────────────── -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Recensioni</p>
+        <h2>COSA DICONO<br /><span class="text-accent">I NOSTRI CLIENTI</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="reviews__grid">
+        {reviews.map(r => (
+          <div class="review-card">
+            <div class="review-card__stars">
+              {'★'.repeat(r.stars)}
+            </div>
+            <p class="review-card__text">"{r.text}"</p>
+            <div class="review-card__author">
+              <div class="review-card__avatar">{r.name[0]}</div>
+              <div>
+                <strong>{r.name}</strong>
+                <span>{r.location}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 9. FOOTER ────────────────────────────────────────────────────── -->
+  <Footer />
+</Layout>
+
+<style>
+/* ── HERO ──────────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10,10,10,0.85) 0%,
+    rgba(10,10,10,0.55) 60%,
+    rgba(10,10,10,0.3) 100%
+  );
+}
+
+/* Fallback gradient when no video */
+.hero__bg:not(:has(video[src])) .hero__overlay,
+.hero__video:not([src]) + .hero__overlay {
+  background: linear-gradient(135deg, #0A0A0A 0%, #1a0800 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+
+.hero__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  max-width: none;
+}
+
+.hero__title {
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 32px;
+}
+
+.hero__accent { color: var(--accent); }
+
+.hero__sub {
+  font-size: 18px;
+  color: rgba(240,240,240,0.75);
+  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 48px;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero__fine {
+  margin-top: 20px;
+  font-size: 13px;
+  color: rgba(240,240,240,0.45);
+  max-width: none;
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.hero__scroll span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(240,240,240,0.35);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(0.7); }
+}
+
+/* ── PHILOSOPHY ──────────────────────────────────────────────────────────── */
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+
+.philosophy__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-top: 60px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.stat-card:hover { border-color: var(--accent); }
+
+.stat-card__value {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 52px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.stat-card__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.services-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.text-accent { color: var(--accent); }
+
+/* ── MYRECOMP ────────────────────────────────────────────────────────────── */
+.myrecomp__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.myrecomp__card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+
+.myrecomp__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.myrecomp__card--featured {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255,85,0,0.06) 100%);
+}
+
+.myrecomp__badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 100px;
+  padding: 4px 12px;
+  margin-bottom: 20px;
+}
+
+.myrecomp__badge--alt {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.myrecomp__card h3 { margin-bottom: 16px; }
+.myrecomp__card p { font-size: 15px; margin-bottom: 28px; }
+
+.feature-list { display: flex; flex-direction: column; gap: 12px; }
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.check { color: var(--accent); font-weight: 700; }
+
+/* ── CLASSES ─────────────────────────────────────────────────────────────── */
+.classes__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.class-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  cursor: default;
+}
+
+.class-tile:hover {
+  border-color: var(--accent);
+  background: rgba(255,85,0,0.05);
+  transform: translateY(-3px);
+}
+
+.class-tile__icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.class-tile h4 {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.classes__cta {
+  margin-top: 48px;
+  text-align: center;
+}
+
+/* ── GYM ─────────────────────────────────────────────────────────────────── */
+.gym__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.gym__image-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.gym__img-placeholder,
+.facility__img-placeholder {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  letter-spacing: 1px;
+  min-height: 200px;
+  text-align: center;
+  padding: 20px;
+}
+
+.gym__img-main {
+  grid-column: 1 / -1;
+  min-height: 280px;
+}
+
+.gym__img-sm { min-height: 160px; }
+
+.gym__features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.gym__feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.gym__feature svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── OFFER ───────────────────────────────────────────────────────────────── */
+.offer-section {
+  position: relative;
+  background: #0A0A0A;
+  overflow: hidden;
+}
+
+.offer-section__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,85,0,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.offer-section__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.offer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 32px;
+  margin-top: 36px;
+  margin-bottom: 48px;
+}
+
+.offer-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+}
+
+.offer-list span { color: #FFFFFF; font-weight: 700; }
+
+.offer-btn {
+  background: var(--white);
+  color: #0A0A0A;
+  font-size: 15px;
+  padding: 18px 44px;
+}
+
+.offer-btn:hover {
+  background: var(--accent);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+/* ── FACILITY ────────────────────────────────────────────────────────────── */
+.facility__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.facility__img-lg {
+  grid-column: 1 / -1;
+  min-height: 340px;
+}
+
+.facility__img-placeholder { min-height: 220px; }
+
+/* ── REVIEWS ─────────────────────────────────────────────────────────────── */
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  transition: border-color 0.2s;
+}
+
+.review-card:hover { border-color: var(--accent); }
+
+.review-card__stars {
+  color: #FFFFFF;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.review-card__text {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.review-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.review-card__author strong {
+  display: block;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.review-card__author span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .classes__grid { grid-template-columns: repeat(2, 1fr); }
+  .myrecomp__grid { grid-template-columns: 1fr; max-width: 560px; }
+}
+
+@media (max-width: 900px) {
+  .philosophy__grid { grid-template-columns: 1fr; gap: 48px; }
+  .philosophy__stats { padding-top: 0; }
+  .services-row { grid-template-columns: 1fr; }
+  .gym__grid { grid-template-columns: 1fr; }
+  .reviews__grid { grid-template-columns: 1fr; }
+  .facility__grid { grid-template-columns: 1fr; }
+  .facility__img-lg { grid-column: 1; }
+}
+
+@media (max-width: 640px) {
+  .classes__grid { grid-template-columns: repeat(2, 1fr); }
+  .hero__ctas { flex-direction: column; }
+  .hero__ctas .btn { width: 100%; justify-content: center; }
+  .philosophy__stats { grid-template-columns: 1fr 1fr; }
+  .offer-list { flex-direction: column; align-items: center; gap: 10px; }
+}
+</style>

@@ -1,0 +1,153 @@
+---
+const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="/images/logo.svg" alt="Recomp360" width="140" height="40" />
+      <p>La palestra ibrida di Roma.<br />Libertà + expertise, a 360°.</p>
+      <div class="footer__social">
+        <a href="https://instagram.com/recomp360/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://facebook.com/Recomp360/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://youtube.com/@recomp360amministrazione6" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4>Navigazione</h4>
+      <ul>
+        <li><a href="#philosophy">Chi Siamo</a></li>
+        <li><a href="#myrecomp">Il Metodo</a></li>
+        <li><a href="#classes">Classi</a></li>
+        <li><a href="#gym">Sala Pesi</a></li>
+        <li><a href="#facility">Struttura</a></li>
+        <li><a href="#reviews">Recensioni</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Inizia</h4>
+      <ul>
+        <li><a href={TYPEFORM_URL} target="_blank" rel="noopener">Prova 7 Allenamenti — €17</a></li>
+        <li><a href={TYPEFORM_URL} target="_blank" rel="noopener">Richiedi Informazioni</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Legale</h4>
+      <ul>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/regolamento">Regolamento</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© {year} Recomp360. Tutti i diritti riservati. Roma, zona Prenestina.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding-top: 80px;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+}
+
+.footer__brand p {
+  margin-top: 20px;
+  font-size: 14px;
+  max-width: 280px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footer__brand img { margin-bottom: 4px; }
+
+.footer__social {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.footer__social a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.footer__social a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.footer__social svg { width: 18px; height: 18px; }
+
+.footer__col h4 {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.footer__col ul { display: flex; flex-direction: column; gap: 12px; }
+
+.footer__col a {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.footer__col a:hover { color: var(--accent); }
+
+.footer__bottom {
+  border-top: 1px solid var(--border);
+  padding-block: 24px;
+}
+
+.footer__bottom p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+</style>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 72" fill="none">
+  <!-- Circle icon (44px radius centered at 36,36) -->
+  <!-- White arc: ~200deg from bottom going left/up -->
+  <path d="M36 68 A32 32 0 1 1 67.2 21" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Red arc: top-right section -->
+  <path d="M67.2 21 A32 32 0 0 1 36 4" stroke="#CC0000" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Arrow at junction (white→red) -->
+  <polygon points="67,15 72,23 62,22" fill="#CC0000"/>
+
+  <!-- Monogram R inside circle -->
+  <!-- Top bar -->
+  <rect x="20" y="21" width="20" height="5.5" rx="1" fill="#FFFFFF"/>
+  <!-- Middle bar -->
+  <rect x="20" y="30" width="16" height="5.5" rx="1" fill="#FFFFFF"/>
+  <!-- Bottom bar -->
+  <rect x="23" y="39" width="14" height="5.5" rx="1" fill="#FFFFFF"/>
+  <!-- Diagonal leg -->
+  <polygon points="36,30 43,30 50,44.5 43,44.5" fill="#FFFFFF"/>
+
+  <!-- Text: RE red, COMP 360° white — font-size reduced for extended font -->
+  <text x="82" y="46" font-family="'Microgramma', 'Arial Black', Impact, sans-serif" font-weight="700" font-size="30" letter-spacing="0">
+    <tspan fill="#CC0000">RE</tspan><tspan fill="#FFFFFF">COMP 360°</tspan>
+  </text>
+</svg>

@@ -1,0 +1,145 @@
+---
+const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const navLinks = [
+  { href: '#philosophy', label: 'Chi Siamo' },
+  { href: '#myrecomp',   label: 'Il Metodo' },
+  { href: '#classes',    label: 'Classi' },
+  { href: '#facility',   label: 'Struttura' },
+];
+---
+
+<nav class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#hero" class="nav__logo" aria-label="Recomp360 home">
+      <img src="/images/logo.svg" alt="Recomp360" width="140" height="40" />
+    </a>
+
+    <ul class="nav__links" id="nav-links">
+      {navLinks.map(link => (
+        <li><a href={link.href} class="nav__link">{link.label}</a></li>
+      ))}
+    </ul>
+
+    <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary nav__cta">
+      Inizia Ora
+    </a>
+
+    <button class="nav__burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-block: 20px;
+  transition: background 0.3s, padding 0.3s, border-bottom 0.3s;
+}
+
+.nav.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  padding-block: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.nav__logo img { height: 36px; width: auto; }
+
+.nav__links {
+  display: flex;
+  gap: 36px;
+  margin-right: auto;
+}
+
+.nav__link {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.nav__link:hover { color: var(--text); }
+
+.nav__cta { padding: 12px 28px; font-size: 13px; }
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  margin-left: auto;
+}
+
+.nav__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .nav__links {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+  }
+
+  .nav__links.open { transform: translateX(0); }
+
+  .nav__link { font-size: 16px; }
+
+  .nav__cta { display: none; }
+
+  .nav__burger { display: flex; z-index: 101; }
+
+  .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav__burger.open span:nth-child(2) { opacity: 0; }
+  .nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+</style>
+
+<script>
+const nav    = document.getElementById('nav')!;
+const burger = document.getElementById('nav-burger')!;
+const links  = document.getElementById('nav-links')!;
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('open');
+  links.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+});
+
+links.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    links.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
