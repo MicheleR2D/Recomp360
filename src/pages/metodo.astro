@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+---
+
+<Layout title="Il Metodo MyRecomp — Recomp360" description="Scopri il metodo MyRecomp: personal training, small group e sala libera per la tua ricomposizione corporea.">
+  <Nav />
+
+  <div class="page-hero">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Home
+      </a>
+      <p class="section__label">Il Metodo Proprietario</p>
+      <h1>MY<span class="text-accent">RECOMP</span></h1>
+      <div class="divider"></div>
+      <p class="page-hero__sub">
+        Non un semplice abbonamento. Un programma strutturato di ricomposizione corporea
+        con valutazione tecnica, percorso progressivo e monitoraggio costante.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="detail-grid">
+
+        <div class="detail-card detail-card--featured">
+          <span class="badge">Core</span>
+          <h2>Personal Training</h2>
+          <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — tenendo conto del tuo corpo, dei tuoi obiettivi e del tuo stile di vita.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Valutazione tecnica iniziale completa</li>
+            <li><span class="check">✓</span> Scheda di allenamento personalizzata</li>
+            <li><span class="check">✓</span> Monitoraggio progressi periodico</li>
+            <li><span class="check">✓</span> Supporto diretto con il nutrizionista</li>
+            <li><span class="check">✓</span> Revisione e aggiornamento scheda nel tempo</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <span class="badge badge--muted">Gruppo</span>
+          <h2>Small Group Training</h2>
+          <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione, per garantire attenzione individuale senza rinunciare alla motivazione collettiva.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Gruppi di massimo 6 persone</li>
+            <li><span class="check">✓</span> Lavoro tecnico e metabolico</li>
+            <li><span class="check">✓</span> Trainer dedicato per ogni sessione</li>
+            <li><span class="check">✓</span> Orari flessibili</li>
+          </ul>
+        </div>
+
+        <div class="detail-card">
+          <span class="badge badge--muted">Accesso</span>
+          <h2>Sala Attrezzi Libera</h2>
+          <p>Accesso alla sala con attrezzatura last-generation. Alleni nei tuoi tempi, con la sicurezza di uno staff qualificato sempre presente e zone dedicate per ogni tipo di lavoro.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Macchinari last-generation</li>
+            <li><span class="check">✓</span> Zona functional training</li>
+            <li><span class="check">✓</span> Zona metabolica dedicata</li>
+            <li><span class="check">✓</span> Staff sempre presente</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="team-grid">
+        <div>
+          <p class="section__label">Il Team</p>
+          <h2>ESPERTI<br /><span class="text-accent">A 360°</span></h2>
+          <div class="divider"></div>
+        </div>
+        <div class="team-cards">
+          <div class="team-card">
+            <h4>Personal Trainer</h4>
+            <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
+          </div>
+          <div class="team-card">
+            <h4>Nutrizionista</h4>
+            <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
+          </div>
+          <div class="team-card">
+            <h4>Fisioterapia</h4>
+            <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
+          </div>
+          <div class="team-card">
+            <h4>Posturologia & Osteopatia</h4>
+            <p>Valutazione posturale completa e trattamenti osteopatici.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container cta-section__inner">
+      <h2>INIZIA CON<br /><span class="text-accent">7 ALLENAMENTI</span><br />A €17</h2>
+      <p>Valutazione tecnica inclusa. 14 giorni per scoprire il metodo.</p>
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+        Attiva la Prova
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+.text-accent { color: var(--accent); }
+
+.page-hero {
+  padding-top: 140px;
+  padding-bottom: 80px;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+.page-hero__sub {
+  margin-top: 24px;
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.7;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  transition: color .2s;
+}
+.back-link:hover { color: var(--accent); }
+.back-link svg { width: 16px; height: 16px; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 32px;
+  transition: border-color .2s;
+}
+.detail-card:hover { border-color: var(--accent); }
+.detail-card--featured { border-color: rgba(229,51,50,0.4); }
+.detail-card h2 { margin: 16px 0 14px; }
+.detail-card > p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+
+.feature-list { display: flex; flex-direction: column; gap: 12px; }
+.feature-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); }
+.check { color: var(--accent); font-weight: 700; }
+
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent);
+  border-radius: 100px; padding: 4px 12px;
+}
+.badge--muted { color: var(--text-muted); border-color: var(--border); }
+
+.team-grid {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
+}
+.team-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.team-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px 24px;
+}
+.team-card h4 { margin-bottom: 10px; }
+.team-card p { font-size: 14px; color: var(--text-muted); }
+
+.cta-section { background: var(--bg-alt); border-top: 1px solid var(--border); }
+.cta-section__inner {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
+}
+.cta-section__inner p { color: var(--text-muted); }
+.cta-section__inner .btn { margin-top: 8px; }
+
+@media (max-width: 1024px) { .detail-grid { grid-template-columns: 1fr; max-width: 560px; } }
+@media (max-width: 900px) {
+  .team-grid { grid-template-columns: 1fr; gap: 48px; }
+  .team-cards { grid-template-columns: 1fr; }
+}
+</style>

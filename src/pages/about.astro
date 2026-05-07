@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+---
+
+<Layout title="Chi Siamo — Recomp360" description="Recomp360: la palestra ibrida di Roma zona Prenestina. Un team di esperti per seguirti a 360 gradi.">
+  <Nav />
+
+  <div class="page-hero">
+    <div class="container">
+      <a href="/" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Home
+      </a>
+      <p class="section__label">Chi Siamo</p>
+      <h1>PALESTRA. MA NON SOLO.<br /><span class="text-accent">360°.</span></h1>
+      <div class="divider"></div>
+      <p class="page-hero__sub">
+        Roma, zona Prenestina. Un concept ibrido che unisce la libertà della sala attrezzi
+        con l'organizzazione e l'expertise di uno studio di personal training.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-placeholder"><span>📸 La struttura</span></div>
+        <div class="about-text">
+          <p class="section__label">La Nostra Filosofia</p>
+          <h2>NON SEI<br />UN <span class="text-accent">NUMERO</span></h2>
+          <div class="divider"></div>
+          <p style="margin-top:28px">
+            Recomp360 nasce dall'idea che ogni persona meriti un percorso costruito su misura.
+            Non basta aprire le porte di una palestra: serve un metodo, un team, una visione.
+          </p>
+          <p style="margin-top:16px">
+            Il nostro approccio è olistico. Trainer specializzati, nutrizionista, fisioterapista,
+            posturologa e osteopata lavorano in sinergia per guidarti verso i tuoi obiettivi
+            in modo sicuro, progressivo e duraturo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Il Team</p>
+        <h2>PROFESSIONISTI<br /><span class="text-accent">SPECIALIZZATI</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-card__avatar">PT</div>
+          <h4>Personal Trainer</h4>
+          <p>Specializzati in ricomposizione corporea, allenamento funzionale e strength training.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-card__avatar">NZ</div>
+          <h4>Nutrizionista</h4>
+          <p>Piani alimentari personalizzati integrati con il tuo programma di allenamento.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-card__avatar">FT</div>
+          <h4>Fisioterapista</h4>
+          <p>Prevenzione e recupero dagli infortuni. Ottimizzazione del pattern motorio.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-card__avatar">PO</div>
+          <h4>Posturologa & Osteopata</h4>
+          <p>Valutazione posturale completa e trattamenti per migliorare il movimento quotidiano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="values-grid">
+        <div class="value-block">
+          <h3><span class="text-accent">01</span><br />METODO</h3>
+          <p>Un programma strutturato, non improvvisato. Ogni percorso parte da una valutazione tecnica e si evolve nel tempo.</p>
+        </div>
+        <div class="value-block">
+          <h3><span class="text-accent">02</span><br />TEAM</h3>
+          <p>Un gruppo di specialisti che lavorano insieme. Non singoli professionisti isolati, ma una squadra integrata.</p>
+        </div>
+        <div class="value-block">
+          <h3><span class="text-accent">03</span><br />RISULTATI</h3>
+          <p>Obiettivi misurabili, progressi monitorati. Perché il tuo tempo e la tua energia valgono risultati concreti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt cta-section">
+    <div class="container cta-inner">
+      <h2>VIENI A<br /><span class="text-accent">CONOSCERCI</span></h2>
+      <p>Prova il metodo con 7 allenamenti a €17. Valutazione tecnica inclusa.</p>
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+        Inizia Ora
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+.text-accent { color: var(--accent); }
+.page-hero {
+  padding-top: 140px; padding-bottom: 80px;
+  background: var(--bg-alt); border-bottom: 1px solid var(--border);
+}
+.page-hero__sub { margin-top: 24px; font-size: 18px; color: var(--text-muted); max-width: 560px; line-height: 1.7; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 32px; transition: color .2s;
+}
+.back-link:hover { color: var(--accent); }
+.back-link svg { width: 16px; height: 16px; }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-img-placeholder {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); min-height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 16px;
+}
+.about-text p { color: var(--text-muted); line-height: 1.7; max-width: 480px; }
+
+.team-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+}
+.team-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px 24px; text-align: center;
+  transition: border-color .2s;
+}
+.team-card:hover { border-color: var(--accent); }
+.team-card__avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--accent-dim); border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 18px; color: var(--accent);
+  margin: 0 auto 20px;
+}
+.team-card h4 { margin-bottom: 10px; }
+.team-card p { font-size: 14px; color: var(--text-muted); max-width: none; }
+
+.values-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+}
+.value-block h3 { line-height: 1.1; margin-bottom: 20px; }
+.value-block p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+.cta-section { border-top: 1px solid var(--border); }
+.cta-inner { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.cta-inner p { color: var(--text-muted); }
+.cta-inner .btn { margin-top: 8px; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 560px) { .team-grid { grid-template-columns: 1fr; } }
+</style>
