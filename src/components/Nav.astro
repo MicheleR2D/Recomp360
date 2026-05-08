@@ -1,5 +1,6 @@
 ---
 const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const base = import.meta.env.BASE_URL;
 const navLinks = [
   { href: '#philosophy', label: 'Chi Siamo' },
   { href: '#myrecomp',   label: 'Il Metodo' },
@@ -11,7 +12,7 @@ const navLinks = [
 <nav class="nav" id="nav">
   <div class="container nav__inner">
     <a href="#hero" class="nav__logo" aria-label="Recomp360 home">
-      <img src="/images/logo.png" alt="Recomp360" />
+      <img src={`${base}images/logo.png`} alt="Recomp360" />
     </a>
 
     <ul class="nav__links" id="nav-links">

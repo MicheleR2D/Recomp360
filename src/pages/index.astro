@@ -4,16 +4,17 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const base = import.meta.env.BASE_URL;
 
 const classes = [
-  { name: 'Cross Cardio',        img: '/images/DSC02203-scaled.jpg' },
-  { name: 'Functional Training', img: '/images/DSC02203-scaled.jpg' },
-  { name: 'Interval Training',   img: '/images/1000204789-scaled.jpg' },
-  { name: 'Met-Con',             img: '/images/1000204833-scaled.jpg' },
-  { name: 'Pilates',             img: '/images/1000204752-scaled.jpg' },
-  { name: 'Postural',            img: '/images/DSC02345-scaled.jpg' },
-  { name: 'Pre-Boxing',          img: '/images/1000204833-scaled.jpg' },
-  { name: 'Zumba',               img: '/images/1000204752-scaled.jpg' },
+  { name: 'Cross Cardio',        img: 'DSC02203-scaled.jpg' },
+  { name: 'Functional Training', img: 'DSC02203-scaled.jpg' },
+  { name: 'Interval Training',   img: '1000204789-scaled.jpg' },
+  { name: 'Met-Con',             img: '1000204833-scaled.jpg' },
+  { name: 'Pilates',             img: '1000204752-scaled.jpg' },
+  { name: 'Postural',            img: 'DSC02345-scaled.jpg' },
+  { name: 'Pre-Boxing',          img: '1000204833-scaled.jpg' },
+  { name: 'Zumba',               img: '1000204752-scaled.jpg' },
 ];
 
 const reviews = [
@@ -29,8 +30,8 @@ const reviews = [
   <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
   <section id="hero" class="hero">
     <div class="hero__bg">
-      <video class="hero__video" autoplay muted loop playsinline poster="/images/hero-poster.jpg">
-        <source src="/video/hero.mp4" type="video/mp4" />
+      <video class="hero__video" autoplay muted loop playsinline poster={`${base}images/hero-poster.jpg`}>
+        <source src={`${base}video/hero.mp4`} type="video/mp4" />
       </video>
       <div class="hero__overlay"></div>
     </div>
@@ -72,7 +73,7 @@ const reviews = [
           </a>
         </div>
         <div class="philosophy__image-col">
-          <img src="/images/pt-session.jpg" alt="Personal training session Recomp360" class="philosophy__img" />
+          <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
         </div>
       </div>
 
@@ -109,7 +110,7 @@ const reviews = [
       <div class="method-grid">
         <div class="method-card method-card--featured">
           <div class="method-card__img-wrap">
-            <img src="/images/myrecomp-pt.jpg" alt="Personal Training Recomp360" class="method-card__img" />
+            <img src={`${base}images/myrecomp-pt.jpg`} alt="Personal Training Recomp360" class="method-card__img" />
           </div>
           <div class="method-card__body">
             <span class="badge">Core</span>
@@ -119,7 +120,7 @@ const reviews = [
         </div>
         <div class="method-card">
           <div class="method-card__img-wrap">
-            <img src="/images/myrecomp-group.jpg" alt="Small Group Training Recomp360" class="method-card__img" />
+            <img src={`${base}images/myrecomp-group.jpg`} alt="Small Group Training Recomp360" class="method-card__img" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Gruppo</span>
@@ -129,7 +130,7 @@ const reviews = [
         </div>
         <div class="method-card">
           <div class="method-card__img-wrap">
-            <img src="/images/myrecomp-sala.jpg" alt="Sala Attrezzi Recomp360" class="method-card__img" />
+            <img src={`${base}images/myrecomp-sala.jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Accesso</span>
@@ -160,7 +161,7 @@ const reviews = [
         {classes.map(c => (
           <div class="class-tile">
             <div class="class-tile__img-wrap">
-              <img src={c.img} alt={c.name} class="class-tile__img" />
+              <img src={`${base}images/${c.img}`} alt={c.name} class="class-tile__img" />
             </div>
             <h4>{c.name}</h4>
           </div>
@@ -174,9 +175,9 @@ const reviews = [
     <div class="container">
       <div class="gym__grid">
         <div class="gym__image-stack">
-          <img src="/images/gym-pesi.jpg" alt="Sala pesi Recomp360" class="gym__img gym__img--lg" />
-          <img src="/images/gym-sacco.jpg" alt="Zona boxe Recomp360" class="gym__img" />
-          <img src="/images/gym-cardio.jpg" alt="Zona cardio Recomp360" class="gym__img" />
+          <img src={`${base}images/gym-pesi.jpg`} alt="Sala pesi Recomp360" class="gym__img gym__img--lg" />
+          <img src={`${base}images/gym-sacco.jpg`} alt="Zona boxe Recomp360" class="gym__img" />
+          <img src={`${base}images/gym-cardio.jpg`} alt="Zona cardio Recomp360" class="gym__img" />
         </div>
         <div class="gym__text">
           <p class="section__label">Sala Attrezzi</p>
