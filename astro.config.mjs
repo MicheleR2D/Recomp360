@@ -8,5 +8,5 @@ export default defineConfig({
   site: isGitHubActions
     ? 'https://micheler2d.github.io'
     : 'https://recomp360.netlify.app',
-  base: isGitHubActions ? '/Recomp360' : '/',
+  base: isGitHubActions ? '/Recomp360/' : '/',
 });
