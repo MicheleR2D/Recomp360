@@ -6,14 +6,14 @@ import Footer from '../components/Footer.astro';
 const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
 const classes = [
-  { name: 'Cross Cardio',        icon: '⚡' },
-  { name: 'Functional Training', icon: '🏋️' },
-  { name: 'Interval Training',   icon: '🔥' },
-  { name: 'Met-Con',             icon: '💥' },
-  { name: 'Pilates',             icon: '🧘' },
-  { name: 'Postural',            icon: '⚖️' },
-  { name: 'Pre-Boxing',          icon: '🥊' },
-  { name: 'Zumba',               icon: '🎵' },
+  { name: 'Cross Cardio',        img: '/images/DSC02203-scaled.jpg' },
+  { name: 'Functional Training', img: '/images/DSC02203-scaled.jpg' },
+  { name: 'Interval Training',   img: '/images/1000204789-scaled.jpg' },
+  { name: 'Met-Con',             img: '/images/1000204833-scaled.jpg' },
+  { name: 'Pilates',             img: '/images/1000204752-scaled.jpg' },
+  { name: 'Postural',            img: '/images/DSC02345-scaled.jpg' },
+  { name: 'Pre-Boxing',          img: '/images/1000204833-scaled.jpg' },
+  { name: 'Zumba',               img: '/images/1000204752-scaled.jpg' },
 ];
 
 const reviews = [
@@ -55,8 +55,10 @@ const reviews = [
   <!-- ─── PHILOSOPHY ────────────────────────────────────────────────────── -->
   <section id="philosophy" class="section">
     <div class="container">
+
+      <!-- Riga superiore: testo sinistra, immagine destra -->
       <div class="philosophy__grid">
-        <div>
+        <div class="philosophy__text-col">
           <p class="section__label">Chi Siamo</p>
           <h2>PALESTRA.<br />MA NON SOLO.<br /><span class="text-accent">360°.</span></h2>
           <div class="divider"></div>
@@ -69,72 +71,100 @@ const reviews = [
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
-        <div class="stats-grid">
-          <div class="stat-card"><span class="stat-card__value">360°</span><span class="stat-card__label">Cura del percorso</span></div>
-          <div class="stat-card"><span class="stat-card__value">8+</span><span class="stat-card__label">Discipline</span></div>
-          <div class="stat-card"><span class="stat-card__value">100%</span><span class="stat-card__label">Last-gen</span></div>
-          <div class="stat-card"><span class="stat-card__value">5★</span><span class="stat-card__label">Media clienti</span></div>
+        <div class="philosophy__image-col">
+          <img src="/images/pt-session.jpg" alt="Personal training session Recomp360" class="philosophy__img" />
         </div>
       </div>
+
+      <!-- Riga inferiore: 4 stat inline -->
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-card__value">360°</span><span class="stat-card__label">Cura del percorso</span></div>
+        <div class="stat-card"><span class="stat-card__value">8+</span><span class="stat-card__label">Discipline</span></div>
+        <div class="stat-card"><span class="stat-card__value">100%</span><span class="stat-card__label">Last-gen</span></div>
+        <div class="stat-card"><span class="stat-card__value">5★</span><span class="stat-card__label">Media clienti</span></div>
+      </div>
+
     </div>
   </section>
 
   <!-- ─── MYRECOMP ──────────────────────────────────────────────────────── -->
   <section id="myrecomp" class="section section--alt">
     <div class="container">
-      <div class="section__header">
-        <p class="section__label">Il Metodo Proprietario</p>
-        <h2>MY<span class="text-accent">RECOMP</span></h2>
-        <div class="divider"></div>
-        <p style="margin-top:20px">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
-      </div>
-      <div class="method-grid">
-        <div class="method-card method-card--featured">
-          <span class="badge">Core</span>
-          <h3>Personal Training</h3>
-          <p>Sessioni 1:1 con trainer dedicato, scheda su misura.</p>
+
+      <!-- Header con CTA a destra -->
+      <div class="method-header">
+        <div>
+          <p class="section__label">Il Metodo Proprietario</p>
+          <h2>MY<span class="text-accent">RECOMP</span></h2>
+          <div class="divider"></div>
+          <p style="margin-top:16px">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
-        <div class="method-card">
-          <span class="badge badge--muted">Gruppo</span>
-          <h3>Small Group</h3>
-          <p>Max 6 persone per sessione. Efficacia PT, energia di gruppo.</p>
-        </div>
-        <div class="method-card">
-          <span class="badge badge--muted">Accesso</span>
-          <h3>Sala Libera</h3>
-          <p>Attrezzatura last-gen, zone funzionali, staff sempre presente.</p>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:48px">
-        <a href="/metodo" class="btn btn--outline">
+        <a href="/metodo" class="btn btn--outline method-header__cta">
           Scopri il Metodo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
+
+      <!-- Card con immagini -->
+      <div class="method-grid">
+        <div class="method-card method-card--featured">
+          <div class="method-card__img-wrap">
+            <img src="/images/myrecomp-pt.jpg" alt="Personal Training Recomp360" class="method-card__img" />
+          </div>
+          <div class="method-card__body">
+            <span class="badge">Core</span>
+            <h3>Personal Training</h3>
+            <p>Sessioni 1:1 con trainer dedicato, scheda su misura.</p>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-card__img-wrap">
+            <img src="/images/myrecomp-group.jpg" alt="Small Group Training Recomp360" class="method-card__img" />
+          </div>
+          <div class="method-card__body">
+            <span class="badge badge--muted">Gruppo</span>
+            <h3>Small Group</h3>
+            <p>Max 6 persone per sessione. Efficacia PT, energia di gruppo.</p>
+          </div>
+        </div>
+        <div class="method-card">
+          <div class="method-card__img-wrap">
+            <img src="/images/myrecomp-sala.jpg" alt="Sala Attrezzi Recomp360" class="method-card__img" />
+          </div>
+          <div class="method-card__body">
+            <span class="badge badge--muted">Accesso</span>
+            <h3>Sala Libera</h3>
+            <p>Attrezzatura last-gen, zone funzionali, staff sempre presente.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ─── CLASSES ───────────────────────────────────────────────────────── -->
   <section id="classes" class="section">
     <div class="container">
-      <div class="section__header">
-        <p class="section__label">Attività di Gruppo</p>
-        <h2>CLASSI <span class="text-accent">FITNESS</span></h2>
-        <div class="divider"></div>
+      <div class="classes-header">
+        <div>
+          <p class="section__label">Attività di Gruppo</p>
+          <h2>CLASSI <span class="text-accent">FITNESS</span></h2>
+          <div class="divider"></div>
+        </div>
+        <a href="/classi" class="btn btn--outline classes-header__cta">
+          Orari e Iscrizioni
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
       <div class="classes-grid">
         {classes.map(c => (
           <div class="class-tile">
-            <span class="class-tile__icon">{c.icon}</span>
+            <div class="class-tile__img-wrap">
+              <img src={c.img} alt={c.name} class="class-tile__img" />
+            </div>
             <h4>{c.name}</h4>
           </div>
         ))}
-      </div>
-      <div style="text-align:center;margin-top:40px">
-        <a href="/classi" class="btn btn--outline">
-          Orari e Iscrizioni
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
     </div>
   </section>
@@ -144,9 +174,9 @@ const reviews = [
     <div class="container">
       <div class="gym__grid">
         <div class="gym__image-stack">
-          <div class="img-placeholder img-placeholder--lg"><span>📸 Sala pesi</span></div>
-          <div class="img-placeholder"><span>📸 Zona funzionale</span></div>
-          <div class="img-placeholder"><span>📸 Dettaglio</span></div>
+          <img src="/images/gym-pesi.jpg" alt="Sala pesi Recomp360" class="gym__img gym__img--lg" />
+          <img src="/images/gym-sacco.jpg" alt="Zona boxe Recomp360" class="gym__img" />
+          <img src="/images/gym-cardio.jpg" alt="Zona cardio Recomp360" class="gym__img" />
         </div>
         <div class="gym__text">
           <p class="section__label">Sala Attrezzi</p>
@@ -255,15 +285,25 @@ const reviews = [
 /* ── PHILOSOPHY ────────────────────────────────────────────────────────────── */
 .philosophy__grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
+  gap: 64px; align-items: center;
+  margin-bottom: 48px;
 }
 .philosophy__text {
   margin-top: 24px; font-size: 17px;
   color: var(--text-muted); line-height: 1.7;
-  max-width: 440px;
+  max-width: 480px;
 }
-.stats-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+.philosophy__image-col { position: relative; }
+.philosophy__img {
+  width: 100%; height: 480px;
+  object-fit: cover; object-position: center top;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+/* Stat row — 4 card inline sotto testo+immagine */
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
 }
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border);
@@ -282,18 +322,35 @@ const reviews = [
 }
 
 /* ── MYRECOMP ──────────────────────────────────────────────────────────────── */
+.method-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px;
+}
+.method-header__cta { flex-shrink: 0; }
+
 .method-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
 }
 .method-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 36px 28px;
+  border-radius: var(--radius-lg); overflow: hidden;
   transition: border-color .2s, transform .2s;
 }
 .method-card:hover { border-color: var(--accent); transform: translateY(-3px); }
 .method-card--featured { border-color: rgba(229,51,50,0.4); }
-.method-card h3 { margin: 16px 0 10px; }
-.method-card p { font-size: 15px; color: var(--text-muted); }
+
+.method-card__img-wrap { overflow: hidden; }
+.method-card__img {
+  width: 100%; height: 220px;
+  object-fit: cover; object-position: center;
+  display: block;
+  transition: transform .4s ease;
+}
+.method-card:hover .method-card__img { transform: scale(1.04); }
+
+.method-card__body { padding: 24px 28px 28px; }
+.method-card__body h3 { margin: 14px 0 8px; }
+.method-card__body p { font-size: 15px; color: var(--text-muted); }
 
 .badge {
   display: inline-block; font-size: 10px; font-weight: 700;
@@ -304,17 +361,30 @@ const reviews = [
 .badge--muted { color: var(--text-muted); border-color: var(--border); }
 
 /* ── CLASSES ───────────────────────────────────────────────────────────────── */
+.classes-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; margin-bottom: 40px;
+}
+.classes-header__cta { flex-shrink: 0; }
+
 .classes-grid {
   display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
 }
 .class-tile {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 28px 20px; text-align: center;
+  border-radius: var(--radius-lg); overflow: hidden;
   transition: border-color .2s, transform .2s;
 }
 .class-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
-.class-tile__icon { font-size: 28px; display: block; margin-bottom: 12px; }
-.class-tile h4 { font-size: 16px; letter-spacing: 0.5px; }
+.class-tile__img-wrap { overflow: hidden; }
+.class-tile__img {
+  width: 100%; height: 160px;
+  object-fit: cover; object-position: center;
+  display: block;
+  transition: transform .4s ease;
+}
+.class-tile:hover .class-tile__img { transform: scale(1.04); }
+.class-tile h4 { font-size: 14px; letter-spacing: 0.5px; padding: 16px 20px; }
 
 /* ── GYM ───────────────────────────────────────────────────────────────────── */
 .gym__grid {
@@ -324,13 +394,12 @@ const reviews = [
 .gym__image-stack {
   display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
 }
-.img-placeholder {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); min-height: 160px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-muted); font-size: 13px;
+.gym__img {
+  width: 100%; height: 200px;
+  object-fit: cover; object-position: center;
+  border-radius: var(--radius-lg); display: block;
 }
-.img-placeholder--lg { grid-column: 1 / -1; min-height: 240px; }
+.gym__img--lg { grid-column: 1 / -1; height: 280px; }
 .gym-features { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
 .gym-features li {
   display: flex; align-items: center; gap: 10px;
@@ -375,18 +444,22 @@ const reviews = [
 
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .classes-grid { grid-template-columns: repeat(2,1fr); }
-  .method-grid  { grid-template-columns: 1fr; max-width: 520px; }
+  .classes-grid  { grid-template-columns: repeat(2,1fr); }
+  .method-grid   { grid-template-columns: 1fr; max-width: 520px; }
+  .method-header  { flex-direction: column; align-items: flex-start; }
+  .classes-header { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 900px) {
-  .philosophy__grid   { grid-template-columns: 1fr; gap: 48px; }
-  .gym__grid          { grid-template-columns: 1fr; gap: 48px; }
-  .reviews-grid       { grid-template-columns: 1fr; }
+  .philosophy__grid     { grid-template-columns: 1fr; gap: 40px; }
+  .philosophy__img      { height: 320px; }
+  .stats-row            { grid-template-columns: repeat(2, 1fr); }
+  .gym__grid            { grid-template-columns: 1fr; gap: 48px; }
+  .reviews-grid         { grid-template-columns: 1fr; }
   .offer-section__inner { grid-template-columns: 1fr; gap: 40px; }
 }
 @media (max-width: 640px) {
   .classes-grid { grid-template-columns: repeat(2,1fr); }
-  .stats-grid   { grid-template-columns: repeat(2,1fr); }
+  .stats-row    { grid-template-columns: repeat(2,1fr); }
   .hero__ctas   { flex-direction: column; }
   .hero__ctas .btn { width: 100%; justify-content: center; }
 }
