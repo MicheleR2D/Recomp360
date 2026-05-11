@@ -289,8 +289,8 @@ const reviews = [
 
 .hero__content {
   position: absolute;
-  bottom: 80px; left: 10%;
-  max-width: 620px;
+  bottom: 80px; left: 8%;
+  max-width: min(580px, 48vw);
   z-index: 2;
 }
 .hero__eyebrow {
@@ -298,15 +298,15 @@ const reviews = [
   font-size: 11px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both;
 }
 .hero__title {
   color: var(--white);
-  font-size: clamp(40px, 6vw, 88px);
-  line-height: 0.95;
-  margin-bottom: 24px;
-  overflow: hidden;
+  font-size: clamp(26px, 3.4vw, 56px);
+  line-height: 1.05;
+  margin-bottom: 20px;
+  overflow: visible;
 }
 .hero__line {
   display: inline-block;
