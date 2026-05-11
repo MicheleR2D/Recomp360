@@ -215,6 +215,60 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
   margin-top: 20px;
 }
 
+/* ─── Lightning Border Antiorario ────────────────────────────────────────── */
+@property --bolt-angle {
+  syntax: '<angle>';
+  initial-value: 360deg;
+  inherits: false;
+}
+
+@keyframes lightningCCW {
+  from { --bolt-angle: 360deg; }
+  to   { --bolt-angle: 0deg; }
+}
+
+.btn-primary,
+.btn-outline,
+.gp-btn-red,
+.ct-btn-red {
+  position: relative;
+  isolation: isolate;
+}
+
+.btn-primary::before,
+.btn-outline::before,
+.gp-btn-red::before,
+.ct-btn-red::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--bolt-angle),
+    transparent      0%,
+    transparent      72%,
+    rgba(255,220,  0, 0)    73.5%,
+    rgba(255,220,  0, 0.95) 76.5%,
+    rgba(255,255,255, 1)    78%,
+    rgba(229, 51, 50, 1)    80.5%,
+    rgba(255, 80,  0, 0.3)  83%,
+    transparent      85%,
+    transparent      100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: lightningCCW 2.8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root {
