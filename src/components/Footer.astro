@@ -53,10 +53,12 @@ const year = new Date().getFullYear();
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
         </a>
       </div>
-      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary footer__cta">
-        Inizia Ora — €17
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="neon-wrap">
+        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary footer__cta">
+          Inizia Ora — €17
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
 
   </div>
@@ -69,6 +71,44 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
+/* ── Neon-wrap ── */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes borderRotate {
+  to { --angle: 360deg; }
+}
+
+.neon-wrap {
+  position: relative;
+  display: block;
+  border-radius: 0;
+}
+.neon-wrap::before,
+.neon-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent)  40%,
+    #ff8080        50%,
+    var(--white)   55%,
+    var(--accent)  60%,
+    transparent    80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.neon-wrap::after {
+  filter: blur(8px);
+  opacity: 0.6;
+}
+
 .footer {
   background: #000000;
   border-top: 1px solid var(--border);
@@ -147,7 +187,15 @@ const year = new Date().getFullYear();
 
 .footer__social svg { width: 18px; height: 18px; }
 
-.footer__cta { width: 100%; justify-content: center; }
+.footer__cta {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  justify-content: center;
+  background: var(--bg-card);
+  white-space: nowrap;
+}
+.footer__cta:hover { background: var(--bg-card); }
 
 /* ── Bottom bar ── */
 .footer__bottom {

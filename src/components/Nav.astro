@@ -2,168 +2,545 @@
 const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
-
-const navLinks = [
-  { href: `${base}about`,  label: 'Chi Siamo', match: '/about'  },
-  { href: `${base}metodo`, label: 'Il Metodo', match: '/metodo' },
-  { href: `${base}classi`, label: 'Classi',    match: '/classi' },
-  { href: '#facility',     label: 'Struttura', match: null      },
-];
 ---
 
 <nav class="nav" id="nav">
-  <div class="container nav__inner">
+  <div class="nav__bar container">
+
+    <!-- ── Logo ── -->
     <a href={base} class="nav__logo" aria-label="Recomp360 home">
       <img src={`${base}images/logo.png`} alt="Recomp360" />
     </a>
 
+    <!-- ── Desktop links ── -->
     <ul class="nav__links" id="nav-links">
-      {navLinks.map(link => (
-        <li><a
-          href={link.href}
-          class:list={['nav__link', { 'nav__link--active': link.match && pathname.includes(link.match) }]}
-        >{link.label}</a></li>
-      ))}
+
+      <!-- Chi Siamo — link semplice -->
+      <li class="nav__item">
+        <a
+          href={`${base}about`}
+          class:list={['nav__link', { 'is-active': pathname.includes('/about') }]}
+        >Chi Siamo</a>
+      </li>
+
+      <!-- Il Metodo — mega-menu -->
+      <li class="nav__item nav__item--mega">
+        <button
+          class:list={['nav__link', 'nav__trigger', { 'is-active': pathname.includes('/metodo') }]}
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          Il Metodo
+          <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <div class="mega-menu" aria-hidden="true">
+          <div class="container mega-menu__inner">
+
+            <a href={`${base}metodo`} class="mega-menu__panel">
+              <img src={`${base}images/myrecomp-pt.jpg`} alt="Personal Training Recomp360" class="mega-menu__panel-img" />
+              <div class="mega-menu__panel-body">
+                <strong class="mega-menu__panel-title">MyRecomp</strong>
+                <span class="mega-menu__panel-sub">Ricomposizione corporea strutturata.<br />Il metodo proprietario Recomp360.</span>
+                <span class="mega-menu__panel-cta">Scopri il Metodo →</span>
+              </div>
+            </a>
+
+            <div class="mega-menu__col">
+              <p class="mega-menu__col-label">Il Percorso</p>
+              <ul>
+                <li><a href={`${base}metodo`}>Personal Training</a></li>
+                <li><a href={`${base}metodo`}>Small Group Training</a></li>
+                <li><a href={`${base}metodo`}>Sala Libera</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-menu__col">
+              <p class="mega-menu__col-label">Il Team</p>
+              <ul>
+                <li><a href={`${base}about`}>Personal Trainer</a></li>
+                <li><a href={`${base}about`}>Nutrizionista</a></li>
+                <li><a href={`${base}about`}>Fisioterapista</a></li>
+                <li><a href={`${base}about`}>Posturologa & Osteopata</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Classi — mega-menu -->
+      <li class="nav__item nav__item--mega">
+        <button
+          class:list={['nav__link', 'nav__trigger', { 'is-active': pathname.includes('/classi') }]}
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          Classi
+          <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+
+        <div class="mega-menu" aria-hidden="true">
+          <div class="container mega-menu__inner">
+
+            <a href={`${base}classi`} class="mega-menu__panel">
+              <img src={`${base}images/DSC02203-scaled.jpg`} alt="Classi fitness Recomp360" class="mega-menu__panel-img" />
+              <div class="mega-menu__panel-body">
+                <strong class="mega-menu__panel-title">Classi Fitness</strong>
+                <span class="mega-menu__panel-sub">8 discipline per non annoiarti mai.<br />Istruttori specializzati per ogni classe.</span>
+                <span class="mega-menu__panel-cta">Vedi tutte le classi →</span>
+              </div>
+            </a>
+
+            <div class="mega-menu__col">
+              <p class="mega-menu__col-label">Cardio & Metabolico</p>
+              <ul>
+                <li><a href={`${base}classi`}>Cross Cardio</a></li>
+                <li><a href={`${base}classi`}>Interval Training</a></li>
+                <li><a href={`${base}classi`}>Met-Con</a></li>
+                <li><a href={`${base}classi`}>Pre-Boxing</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-menu__col">
+              <p class="mega-menu__col-label">Forza & Benessere</p>
+              <ul>
+                <li><a href={`${base}classi`}>Functional Training</a></li>
+                <li><a href={`${base}classi`}>Pilates</a></li>
+                <li><a href={`${base}classi`}>Postural</a></li>
+                <li><a href={`${base}classi`}>Zumba</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Struttura — link semplice -->
+      <li class="nav__item">
+        <a href="#facility" class="nav__link">Struttura</a>
+      </li>
+
     </ul>
 
-    <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary nav__cta">
-      Inizia Ora
-    </a>
+    <!-- ── Destra: CTA + burger ── -->
+    <div class="nav__right">
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary nav__cta">
+        Inizia Ora
+      </a>
+      <button class="nav__burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-    <button class="nav__burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </nav>
 
 <style>
+/* ── SHELL ─────────────────────────────────────────────────────────────────── */
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding-block: 20px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  transition: background 0.3s, padding 0.3s;
+  transition: box-shadow 0.3s ease;
 }
-
 .nav.scrolled {
-  background: var(--bg-overlay-95);
-  backdrop-filter: blur(12px);
-  padding-block: 14px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
-.nav__inner {
+/* ── BAR: grid 3 colonne → logo | links | right ───────────────────────────── */
+.nav__bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 64px;
+}
+
+.nav__logo img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.nav__right {
+  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 16px;
 }
 
-.nav__logo img { height: 52px; width: auto; }
-
+/* ── LINKS ─────────────────────────────────────────────────────────────────── */
 .nav__links {
   display: flex;
-  gap: 36px;
-  margin-right: auto;
+  align-items: center;
+  gap: 0;
 }
 
 .nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color 0.2s;
+  color: var(--text);
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav__link:hover { color: var(--accent); }
+
+/* Stato attivo: testo accent + underline */
+.nav__link.is-active { color: var(--accent); }
+.nav__link.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--accent);
 }
 
-.nav__link:hover { color: var(--text); }
+/* ── CHEVRON ───────────────────────────────────────────────────────────────── */
+.nav__chevron {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+.nav__item--mega.is-open .nav__chevron {
+  transform: rotate(180deg);
+}
 
-.nav__link--active {
+/* ── MEGA-MENU ─────────────────────────────────────────────────────────────── */
+.mega-menu {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background: var(--bg-card);
+  border-top: 2px solid var(--accent);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.mega-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mega-menu__inner {
+  display: flex;
+  align-items: stretch;
+  padding-block: 32px;
+  gap: 0;
+}
+
+/* ── Panel sinistro: immagine ──────────────────────────────────────────────── */
+.mega-menu__panel {
+  flex-shrink: 0;
+  width: 260px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-right: 48px;
+  text-decoration: none;
+  display: block;
+}
+.mega-menu__panel-img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 400ms ease;
+}
+.mega-menu__panel:hover .mega-menu__panel-img {
+  transform: scale(1.05);
+}
+.mega-menu__panel-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+}
+.mega-menu__panel-title {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--white);
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.mega-menu__panel-sub {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-sub-60);
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 12px;
+}
+.mega-menu__panel-cta {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--accent);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 2px;
+  display: block;
 }
 
-.nav__cta { flex-shrink: 0; }
+/* ── Colonne link ──────────────────────────────────────────────────────────── */
+.mega-menu__col {
+  flex: 1;
+  padding-inline: 32px;
+  border-left: 1px solid var(--border);
+}
+.mega-menu__col-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  max-width: none;
+}
+.mega-menu__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mega-menu__col a {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+  display: block;
+}
+.mega-menu__col a:hover { color: var(--text); }
 
+/* ── Burger ────────────────────────────────────────────────────────────────── */
 .nav__burger {
   display: none;
   flex-direction: column;
   gap: 5px;
-  padding: 4px;
-  margin-left: auto;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
 }
-
 .nav__burger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--text);
-  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
+.nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { opacity: 0; }
+.nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── Mobile ── */
+/* ── MOBILE ────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .nav__bar {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Menu slide-in laterale */
   .nav__links {
     position: fixed;
-    inset: 0;
+    inset: 64px 0 0;
     background: var(--bg);
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 99;
   }
+  .nav__links.is-open { transform: translateX(0); }
 
-  .nav__links.open { transform: translateX(0); }
+  .nav__item { border-bottom: 1px solid var(--border); }
 
   .nav__link {
-    font-size: 32px;
-    font-family: var(--font-head);
-    letter-spacing: 1px;
+    font-size: 14px;
+    padding: 18px 24px;
+    width: 100%;
+    justify-content: space-between;
   }
+  .nav__link.is-active::after { display: none; }
 
   .nav__cta { display: none; }
+  .nav__burger { display: flex; }
 
-  .nav__burger { display: flex; z-index: 101; }
+  /* Mega → accordion */
+  .mega-menu {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    background: var(--bg-alt);
+    border-bottom: none;
+    box-shadow: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .mega-menu.is-open { max-height: 600px; }
 
-  .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav__burger.open span:nth-child(2) { opacity: 0; }
-  .nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mega-menu__inner {
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 24px;
+  }
+
+  .mega-menu__panel { display: none; }
+
+  .mega-menu__col {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  /* primo col non ha border-top (div:first-of-type perché panel è <a>) */
+  .mega-menu__col:first-of-type { border-top: none; padding-top: 8px; }
+
+  .mega-menu__col-label { margin-bottom: 12px; }
+
+  .mega-menu__col a {
+    padding-block: 5px;
+    font-size: 13px;
+  }
 }
 </style>
 
 <script>
-const nav    = document.getElementById('nav')!;
-const burger = document.getElementById('nav-burger')!;
-const links  = document.getElementById('nav-links')!;
+const nav       = document.getElementById('nav')!;
+const burger    = document.getElementById('nav-burger')!;
+const linksList = document.getElementById('nav-links')!;
 
+const megaItems = Array.from(nav.querySelectorAll<HTMLElement>('.nav__item--mega'));
+const triggers  = Array.from(nav.querySelectorAll<HTMLButtonElement>('.nav__trigger'));
+
+const closeTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
+
+// ── Scroll ──
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
 
-burger.addEventListener('click', () => {
-  const open = burger.classList.toggle('open');
-  links.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', String(open));
-});
+// ── Helpers ──
+const isMobile = () => window.innerWidth <= 768;
 
-links.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    links.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
+function openMega(item: HTMLElement) {
+  const mega    = item.querySelector<HTMLElement>('.mega-menu')!;
+  const trigger = item.querySelector<HTMLButtonElement>('.nav__trigger')!;
+  item.classList.add('is-open');
+  mega.classList.add('is-open');
+  mega.setAttribute('aria-hidden', 'false');
+  trigger.setAttribute('aria-expanded', 'true');
+}
+
+function closeMega(item: HTMLElement) {
+  const mega    = item.querySelector<HTMLElement>('.mega-menu')!;
+  const trigger = item.querySelector<HTMLButtonElement>('.nav__trigger')!;
+  item.classList.remove('is-open');
+  mega.classList.remove('is-open');
+  mega.setAttribute('aria-hidden', 'true');
+  trigger.setAttribute('aria-expanded', 'false');
+}
+
+function closeAll() {
+  megaItems.forEach(item => closeMega(item));
+}
+
+// ── Desktop: hover con debounce ──
+megaItems.forEach(item => {
+  item.addEventListener('mouseenter', () => {
+    if (isMobile()) return;
+    const t = closeTimers.get(item);
+    if (t) { clearTimeout(t); closeTimers.delete(item); }
+    closeAll();
+    openMega(item);
+  });
+
+  item.addEventListener('mouseleave', () => {
+    if (isMobile()) return;
+    const t = setTimeout(() => {
+      closeMega(item);
+      closeTimers.delete(item);
+    }, 120);
+    closeTimers.set(item, t);
   });
 });
 
-// Chiudi il menu con click fuori dal nav
-document.addEventListener('click', (e) => {
-  if (links.classList.contains('open') && !nav.contains(e.target as Node)) {
-    burger.classList.remove('open');
-    links.classList.remove('open');
+// ── Mobile: click trigger → accordion ──
+triggers.forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    if (!isMobile()) return;
+    const item   = trigger.closest<HTMLElement>('.nav__item--mega')!;
+    const isOpen = item.classList.contains('is-open');
+    closeAll();
+    if (!isOpen) openMega(item);
+  });
+});
+
+// ── Burger ──
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('is-open');
+  linksList.classList.toggle('is-open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  if (!open) closeAll();
+});
+
+// ── Chiudi al click su un link (mobile) ──
+linksList.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('is-open');
+    linksList.classList.remove('is-open');
     burger.setAttribute('aria-expanded', 'false');
-  }
+    closeAll();
+  });
+});
+
+// ── Click fuori → chiudi mega ──
+document.addEventListener('click', e => {
+  if (!nav.contains(e.target as Node)) closeAll();
+});
+
+// ── ESC → chiudi tutto ──
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  closeAll();
+  burger.classList.remove('is-open');
+  linksList.classList.remove('is-open');
+  burger.setAttribute('aria-expanded', 'false');
 });
 </script>
