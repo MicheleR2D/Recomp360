@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+
+  <section class="grazie-section">
+    <div class="container grazie-inner">
+      <div class="grazie-icon" id="grazie-icon">✓</div>
+      <p class="grazie-eye">Pagamento completato</p>
+      <h1 class="grazie-title">
+        BENVENUTO IN<br />
+        <span class="ga">RECOMP360!</span>
+      </h1>
+      <p class="grazie-sub">
+        Il tuo Guest Pass è attivo. Riceverai una email di conferma con tutti i dettagli.<br />
+        Il team Recomp360 non vede l'ora di conoscerti.
+      </p>
+      <div class="grazie-details" id="grazie-details"></div>
+      <a href="/" class="btn-primary grazie-cta">
+        Torna alla home
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+.grazie-section {
+  min-height: 90svh;
+  display: flex; align-items: center; justify-content: center;
+  padding-block: 120px;
+  background: var(--bg);
+}
+.grazie-inner {
+  text-align: center;
+  max-width: 600px;
+}
+.grazie-icon {
+  width: 80px; height: 80px;
+  background: rgba(229,51,50,.12);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; color: var(--accent);
+  margin: 0 auto 28px;
+  animation: popIn .6s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+.grazie-eye {
+  font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.grazie-title {
+  font-size: clamp(30px, 5vw, 56px);
+  line-height: 1; margin-bottom: 20px;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .15s both;
+}
+.ga { color: var(--accent); }
+.grazie-sub {
+  font-size: 16px; color: var(--text-muted); line-height: 1.7;
+  margin: 0 auto 32px;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .25s both;
+}
+.grazie-details {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 20px 28px;
+  margin-bottom: 32px; text-align: left;
+  font-size: 14px; color: var(--text-muted); line-height: 1.8;
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .35s both;
+}
+.grazie-details:empty { display: none; }
+.grazie-details strong { color: var(--text); }
+.grazie-cta {
+  animation: fadeUp .7s cubic-bezier(.16,1,.3,1) .45s both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+(function () {
+  const WEBHOOK_ACQUISTO = 'https://automazione.n8ndevelop.it/webhook/recomp360/acquisto';
+
+  // Leggo session_id dalla URL
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (!sessionId) return;
+
+  // Mostro dettagli dall'URL se presenti (opzionale, Stripe non passa metadata nell'URL)
+  const detailsEl = document.getElementById('grazie-details');
+  if (detailsEl && sessionId) {
+    detailsEl.innerHTML = `<strong>ID sessione:</strong> ${sessionId}`;
+  }
+
+  // Webhook 2 — notifica acquisto completato
+  fetch(WEBHOOK_ACQUISTO, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      step: 'acquisto_completato',
+      session_id: sessionId,
+      timestamp: new Date().toISOString(),
+    }),
+    mode: 'no-cors',
+  }).catch(() => {});
+})();
+</script>

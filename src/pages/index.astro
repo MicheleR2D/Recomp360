@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import GuestPassModal from '../components/GuestPassModal.astro';
 
 const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
@@ -46,10 +47,10 @@ const reviews = [
       </h1>
       <p class="hero__sub">Non una palestra. Un metodo.</p>
       <div class="hero__ctas">
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary magnetic">
+        <button class="btn-primary magnetic gp-trigger">
           Inizia Ora — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        </button>
         <a href="#philosophy" class="btn-outline magnetic">Scopri di Più</a>
       </div>
     </div>
@@ -219,10 +220,10 @@ const reviews = [
           <li><span>✓</span> Accesso a tutte le zone</li>
           <li><span>✓</span> 14 giorni dall'attivazione</li>
         </ul>
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary offer-btn">
+        <button class="btn-primary offer-btn gp-trigger">
           Attiva la Prova — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        </button>
       </div>
     </div>
   </section>
@@ -249,6 +250,9 @@ const reviews = [
 
   <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
   <Footer />
+
+  <!-- ─── GUEST PASS MODAL ─────────────────────────────────────────────── -->
+  <GuestPassModal />
 </Layout>
 
 <style>
