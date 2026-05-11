@@ -1140,7 +1140,8 @@ const reviews = [
   const video = document.querySelector('.hero__video');
   if (!video) return;
   const tryPlay = () => video.play().catch(() => {});
-  document.addEventListener('DOMContentLoaded', tryPlay);
+  // Script runs after DOM is ready — call immediately, then retry on first touch as fallback
+  tryPlay();
   document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
 })();
 
