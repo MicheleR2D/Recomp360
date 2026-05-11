@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import GuestPassModal from '../components/GuestPassModal.astro';
+import ContactModal from '../components/ContactModal.astro';
 
 const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
@@ -51,7 +52,7 @@ const reviews = [
           Inizia Ora — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
-        <a href="#philosophy" class="btn-outline magnetic">Scopri di Più</a>
+        <button class="btn-outline magnetic contact-trigger">Contattaci</button>
       </div>
     </div>
     <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Scroll</span></div>
@@ -253,6 +254,9 @@ const reviews = [
 
   <!-- ─── GUEST PASS MODAL ─────────────────────────────────────────────── -->
   <GuestPassModal />
+
+  <!-- ─── CONTACT MODAL ────────────────────────────────────────────────── -->
+  <ContactModal />
 </Layout>
 
 <style>
