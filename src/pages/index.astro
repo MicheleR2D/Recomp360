@@ -36,20 +36,21 @@ const reviews = [
       <img src={`${base}images/hero-poster.jpg`} alt="" class="hero-bg-img" aria-hidden="true" />
       <div class="hero__overlay"></div>
     </div>
+    <canvas id="hero-particles" aria-hidden="true"></canvas>
     <div class="container hero__content">
       <p class="hero__eyebrow">Roma · Zona Prenestina</p>
       <h1 class="hero__title">
-        IL METODO CHE<br />
-        <span class="text-accent">TRASFORMA</span><br />
-        I TUOI OBIETTIVI
+        <span class="hero__line hero__line--1">IL METODO CHE</span><br />
+        <span class="hero__line hero__line--2 text-accent hero__glitch" data-text="TRASFORMA">TRASFORMA</span><br />
+        <span class="hero__line hero__line--3">I TUOI OBIETTIVI</span>
       </h1>
       <p class="hero__sub">Non una palestra. Un metodo.</p>
       <div class="hero__ctas">
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary">
+        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary magnetic">
           Inizia Ora — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#philosophy" class="btn-outline">Scopri di Più</a>
+        <a href="#philosophy" class="btn-outline magnetic">Scopri di Più</a>
       </div>
     </div>
     <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Scroll</span></div>
@@ -58,13 +59,11 @@ const reviews = [
   <!-- ─── PHILOSOPHY ────────────────────────────────────────────────────── -->
   <section id="philosophy" class="section">
     <div class="container">
-
-      <!-- Riga superiore: testo sinistra, immagine destra -->
       <div class="philosophy__grid">
-        <div class="philosophy__text-col">
+        <div class="philosophy__text-col reveal">
           <p class="section__label">Chi Siamo</p>
           <h2>PALESTRA.<br />MA NON SOLO.<br /><span class="text-accent">360°.</span></h2>
-          <div class="divider"></div>
+          <div class="divider anim-divider"></div>
           <p class="philosophy__text">
             Libertà della sala attrezzi + expertise del personal training studio.
             Un team di specialisti — trainer, nutrizionista, fisioterapista — per seguirti davvero a tutto tondo.
@@ -74,32 +73,40 @@ const reviews = [
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
-        <div class="philosophy__image-col">
+        <div class="philosophy__image-col reveal reveal-delay-2">
           <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
         </div>
       </div>
 
-      <!-- Riga inferiore: 4 stat inline -->
       <div class="stats-row">
-        <div class="stat-card"><span class="stat-card__value">360°</span><span class="stat-card__label">Cura del percorso</span></div>
-        <div class="stat-card"><span class="stat-card__value">8+</span><span class="stat-card__label">Discipline</span></div>
-        <div class="stat-card"><span class="stat-card__value">100%</span><span class="stat-card__label">Last-gen</span></div>
-        <div class="stat-card"><span class="stat-card__value">5★</span><span class="stat-card__label">Media clienti</span></div>
+        <div class="stat-card reveal reveal-delay-1">
+          <span class="stat-card__value" data-count="360" data-suffix="°">360°</span>
+          <span class="stat-card__label">Cura del percorso</span>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <span class="stat-card__value" data-count="8" data-suffix="+">8+</span>
+          <span class="stat-card__label">Discipline</span>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <span class="stat-card__value" data-count="100" data-suffix="%">100%</span>
+          <span class="stat-card__label">Last-gen</span>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <span class="stat-card__value" data-count="5" data-suffix="★">5★</span>
+          <span class="stat-card__label">Media clienti</span>
+        </div>
       </div>
-
     </div>
   </section>
 
   <!-- ─── MYRECOMP ──────────────────────────────────────────────────────── -->
   <section id="myrecomp" class="section section--alt">
     <div class="container">
-
-      <!-- Header con CTA a destra -->
-      <div class="method-header">
+      <div class="method-header reveal">
         <div>
           <p class="section__label">Il Metodo Proprietario</p>
           <h2>MY<span class="text-accent">RECOMP</span></h2>
-          <div class="divider"></div>
+          <div class="divider anim-divider"></div>
           <p style="margin-top:16px">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
         <a href="/metodo" class="btn-outline method-header__cta">
@@ -108,9 +115,8 @@ const reviews = [
         </a>
       </div>
 
-      <!-- Card con immagini -->
       <div class="method-grid">
-        <div class="method-card method-card--featured">
+        <div class="method-card method-card--featured reveal reveal-delay-1 tilt-card">
           <div class="method-card__img-wrap">
             <img src={`${base}images/myrecomp-pt.jpg`} alt="Personal Training Recomp360" class="method-card__img" />
           </div>
@@ -120,7 +126,7 @@ const reviews = [
             <p>Sessioni 1:1 con trainer dedicato, scheda su misura.</p>
           </div>
         </div>
-        <div class="method-card">
+        <div class="method-card reveal reveal-delay-2 tilt-card">
           <div class="method-card__img-wrap">
             <img src={`${base}images/myrecomp-group.jpg`} alt="Small Group Training Recomp360" class="method-card__img" />
           </div>
@@ -130,7 +136,7 @@ const reviews = [
             <p>Max 6 persone per sessione. Efficacia PT, energia di gruppo.</p>
           </div>
         </div>
-        <div class="method-card">
+        <div class="method-card reveal reveal-delay-3 tilt-card">
           <div class="method-card__img-wrap">
             <img src={`${base}images/myrecomp-sala.jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img" />
           </div>
@@ -141,18 +147,17 @@ const reviews = [
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- ─── CLASSES ───────────────────────────────────────────────────────── -->
   <section id="classes" class="section">
     <div class="container">
-      <div class="classes-header">
+      <div class="classes-header reveal">
         <div>
           <p class="section__label">Attività di Gruppo</p>
           <h2>CLASSI <span class="text-accent">FITNESS</span></h2>
-          <div class="divider"></div>
+          <div class="divider anim-divider"></div>
         </div>
         <a href="/classi" class="btn-outline classes-header__cta">
           Orari e Iscrizioni
@@ -160,8 +165,8 @@ const reviews = [
         </a>
       </div>
       <div class="classes-grid">
-        {classes.map(c => (
-          <div class="class-tile">
+        {classes.map((c, i) => (
+          <div class={`class-tile reveal reveal-delay-${(i % 4) + 1}`}>
             <div class="class-tile__img-wrap">
               <img src={`${base}images/${c.img}`} alt={c.name} class="class-tile__img" />
             </div>
@@ -176,15 +181,15 @@ const reviews = [
   <section id="gym" class="section section--alt">
     <div class="container">
       <div class="gym__grid">
-        <div class="gym__image-stack">
+        <div class="gym__image-stack reveal">
           <img src={`${base}images/gym-pesi.jpg`} alt="Sala pesi Recomp360" class="gym__img gym__img--lg" />
           <img src={`${base}images/gym-sacco.jpg`} alt="Zona boxe Recomp360" class="gym__img" />
           <img src={`${base}images/gym-cardio.jpg`} alt="Zona cardio Recomp360" class="gym__img" />
         </div>
-        <div class="gym__text">
+        <div class="gym__text reveal reveal-delay-2">
           <p class="section__label">Sala Attrezzi</p>
           <h2>ATTREZZATURA<br /><span class="text-accent">LAST-GEN</span></h2>
-          <div class="divider"></div>
+          <div class="divider anim-divider"></div>
           <ul class="gym-features">
             <li><span class="check-icon">✓</span> Macchinari di ultima generazione</li>
             <li><span class="check-icon">✓</span> Zone dedicate functional + metabolico</li>
@@ -199,15 +204,15 @@ const reviews = [
   <!-- ─── OFFER ─────────────────────────────────────────────────────────── -->
   <section id="offer" class="section offer-section">
     <div class="container offer-section__inner">
-      <div class="offer-section__text">
+      <div class="offer-section__text reveal">
         <p class="section__label">Inizia Adesso</p>
         <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
-        <div class="divider"></div>
+        <div class="divider anim-divider"></div>
         <p style="margin-top:24px;color:var(--text-muted)">
           7 allenamenti + valutazione tecnica inclusa.<br />Valido 14 giorni dall'attivazione.
         </p>
       </div>
-      <div class="offer-section__cta">
+      <div class="offer-section__cta reveal reveal-delay-2">
         <ul class="offer-list">
           <li><span>✓</span> 7 sessioni di allenamento</li>
           <li><span>✓</span> Valutazione tecnica inclusa</li>
@@ -225,14 +230,14 @@ const reviews = [
   <!-- ─── REVIEWS ──────────────────────────────────────────────────────── -->
   <section id="reviews" class="section section--alt">
     <div class="container">
-      <div class="section__header">
+      <div class="section__header reveal">
         <p class="section__label">Recensioni</p>
         <h2>COSA DICONO<br /><span class="text-accent">I NOSTRI CLIENTI</span></h2>
-        <div class="divider"></div>
+        <div class="divider anim-divider"></div>
       </div>
       <div class="reviews-grid">
-        {reviews.map(r => (
-          <div class="review-card">
+        {reviews.map((r, i) => (
+          <div class={`review-card reveal reveal-delay-${i + 1} tilt-card`}>
             <div class="review-card__stars">{'★'.repeat(r.stars)}</div>
             <p class="review-card__text">"{r.text}"</p>
             <strong class="review-card__name">{r.name}</strong>
@@ -265,8 +270,19 @@ const reviews = [
 }
 .hero__overlay {
   position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 100%);
 }
+
+/* Particle canvas sits between bg and content */
+#hero-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
 .hero__content {
   position: absolute;
   bottom: 80px; left: 10%;
@@ -279,25 +295,38 @@ const reviews = [
   letter-spacing: 3px; text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both;
 }
 .hero__title {
   color: var(--white);
   font-size: clamp(40px, 6vw, 88px);
   line-height: 0.95;
   margin-bottom: 24px;
+  overflow: hidden;
 }
+.hero__line {
+  display: inline-block;
+}
+.hero__line--1 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+.hero__line--2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
+.hero__line--3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
 .hero__sub {
   font-size: 18px; font-weight: 400;
   color: var(--text-muted);
   margin-bottom: 40px; max-width: 520px;
   line-height: 1.6;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s both;
 }
-.hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero__ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.1s both;
+}
 .hero__scroll {
   position: absolute; bottom: 40px; left: 50%;
   transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   z-index: 2;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.4s both;
 }
 .hero__scroll span { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-sub-30); }
 .hero__scroll-line {
@@ -305,7 +334,118 @@ const reviews = [
   background: linear-gradient(to bottom, var(--accent), transparent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
+
+/* TRASFORMA glitch effect */
+.hero__glitch {
+  position: relative;
+  display: inline-block;
+  animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both, glitchCycle 6s ease-in-out 2s infinite;
+}
+.hero__glitch::before,
+.hero__glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  pointer-events: none;
+  opacity: 0;
+}
+.hero__glitch::before {
+  color: #00f0ff;
+  animation: glitchBefore 6s ease-in-out 2s infinite;
+}
+.hero__glitch::after {
+  color: #ff003c;
+  animation: glitchAfter 6s ease-in-out 2s infinite;
+}
+
+@keyframes glitchCycle {
+  0%,88%,100%  { transform: none; }
+  89%          { transform: skewX(-3deg); }
+  90%          { transform: skewX(0deg); }
+  92%          { transform: skewX(2deg); }
+  93%          { transform: none; }
+}
+@keyframes glitchBefore {
+  0%,88%,100%  { opacity:0; transform:none; clip-path:none; }
+  89%          { opacity:0.7; transform:translate(-3px,0); clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%); }
+  90%          { opacity:0; }
+  91%          { opacity:0.5; transform:translate(3px,0); clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%); }
+  92%          { opacity:0; }
+}
+@keyframes glitchAfter {
+  0%,88%,100%  { opacity:0; transform:none; clip-path:none; }
+  90%          { opacity:0.6; transform:translate(3px,-2px); clip-path:polygon(0 50%,100% 50%,100% 70%,0 70%); }
+  91%          { opacity:0; }
+  93%          { opacity:0.5; transform:translate(-2px,1px); clip-path:polygon(0 10%,100% 10%,100% 30%,0 30%); }
+  94%          { opacity:0; }
+}
+
+/* Hero entrance */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @keyframes scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+/* ── SCROLL REVEAL ─────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ── DIVIDER DRAW ──────────────────────────────────────────────────────────── */
+.anim-divider {
+  width: 0 !important;
+  transition: width 1s cubic-bezier(0.16,1,0.3,1) 0.3s !important;
+}
+.anim-divider.drawn {
+  width: 48px !important;
+}
+
+/* ── SHIMMER ON PRIMARY BUTTON ─────────────────────────────────────────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmer 3.5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  0%   { left: -100%; }
+  40%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ── 3D TILT CARDS ─────────────────────────────────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.15s ease, border-color 0.3s ease !important;
+}
+.tilt-card.visible { transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.15s ease, border-color 0.3s ease !important; }
 
 /* ── PHILOSOPHY ────────────────────────────────────────────────────────────── */
 .philosophy__grid {
@@ -324,18 +464,23 @@ const reviews = [
   object-fit: cover; object-position: center top;
   border-radius: var(--radius-lg);
   display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
+.philosophy__image-col:hover .philosophy__img { transform: scale(1.02); }
 
-/* Stat row — 4 card inline sotto testo+immagine */
+/* Stat row */
 .stats-row {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
 }
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 28px 20px; text-align: center;
-  transition: border-color .2s;
+  transition: border-color .3s, box-shadow .3s;
 }
-.stat-card:hover { border-color: var(--accent); }
+.stat-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(229,51,50,0.12);
+}
 .stat-card__value {
   display: block; font-family: var(--font-head);
   font-size: 44px; color: var(--accent); letter-spacing: 1px; line-height: 1;
@@ -359,9 +504,12 @@ const reviews = [
 .method-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 4px; overflow: hidden;
-  transition: border-color .3s ease, transform .3s ease;
+  transition: border-color .3s ease, box-shadow .3s ease;
 }
-.method-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.method-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(229,51,50,0.1);
+}
 .method-card--featured { border-color: var(--accent-dim-40); }
 
 .method-card__img-wrap { overflow: hidden; }
@@ -369,9 +517,9 @@ const reviews = [
   width: 100%; height: 220px;
   object-fit: cover; object-position: center;
   display: block;
-  transition: transform .4s ease;
+  transition: transform .6s cubic-bezier(0.16,1,0.3,1);
 }
-.method-card:hover .method-card__img { transform: scale(1.04); }
+.method-card:hover .method-card__img { transform: scale(1.06); }
 
 .method-card__body { padding: 24px 28px; }
 .method-card__body h3 { margin: 14px 0 8px; font-size: 18px; }
@@ -397,20 +545,23 @@ const reviews = [
 .class-tile {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 4px; overflow: hidden;
-  transition: border-color .2s, transform .2s;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
 }
-.class-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
+.class-tile:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(229,51,50,0.1);
+}
 .class-tile__img-wrap { overflow: hidden; position: relative; }
 .class-tile__img {
   width: 100%; height: 160px;
   object-fit: cover; object-position: center;
   display: block;
-  transition: transform .4s ease;
+  transition: transform .6s cubic-bezier(0.16,1,0.3,1);
 }
-.class-tile:hover .class-tile__img { transform: scale(1.04); }
+.class-tile:hover .class-tile__img { transform: scale(1.08); }
 .class-tile h4 { font-size: 14px; letter-spacing: 0.5px; padding: 16px 20px; }
 
-/* Badge categoria — position absolute sull'immagine (pronto all'uso) */
 .class-tile__badge {
   position: absolute; top: 0; left: 0;
   background: var(--accent); color: var(--white);
@@ -431,7 +582,9 @@ const reviews = [
   width: 100%; height: 200px;
   object-fit: cover; object-position: center;
   border-radius: var(--radius-lg); display: block;
+  transition: transform .6s cubic-bezier(0.16,1,0.3,1);
 }
+.gym__img:hover { transform: scale(1.03); }
 .gym__img--lg { grid-column: 1 / -1; height: 280px; }
 .gym-features { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
 .gym-features li {
@@ -462,9 +615,12 @@ const reviews = [
 .review-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 32px 28px;
-  transition: border-color .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
-.review-card:hover { border-color: var(--accent); }
+.review-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(229,51,50,0.08);
+}
 .review-card__stars { color: var(--star); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
 .review-card__text {
   font-size: 15px; color: var(--text-muted);
@@ -506,4 +662,159 @@ const reviews = [
   .hero__ctas .btn-primary,
   .hero__ctas .btn-outline { width: 100%; justify-content: center; }
 }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero__eyebrow, .hero__line, .hero__sub, .hero__ctas, .hero__scroll,
+  .hero__glitch, .hero__glitch::before, .hero__glitch::after,
+  .anim-divider, .btn-primary::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  .anim-divider { width: 48px !important; }
+}
 </style>
+
+<script>
+// ── PARTICLES ───────────────────────────────────────────────────────────────
+(function () {
+  const canvas = document.getElementById('hero-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const COUNT = 70;
+  const particles = Array.from({ length: COUNT }, () => ({
+    x:      Math.random() * window.innerWidth,
+    y:      Math.random() * window.innerHeight,
+    r:      Math.random() * 1.8 + 0.4,
+    vx:     (Math.random() - 0.5) * 0.35,
+    vy:     (Math.random() - 0.5) * 0.35,
+    alpha:  Math.random() * 0.35 + 0.05,
+  }));
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width)  p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(229,51,50,${p.alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// ── SCROLL REVEAL + DIVIDER DRAW + COUNTER ──────────────────────────────────
+(function () {
+  const revealEls = document.querySelectorAll('.reveal');
+  const dividerEls = document.querySelectorAll('.anim-divider');
+  const counterEls = document.querySelectorAll('[data-count]');
+  const animated = new WeakSet();
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el) {
+    if (animated.has(el)) return;
+    animated.add(el);
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400;
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / dur, 1);
+      el.textContent = Math.round(easeOutCubic(t) * target) + suffix;
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const el = e.target;
+      el.classList.add('visible');
+      if (el.classList.contains('anim-divider')) el.classList.add('drawn');
+      io.unobserve(el);
+    }
+  }, { threshold: 0.15 });
+
+  const counterIo = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      animateCounter(e.target);
+      counterIo.unobserve(e.target);
+    }
+  }, { threshold: 0.4 });
+
+  revealEls.forEach(el => io.observe(el));
+  dividerEls.forEach(el => io.observe(el));
+  counterEls.forEach(el => counterIo.observe(el));
+})();
+
+// ── 3D TILT ON CARDS ────────────────────────────────────────────────────────
+(function () {
+  const MAX = 9;
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      card.style.transform = `perspective(700px) rotateY(${x * MAX}deg) rotateX(${-y * MAX}deg) translateY(-4px)`;
+      card.style.transition = 'transform 0.1s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease';
+    });
+  });
+})();
+
+// ── MAGNETIC BUTTONS ────────────────────────────────────────────────────────
+(function () {
+  const STRENGTH = 0.35;
+  document.querySelectorAll('.magnetic').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width  / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = `translate(${dx * STRENGTH}px, ${dy * STRENGTH}px)`;
+      btn.style.transition = 'transform 0.15s ease';
+    }, { passive: true });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+      btn.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+    });
+  });
+})();
+
+// ── HERO VIDEO PARALLAX ─────────────────────────────────────────────────────
+(function () {
+  const video = document.querySelector('.hero__video');
+  if (!video) return;
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        video.style.transform = `translateY(${y * 0.25}px)`;
+      }
+      ticking = false;
+    });
+  }, { passive: true });
+})();
+</script>

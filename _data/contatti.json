@@ -1,0 +1,10 @@
+{
+  "telefono": "06 290614",
+  "indirizzo": "Via Prenestina 278 B, 00177 Roma",
+  "email": "info@recomp360.it",
+  "whatsapp": "+390629061400",
+  "orari": [
+    { "giorno": "Lunedì – Venerdì", "orario": "07:00 – 22:00" },
+    { "giorno": "Sabato – Domenica", "orario": "Su appuntamento" }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "corsi": [
+    {
+      "nome": "Yoga",
+      "categoria": "Mente e corpo",
+      "descrizione": "Respirazione, equilibrio, flessibilità. Un percorso che allena la mente quanto il corpo.",
+      "livelli": "Base, Intermedio"
+    },
+    {
+      "nome": "Pilates",
+      "categoria": "Core e stabilità",
+      "descrizione": "Controllo posturale, forza del core, consapevolezza corporea. Adatto a tutti i livelli.",
+      "livelli": "Base, Intermedio"
+    },
+    {
+      "nome": "Functional Training",
+      "categoria": "Forza e condizionamento",
+      "descrizione": "Esercizi che replicano i movimenti della vita reale. Forza, coordinazione, resistenza.",
+      "livelli": "Intermedio, Avanzato"
+    },
+    {
+      "nome": "Posturale",
+      "categoria": "Postura e recupero",
+      "descrizione": "Correzione posturale, allungamento muscolare, prevenzione dei dolori cronici.",
+      "livelli": "Tutti i livelli"
+    }
+  ]
+}

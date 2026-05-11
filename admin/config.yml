@@ -1,0 +1,178 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Usa Netlify Identity per il login (nessun GitHub richiesto)
+local_backend: false
+
+# Lingua interfaccia
+locale: it
+
+# Cartella dove salvare i dati
+media_folder: img
+
+collections:
+
+  # ─── INFORMAZIONI GENERALI ───────────────────────────────
+  - name: "impostazioni"
+    label: "⚙️ Impostazioni generali"
+    files:
+
+      - name: "contatti"
+        label: "📞 Contatti e orari"
+        file: "_data/contatti.json"
+        format: json
+        fields:
+          - { label: "Telefono", name: "telefono", widget: "string", hint: "Es: 06 290614" }
+          - { label: "Indirizzo", name: "indirizzo", widget: "string", hint: "Es: Via Prenestina 278 B, 00177 Roma" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "WhatsApp (numero con prefisso)", name: "whatsapp", widget: "string", hint: "Es: +390629061400" }
+          - label: "Orari"
+            name: "orari"
+            widget: "list"
+            fields:
+              - { label: "Giorno", name: "giorno", widget: "string", hint: "Es: Lunedì – Venerdì" }
+              - { label: "Orario", name: "orario", widget: "string", hint: "Es: 07:00 – 22:00" }
+
+      - name: "prova"
+        label: "💪 Offerta MyRecomp Start (prova €17)"
+        file: "_data/prova.json"
+        format: json
+        fields:
+          - { label: "Prezzo (€)", name: "prezzo", widget: "number", value_type: "int" }
+          - { label: "N° ingressi inclusi", name: "ingressi", widget: "number", value_type: "int" }
+          - { label: "Giorni di validità", name: "giorni", widget: "number", value_type: "int" }
+          - { label: "Testo pulsante CTA", name: "cta_testo", widget: "string", hint: "Es: Attiva ora la tua prova" }
+          - label: "Cosa è incluso (lista)"
+            name: "inclusi"
+            widget: "list"
+            field: { label: "Voce", name: "voce", widget: "string" }
+
+  # ─── HOME PAGE ──────────────────────────────────────────
+  - name: "home"
+    label: "🏠 Home Page"
+    files:
+
+      - name: "hero"
+        label: "Hero (titolo principale)"
+        file: "_data/home_hero.json"
+        format: json
+        fields:
+          - { label: "Titolo riga 1", name: "titolo1", widget: "string" }
+          - { label: "Titolo riga 2", name: "titolo2", widget: "string" }
+          - { label: "Titolo riga 3", name: "titolo3", widget: "string" }
+          - { label: "Parola in rosso", name: "titolo_rosso", widget: "string" }
+          - { label: "Sottotitolo", name: "sottotitolo", widget: "text" }
+
+      - name: "about"
+        label: "About / Chi siamo"
+        file: "_data/home_about.json"
+        format: json
+        fields:
+          - { label: "Titolo", name: "titolo", widget: "string" }
+          - { label: "Citazione (virgolettato)", name: "citazione", widget: "string" }
+          - { label: "Paragrafo 1", name: "paragrafo1", widget: "text" }
+          - { label: "Paragrafo 2", name: "paragrafo2", widget: "text" }
+
+      - name: "testimonianze"
+        label: "⭐ Testimonianze"
+        file: "_data/testimonianze.json"
+        format: json
+        fields:
+          - label: "Recensioni"
+            name: "recensioni"
+            widget: "list"
+            fields:
+              - { label: "Nome autore", name: "autore", widget: "string" }
+              - { label: "Testo recensione", name: "testo", widget: "text" }
+              - { label: "Stelle (1-5)", name: "stelle", widget: "number", value_type: "int", min: 1, max: 5 }
+
+  # ─── METODO RECOMP ──────────────────────────────────────
+  - name: "metodo"
+    label: "🏋️ Metodo Recomp"
+    files:
+
+      - name: "metodo_hero"
+        label: "Hero pagina Metodo"
+        file: "_data/metodo_hero.json"
+        format: json
+        fields:
+          - { label: "Titolo", name: "titolo", widget: "string" }
+          - { label: "Sottotitolo", name: "sottotitolo", widget: "text" }
+
+      - name: "steps"
+        label: "I 5 step del processo"
+        file: "_data/metodo_steps.json"
+        format: json
+        fields:
+          - label: "Step"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "titolo", widget: "string" }
+              - { label: "Descrizione", name: "descrizione", widget: "text" }
+
+  # ─── SALA PESI ──────────────────────────────────────────
+  - name: "sala_pesi"
+    label: "🏗️ Sala Pesi"
+    files:
+
+      - name: "sala_hero"
+        label: "Hero pagina Sala Pesi"
+        file: "_data/sala_hero.json"
+        format: json
+        fields:
+          - { label: "Titolo", name: "titolo", widget: "string" }
+          - { label: "Sottotitolo", name: "sottotitolo", widget: "text" }
+
+      - name: "orari_sala"
+        label: "Orari sala pesi"
+        file: "_data/sala_orari.json"
+        format: json
+        fields:
+          - label: "Orari"
+            name: "orari"
+            widget: "list"
+            fields:
+              - { label: "Giorno", name: "giorno", widget: "string" }
+              - { label: "Orario", name: "orario", widget: "string" }
+              - { label: "Chiuso / Su appuntamento", name: "chiuso", widget: "boolean", default: false }
+
+      - name: "attrezzatura"
+        label: "Zone / Attrezzatura"
+        file: "_data/sala_attrezzatura.json"
+        format: json
+        fields:
+          - label: "Zone"
+            name: "zone"
+            widget: "list"
+            fields:
+              - { label: "Nome zona", name: "nome", widget: "string" }
+              - { label: "Descrizione", name: "descrizione", widget: "text" }
+
+  # ─── CORSI FITNESS ──────────────────────────────────────
+  - name: "corsi"
+    label: "🧘 Corsi Fitness"
+    files:
+
+      - name: "corsi_hero"
+        label: "Hero pagina Corsi"
+        file: "_data/corsi_hero.json"
+        format: json
+        fields:
+          - { label: "Titolo", name: "titolo", widget: "string" }
+          - { label: "Sottotitolo", name: "sottotitolo", widget: "text" }
+
+      - name: "lista_corsi"
+        label: "Lista corsi"
+        file: "_data/corsi_lista.json"
+        format: json
+        fields:
+          - label: "Corsi"
+            name: "corsi"
+            widget: "list"
+            fields:
+              - { label: "Nome corso", name: "nome", widget: "string" }
+              - { label: "Categoria", name: "categoria", widget: "string", hint: "Es: Mente e corpo" }
+              - { label: "Descrizione", name: "descrizione", widget: "text" }
+              - { label: "Livelli", name: "livelli", widget: "string", hint: "Es: Base, Intermedio" }
