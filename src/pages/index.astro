@@ -9,14 +9,14 @@ const TYPEFORM_URL  = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
 
 const classes = [
-  { name: 'Cross Cardio',        img: 'DSC02203-scaled.jpg' },
-  { name: 'Functional Training', img: 'DSC02203-scaled.jpg' },
-  { name: 'Interval Training',   img: '1000204789-scaled.jpg' },
-  { name: 'Met-Con',             img: '1000204833-scaled.jpg' },
-  { name: 'Pilates',             img: '1000204752-scaled.jpg' },
-  { name: 'Postural',            img: 'DSC02345-scaled.jpg' },
-  { name: 'Pre-Boxing',          img: '1000204833-scaled.jpg' },
-  { name: 'Zumba',               img: '1000204752-scaled.jpg' },
+  { name: 'Cross Cardio',        desc: 'Cardio ad alta intensità, brucia calorie al massimo',         icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>' },
+  { name: 'Functional Training', desc: 'Movimenti funzionali, forza e coordinazione completa',        icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M6.5 6.5h11M6.5 17.5h11M3 9h3v6H3zM18 9h3v6h-3zM6 9v6M18 9v6"/></svg>' },
+  { name: 'Interval Training',   desc: 'Intervalli esplosivi per performance al top',                 icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="13" r="8"/><polyline points="12 9 12 13 15 15"/><path d="M9 2h6M12 2v3"/></svg>' },
+  { name: 'Met-Con',             desc: 'Metabolic conditioning: velocità + resistenza',               icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M12 2c-4 5-6 8-6 12a6 6 0 0012 0c0-4-2-7-6-12zm0 0c0 4-4 7-4 10"/></svg>' },
+  { name: 'Pilates',             desc: 'Core, stabilità e controllo del corpo',                       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><circle cx="12" cy="5" r="2"/><path d="M12 7v6M9 22l3-8 3 8M9 13c-2 1-3.5 1-5 0M15 13c2 1 3.5 1 5 0"/></svg>' },
+  { name: 'Postural',            desc: 'Postura corretta, mobilità e prevenzione',                    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="8 6 12 2 16 6"/><polyline points="8 18 12 22 16 18"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="10" y1="17" x2="14" y2="17"/></svg>' },
+  { name: 'Pre-Boxing',          desc: 'Tecniche di boxe, coordinazione e cardio',                    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><rect x="3" y="9" width="14" height="10" rx="3"/><path d="M17 11h1a3 3 0 010 6h-1"/><line x1="7" y1="9" x2="7" y2="5"/><line x1="11" y1="9" x2="11" y2="5"/><line x1="7" y1="5" x2="11" y2="5"/></svg>' },
+  { name: 'Zumba',               desc: 'Danza, ritmo e benessere con il sorriso',                     icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>' },
 ];
 
 const reviews = [
@@ -162,20 +162,34 @@ const reviews = [
           <div class="divider anim-divider"></div>
         </div>
         <a href="/classi" class="btn-outline classes-header__cta">
-          Orari e Iscrizioni
+          Vedi tutti i corsi
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
-      <div class="classes-grid">
-        {classes.map((c, i) => (
-          <div class={`class-tile reveal reveal-delay-${(i % 4) + 1}`}>
-            <div class="class-tile__img-wrap">
-              <img src={`${base}images/${c.img}`} alt={c.name} class="class-tile__img" />
-            </div>
-            <h4>{c.name}</h4>
+
+      <div class="carousel-wrap reveal">
+        <button class="carousel-arrow carousel-arrow--prev" id="cls-prev" aria-label="Precedente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="carousel-viewport" id="cls-viewport">
+          <div class="carousel-track" id="cls-track">
+            {classes.map((c) => (
+              <div class="carousel-slide">
+                <a href="/classi" class="class-card">
+                  <div class="class-card__icon" set:html={c.icon} />
+                  <h4 class="class-card__name">{c.name}</h4>
+                  <p class="class-card__desc">{c.desc}</p>
+                  <span class="class-card__cta">Scopri →</span>
+                </a>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <button class="carousel-arrow carousel-arrow--next" id="cls-next" aria-label="Successiva">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
+      <div class="carousel-dots" id="cls-dots"></div>
     </div>
   </section>
 
@@ -478,11 +492,12 @@ const reviews = [
 
 /* Stat row */
 .stats-row {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;
 }
 .stat-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 28px 20px; text-align: center;
+  min-width: 0;
   transition: border-color .3s, box-shadow .3s;
 }
 .stat-card:hover {
@@ -492,6 +507,7 @@ const reviews = [
 .stat-card__value {
   display: block; font-family: var(--font-head);
   font-size: 44px; color: var(--accent); letter-spacing: 1px; line-height: 1;
+  white-space: nowrap;
 }
 .stat-card__label {
   display: block; font-size: 11px; font-weight: 600;
@@ -540,43 +556,88 @@ const reviews = [
 }
 .badge--muted { color: var(--text-muted); }
 
-/* ── CLASSES ───────────────────────────────────────────────────────────────── */
+/* ── CLASSES CAROUSEL ──────────────────────────────────────────────────────── */
 .classes-header {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 24px; margin-bottom: 40px;
 }
 .classes-header__cta { flex-shrink: 0; }
 
-.classes-grid {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 14px;
+.carousel-wrap {
+  position: relative; display: flex; align-items: center; gap: 12px;
 }
-.class-tile {
+.carousel-viewport {
+  flex: 1; overflow: hidden;
+}
+.carousel-track {
+  display: flex; gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform;
+}
+.carousel-slide {
+  flex: 0 0 calc(25% - 12px);
+}
+
+.class-card {
+  display: flex; flex-direction: column; align-items: flex-start;
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 4px; overflow: hidden;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  border-radius: 8px; padding: 28px 22px; height: 100%;
+  text-decoration: none; color: inherit;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
 }
-.class-tile:hover {
+.class-card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(229,51,50,0.1);
+  box-shadow: 0 10px 28px rgba(229,51,50,0.12);
 }
-.class-tile__img-wrap { overflow: hidden; position: relative; }
-.class-tile__img {
-  width: 100%; height: 160px;
-  object-fit: cover; object-position: center;
-  display: block;
-  transition: transform .6s cubic-bezier(0.16,1,0.3,1);
+.class-card__icon {
+  width: 48px; height: 48px;
+  background: rgba(229,51,50,0.08); border: 1px solid rgba(229,51,50,0.18);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px; color: var(--accent);
+  transition: background .25s;
 }
-.class-tile:hover .class-tile__img { transform: scale(1.08); }
-.class-tile h4 { font-size: 14px; letter-spacing: 0.5px; padding: 16px 20px; }
+.class-card:hover .class-card__icon {
+  background: rgba(229,51,50,0.16);
+}
+.class-card__icon svg { display: block; }
+.class-card__name {
+  font-size: 14px; font-weight: 700; letter-spacing: 0.4px;
+  color: var(--white); margin-bottom: 8px; line-height: 1.3;
+}
+.class-card__desc {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  flex: 1; margin-bottom: 16px;
+}
+.class-card__cta {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--accent);
+  transition: letter-spacing .2s;
+}
+.class-card:hover .class-card__cta { letter-spacing: 2px; }
 
-.class-tile__badge {
-  position: absolute; top: 0; left: 0;
-  background: var(--accent); color: var(--white);
-  font-family: var(--font-body); font-size: 10px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 4px 8px; border-radius: 0;
+/* Arrows */
+.carousel-arrow {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 50%; cursor: pointer; color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, color .2s, background .2s;
 }
+.carousel-arrow:hover { border-color: var(--accent); color: var(--accent); background: rgba(229,51,50,0.06); }
+.carousel-arrow:disabled { opacity: .3; pointer-events: none; }
+
+/* Dots */
+.carousel-dots {
+  display: flex; justify-content: center; gap: 6px; margin-top: 24px;
+}
+.carousel-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--border); border: none; cursor: pointer; padding: 0;
+  transition: background .25s, transform .25s;
+}
+.carousel-dot.active { background: var(--accent); transform: scale(1.4); }
 
 /* ── GYM ───────────────────────────────────────────────────────────────────── */
 .gym__grid {
@@ -641,15 +702,15 @@ const reviews = [
 
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .classes-grid  { grid-template-columns: repeat(2,1fr); }
-  .method-grid   { grid-template-columns: 1fr; max-width: 520px; }
+  .carousel-slide { flex: 0 0 calc(33.33% - 11px); }
+  .method-grid    { grid-template-columns: 1fr; max-width: 520px; }
   .method-header  { flex-direction: column; align-items: flex-start; }
   .classes-header { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 900px) {
   .philosophy__grid     { grid-template-columns: 1fr; gap: 40px; }
   .philosophy__img      { height: 320px; }
-  .stats-row            { grid-template-columns: repeat(2, 1fr); }
+  .stats-row            { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gym__grid            { grid-template-columns: 1fr; gap: 48px; }
   .reviews-grid         { grid-template-columns: 1fr; }
   .offer-section__inner { grid-template-columns: 1fr; gap: 40px; }
@@ -665,9 +726,11 @@ const reviews = [
   }
 }
 @media (max-width: 640px) {
-  .classes-grid { grid-template-columns: repeat(2,1fr); }
-  .stats-row    { grid-template-columns: repeat(2,1fr); }
-  .hero__ctas   { flex-direction: column; }
+  .carousel-slide   { flex: 0 0 calc(50% - 8px); }
+  .carousel-arrow   { display: none; }
+  .stats-row        { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat-card__value { font-size: 32px; }
+  .hero__ctas       { flex-direction: column; }
   .hero__ctas .btn-primary,
   .hero__ctas .btn-outline { width: 100%; justify-content: center; }
 }
@@ -807,6 +870,78 @@ const reviews = [
       btn.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
     });
   });
+})();
+
+// ── CLASSES CAROUSEL ────────────────────────────────────────────────────────
+(function () {
+  const track    = document.getElementById('cls-track');
+  const viewport = document.getElementById('cls-viewport');
+  const dotsWrap = document.getElementById('cls-dots');
+  const btnPrev  = document.getElementById('cls-prev');
+  const btnNext  = document.getElementById('cls-next');
+  if (!track || !dotsWrap) return;
+
+  const slides = track.querySelectorAll('.carousel-slide');
+  const total  = slides.length;
+  let current  = 0;
+  let autoId   = null;
+
+  function getVisible() {
+    const w = window.innerWidth;
+    return w > 1024 ? 4 : w > 640 ? 3 : 2;
+  }
+
+  function getMax() { return Math.max(0, total - getVisible()); }
+
+  function slideWidth() {
+    return slides[0].offsetWidth + 16; // 16 = gap
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, getMax()));
+    track.style.transform = `translateX(-${current * slideWidth()}px)`;
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current)
+    );
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current >= getMax();
+  }
+
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const count = getMax() + 1;
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', `Slide ${i + 1}`);
+      d.addEventListener('click', () => { goTo(i); resetAuto(); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function resetAuto() {
+    clearInterval(autoId);
+    autoId = setInterval(() => {
+      goTo(current >= getMax() ? 0 : current + 1);
+    }, 4000);
+  }
+
+  btnPrev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  btnNext.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+  // Pause on hover
+  viewport.addEventListener('mouseenter', () => clearInterval(autoId));
+  viewport.addEventListener('mouseleave', resetAuto);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { buildDots(); goTo(Math.min(current, getMax())); }, 150);
+  }, { passive: true });
+
+  buildDots();
+  goTo(0);
+  resetAuto();
 })();
 
 // ── HERO VIDEO PARALLAX ─────────────────────────────────────────────────────

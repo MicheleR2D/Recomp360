@@ -35,7 +35,6 @@
             <span id="ms-att-label" class="ms-placeholder">Seleziona una o più attività…</span>
             <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="ms-tags" id="ms-att-tags"></div>
         </div>
         <!-- Dropdown — portato in body via JS, struttura qui solo per reference -->
         <div class="ms-dropdown" id="ms-att-drop" role="listbox" aria-multiselectable="true" hidden>
@@ -57,7 +56,6 @@
             <span id="ms-obj-label" class="ms-placeholder">Seleziona uno o più obiettivi…</span>
             <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="ms-tags" id="ms-obj-tags"></div>
         </div>
         <div class="ms-dropdown" id="ms-obj-drop" role="listbox" aria-multiselectable="true" hidden>
           {['Dimagrimento','Aumento massa muscolare','Ricomposizione corporea','Miglioramento postura','Benessere generale','Altro'].map(o => (
@@ -121,11 +119,11 @@
       </div>
 
       <div class="ct-privacy-text">
-        I tuoi dati (nome, cognome, email, telefono) sono trattati da Recomp360 ai sensi del Reg. UE 2016/679 (GDPR) esclusivamente per rispondere alla tua richiesta. Non saranno ceduti a terzi. Puoi esercitare i tuoi diritti scrivendo a <a href="mailto:info@recomp360.it">info@recomp360.it</a>.
+        I tuoi dati sono trattati da Recomp360 ai sensi del Reg. UE 2016/679 (GDPR) per rispondere alla tua richiesta. Non saranno ceduti a terzi. Dettagli: <a href="https://www.recomp360.it/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
       </div>
       <label class="ct-check">
         <input type="checkbox" id="ct-prv" />
-        <span>Accetto il trattamento dei miei dati personali <span class="ca-req">*</span></span>
+        <span>Accetto il trattamento dei dati come da <a href="https://www.recomp360.it/privacy" target="_blank" rel="noopener" class="ct-prv-link">Privacy Policy</a> <span class="ca-req">*</span></span>
       </label>
 
       <div class="ct-err" id="ct-err2" hidden></div>
@@ -292,6 +290,7 @@
   padding: 10px 12px; margin-bottom: 10px;
 }
 .ct-privacy-text a { color: #E53332; text-decoration: underline; }
+.ct-prv-link { color: #E53332; text-decoration: underline; }
 .ct-check {
   display: flex; align-items: flex-start; gap: 9px;
   font-size: 12px; color: #888; cursor: pointer; margin-bottom: 20px; line-height: 1.5;
@@ -314,19 +313,6 @@
 .ms-trigger .ms-selected-txt { color: #f0f0f0; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
 .ms-chevron { flex-shrink: 0; color: #666; transition: transform .2s; }
 .ms-trigger.open .ms-chevron { transform: rotate(180deg); }
-
-.ms-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; min-height: 0; }
-.ms-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(229,51,50,.12); border: 1px solid rgba(229,51,50,.3);
-  border-radius: 20px; padding: 3px 10px;
-  font-size: 11px; font-weight: 600; color: #E53332;
-}
-.ms-tag button {
-  background: none; border: none; cursor: pointer; color: #E53332;
-  font-size: 13px; line-height: 1; padding: 0; display: flex;
-}
-.ms-tag button:hover { color: #fff; }
 
 /* ── Dropdown (portato in body via JS) ── */
 .ms-dropdown {
@@ -497,10 +483,9 @@
   ──────────────────────────────────────────────────────────── */
   const dropdowns = {};
 
-  function initDropdown(btnId, dropId, group, tagsId, labelId) {
+  function initDropdown(btnId, dropId, group, labelId) {
     const btn   = document.getElementById(btnId);
     const drop  = document.getElementById(dropId);
-    const tags  = document.getElementById(tagsId);
     const label = document.getElementById(labelId);
 
     // Sposta il dropdown nel body per evitare il clipping dell'overflow del modal
@@ -539,7 +524,7 @@
       state.open ? closeDrop() : openDrop();
     });
 
-    // Aggiorna label e tags
+    // Aggiorna label trigger
     function refresh() {
       const chosen = [...sel[group]];
       if (chosen.length === 0) {
@@ -549,20 +534,6 @@
         label.className = 'ms-selected-txt';
         label.textContent = chosen.length === 1 ? chosen[0] : `${chosen.length} selezionati`;
       }
-      tags.innerHTML = '';
-      chosen.forEach(v => {
-        const tag = document.createElement('span');
-        tag.className = 'ms-tag';
-        tag.innerHTML = `${v}<button type="button" aria-label="Rimuovi ${v}">×</button>`;
-        tag.querySelector('button').addEventListener('click', e => {
-          e.stopPropagation();
-          sel[group].delete(v);
-          const opt = [...drop.querySelectorAll('.ms-option')].find(o => o.querySelector('input').value === v);
-          if (opt) opt.classList.remove('checked');
-          refresh();
-        });
-        tags.appendChild(tag);
-      });
     }
 
     // Checkbox options
@@ -594,8 +565,8 @@
   window.addEventListener('scroll', () => { closeAllDropdowns(); }, true);
   window.addEventListener('resize', closeAllDropdowns);
 
-  initDropdown('ms-att-btn','ms-att-drop','attivita','ms-att-tags','ms-att-label');
-  initDropdown('ms-obj-btn','ms-obj-drop','obiettivo','ms-obj-tags','ms-obj-label');
+  initDropdown('ms-att-btn','ms-att-drop','attivita','ms-att-label');
+  initDropdown('ms-obj-btn','ms-obj-drop','obiettivo','ms-obj-label');
 
   /* ─── STEP 1 → 2 ─── */
   document.getElementById('ct-next1').addEventListener('click', () => {
