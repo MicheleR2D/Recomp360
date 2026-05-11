@@ -23,101 +23,20 @@ const pathname = Astro.url.pathname;
         >Chi Siamo</a>
       </li>
 
-      <!-- Il Metodo — mega-menu -->
-      <li class="nav__item nav__item--mega">
-        <button
-          class:list={['nav__link', 'nav__trigger', { 'is-active': pathname.includes('/metodo') }]}
-          aria-expanded="false"
-          aria-haspopup="true"
-        >
-          Il Metodo
-          <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-
-        <div class="mega-menu" aria-hidden="true">
-          <div class="container mega-menu__inner">
-
-            <a href={`${base}metodo`} class="mega-menu__panel">
-              <img src={`${base}images/myrecomp-pt.jpg`} alt="Personal Training Recomp360" class="mega-menu__panel-img" />
-              <div class="mega-menu__panel-body">
-                <strong class="mega-menu__panel-title">MyRecomp</strong>
-                <span class="mega-menu__panel-sub">Ricomposizione corporea strutturata.<br />Il metodo proprietario Recomp360.</span>
-                <span class="mega-menu__panel-cta">Scopri il Metodo →</span>
-              </div>
-            </a>
-
-            <div class="mega-menu__col">
-              <p class="mega-menu__col-label">Il Percorso</p>
-              <ul>
-                <li><a href={`${base}metodo`}>Personal Training</a></li>
-                <li><a href={`${base}metodo`}>Small Group Training</a></li>
-                <li><a href={`${base}metodo`}>Sala Libera</a></li>
-              </ul>
-            </div>
-
-            <div class="mega-menu__col">
-              <p class="mega-menu__col-label">Il Team</p>
-              <ul>
-                <li><a href={`${base}about`}>Personal Trainer</a></li>
-                <li><a href={`${base}about`}>Nutrizionista</a></li>
-                <li><a href={`${base}about`}>Fisioterapista</a></li>
-                <li><a href={`${base}about`}>Posturologa & Osteopata</a></li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
+      <!-- Il Metodo — link semplice -->
+      <li class="nav__item">
+        <a
+          href={`${base}metodo`}
+          class:list={['nav__link', { 'is-active': pathname.includes('/metodo') }]}
+        >Il Metodo</a>
       </li>
 
-      <!-- Classi — mega-menu -->
-      <li class="nav__item nav__item--mega">
-        <button
-          class:list={['nav__link', 'nav__trigger', { 'is-active': pathname.includes('/classi') }]}
-          aria-expanded="false"
-          aria-haspopup="true"
-        >
-          Classi
-          <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-
-        <div class="mega-menu" aria-hidden="true">
-          <div class="container mega-menu__inner">
-
-            <a href={`${base}classi`} class="mega-menu__panel">
-              <img src={`${base}images/DSC02203-scaled.jpg`} alt="Classi fitness Recomp360" class="mega-menu__panel-img" />
-              <div class="mega-menu__panel-body">
-                <strong class="mega-menu__panel-title">Classi Fitness</strong>
-                <span class="mega-menu__panel-sub">8 discipline per non annoiarti mai.<br />Istruttori specializzati per ogni classe.</span>
-                <span class="mega-menu__panel-cta">Vedi tutte le classi →</span>
-              </div>
-            </a>
-
-            <div class="mega-menu__col">
-              <p class="mega-menu__col-label">Cardio & Metabolico</p>
-              <ul>
-                <li><a href={`${base}classi`}>Cross Cardio</a></li>
-                <li><a href={`${base}classi`}>Interval Training</a></li>
-                <li><a href={`${base}classi`}>Met-Con</a></li>
-                <li><a href={`${base}classi`}>Pre-Boxing</a></li>
-              </ul>
-            </div>
-
-            <div class="mega-menu__col">
-              <p class="mega-menu__col-label">Forza & Benessere</p>
-              <ul>
-                <li><a href={`${base}classi`}>Functional Training</a></li>
-                <li><a href={`${base}classi`}>Pilates</a></li>
-                <li><a href={`${base}classi`}>Postural</a></li>
-                <li><a href={`${base}classi`}>Zumba</a></li>
-              </ul>
-            </div>
-
-          </div>
-        </div>
+      <!-- Corsi — link semplice -->
+      <li class="nav__item">
+        <a
+          href={`${base}classi`}
+          class:list={['nav__link', { 'is-active': pathname.includes('/classi') }]}
+        >Corsi</a>
       </li>
 
       <!-- Struttura — link semplice -->
@@ -159,13 +78,20 @@ const pathname = Astro.url.pathname;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  height: 64px;
+  height: 72px;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  overflow: visible;
 }
 
 .nav__logo img {
-  height: 44px;
+  height: 54px;
   width: auto;
   display: block;
+  overflow: visible;
 }
 
 .nav__right {
@@ -229,7 +155,7 @@ const pathname = Astro.url.pathname;
 /* ── MEGA-MENU ─────────────────────────────────────────────────────────────── */
 .mega-menu {
   position: absolute;
-  top: 64px;
+  top: 72px;
   left: 0;
   width: 100%;
   background: var(--bg-card);
@@ -375,7 +301,7 @@ const pathname = Astro.url.pathname;
   /* Menu slide-in laterale */
   .nav__links {
     position: fixed;
-    inset: 64px 0 0;
+    inset: 72px 0 0;
     background: var(--bg);
     flex-direction: column;
     align-items: stretch;
