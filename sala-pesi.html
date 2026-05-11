@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sala Pesi Prenestina Roma | Recomp 360 — Macchinari Matrix</title>
+<meta name="keywords" content="sala pesi prenestina, palestra prenestina roma, macchinari matrix roma, open fitness prenestina, gym roma est">
+<meta name="description" content="Sala pesi in zona Prenestina Roma con macchinari Matrix di ultima generazione. Trainer sempre presenti, scheda personalizzata inclusa. Open fitness per tutti gli obiettivi.">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── PAGE SPECIFIC ── */
+
+/* Macchinari grid */
+.equipment-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--dark); }
+.eq-item { background:var(--off-black); padding:32px 28px; display:flex; gap:20px; align-items:flex-start; transition:background .3s; }
+.eq-item:hover { background:var(--dark); }
+.eq-num { font-family:var(--display); font-size:36px; color:var(--red); line-height:1; flex-shrink:0; min-width:44px; }
+.eq-body {}
+.eq-title { font-family:var(--cond); font-size:15px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--white); margin-bottom:6px; }
+.eq-desc { font-size:13px; line-height:1.6; color:rgba(255,255,255,.48); }
+
+/* Photo mosaic 3x2 */
+.mosaic { display:grid; grid-template-columns:1fr 1fr 1fr; grid-template-rows:320px 320px; gap:2px; }
+.m-wide { grid-column:span 2; }
+.m-tall { grid-row:span 2; }
+
+/* Orari table */
+.orari { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--dark); }
+.orari-row { background:var(--off-black); padding:20px 24px; display:flex; justify-content:space-between; align-items:center; }
+.orari-giorno { font-family:var(--cond); font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.55); }
+.orari-ora { font-family:var(--display); font-size:22px; color:var(--white); }
+.orari-row.closed .orari-ora { color:rgba(255,255,255,.25); font-size:16px; }
+
+@media(max-width:768px) {
+  .equipment-grid { grid-template-columns:1fr; }
+  .mosaic { grid-template-columns:1fr 1fr; grid-template-rows:180px 180px 180px; }
+  .m-wide { grid-column:span 1; } .m-tall { grid-row:span 1; }
+  .orari { grid-template-columns:1fr; }
+}
+  /* MOBILE: box titles must not overflow */
+  @media(max-width:768px){
+    .pg-label h3 { font-size:15px !important; line-height:1.15 !important; word-break:break-word; }
+    .pg-label p  { font-size:9px !important; letter-spacing:1px; }
+    .mosaic .pg-label h3 { font-size:14px !important; }
+    .anima-title { font-size:clamp(18px,5.5vw,32px) !important; }
+  }
+
+/* ── FORCE NAV IDENTICAL TO HOME ── */
+nav {
+  height: 100px !important;
+  padding: 0 28px !important;
+}
+.logo img {
+  height: 56px !important;
+  width: auto !important;
+  display: block !important;
+}
+</style>  <meta property="og:title" content="Sala Pesi Prenestina Roma | Recomp 360 — Macchinari Matrix">
+  <meta property="og:description" content="Sala pesi in zona Prenestina Roma con macchinari Matrix di ultima generazione. Trainer sempre presenti, scheda personalizzata inclusa. Open fitness per tutti gli obiettivi.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="img/logo.png" alt="Recomp 360" height="56"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="metodo-recomp.html">Metodo Recomp</a></li>
+    <li><a href="sala-pesi.html" class="active">Sala Pesi</a></li>
+    <li><a href="corsi-fitness.html">Corsi Fitness</a></li>
+  </ul>
+  <a href="index.html#prova" class="nav-cta">Attiva ora la tua prova</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="metodo-recomp.html">Metodo Recomp</a>
+  <a href="sala-pesi.html" class="active">Sala Pesi</a>
+  <a href="corsi-fitness.html">Corsi Fitness</a>
+  <a href="index.html#prova" class="drawer-cta">Attiva ora la tua prova →</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Sala Pesi</span>
+</div>
+
+<!-- PAGE HERO -->
+<!-- FOTO: panoramica sala pesi — macchinari Matrix ben illuminati, spazi ampi -->
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('img/sala-panoramica.jpg');background-position:center 30%"></div>
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-sup">Open Fitness</span>
+    <h1 class="page-hero-title"><em>SALA</em> PESI</h1>
+    <p class="page-hero-sub">Macchinari di ultima generazione. Spazi curati. Un trainer sempre presente. Ogni obiettivo fisico inizia da qui.</p>
+  </div>
+</div>
+
+<!-- ── INTRO ── -->
+<div class="two-col">
+  <div class="two-col-body" style="background:var(--off-black)">
+    <span class="eyebrow r">La sala</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3vw, 44px)">NON UNA PALESTRA<br>QUALUNQUE.<br><em style="color:var(--red)">LA TUA PALESTRA.</em></h2>
+    <div style="height:24px"></div>
+    <p class="r d1" style="font-size:15px;line-height:1.75;color:rgba(255,255,255,.6);margin-bottom:20px">La sala pesi di Recomp 360 è progettata per chi vuole allenarsi con serietà, in un ambiente curato, senza il caos delle grandi catene. Macchinari Matrix di ultima generazione, distanziati correttamente, in una struttura pulita e ordinata.</p>
+    <p class="r d2" style="font-size:15px;line-height:1.75;color:rgba(255,255,255,.6);margin-bottom:28px">C'è sempre un trainer in sala — non per venderti un pacchetto, ma per aiutarti davvero. Tecnica, cambio scheda, consigli sull'esecuzione: il supporto è compreso nell'abbonamento.</p>
+    <div class="r d3" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="index.html#prova" class="btn-primary">Attiva ora la tua prova</a>
+      <a href="metodo-recomp.html" class="btn-ghost">Scopri il metodo →</a>
+    </div>
+  </div>
+  <div class="two-col-img r">
+    <!-- FOTO: trainer che assiste cliente agli esercizi in sala -->
+    <img src="img/sala-fila-macchinari.jpg" alt="Sala pesi Recomp 360 Prenestina Roma — macchinari Matrix">
+    <div class="two-col-img-tint"></div>
+  </div>
+</div>
+
+<!-- ── MACCHINARI ── -->
+<section class="section" style="background:var(--black)">
+  <div class="section-head">
+    <span class="eyebrow r">Attrezzatura</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 54px)">MACCHINARI<br><em style="color:var(--red)">MATRIX</em></h2>
+    <p class="r d1">Selezione professionale per ogni tipologia di allenamento.</p>
+  </div>
+  <div class="equipment-grid r d1">
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Zona Isotonica</div>
+        <p class="eq-desc">Macchine guidate Matrix per lavoro muscolare isolato e multiplanare. Ideali per ipertrofia, riabilitazione e principianti.</p>
+      </div>
+    </div>
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Zona Libera</div>
+        <p class="eq-desc">Bilancieri, manubri, kettlebell, barre olimpioniche. Tutto il necessario per gli esercizi fondamentali — squat, stacco, panca, military press.</p>
+      </div>
+    </div>
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Zona Cardio Metabolica</div>
+        <p class="eq-desc">Tapis roulant, bike, ellittiche Matrix con console touchscreen. Cardio integrato nel percorso di allenamento, non separato.</p>
+      </div>
+    </div>
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Zona Funzionale</div>
+        <p class="eq-desc">Cavi, TRX, anelli, slam ball, box. Spazio dedicato al training funzionale e agli esercizi compound ad alta attivazione.</p>
+      </div>
+    </div>
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Zona Stretching e Mobilità</div>
+        <p class="eq-desc">Materassini, foam roller, bande elastiche. Un'area dedicata al riscaldamento, al recupero attivo e al lavoro sulla mobilità.</p>
+      </div>
+    </div>
+    <div class="eq-item">
+      <div class="eq-num">06 290614</div>
+      <div class="eq-body">
+        <div class="eq-title">Spogliatoi e Docce</div>
+        <p class="eq-desc">Struttura pulita e curata in ogni dettaglio. Armadietti, docce, asciugacapelli. Perché il benessere inizia dall'ambiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PHOTO MOSAIC ── -->
+<!-- FOTO K–O: scatti diversi della sala — angolazioni, macchinari, dettagli, ambiente -->
+<div class="mosaic">
+  <div class="pgc m-tall r">
+    <img src="img/utente-deadlift.jpg" alt="Area functional training Recomp 360" loading="lazy">
+    <div class="pg-label"><h3>ZONA FUNZIONALE</h3><p>Training ad alta intensità</p></div>
+  </div>
+  <div class="pgc m-wide r">
+    <img src="img/utente-lat-machine.jpg" alt="Sala pesi Recomp 360 Roma Prenestina" loading="lazy">
+    <div class="pg-badge">Macchinari Matrix</div>
+    <div class="pg-label"><h3>ZONA ISOTONICA</h3><p>Macchine di ultima generazione</p></div>
+  </div>
+  <div class="pgc r">
+    <img src="img/coach-bench-press.jpg" alt="Personal trainer sala pesi Roma" loading="lazy">
+    <div class="pg-label"><h3>TRAINER IN SALA</h3><p>Sempre presenti</p></div>
+  </div>
+  <div class="pgc r d1">
+    <img src="img/utente-squat-specchio.jpg" alt="Zona stretching mobilità Recomp 360" loading="lazy">
+    <div class="pg-label"><h3>MOBILITÀ</h3><p>Recupero e stretching</p></div>
+  </div>
+</div>
+
+<!-- ── COSA È INCLUSO ── -->
+<section class="section" style="background:var(--off-black)">
+  <div class="section-head">
+    <span class="eyebrow r">Abbonamento sala</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 52px)">COSA<br><em style="color:var(--red)">È INCLUSO</em></h2>
+  </div>
+  <div class="grid3 r d1">
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Accesso illimitato</div>
+      <p class="card-text">Entra quando vuoi negli orari di apertura. Nessun limite di ingressi, nessun costo aggiuntivo.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Scheda personalizzata</div>
+      <p class="card-text">Il tuo programma di allenamento viene costruito dal trainer sulla base dei tuoi obiettivi e del tuo livello di partenza.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Trainer sempre in sala</div>
+      <p class="card-text">Un professionista presente durante tutta la sessione — per correggere la tecnica, aiutarti con gli esercizi, aggiornare il piano.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Fitness Class incluse</div>
+      <p class="card-text">Tutti i corsi fitness sono inclusi nell'abbonamento. Yoga, pilates, functional, posturale — nessun costo extra.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Cambio scheda</div>
+      <p class="card-text">Il programma evolve con te. Il trainer aggiorna la scheda periodicamente per garantire progressione continua.</p>
+    </div>
+    <div class="card">
+      <div class="card-accent"></div>
+      <div class="card-title">Consulenza integratori</div>
+      <p class="card-text">I migliori integratori sul mercato disponibili al desk. Il trainer ti consiglia quello giusto per il tuo obiettivo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ORARI ── -->
+<section class="section-sm" style="background:var(--black)">
+  <div class="section-head">
+    <span class="eyebrow r">Quando vieni</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 52px)">ORARI<br><em style="color:var(--red)">DI APERTURA</em></h2>
+  </div>
+  <div class="orari r d1">
+    <div class="orari-row"><span class="orari-giorno">Lunedì</span><span class="orari-ora">07:00 – 22:06 290614</span></div>
+    <div class="orari-row"><span class="orari-giorno">Martedì</span><span class="orari-ora">07:00 – 22:06 290614</span></div>
+    <div class="orari-row"><span class="orari-giorno">Mercoledì</span><span class="orari-ora">07:00 – 22:06 290614</span></div>
+    <div class="orari-row"><span class="orari-giorno">Giovedì</span><span class="orari-ora">07:00 – 22:06 290614</span></div>
+    <div class="orari-row"><span class="orari-giorno">Venerdì</span><span class="orari-ora">07:00 – 22:06 290614</span></div>
+    <div class="orari-row"><span class="orari-giorno">Sabato</span><span class="orari-ora">Su appuntamento</span></div>
+    <div class="orari-row"><span class="orari-giorno">Domenica</span><span class="orari-ora">Su appuntamento</span></div>
+    <div class="orari-row" style="background:var(--dark);border-left:2px solid var(--red)"><span class="orari-giorno" style="color:var(--red)">Via Prenestina 278 B</span><span class="orari-ora" style="font-size:14px;font-family:var(--cond);letter-spacing:1px">Roma · 06 290614</span></div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<div class="cta-band">
+  <div class="cta-band-text r">
+    <span class="cta-band-eyebrow">Vieni a provare</span>
+    <h2 class="cta-band-title">ATTIVA<br><em>LA TUA PROVA</em></h2>
+  </div>
+  <div class="cta-band-btns r d2">
+    <a href="index.html#prova" class="btn-primary">Attiva ora la tua prova — €17</a>
+    <a href="metodo-recomp.html" class="btn-ghost">Scopri MyRecomp →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-logo"><img src="img/logo.png" alt="Recomp 360" height="72"></a>
+      <span class="ft-payoff">Fitness Profiling</span>
+      <p class="ft-tag">La palestra di riferimento in zona Prenestina, Roma.</p>
+      <!-- LINK: sostituire href="#" con WhatsApp o modulo contatto -->
+      <a href="#" class="btn-primary ft-contact-cta">CONTATTACI →</a>
+    </div>
+<div class="ft-cols">
+      <div class="ft-col">
+        <h4>Pagine</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="metodo-recomp.html">Metodo Recomp</a></li>
+          <li><a href="sala-pesi.html" class="active">Sala Pesi</a></li>
+          <li><a href="corsi-fitness.html">Corsi Fitness</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="tel:06290614">06 290614</a></li>
+          
+          <li><a href="#">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+    <p class="ft-addr">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const navDrawer  = document.getElementById('navDrawer');
+if (hamburger && navDrawer) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navDrawer.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+  });
+  // Nav scroll opacity
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 40
+        ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+  }
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+}
+</script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

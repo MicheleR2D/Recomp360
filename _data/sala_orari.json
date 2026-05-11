@@ -1,0 +1,11 @@
+{
+  "orari": [
+    { "giorno": "Lunedì",    "orario": "07:00 – 22:00", "chiuso": false },
+    { "giorno": "Martedì",   "orario": "07:00 – 22:00", "chiuso": false },
+    { "giorno": "Mercoledì", "orario": "07:00 – 22:00", "chiuso": false },
+    { "giorno": "Giovedì",   "orario": "07:00 – 22:00", "chiuso": false },
+    { "giorno": "Venerdì",   "orario": "07:00 – 22:00", "chiuso": false },
+    { "giorno": "Sabato",    "orario": "Su appuntamento", "chiuso": false },
+    { "giorno": "Domenica",  "orario": "Su appuntamento", "chiuso": false }
+  ]
+}

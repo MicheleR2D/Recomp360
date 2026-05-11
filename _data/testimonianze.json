@@ -1,0 +1,19 @@
+{
+  "recensioni": [
+    {
+      "autore": "Fabrizio Cerocchi",
+      "testo": "Mi sono iscritto da poco e ho trovato subito un ambiente molto accogliente. La palestra è bellissima, tutti sono professionali, dal proprietario ai personal trainer. Ottimi prezzi.",
+      "stelle": 5
+    },
+    {
+      "autore": "Alessio Capponi",
+      "testo": "Grazie alla Recomp ho ripreso ad allenarmi dopo tanto tempo. Ho trovato uno staff competente e professionale, molto attento alle esigenze dei propri soci.",
+      "stelle": 5
+    },
+    {
+      "autore": "Marco Vitali",
+      "testo": "Entri e capisci subito che non è una palestra normale. Progressi reali e misurabili, con un coach che ti segue sul serio.",
+      "stelle": 5
+    }
+  ]
+}

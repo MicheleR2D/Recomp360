@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodo MyRecomp — Personal Trainer Prenestina Roma | Allenamento Personalizzato</title>
+<meta name="keywords" content="personal trainer prenestina, allenamento personalizzato roma, dimagrimento personal trainer, preparazione concorsi roma, personal training prenestina">
+<meta name="description" content="Il metodo MyRecomp: personal trainer, nutrizionista e osteopata per un percorso personalizzato. Dimagrimento, aumento massa, preparazione concorsi. Palestra zona Prenestina Roma.">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── PAGE SPECIFIC ── */
+
+/* Steps verticali */
+.steps { display:flex; flex-direction:column; gap:0; }
+.step { display:grid; grid-template-columns:80px 1fr; gap:28px; padding:36px 0; border-bottom:1px solid var(--border); align-items:start; }
+.step:first-child { border-top:1px solid var(--border); }
+.step-n { font-family:var(--display); font-size:52px; color:var(--red); line-height:1; }
+.step-body {}
+.step-title { font-family:var(--cond); font-size:18px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--white); margin-bottom:8px; }
+.step-desc { font-size:15px; line-height:1.7; color:rgba(255,255,255,.55); }
+
+/* Team cards */
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--dark); }
+.team-card { background:var(--off-black); overflow:hidden; }
+.team-card-img { height:320px; overflow:hidden; position:relative; }
+.team-card-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.75); display:block; transition:transform .6s,filter .5s; }
+.team-card:hover .team-card-img img { transform:scale(1.04); filter:brightness(.92); }
+.team-card-img-tint { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,.7) 0%,transparent 60%); }
+.team-card-body { padding:28px 24px 32px; }
+.team-role { font-family:var(--cond); font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red); display:block; margin-bottom:6px; }
+.team-name { font-family:var(--display); font-size:28px; color:var(--white); margin-bottom:10px; }
+.team-desc { font-size:13px; line-height:1.65; color:rgba(255,255,255,.48); }
+
+/* Comparison table */
+.compare { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--dark); }
+.compare-col { background:var(--off-black); padding:36px 28px; }
+.compare-col.highlight { background:var(--dark); border-top:2px solid var(--red); }
+.compare-label { font-family:var(--cond); font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.35); display:block; margin-bottom:16px; }
+.compare-title { font-family:var(--display); font-size:32px; color:var(--white); margin-bottom:24px; }
+.compare-list { display:flex; flex-direction:column; gap:12px; }
+.compare-row { display:flex; align-items:center; gap:12px; font-size:14px; color:rgba(255,255,255,.55); }
+.compare-row.yes { color:rgba(255,255,255,.8); }
+.ci { width:18px; height:18px; flex-shrink:0; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.ci-yes { background:var(--red); }
+.ci-no  { background:rgba(255,255,255,.08); }
+.ci svg { width:10px; height:10px; fill:none; stroke:white; stroke-width:3; stroke-linecap:round; }
+
+@media(max-width:768px) {
+  .team-grid { grid-template-columns:1fr; }
+  .compare { grid-template-columns:1fr; }
+  .myrecomp-start-grid { grid-template-columns:1fr !important; gap:28px !important; }
+  .page-hero-title { font-size: clamp(18px, 6vw, 32px) !important; }
+  .step { grid-template-columns:60px 1fr; gap:16px; }
+  .step-n { font-size:40px; }
+  /* Hero title too large on mobile with Microgramma */
+  .page-hero-title { font-size: clamp(22px, 8vw, 40px) !important; }
+  /* MyRecomp Start 2-col → stack */
+  .myrecomp-start-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+  /* MOBILE: box titles must not overflow */
+  @media(max-width:768px){
+    .pg-label h3 { font-size:15px !important; line-height:1.15 !important; word-break:break-word; }
+    .pg-label p  { font-size:9px !important; letter-spacing:1px; }
+    .mosaic .pg-label h3 { font-size:14px !important; }
+    .anima-title { font-size:clamp(18px,5.5vw,32px) !important; }
+  }
+
+  .prova-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media(max-width:768px){
+    .prova-section-grid {
+      display: block !important;
+    }
+    .prova-section-grid > * {
+      margin-bottom: 32px;
+      width: 100% !important;
+    }
+    .prova-section-grid > *:last-child { margin-bottom: 0; }
+  }
+
+/* ── FORCE NAV IDENTICAL TO HOME ── */
+nav {
+  height: 100px !important;
+  padding: 0 28px !important;
+}
+.logo img {
+  height: 56px !important;
+  width: auto !important;
+  display: block !important;
+}
+</style>  <meta property="og:title" content="Metodo MyRecomp — Personal Trainer Prenestina Roma | Allenamento Personalizzato">
+  <meta property="og:description" content="Il metodo MyRecomp: personal trainer, nutrizionista e osteopata per un percorso personalizzato. Dimagrimento, aumento massa, preparazione concorsi. Palestra zona Prenestina Roma.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="img/logo.png" alt="Recomp 360" height="56"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="metodo-recomp.html" class="active">Metodo Recomp</a></li>
+    <li><a href="sala-pesi.html">Sala Pesi</a></li>
+    <li><a href="corsi-fitness.html">Corsi Fitness</a></li>
+  </ul>
+  <a href="index.html#prova" class="nav-cta">Attiva ora la tua prova</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="metodo-recomp.html" class="active">Metodo Recomp</a>
+  <a href="sala-pesi.html">Sala Pesi</a>
+  <a href="corsi-fitness.html">Corsi Fitness</a>
+  <a href="index.html#prova" class="drawer-cta">Attiva ora la tua prova →</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Metodo Recomp</span>
+</div>
+
+<!-- PAGE HERO -->
+<!-- FOTO: trainer che lavora con cliente — scatto orizzontale, alto contrasto -->
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('img/coach-bench-neon.jpg')"></div>
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-sup">Il nostro metodo</span>
+    <h1 class="page-hero-title">MY<em>RECOMP</em></h1>
+    <p class="page-hero-sub">Il metodo strutturato che trasforma l'allenamento in risultati concreti e misurabili. Mai da solo, sempre seguito.</p>
+  </div>
+</div>
+
+<!-- ── INTRO ── -->
+<div class="two-col">
+  <div class="two-col-img r">
+    <!-- FOTO: sessione di valutazione iniziale — trainer con scheda o tablet -->
+    <img src="img/coach-cliente-cavi.jpg" alt="MyRecomp personal training valutazione Prenestina Roma">
+    <div class="two-col-img-tint"></div>
+  </div>
+  <div class="two-col-body">
+    <span class="eyebrow r">La filosofia</span>
+    <h2 class="display r" style="font-size:clamp(24px, 3.2vw, 48px)">NON TI AFFITTIAMO<br>UNA PALESTRA.<br><em style="color:var(--red)">TI DIAMO<br>UN PERCORSO.</em></h2>
+    <div style="height:24px"></div>
+    <div class="feature-list r d1">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Fitness Profiling</div>
+          <p class="feature-desc">Valutiamo i tuoi punti di forza e di debolezza prima di tutto il resto. Nessun programma uguale per tutti.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Piano su misura</div>
+          <p class="feature-desc">Il tuo programma viene costruito intorno ai tuoi obiettivi, alle tue capacità attuali e al tuo stile di vita.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Monitoraggio costante</div>
+          <p class="feature-desc">Il piano evolve con te. Ogni sessione è un dato, ogni dato migliora il percorso.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Team multidisciplinare</div>
+          <p class="feature-desc">Personal trainer, nutrizionista e osteopata lavorano in sinergia. Non tre servizi separati — un unico approccio integrato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── IL PROCESSO ── -->
+<section class="section" style="background:var(--off-black)">
+  <div class="section-head">
+    <span class="eyebrow r">Come funziona</span>
+    <h2 class="display r" style="font-size:clamp(24px, 4vw, 56px)">IL PROCESSO<br><em style="color:var(--red)">MYRECOMP</em></h2>
+    <p class="r d1">Dalla prima valutazione ai risultati misurabili — ogni step è strutturato.</p>
+  </div>
+  <div class="steps r d1">
+    <div class="step">
+      <div class="step-n">06 290614</div>
+      <div class="step-body">
+        <div class="step-title">Valutazione iniziale</div>
+        <p class="step-desc">Il punto di partenza. Analizziamo postura, composizione corporea, mobilità, anamnesi sportiva e obiettivi. La valutazione include anche un colloquio con il nutrizionista per capire le abitudini alimentari.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">06 290614</div>
+      <div class="step-body">
+        <div class="step-title">Definizione degli obiettivi</div>
+        <p class="step-desc">Insieme al tuo trainer stabiliamo obiettivi realistici, misurabili e con una timeline chiara. Nessuna promessa vaga — solo target concreti.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">06 290614</div>
+      <div class="step-body">
+        <div class="step-title">Programma personalizzato</div>
+        <p class="step-desc">Il tuo piano di allenamento e alimentazione viene costruito su misura. Frequenza, intensità, esercizi, progressioni — tutto calibrato sulla tua situazione attuale.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">06 290614</div>
+      <div class="step-body">
+        <div class="step-title">Allenamento guidato</div>
+        <p class="step-desc">Sessioni di personal training o small group training con il tuo coach. Tecnica, motivazione e progressione costante — mai lasciato solo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">06 290614</div>
+      <div class="step-body">
+        <div class="step-title">Verifica e aggiustamento</div>
+        <p class="step-desc">Check-in periodici per misurare i progressi e ottimizzare il programma. Il metodo non è statico: si adatta a te.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── IL TEAM ── -->
+<section class="section" style="background:var(--black)">
+  <div class="section-head">
+    <span class="eyebrow r">Chi ti segue</span>
+    <h2 class="display r" style="font-size:clamp(24px, 4vw, 56px)">IL TUO TEAM<br><em style="color:var(--red)">A 360°</em></h2>
+    <p class="r d1">Tre professionisti, un unico obiettivo — il tuo.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card r">
+      <div class="team-card-img">
+        <!-- FOTO: trainer Recomp in sala -->
+        <img src="img/coach-squat-rack.jpg" alt="Personal trainer Recomp 360 Prenestina Roma" loading="lazy">
+        <div class="team-card-img-tint"></div>
+      </div>
+      <div class="team-card-body">
+        <span class="team-role">Personal Trainer</span>
+        <div class="team-name">IL TUO COACH</div>
+        <p class="team-desc">Progetta e guida il tuo programma di allenamento. Tecnica, progressione, motivazione — è il tuo punto di riferimento in sala e fuori.</p>
+      </div>
+    </div>
+    <div class="team-card r d1">
+      <div class="team-card-img">
+        <!-- FOTO: nutrizionista / consulenza alimentare -->
+        <img src="img/coach-consulenza.jpg" alt="Nutrizionista Recomp 360 Roma" loading="lazy">
+        <div class="team-card-img-tint"></div>
+      </div>
+      <div class="team-card-body">
+        <span class="team-role">Nutrizionista</span>
+        <div class="team-name">ALIMENTAZIONE</div>
+        <p class="team-desc">L'allenamento funziona quando è supportato da una nutrizione corretta. Il nutrizionista costruisce un piano alimentare in linea con i tuoi obiettivi e il tuo stile di vita.</p>
+      </div>
+    </div>
+    <div class="team-card r d2">
+      <div class="team-card-img">
+        <!-- FOTO: osteopata / lavoro corporeo -->
+        <img src="img/coach-cliente-cable.jpg" alt="Osteopata recupero Recomp 360 Roma" loading="lazy">
+        <div class="team-card-img-tint"></div>
+      </div>
+      <div class="team-card-body">
+        <span class="team-role">Osteopata</span>
+        <div class="team-name">RECUPERO</div>
+        <p class="team-desc">Previene infortuni, gestisce dolori e migliora la mobilità articolare. L'osteopata è parte integrante del percorso, non un servizio separato.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MYRECOMP VS PALESTRA NORMALE ── -->
+<section class="section" style="background:var(--off-black)">
+  <div class="section-head">
+    <span class="eyebrow r">Perché sceglierci</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 54px)">MYRECOMP VS<br><em style="color:var(--red)">PALESTRA NORMALE</em></h2>
+  </div>
+  <div class="compare r d1">
+    <div class="compare-col">
+      <span class="compare-label">Palestra tradizionale</span>
+      <div class="compare-title">Fai da te</div>
+      <div class="compare-list">
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Programma generico uguale per tutti</div>
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Nessuna valutazione iniziale</div>
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Trainer disponibile raramente</div>
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Nessun supporto nutrizionale</div>
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Risultati incerti e non misurati</div>
+        <div class="compare-row"><div class="ci ci-no"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div>Abbandonato a te stesso</div>
+      </div>
+    </div>
+    <div class="compare-col highlight">
+      <span class="compare-label">Recomp 360</span>
+      <div class="compare-title">MyRecomp</div>
+      <div class="compare-list">
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Piano costruito sulla tua situazione</div>
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Valutazione completa dal giorno 1</div>
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Trainer sempre presente in sala</div>
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Nutrizionista integrato nel percorso</div>
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Progressi misurati e verificati</div>
+        <div class="compare-row yes"><div class="ci ci-yes"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>Team di 3 professionisti sul tuo obiettivo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MYRECOMP START — PROVA ── -->
+<section class="section" style="background:var(--black)">
+  <div class="r prova-section-grid">
+    <div>
+      <span class="eyebrow">La tua prima esperienza</span>
+      <h2 class="display" style="font-size:clamp(24px, 3.5vw, 52px);margin-bottom:16px">MYRECOMP<br><em style="color:var(--red)">START</em></h2>
+      <p style="font-size:16px;line-height:1.7;color:rgba(255,255,255,.55);margin-bottom:28px">Prova il metodo prima di impegnarti. Una sessione di valutazione con il tuo PT e 7 ingressi in sala per capire se Recomp 360 fa per te.</p>
+      <p style="font-size:14px;color:rgba(255,255,255,.3);font-family:var(--cond);letter-spacing:1.5px;text-transform:uppercase">Nessun impegno · Prenota online o chiama il 06 290614</p>
+    </div>
+    <div class="price-box">
+      <span class="price-eyebrow">MyRecomp Start</span>
+      <span class="price-amount">€17</span>
+      <span class="price-period">una tantum · iva inclusa</span>
+      <div class="price-includes">
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">7 ingressi in Sala Pesi</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Lezione di valutazione col PT</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Da consumare in 14 giorni</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Accesso ai Corsi Fitness</span></div>
+      </div>
+      <a href="index.html#prova" class="btn-primary" style="width:100%;text-align:center;display:block">Attiva ora la tua prova →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section" style="background:var(--off-black)">
+  <div class="section-head">
+    <span class="eyebrow r">Chi ha scelto MyRecomp</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 54px)">I RISULTATI<br>PARLANO DA SOLI.</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard r">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="ttext">"In 3 mesi con MyRecomp ho ottenuto più risultati che in 2 anni di palestra da solo. Il team è incredibile — trainer, nutrizionista e osteopata lavorano davvero insieme."</p>
+      <div class="tauthor">Marco Vitali</div>
+    </div>
+    <div class="tcard r d1">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="ttext">"Mi sono iscritto da poco e ho trovato un ambiente molto accogliente. Tutti professionali, dal proprietario ai personal trainer. Il metodo funziona."</p>
+      <div class="tauthor">Fabrizio Cerocchi</div>
+    </div>
+    <div class="tcard r d2">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <p class="ttext">"Grazie alla Recomp ho ripreso ad allenarmi dopo tanto tempo. Staff competente, attento e sempre presente. Non mi sono mai sentito abbandonato."</p>
+      <div class="tauthor">Alessio Capponi</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<div class="cta-band">
+  <div class="cta-band-text r">
+    <span class="cta-band-eyebrow">Inizia oggi</span>
+    <h2 class="cta-band-title">PRONTO A<br><em>COMINCIARE?</em></h2>
+  </div>
+  <div class="cta-band-btns r d2">
+    <a href="index.html#prova" class="btn-primary">Attiva ora la tua prova</a>
+    <a href="index.html" class="btn-ghost">Torna alla home</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-logo"><img src="img/logo.png" alt="Recomp 360" height="72"></a>
+      <span class="ft-payoff">Fitness Profiling</span>
+      <p class="ft-tag">La palestra di riferimento in zona Prenestina, Roma.</p>
+      <!-- LINK: sostituire href="#" con WhatsApp o modulo contatto -->
+      <a href="#" class="btn-primary ft-contact-cta">CONTATTACI →</a>
+    </div>
+<div class="ft-cols">
+      <div class="ft-col">
+        <h4>Pagine</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="metodo-recomp.html" class="active">Metodo Recomp</a></li>
+          <li><a href="sala-pesi.html">Sala Pesi</a></li>
+          <li><a href="corsi-fitness.html">Corsi Fitness</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="tel:06290614">06 290614</a></li>
+          
+          <li><a href="#">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+    <p class="ft-addr">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const navDrawer  = document.getElementById('navDrawer');
+if (hamburger && navDrawer) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navDrawer.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+  });
+  // Nav scroll opacity
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 40
+        ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+  }
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+}
+</script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

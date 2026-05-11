@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corsi Fitness Prenestina Roma | Yoga Pilates Functional — Recomp 360</title>
+<meta name="keywords" content="corsi fitness prenestina, yoga prenestina roma, pilates prenestina, functional training roma est, corsi palestra prenestina">
+<meta name="description" content="Corsi fitness in zona Prenestina Roma: yoga, pilates, posturale, functional training. Inclusi nell'abbonamento Recomp 360. Istruttori professionisti per tutti i livelli.">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── PAGE SPECIFIC ── */
+
+/* Corso cards — grande grid visuale */
+.corsi-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--dark); }
+.corso-card { position:relative; overflow:hidden; min-height:360px; display:flex; flex-direction:column; justify-content:flex-end; cursor:pointer; }
+.corso-card-img { position:absolute; inset:0; background-size:cover; background-position:center; filter:brightness(.55); transition:transform .7s cubic-bezier(.4,0,.2,1),filter .5s; }
+.corso-card:hover .corso-card-img { transform:scale(1.05); filter:brightness(.75); }
+.corso-card-grad { position:absolute; inset:0; background:linear-gradient(to top,rgba(8,8,8,.92) 0%,rgba(8,8,8,.2) 60%,transparent 100%); }
+.corso-card-body { position:relative; z-index:2; padding:28px 28px 32px; }
+.corso-tag { font-family:var(--cond); font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red); display:block; margin-bottom:8px; }
+.corso-title { font-family:var(--display); font-size:clamp(32px,4vw,48px); color:var(--white); line-height:1; margin-bottom:8px; }
+.corso-desc { font-size:14px; color:rgba(255,255,255,.6); line-height:1.55; max-width:400px; }
+.corso-card::before { content:''; position:absolute; top:0; left:0; bottom:0; width:3px; background:var(--red); z-index:3; transform:scaleY(0); transform-origin:bottom; transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.corso-card:hover::before { transform:scaleY(1); }
+
+/* Calendario mock */
+.cal { display:flex; flex-direction:column; gap:2px; background:var(--dark); }
+.cal-row { background:var(--off-black); display:grid; grid-template-columns:120px 1fr 100px 140px; align-items:center; padding:18px 24px; gap:16px; transition:background .2s; }
+.cal-row:hover { background:var(--dark); }
+.cal-row.header { background:var(--mid); }
+.cal-day { font-family:var(--cond); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--red); }
+.cal-corso { font-family:var(--cond); font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--white); }
+.cal-ora { font-family:var(--display); font-size:18px; color:rgba(255,255,255,.6); }
+.cal-istruttore { font-size:13px; color:rgba(255,255,255,.35); font-family:var(--cond); letter-spacing:1px; text-transform:uppercase; }
+.cal-header-txt { font-family:var(--cond); font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.3); }
+
+/* Livelli badge */
+.livelli { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.livello { font-family:var(--cond); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 12px; border:1px solid; }
+.livello-base { border-color:rgba(255,255,255,.2); color:rgba(255,255,255,.5); }
+.livello-medio { border-color:rgba(229,51,50,.4); color:rgba(229,51,50,.7); }
+.livello-avanzato { border-color:var(--red); color:var(--red); }
+
+@media(max-width:768px) {
+  .corsi-grid { grid-template-columns:1fr; }
+  .cal-row { grid-template-columns:1fr 1fr; gap:8px; padding:14px 16px; }
+  .cal-istruttore { display:none; }
+}
+  /* MOBILE: box titles must not overflow */
+  @media(max-width:768px){
+    .pg-label h3 { font-size:15px !important; line-height:1.15 !important; word-break:break-word; }
+    .pg-label p  { font-size:9px !important; letter-spacing:1px; }
+    .mosaic .pg-label h3 { font-size:14px !important; }
+    .anima-title { font-size:clamp(18px,5.5vw,32px) !important; }
+  }
+
+  .prova-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media(max-width:768px){
+    .prova-section-grid {
+      display: block !important;
+    }
+    .prova-section-grid > * {
+      margin-bottom: 32px;
+      width: 100% !important;
+    }
+    .prova-section-grid > *:last-child { margin-bottom: 0; }
+  }
+
+/* ── FORCE NAV IDENTICAL TO HOME ── */
+nav {
+  height: 100px !important;
+  padding: 0 28px !important;
+}
+.logo img {
+  height: 56px !important;
+  width: auto !important;
+  display: block !important;
+}
+</style>  <meta property="og:title" content="Corsi Fitness Prenestina Roma | Yoga Pilates Functional — Recomp 360">
+  <meta property="og:description" content="Corsi fitness in zona Prenestina Roma: yoga, pilates, posturale, functional training. Inclusi nell'abbonamento Recomp 360. Istruttori professionisti per tutti i livelli.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="it_IT">
+  <meta name="robots" content="index, follow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://recomp360.netlify.app/img/og-image.jpg">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="logo"><img src="img/logo.png" alt="Recomp 360" height="56"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="metodo-recomp.html">Metodo Recomp</a></li>
+    <li><a href="sala-pesi.html">Sala Pesi</a></li>
+    <li><a href="corsi-fitness.html" class="active">Corsi Fitness</a></li>
+  </ul>
+  <a href="index.html#prova" class="nav-cta">Attiva ora la tua prova</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="metodo-recomp.html">Metodo Recomp</a>
+  <a href="sala-pesi.html">Sala Pesi</a>
+  <a href="corsi-fitness.html" class="active">Corsi Fitness</a>
+  <a href="index.html#prova" class="drawer-cta">Attiva ora la tua prova →</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Corsi Fitness</span>
+</div>
+
+<!-- PAGE HERO -->
+<!-- FOTO: lezione di gruppo in corso — dinamica, persone in movimento -->
+<div class="page-hero">
+  <div class="page-hero-img" style="background-image:url('img/coach-area-funzionale.jpg')"></div>
+  <div class="page-hero-grad"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-sup">Lezioni guidate</span>
+    <h1 class="page-hero-title"><em>CORSI</em> FITNESS</h1>
+    <p class="page-hero-sub">Lezioni dinamiche, guida professionale, miglioramento costante. Inclusi in tutti gli abbonamenti Recomp 360.</p>
+  </div>
+</div>
+
+<!-- ── INTRO ── -->
+<div class="two-col">
+  <div class="two-col-img r">
+    <!-- FOTO: istruttore che guida una lezione -->
+    <img src="img/coach-cliente-cavi-neon.jpg" alt="Corsi fitness Recomp 360 Prenestina Roma">
+    <div class="two-col-img-tint"></div>
+  </div>
+  <div class="two-col-body">
+    <span class="eyebrow r">Perché scegliere i nostri corsi</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3vw, 44px)">ALLENARTI<br>IN GRUPPO<br><em style="color:var(--red)">CON LA QUALITÀ<br>DEL PERSONAL.</em></h2>
+    <div style="height:24px"></div>
+    <div class="feature-list r d1">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Istruttori professionisti</div>
+          <p class="feature-desc">Ogni lezione è guidata da un istruttore certificato. La qualità dell'insegnamento non si abbassa mai per il numero di partecipanti.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Ogni livello è benvenuto</div>
+          <p class="feature-desc">I corsi sono strutturati per accogliere principianti e avanzati. L'istruttore propone varianti adatte a tutti.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Inclusi nell'abbonamento</div>
+          <p class="feature-desc">Nessun costo aggiuntivo. Tutti i corsi sono inclusi nel tuo abbonamento Recomp 360 — sala pesi e corsi insieme.</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div>
+          <div class="feature-title">Integrati con MyRecomp</div>
+          <p class="feature-desc">I corsi possono essere inseriti nel tuo percorso MyRecomp. Il trainer li coordina con il programma in sala per massimizzare i risultati.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── I CORSI ── -->
+<section class="section" style="background:var(--black)">
+  <div class="section-head">
+    <span class="eyebrow r">Le discipline</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 54px)">I NOSTRI<br><em style="color:var(--red)">CORSI</em></h2>
+    <p class="r d1">Scegli la disciplina che si adatta al tuo obiettivo. O prova tutto — sono inclusi.</p>
+  </div>
+  <div class="corsi-grid r d1">
+
+    <div class="corso-card">
+      <!-- FOTO: lezione yoga / stretching -->
+      <div class="corso-card-img" style="background-image:url('img/utente-squat-specchio.jpg')"></div>
+      <div class="corso-card-grad"></div>
+      <div class="corso-card-body">
+        <span class="corso-tag">Mente e corpo</span>
+        <h3 class="corso-title">YOGA</h3>
+        <p class="corso-desc">Respirazione, equilibrio, flessibilità. Un percorso che allena la mente quanto il corpo.</p>
+        <div class="livelli">
+          <span class="livello livello-base">Base</span>
+          <span class="livello livello-medio">Intermedio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="corso-card">
+      <!-- FOTO: lezione pilates / core -->
+      <div class="corso-card-img" style="background-image:url('img/utente-deadlift.jpg')"></div>
+      <div class="corso-card-grad"></div>
+      <div class="corso-card-body">
+        <span class="corso-tag">Core e stabilità</span>
+        <h3 class="corso-title">PILATES</h3>
+        <p class="corso-desc">Controllo posturale, forza del core, consapevolezza corporea. Adatto a tutti i livelli.</p>
+        <div class="livelli">
+          <span class="livello livello-base">Base</span>
+          <span class="livello livello-medio">Intermedio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="corso-card">
+      <!-- FOTO: lezione functional / gruppo dinamico -->
+      <div class="corso-card-img" style="background-image:url('img/coach-cliente-cavi-neon.jpg')"></div>
+      <div class="corso-card-grad"></div>
+      <div class="corso-card-body">
+        <span class="corso-tag">Forza e condizionamento</span>
+        <h3 class="corso-title">FUNCTIONAL TRAINING</h3>
+        <p class="corso-desc">Esercizi che replicano i movimenti della vita reale. Forza, coordinazione, resistenza.</p>
+        <div class="livelli">
+          <span class="livello livello-medio">Intermedio</span>
+          <span class="livello livello-avanzato">Avanzato</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="corso-card">
+      <!-- FOTO: lezione posturale / stretching guidato -->
+      <div class="corso-card-img" style="background-image:url('img/coach-cliente-cable.jpg')"></div>
+      <div class="corso-card-grad"></div>
+      <div class="corso-card-body">
+        <span class="corso-tag">Postura e recupero</span>
+        <h3 class="corso-title">POSTURALE</h3>
+        <p class="corso-desc">Correzione posturale, allungamento muscolare, prevenzione dei dolori cronici. Ideale come complemento all'allenamento in sala.</p>
+        <div class="livelli">
+          <span class="livello livello-base">Tutti i livelli</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CALENDARIO ── -->
+<section class="section" style="background:var(--off-black)">
+  <div class="section-head">
+    <span class="eyebrow r">Quando venire</span>
+    <h2 class="display r" style="font-size:clamp(22px, 3.5vw, 52px)">ORARI<br><em style="color:var(--red)">DEI CORSI</em></h2>
+    <p class="r d1">Il calendario aggiornato con tutti gli orari e le discipline è disponibile online.</p>
+  </div>
+  <div class="r d2" style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:40px 0 8px">
+    <!-- LINK DA INSERIRE: sostituire href="#" con il link al calendario corsi -->
+    <a href="#" class="btn-primary" style="font-size:15px;padding:16px 40px">Vedi il calendario corsi →</a>
+    <span style="font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28)">oppure chiama il 06 290614</span>
+  </div>
+</section>
+
+<!-- ── INCLUSO + PROVA ── -->
+<section class="section" style="background:var(--black)">
+  <div class="r prova-section-grid">
+    <div>
+      <span class="eyebrow">Tutto incluso</span>
+      <h2 class="display" style="font-size:clamp(22px, 3vw, 44px);margin-bottom:20px">I CORSI<br><em style="color:var(--red)">SONO INCLUSI</em><br>NELL'ABBONAMENTO.</h2>
+      <p style="font-size:15px;line-height:1.75;color:rgba(255,255,255,.55);margin-bottom:24px">Non paghi i corsi separatamente. Con il tuo abbonamento Recomp 360 hai accesso libero a tutte le discipline, in aggiunta alla sala pesi. Zero costi aggiuntivi, zero prenotazioni a pagamento.</p>
+      <a href="index.html#prova" class="btn-primary">Attiva ora la tua prova</a>
+    </div>
+    <div class="price-box">
+      <span class="price-eyebrow">MyRecomp Start</span>
+      <span class="price-amount">€17</span>
+      <span class="price-period">una tantum · iva inclusa</span>
+      <div class="price-includes">
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">7 ingressi in Sala Pesi</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Lezione di valutazione col PT</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Da consumare in 14 giorni</span></div>
+        <div class="price-row"><div class="price-dot"></div><span class="price-txt">Accesso ai Corsi Fitness</span></div>
+      </div>
+      <a href="index.html#prova" class="btn-primary" style="width:100%;text-align:center;display:block">Attiva ora la tua prova →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<div class="cta-band">
+  <div class="cta-band-text r">
+    <span class="cta-band-eyebrow">Vieni a provare</span>
+    <h2 class="cta-band-title">SCEGLI IL CORSO<br><em>CHE FA PER TE</em></h2>
+  </div>
+  <div class="cta-band-btns r d2">
+    <a href="index.html#prova" class="btn-primary">Attiva ora la tua prova</a>
+    <a href="sala-pesi.html" class="btn-ghost">Scopri la Sala Pesi →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-logo"><img src="img/logo.png" alt="Recomp 360" height="72"></a>
+      <span class="ft-payoff">Fitness Profiling</span>
+      <p class="ft-tag">La palestra di riferimento in zona Prenestina, Roma.</p>
+      <!-- LINK: sostituire href="#" con WhatsApp o modulo contatto -->
+      <a href="#" class="btn-primary ft-contact-cta">CONTATTACI →</a>
+    </div>
+<div class="ft-cols">
+      <div class="ft-col">
+        <h4>Pagine</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="metodo-recomp.html">Metodo Recomp</a></li>
+          <li><a href="sala-pesi.html">Sala Pesi</a></li>
+          <li><a href="corsi-fitness.html" class="active">Corsi Fitness</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contatti</h4>
+        <ul>
+          <li><a href="tel:06290614">06 290614</a></li>
+          
+          <li><a href="#">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+    <p class="ft-addr">Via Prenestina 278 B, 00177 Roma · 06 290614</p>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ── HAMBURGER ──
+const hamburger = document.getElementById('hamburger');
+const navDrawer  = document.getElementById('navDrawer');
+if (hamburger && navDrawer) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = navDrawer.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navDrawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      navDrawer.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+  });
+  // Nav scroll opacity
+  const nav = document.getElementById('nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      nav.style.background = window.scrollY > 40
+        ? 'rgba(8,8,8,0.98)' : 'rgba(8,8,8,0.92)';
+    }, { passive: true });
+  }
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+}
+</script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
