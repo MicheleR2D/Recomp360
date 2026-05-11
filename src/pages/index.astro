@@ -33,9 +33,11 @@ const reviews = [
       <video class="hero__video" autoplay muted loop playsinline poster={`${base}images/hero-poster.jpg`}>
         <source src={`${base}video/hero.mp4`} type="video/mp4" />
       </video>
+      <img src={`${base}images/hero-poster.jpg`} alt="" class="hero-bg-img" aria-hidden="true" />
       <div class="hero__overlay"></div>
     </div>
     <div class="container hero__content">
+      <p class="hero__eyebrow">Roma · Zona Prenestina</p>
       <h1 class="hero__title">
         IL METODO CHE<br />
         <span class="text-accent">TRASFORMA</span><br />
@@ -43,11 +45,11 @@ const reviews = [
       </h1>
       <p class="hero__sub">Non una palestra. Un metodo.</p>
       <div class="hero__ctas">
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary">
           Inizia Ora — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="#philosophy" class="btn btn--outline">Scopri di Più</a>
+        <a href="#philosophy" class="btn-outline">Scopri di Più</a>
       </div>
     </div>
     <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Scroll</span></div>
@@ -67,7 +69,7 @@ const reviews = [
             Libertà della sala attrezzi + expertise del personal training studio.
             Un team di specialisti — trainer, nutrizionista, fisioterapista — per seguirti davvero a tutto tondo.
           </p>
-          <a href="/about" class="btn btn--ghost" style="margin-top:32px">
+          <a href="/about" class="btn--ghost" style="margin-top:32px">
             Chi siamo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -100,7 +102,7 @@ const reviews = [
           <div class="divider"></div>
           <p style="margin-top:16px">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
-        <a href="/metodo" class="btn btn--outline method-header__cta">
+        <a href="/metodo" class="btn-outline method-header__cta">
           Scopri il Metodo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -152,7 +154,7 @@ const reviews = [
           <h2>CLASSI <span class="text-accent">FITNESS</span></h2>
           <div class="divider"></div>
         </div>
-        <a href="/classi" class="btn btn--outline classes-header__cta">
+        <a href="/classi" class="btn-outline classes-header__cta">
           Orari e Iscrizioni
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -198,7 +200,7 @@ const reviews = [
   <section id="offer" class="section offer-section">
     <div class="container offer-section__inner">
       <div class="offer-section__text">
-        <p class="section__label" style="color:var(--text-muted)">Inizia Adesso</p>
+        <p class="section__label">Inizia Adesso</p>
         <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
         <div class="divider"></div>
         <p style="margin-top:24px;color:var(--text-muted)">
@@ -212,7 +214,7 @@ const reviews = [
           <li><span>✓</span> Accesso a tutte le zone</li>
           <li><span>✓</span> 14 giorni dall'attivazione</li>
         </ul>
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary offer-btn">
+        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary offer-btn">
           Attiva la Prova — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -221,7 +223,7 @@ const reviews = [
   </section>
 
   <!-- ─── REVIEWS ──────────────────────────────────────────────────────── -->
-  <section id="reviews" class="section">
+  <section id="reviews" class="section section--alt">
     <div class="container">
       <div class="section__header">
         <p class="section__label">Recensioni</p>
@@ -249,33 +251,55 @@ const reviews = [
 .hero {
   position: relative;
   min-height: 100svh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
 }
 .hero__bg { position: absolute; inset: 0; z-index: 0; }
-.hero__video { width: 100%; height: 100%; object-fit: cover; }
-.hero__overlay {
+.hero__video {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.5) 100%);
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-bg-img {
+  display: none;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero__overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
 }
 .hero__content {
-  position: relative; z-index: 1;
-  padding-top: 100px; padding-bottom: 60px;
+  position: absolute;
+  bottom: 80px; left: 10%;
+  max-width: 620px;
+  z-index: 2;
 }
-.hero__title { color: #fff; line-height: 0.95; margin-bottom: 24px; }
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.hero__title {
+  color: var(--white);
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
 .hero__sub {
-  font-size: 20px; color: rgba(240,240,240,0.6);
-  margin-bottom: 40px; max-width: 320px;
+  font-size: 18px; font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 40px; max-width: 520px;
+  line-height: 1.6;
 }
 .hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero__scroll {
   position: absolute; bottom: 40px; left: 50%;
   transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
-  z-index: 1;
+  z-index: 2;
 }
-.hero__scroll span { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(240,240,240,0.3); }
+.hero__scroll span { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-sub-30); }
 .hero__scroll-line {
   width: 1px; height: 48px;
   background: linear-gradient(to bottom, var(--accent), transparent);
@@ -334,11 +358,11 @@ const reviews = [
 }
 .method-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden;
-  transition: border-color .2s, transform .2s;
+  border-radius: 4px; overflow: hidden;
+  transition: border-color .3s ease, transform .3s ease;
 }
 .method-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-.method-card--featured { border-color: rgba(229,51,50,0.4); }
+.method-card--featured { border-color: var(--accent-dim-40); }
 
 .method-card__img-wrap { overflow: hidden; }
 .method-card__img {
@@ -349,17 +373,16 @@ const reviews = [
 }
 .method-card:hover .method-card__img { transform: scale(1.04); }
 
-.method-card__body { padding: 24px 28px 28px; }
-.method-card__body h3 { margin: 14px 0 8px; }
-.method-card__body p { font-size: 15px; color: var(--text-muted); }
+.method-card__body { padding: 24px 28px; }
+.method-card__body h3 { margin: 14px 0 8px; font-size: 18px; }
+.method-card__body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
 .badge {
-  display: inline-block; font-size: 10px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent); border: 1px solid var(--accent);
-  border-radius: 100px; padding: 4px 12px;
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
 }
-.badge--muted { color: var(--text-muted); border-color: var(--border); }
+.badge--muted { color: var(--text-muted); }
 
 /* ── CLASSES ───────────────────────────────────────────────────────────────── */
 .classes-header {
@@ -373,11 +396,11 @@ const reviews = [
 }
 .class-tile {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); overflow: hidden;
+  border-radius: 4px; overflow: hidden;
   transition: border-color .2s, transform .2s;
 }
 .class-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
-.class-tile__img-wrap { overflow: hidden; }
+.class-tile__img-wrap { overflow: hidden; position: relative; }
 .class-tile__img {
   width: 100%; height: 160px;
   object-fit: cover; object-position: center;
@@ -386,6 +409,15 @@ const reviews = [
 }
 .class-tile:hover .class-tile__img { transform: scale(1.04); }
 .class-tile h4 { font-size: 14px; letter-spacing: 0.5px; padding: 16px 20px; }
+
+/* Badge categoria — position absolute sull'immagine (pronto all'uso) */
+.class-tile__badge {
+  position: absolute; top: 0; left: 0;
+  background: var(--accent); color: var(--white);
+  font-family: var(--font-body); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 0;
+}
 
 /* ── GYM ───────────────────────────────────────────────────────────────────── */
 .gym__grid {
@@ -433,7 +465,7 @@ const reviews = [
   transition: border-color .2s;
 }
 .review-card:hover { border-color: var(--accent); }
-.review-card__stars { color: #FFD600; font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
+.review-card__stars { color: var(--star); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
 .review-card__text {
   font-size: 15px; color: var(--text-muted);
   font-style: italic; line-height: 1.7; margin-bottom: 20px;
@@ -458,10 +490,20 @@ const reviews = [
   .reviews-grid         { grid-template-columns: 1fr; }
   .offer-section__inner { grid-template-columns: 1fr; gap: 40px; }
 }
+@media (max-width: 768px) {
+  .hero__video  { display: none; }
+  .hero-bg-img  { display: block; }
+  .hero__content {
+    left: 24px; right: 24px;
+    bottom: 60px;
+    max-width: 100%;
+  }
+}
 @media (max-width: 640px) {
   .classes-grid { grid-template-columns: repeat(2,1fr); }
   .stats-row    { grid-template-columns: repeat(2,1fr); }
   .hero__ctas   { flex-direction: column; }
-  .hero__ctas .btn { width: 100%; justify-content: center; }
+  .hero__ctas .btn-primary,
+  .hero__ctas .btn-outline { width: 100%; justify-content: center; }
 }
 </style>

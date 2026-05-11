@@ -4,6 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Il Metodo MyRecomp — Recomp360" description="Scopri il metodo MyRecomp: personal training, small group e sala libera per la tua ricomposizione corporea.">
@@ -11,7 +12,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
   <div class="page-hero">
     <div class="container">
-      <a href="/" class="back-link">
+      <a href={base} class="back-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Home
       </a>
@@ -31,7 +32,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
         <div class="detail-card detail-card--featured">
           <span class="badge">Core</span>
-          <h2>Personal Training</h2>
+          <h3>PERSONAL TRAINING</h3>
           <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — tenendo conto del tuo corpo, dei tuoi obiettivi e del tuo stile di vita.</p>
           <ul class="feature-list">
             <li><span class="check">✓</span> Valutazione tecnica iniziale completa</li>
@@ -44,7 +45,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
         <div class="detail-card">
           <span class="badge badge--muted">Gruppo</span>
-          <h2>Small Group Training</h2>
+          <h3>SMALL GROUP TRAINING</h3>
           <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione, per garantire attenzione individuale senza rinunciare alla motivazione collettiva.</p>
           <ul class="feature-list">
             <li><span class="check">✓</span> Gruppi di massimo 6 persone</li>
@@ -56,7 +57,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
         <div class="detail-card">
           <span class="badge badge--muted">Accesso</span>
-          <h2>Sala Attrezzi Libera</h2>
+          <h3>SALA ATTREZZI LIBERA</h3>
           <p>Accesso alla sala con attrezzatura last-generation. Alleni nei tuoi tempi, con la sicurezza di uno staff qualificato sempre presente e zone dedicate per ogni tipo di lavoro.</p>
           <ul class="feature-list">
             <li><span class="check">✓</span> Macchinari last-generation</li>
@@ -80,19 +81,19 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
         </div>
         <div class="team-cards">
           <div class="team-card">
-            <h4>Personal Trainer</h4>
+            <h4>PERSONAL TRAINER</h4>
             <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
           </div>
           <div class="team-card">
-            <h4>Nutrizionista</h4>
+            <h4>NUTRIZIONISTA</h4>
             <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
           </div>
           <div class="team-card">
-            <h4>Fisioterapia</h4>
+            <h4>FISIOTERAPIA</h4>
             <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
           </div>
           <div class="team-card">
-            <h4>Posturologia & Osteopatia</h4>
+            <h4>POSTUROLOGIA & OSTEOPATIA</h4>
             <p>Valutazione posturale completa e trattamenti osteopatici.</p>
           </div>
         </div>
@@ -104,7 +105,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
     <div class="container cta-section__inner">
       <h2>INIZIA CON<br /><span class="text-accent">7 ALLENAMENTI</span><br />A €17</h2>
       <p>Valutazione tecnica inclusa. 14 giorni per scoprire il metodo.</p>
-      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary">
         Attiva la Prova
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -120,6 +121,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 .page-hero {
   padding-top: 140px;
   padding-bottom: 80px;
+  min-height: 400px;
   background: var(--bg-alt);
   border-bottom: 1px solid var(--border);
 }
@@ -153,13 +155,13 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 .detail-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 4px;
   padding: 40px 32px;
   transition: border-color .2s;
 }
 .detail-card:hover { border-color: var(--accent); }
-.detail-card--featured { border-color: rgba(229,51,50,0.4); }
-.detail-card h2 { margin: 16px 0 14px; }
+.detail-card--featured { border-color: var(--accent-dim-40); }
+.detail-card h3 { margin: 16px 0 14px; }
 .detail-card > p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
 
 .feature-list { display: flex; flex-direction: column; gap: 12px; }
@@ -167,12 +169,11 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 .check { color: var(--accent); font-weight: 700; }
 
 .badge {
-  display: inline-block; font-size: 10px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent); border: 1px solid var(--accent);
-  border-radius: 100px; padding: 4px 12px;
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
 }
-.badge--muted { color: var(--text-muted); border-color: var(--border); }
+.badge--muted { color: var(--text-muted); }
 
 .team-grid {
   display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
@@ -182,7 +183,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 }
 .team-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 28px 24px;
+  border-radius: 4px; padding: 28px 24px;
 }
 .team-card h4 { margin-bottom: 10px; }
 .team-card p { font-size: 14px; color: var(--text-muted); }

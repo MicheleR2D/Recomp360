@@ -4,52 +4,53 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
 const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
+const base = import.meta.env.BASE_URL;
 
 const classes = [
   {
-    name: 'Cross Cardio',
+    name: 'CROSS CARDIO',
     icon: '⚡',
     desc: 'Allenamento cardiovascolare ad alta intensità con esercizi funzionali. Brucia calorie, migliora la resistenza e il coordinamento.',
     level: 'Tutti i livelli',
   },
   {
-    name: 'Functional Training',
+    name: 'FUNCTIONAL TRAINING',
     icon: '🏋️',
     desc: 'Movimenti multi-articolari che replicano i gesti quotidiani. Migliora forza, stabilità e mobilità in modo completo.',
     level: 'Tutti i livelli',
   },
   {
-    name: 'Interval Training',
+    name: 'INTERVAL TRAINING',
     icon: '🔥',
     desc: 'Alternanza di fasi ad alta intensità e recupero attivo. Massimizza il consumo calorico e la performance cardiovascolare.',
     level: 'Intermedio / Avanzato',
   },
   {
-    name: 'Met-Con',
+    name: 'MET-CON',
     icon: '💥',
     desc: 'Metabolic Conditioning: circuiti che combinano forza e cardio per un effetto brucia-grassi prolungato nelle ore successive.',
     level: 'Intermedio / Avanzato',
   },
   {
-    name: 'Pilates',
+    name: 'PILATES',
     icon: '🧘',
     desc: 'Disciplina che rafforza il core, migliora la postura e aumenta la flessibilità attraverso movimenti controllati e precisi.',
     level: 'Tutti i livelli',
   },
   {
-    name: 'Postural',
+    name: 'POSTURAL',
     icon: '⚖️',
     desc: 'Lavoro specifico sulla postura e sulla mobilità articolare. Ideale per chi soffre di dolori o vuole prevenirli.',
     level: 'Tutti i livelli',
   },
   {
-    name: 'Pre-Boxing',
+    name: 'PRE-BOXING',
     icon: '🥊',
     desc: 'Tecnica boxe applicata al fitness: coordinazione, velocità e potenza senza contatto. Sfogo totale e divertimento garantito.',
     level: 'Tutti i livelli',
   },
   {
-    name: 'Zumba',
+    name: 'ZUMBA',
     icon: '🎵',
     desc: 'Fitness dance che unisce movimenti di danza latina e internazionale. Efficace, coinvolgente e perfetto per chi odia la palestra classica.',
     level: 'Tutti i livelli',
@@ -62,7 +63,7 @@ const classes = [
 
   <div class="page-hero">
     <div class="container">
-      <a href="/" class="back-link">
+      <a href={base} class="back-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Home
       </a>
@@ -96,7 +97,7 @@ const classes = [
     <div class="container cta-inner">
       <h2>VUOI PROVARE<br /><span class="text-accent">GRATIS?</span></h2>
       <p>Con la prova a €17 accedi a 7 allenamenti in 14 giorni — incluse le classi fitness.</p>
-      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary">
+      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary">
         Inizia Ora — €17
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -110,6 +111,7 @@ const classes = [
 .text-accent { color: var(--accent); }
 .page-hero {
   padding-top: 140px; padding-bottom: 80px;
+  min-height: 400px;
   background: var(--bg-alt); border-bottom: 1px solid var(--border);
 }
 .page-hero__sub { margin-top: 24px; font-size: 18px; color: var(--text-muted); max-width: 480px; line-height: 1.7; }
@@ -126,7 +128,7 @@ const classes = [
 }
 .class-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 32px 28px;
+  border-radius: 4px; padding: 32px 28px;
   transition: border-color .2s;
 }
 .class-card:hover { border-color: var(--accent); }

@@ -1,27 +1,32 @@
 ---
 const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+
 const navLinks = [
-  { href: '#philosophy', label: 'Chi Siamo' },
-  { href: '#myrecomp',   label: 'Il Metodo' },
-  { href: '#classes',    label: 'Classi' },
-  { href: '#facility',   label: 'Struttura' },
+  { href: `${base}about`,  label: 'Chi Siamo', match: '/about'  },
+  { href: `${base}metodo`, label: 'Il Metodo', match: '/metodo' },
+  { href: `${base}classi`, label: 'Classi',    match: '/classi' },
+  { href: '#facility',     label: 'Struttura', match: null      },
 ];
 ---
 
 <nav class="nav" id="nav">
   <div class="container nav__inner">
-    <a href="#hero" class="nav__logo" aria-label="Recomp360 home">
+    <a href={base} class="nav__logo" aria-label="Recomp360 home">
       <img src={`${base}images/logo.png`} alt="Recomp360" />
     </a>
 
     <ul class="nav__links" id="nav-links">
       {navLinks.map(link => (
-        <li><a href={link.href} class="nav__link">{link.label}</a></li>
+        <li><a
+          href={link.href}
+          class:list={['nav__link', { 'nav__link--active': link.match && pathname.includes(link.match) }]}
+        >{link.label}</a></li>
       ))}
     </ul>
 
-    <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn btn--primary nav__cta">
+    <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary nav__cta">
       Inizia Ora
     </a>
 
@@ -33,20 +38,19 @@ const navLinks = [
 
 <style>
 .nav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   padding-block: 20px;
-  transition: background 0.3s, padding 0.3s, border-bottom 0.3s;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s, padding 0.3s;
 }
 
 .nav.scrolled {
-  background: rgba(10, 10, 10, 0.95);
+  background: var(--bg-overlay-95);
   backdrop-filter: blur(12px);
   padding-block: 14px;
-  border-bottom: 1px solid var(--border);
 }
 
 .nav__inner {
@@ -74,7 +78,13 @@ const navLinks = [
 
 .nav__link:hover { color: var(--text); }
 
-.nav__cta { padding: 12px 28px; font-size: 13px; }
+.nav__link--active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.nav__cta { flex-shrink: 0; }
 
 .nav__burger {
   display: none;
@@ -109,7 +119,11 @@ const navLinks = [
 
   .nav__links.open { transform: translateX(0); }
 
-  .nav__link { font-size: 16px; }
+  .nav__link {
+    font-size: 32px;
+    font-family: var(--font-head);
+    letter-spacing: 1px;
+  }
 
   .nav__cta { display: none; }
 
@@ -142,5 +156,14 @@ links.querySelectorAll('a').forEach(a => {
     links.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
   });
+});
+
+// Chiudi il menu con click fuori dal nav
+document.addEventListener('click', (e) => {
+  if (links.classList.contains('open') && !nav.contains(e.target as Node)) {
+    burger.classList.remove('open');
+    links.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
 });
 </script>
