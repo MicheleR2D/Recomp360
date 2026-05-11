@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ContactModal from '../components/ContactModal.astro';
 
-const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -103,7 +103,7 @@ const base = import.meta.env.BASE_URL;
     <div class="container cta-inner">
       <h2>VIENI A<br /><span class="text-accent">CONOSCERCI</span></h2>
       <p>Prova il metodo con 7 allenamenti a €17. Valutazione tecnica inclusa.</p>
-      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary">
+      <button class="btn-primary contact-trigger">
         Inizia Ora
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -111,6 +111,7 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <Footer />
+  <ContactModal />
 </Layout>
 
 <style>

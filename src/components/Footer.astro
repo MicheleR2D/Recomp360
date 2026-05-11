@@ -1,5 +1,4 @@
 ---
-const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
@@ -34,8 +33,8 @@ const year = new Date().getFullYear();
       <h4>Contatti</h4>
       <ul>
         <li class="footer__addr">Roma, Zona Prenestina</li>
-        <li><a href={TYPEFORM_URL} target="_blank" rel="noopener">Richiedi Informazioni</a></li>
-        <li><a href={TYPEFORM_URL} target="_blank" rel="noopener">Prenota la Prova</a></li>
+        <li><button class="footer__link-btn contact-trigger">Richiedi Informazioni</button></li>
+        <li><button class="footer__link-btn contact-trigger">Prenota la Prova</button></li>
       </ul>
     </div>
 
@@ -54,10 +53,10 @@ const year = new Date().getFullYear();
         </a>
       </div>
       <div class="neon-wrap">
-        <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary footer__cta">
+        <button class="btn-primary footer__cta contact-trigger">
           Inizia Ora — €17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -154,6 +153,19 @@ const year = new Date().getFullYear();
 }
 
 .footer__col a:hover { color: var(--text); }
+
+.footer__link-btn {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+}
+.footer__link-btn:hover { color: var(--text); }
 
 .footer__addr {
   font-size: 14px;

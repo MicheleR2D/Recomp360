@@ -1,5 +1,4 @@
 ---
-const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 const base = import.meta.env.BASE_URL;
 const pathname = Astro.url.pathname;
 ---
@@ -48,9 +47,10 @@ const pathname = Astro.url.pathname;
 
     <!-- ── Destra: CTA + burger ── -->
     <div class="nav__right">
-      <a href={TYPEFORM_URL} target="_blank" rel="noopener" class="btn-primary nav__cta">
+      <button class="btn-outline nav__cta contact-trigger">Contattaci</button>
+      <button class="btn-primary nav__cta contact-trigger">
         Inizia Ora
-      </a>
+      </button>
       <button class="nav__burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -58,6 +58,16 @@ const pathname = Astro.url.pathname;
 
   </div>
 </nav>
+
+<!-- ── Pulsanti fissi in fondo al menu mobile ── -->
+<div class="nav__mobile-actions" id="nav-mobile-actions" aria-hidden="true">
+  <button class="btn-primary nav__mob-btn contact-trigger">
+    Inizia Ora
+  </button>
+  <button class="btn-outline nav__mob-btn contact-trigger">
+    Contattaci
+  </button>
+</div>
 
 <style>
 /* ── SHELL ─────────────────────────────────────────────────────────────────── */
@@ -88,10 +98,10 @@ const pathname = Astro.url.pathname;
 }
 
 .nav__logo img {
-  height: 54px;
+  height: 56px;
+  padding-top: 5px;
   width: auto;
   display: block;
-  overflow: visible;
 }
 
 .nav__right {
@@ -365,12 +375,49 @@ const pathname = Astro.url.pathname;
     font-size: 13px;
   }
 }
+
+/* ── Desktop: nascondi il Contattaci su mobile (la barra lo sostituisce) ── */
+.nav__cta.contact-trigger { display: inline-flex; }
+@media (max-width: 768px) {
+  .nav__cta.contact-trigger { display: none; }
+}
+
+/* ── Barra pulsanti mobile (fixed in fondo) ── */
+.nav__mobile-actions {
+  display: none;
+}
+@media (max-width: 768px) {
+  .nav__mobile-actions {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 20px;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+    gap: 12px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .nav__mobile-actions.is-open {
+    transform: translateY(0);
+  }
+  .nav__mob-btn {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+    padding: 14px 12px;
+  }
+}
 </style>
 
 <script>
-const nav       = document.getElementById('nav')!;
-const burger    = document.getElementById('nav-burger')!;
-const linksList = document.getElementById('nav-links')!;
+const nav          = document.getElementById('nav')!;
+const burger       = document.getElementById('nav-burger')!;
+const linksList    = document.getElementById('nav-links')!;
+const mobileActions = document.getElementById('nav-mobile-actions')!;
 
 const megaItems = Array.from(nav.querySelectorAll<HTMLElement>('.nav__item--mega'));
 const triggers  = Array.from(nav.querySelectorAll<HTMLButtonElement>('.nav__trigger'));
@@ -439,21 +486,32 @@ triggers.forEach(trigger => {
 });
 
 // ── Burger ──
+function closeMobileMenu() {
+  burger.classList.remove('is-open');
+  linksList.classList.remove('is-open');
+  mobileActions.classList.remove('is-open');
+  mobileActions.setAttribute('aria-hidden', 'true');
+  burger.setAttribute('aria-expanded', 'false');
+  closeAll();
+}
+
 burger.addEventListener('click', () => {
   const open = burger.classList.toggle('is-open');
   linksList.classList.toggle('is-open', open);
+  mobileActions.classList.toggle('is-open', open);
+  mobileActions.setAttribute('aria-hidden', String(!open));
   burger.setAttribute('aria-expanded', String(open));
   if (!open) closeAll();
 });
 
 // ── Chiudi al click su un link (mobile) ──
 linksList.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    burger.classList.remove('is-open');
-    linksList.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-    closeAll();
-  });
+  a.addEventListener('click', closeMobileMenu);
+});
+
+// ── Chiudi al click su Contattaci nella barra mobile ──
+mobileActions.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('click', closeMobileMenu);
 });
 
 // ── Click fuori → chiudi mega ──
@@ -464,9 +522,6 @@ document.addEventListener('click', e => {
 // ── ESC → chiudi tutto ──
 document.addEventListener('keydown', e => {
   if (e.key !== 'Escape') return;
-  closeAll();
-  burger.classList.remove('is-open');
-  linksList.classList.remove('is-open');
-  burger.setAttribute('aria-expanded', 'false');
+  closeMobileMenu();
 });
 </script>
