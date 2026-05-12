@@ -356,16 +356,23 @@ const reviews = [
 .hero__line--2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
 .hero__line--3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
 .hero__sub {
-  font-size: 18px; font-weight: 400;
+  font-size: 20px; font-weight: 400;
   color: var(--text-muted);
-  margin-bottom: 40px; max-width: 520px;
+  margin-bottom: 40px;
   line-height: 1.6;
+  white-space: nowrap;
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s both;
 }
 .hero__sub--white { color: var(--white); }
 .hero__ctas {
-  display: flex; gap: 16px; flex-wrap: wrap;
+  display: flex; gap: 16px; flex-wrap: nowrap;
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.1s both;
+}
+.hero__ctas .btn-primary,
+.hero__ctas .btn-outline {
+  padding: 16px 36px;
+  font-size: 20px;
+  white-space: nowrap;
 }
 .hero__scroll {
   position: absolute; bottom: 32px; right: 40px;

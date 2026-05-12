@@ -29,7 +29,7 @@
   --radius:   6px;
   --radius-lg: 12px;
   --section-gap: 120px;
-  --max-w: 1200px;
+  --max-w: 1600px;
 }
 
 /* ─── Reset ──────────────────────────────────────────────────────────────── */
@@ -74,7 +74,7 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
   width: 100%;
   max-width: var(--max-w);
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 10%;
 }
 
 .section {
@@ -222,4 +222,5 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
     --section-gap: 72px;
   }
   p { font-size: 16px; }
+  .container { padding-inline: 24px; }
 }
