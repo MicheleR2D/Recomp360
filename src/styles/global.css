@@ -303,7 +303,7 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
 .page-hero__content {
   position: absolute;
   bottom: 80px;
-  left: 8%;
+  left: 10%;
   max-width: min(580px, 48vw);
   z-index: 2;
 }

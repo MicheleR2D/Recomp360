@@ -74,9 +74,12 @@ const reviews = [
   <section id="philosophy" class="section">
     <div class="container">
       <div class="philosophy__grid">
-        <div class="philosophy__text-col reveal">
+        <div class="philosophy__image-col reveal">
+          <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
+        </div>
+        <div class="philosophy__text-col reveal reveal-delay-2">
           <p class="section__label">Chi Siamo</p>
-          <h2>PALESTRA.<br />MA NON SOLO.<br /><span class="text-accent">360°.</span></h2>
+          <h2>PALESTRA.<br />MA NON SOLO.<br /><span class="text-accent">360<span class="deg">°</span>.</span></h2>
           <div class="divider anim-divider"></div>
           <p class="philosophy__text">
             Libertà della sala attrezzi + expertise del personal training studio.
@@ -86,9 +89,6 @@ const reviews = [
             Chi siamo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-        </div>
-        <div class="philosophy__image-col reveal reveal-delay-2">
-          <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
         </div>
       </div>
 
@@ -121,7 +121,7 @@ const reviews = [
           <p class="section__label">Il Metodo Proprietario</p>
           <h2>MY<span class="text-accent">RECOMP</span></h2>
           <div class="divider anim-divider"></div>
-          <p style="margin-top:16px">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
+          <p style="margin-top:16px;font-size:18px;color:var(--white)">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
         <a href="/metodo" class="cta-secondary method-header__cta">
           Scopri il Metodo
@@ -129,35 +129,39 @@ const reviews = [
         </a>
       </div>
 
-      <div class="method-grid">
-        <div class="method-card method-card--featured reveal reveal-delay-1 tilt-card">
+      <!-- Featured card orizzontale con neon border -->
+      <div class="method-featured-wrap cta-glow-wrap reveal reveal-delay-1">
+        <div class="method-card method-card--featured">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/myrecomp-pt.jpg`} alt="Personal Training Recomp360" class="method-card__img" />
+            <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="method-card__img" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge">Core</span>
             <h3>Personal Training</h3>
-            <p>Sessioni 1:1 con trainer dedicato, scheda su misura.</p>
+            <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — scheda personalizzata, monitoraggio progressi e supporto nutrizionale integrato.</p>
           </div>
         </div>
-        <div class="method-card reveal reveal-delay-2 tilt-card">
+      </div>
+      <!-- Due card affiancate -->
+      <div class="method-grid-small">
+        <div class="method-card tilt-card reveal reveal-delay-2">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/myrecomp-group.jpg`} alt="Small Group Training Recomp360" class="method-card__img" />
+            <img src={`${base}images/Metodo recomp 2.jpg`} alt="Small Group Training Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Gruppo</span>
             <h3>Small Group</h3>
-            <p>Max 6 persone per sessione. Efficacia PT, energia di gruppo.</p>
+            <p>Massimo 6 persone per sessione. L'attenzione del personal trainer con l'energia del gruppo, orari flessibili e lavoro tecnico e metabolico.</p>
           </div>
         </div>
-        <div class="method-card reveal reveal-delay-3 tilt-card">
+        <div class="method-card tilt-card reveal reveal-delay-3">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/myrecomp-sala.jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img" />
+            <img src={`${base}images/Metodo recomp 3.jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Accesso</span>
             <h3>Sala Libera</h3>
-            <p>Attrezzatura last-gen, zone funzionali, staff sempre presente.</p>
+            <p>Accesso libero con attrezzatura last-generation. Zone dedicate al functional training e al metabolico, staff qualificato sempre presente in sala.</p>
           </div>
         </div>
       </div>
@@ -337,9 +341,13 @@ const reviews = [
 
 .hero__content {
   position: absolute;
-  bottom: 80px; left: 8%;
-  max-width: min(580px, 48vw);
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
   z-index: 2;
+  /* Il padding-inline: 10% viene da .container — non serve left offset aggiuntivo */
 }
 .hero__title {
   color: var(--white);
@@ -477,15 +485,15 @@ const reviews = [
   margin-bottom: 48px;
 }
 .philosophy__text {
-  margin-top: 24px; font-size: 17px;
-  color: var(--text-muted); line-height: 1.7;
-  max-width: 480px;
+  margin-top: 24px; font-size: 18px;
+  color: var(--white); line-height: 1.7;
+  max-width: 520px;
 }
 .philosophy__image-col { position: relative; }
 .philosophy__img {
-  width: 100%; height: 480px;
+  width: 100%; height: 420px;
   object-fit: cover; object-position: center top;
-  border-radius: var(--radius-lg);
+  border-radius: 4px;
   display: block;
   transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
@@ -511,9 +519,9 @@ const reviews = [
   white-space: nowrap;
 }
 .stat-card__label {
-  display: block; font-size: 11px; font-weight: 600;
+  display: block; font-size: 12px; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase;
-  color: var(--text-muted); margin-top: 8px;
+  color: var(--white); margin-top: 8px;
 }
 
 /* ── MYRECOMP ──────────────────────────────────────────────────────────────── */
@@ -523,9 +531,20 @@ const reviews = [
 }
 .method-header__cta { flex-shrink: 0; align-self: flex-end; }
 
-.method-grid {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+/* Featured card wrapper (neon border via cta-glow-wrap) */
+.method-featured-wrap {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
 }
+
+/* Due card affiancate */
+.method-grid-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .method-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 4px; overflow: hidden;
@@ -535,20 +554,38 @@ const reviews = [
   border-color: var(--accent);
   box-shadow: 0 8px 32px rgba(229,51,50,0.1);
 }
-.method-card--featured { border-color: var(--accent-dim-40); }
+
+/* Featured: orizzontale immagine sx, testo dx */
+.method-card--featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-color: var(--accent-dim-40);
+  position: relative;
+  z-index: 1;
+  height: 380px;
+}
+.method-card--featured .method-card__img-wrap { height: 380px; overflow: hidden; }
+.method-card--featured .method-card__body {
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
 
 .method-card__img-wrap { overflow: hidden; }
 .method-card__img {
-  width: 100%; height: 220px;
+  width: 100%; height: 100%;
   object-fit: cover; object-position: center;
   display: block;
   transition: transform .6s cubic-bezier(0.16,1,0.3,1);
 }
+.method-card__img--small { height: 260px; }
 .method-card:hover .method-card__img { transform: scale(1.06); }
 
 .method-card__body { padding: 24px 28px; }
-.method-card__body h3 { margin: 14px 0 8px; font-size: 18px; }
-.method-card__body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.method-card__body h3 { margin: 14px 0 8px; font-size: 18px; color: var(--accent); }
+.method-card__body p  { font-size: 18px; color: var(--white); line-height: 1.7; }
 
 .badge {
   display: inline-block; font-size: 11px; font-weight: 700;
@@ -760,14 +797,42 @@ const reviews = [
 }
 .review-card__name { font-size: 13px; font-weight: 700; color: var(--text); }
 
+/* ── DEG SYMBOL (Microgramma non ha °) ────────────────────────────────────── */
+.deg { font-family: var(--font-body); font-size: 0.85em; vertical-align: super; }
+
+/* ── CTA SECONDARY (ghost rosso → bianco su hover) ────────────────────────── */
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0;
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+.cta-secondary:hover {
+  color: var(--white);
+  border-bottom-color: var(--white);
+}
+.cta-secondary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
 /* ── TEXT ACCENT ───────────────────────────────────────────────────────────── */
 .text-accent { color: var(--accent); }
 
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .carousel-slide { flex: 0 0 calc(33.33% - 11px); }
-  .method-grid    { grid-template-columns: 1fr; max-width: 520px; }
-  .method-header  { flex-direction: column; align-items: flex-start; }
+  .carousel-slide      { flex: 0 0 calc(33.33% - 11px); }
+  .method-card--featured { grid-template-columns: 1fr; }
+  .method-card--featured .method-card__img-wrap { min-height: 280px; }
+  .method-grid-small   { grid-template-columns: 1fr; }
+  .method-header       { flex-direction: column; align-items: flex-start; }
   .classes-header { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 900px) {
@@ -870,11 +935,17 @@ const reviews = [
     animated.add(el);
     const target = parseInt(el.dataset.count, 10);
     const suffix = el.dataset.suffix || '';
+    const needsDeg = suffix === '°';
     const dur = 1400;
     const start = performance.now();
     function frame(now) {
       const t = Math.min((now - start) / dur, 1);
-      el.textContent = Math.round(easeOutCubic(t) * target) + suffix;
+      const num = Math.round(easeOutCubic(t) * target);
+      if (needsDeg) {
+        el.innerHTML = num + '<span style="font-family:var(--font-body);font-size:0.85em;vertical-align:super;">' + suffix + '</span>';
+      } else {
+        el.textContent = num + suffix;
+      }
       if (t < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
