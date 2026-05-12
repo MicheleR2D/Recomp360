@@ -117,42 +117,64 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
   <section class="section section--alt">
     <div class="container">
-      <div class="team-grid">
-        <div>
-          <p class="section__label">Il Team</p>
-          <h2>ESPERTI<br /><span class="text-accent">A 360°</span></h2>
-          <div class="divider"></div>
+
+      <!-- Top: immagine sinistra + testo destra -->
+      <div class="team-top">
+        <div class="team-top__img-wrap">
+          <img src={`${base}images/pt recomp.jpeg`} alt="Personal Trainer Recomp360" class="team-top__img" loading="lazy" />
         </div>
-        <div class="team-cards">
-          <div class="team-card">
-            <h4>PERSONAL TRAINER</h4>
-            <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
-          </div>
-          <div class="team-card">
-            <h4>NUTRIZIONISTA</h4>
-            <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
-          </div>
-          <div class="team-card">
-            <h4>FISIOTERAPIA</h4>
-            <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
-          </div>
-          <div class="team-card">
-            <h4>POSTUROLOGIA & OSTEOPATIA</h4>
-            <p>Valutazione posturale completa e trattamenti osteopatici.</p>
-          </div>
+        <div class="team-top__text">
+          <p class="section__label">Il Team</p>
+          <h2 class="team-heading">ESPERTI <span class="text-accent">A 360<span class="deg">°</span></span></h2>
+          <div class="divider"></div>
+          <p class="team-desc">Il nostro staff è composto da personal trainer certificati specializzati in ricomposizione corporea, affiancati da nutrizionisti, fisioterapisti e osteopati. Un team integrato che lavora insieme per seguirti a 360 gradi — dall'allenamento alla postura, dall'alimentazione alla prevenzione degli infortuni.</p>
         </div>
       </div>
+
+      <!-- 4 card su una riga -->
+      <div class="team-cards">
+        <div class="team-card">
+          <h4>PERSONAL TRAINER</h4>
+          <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
+        </div>
+        <div class="team-card">
+          <h4>NUTRIZIONISTA</h4>
+          <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
+        </div>
+        <div class="team-card">
+          <h4>FISIOTERAPIA</h4>
+          <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
+        </div>
+        <div class="team-card">
+          <h4>POSTUROLOGIA &amp; OSTEOPATIA</h4>
+          <p>Valutazione posturale completa e trattamenti osteopatici.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <section class="section cta-section">
-    <div class="container cta-section__inner">
-      <h2>INIZIA CON<br /><span class="text-accent">7 ALLENAMENTI</span><br />A €17</h2>
-      <p>Valutazione tecnica inclusa. 14 giorni per scoprire il metodo.</p>
-      <button class="cta-primary contact-trigger">
-        Inizia Ora — €17
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-section__grid">
+
+        <!-- Blocco rosso: testo promo -->
+        <div class="cta-left">
+          <h2>PROVA IL METODO<br />MYRECOMP</h2>
+        </div>
+
+        <!-- Blocco scuro: dettagli + CTA -->
+        <div class="cta-right">
+          <p class="cta-right__text">Una sessione di valutazione con il tuo personal&nbsp;trainer.<br />Nessun impegno.</p>
+          <div class="cta-btn-wrap">
+            <button class="btn-primary cta-btn-inner gp-trigger">
+              Inizia Ora — €17
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -328,25 +350,152 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   .detail-grid-small { grid-template-columns: 1fr; }
 }
 
-.team-grid {
-  display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
+/* ── TEAM TOP: immagine + testo ────────────────────────────────────────────── */
+.team-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+  margin-bottom: 48px;
 }
+.team-top__img-wrap { overflow: hidden; border-radius: 4px; }
+.team-top__img {
+  width: 100%; height: 420px;
+  object-fit: cover; object-position: center center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.team-top__img-wrap:hover .team-top__img { transform: scale(1.04); }
+
+/* Titolo su una riga + paragrafo */
+.team-heading { white-space: nowrap; font-size: clamp(24px, 3.2vw, 50px); }
+.team-desc {
+  margin-top: 24px;
+  font-size: 18px;
+  color: var(--white);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* Fix simbolo ° (non presente nel font Microgramma) */
+.deg { font-family: var(--font-body); font-size: 0.85em; vertical-align: super; }
+
+/* ── TEAM CARDS: 4 su una riga ─────────────────────────────────────────────── */
 .team-cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 .team-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 4px; padding: 28px 24px;
+  transition: border-color .2s, box-shadow .2s;
 }
-.team-card h4 { margin-bottom: 10px; }
-.team-card p { font-size: 14px; color: var(--text-muted); }
+.team-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(229,51,50,0.08);
+}
+.team-card h4 { margin-bottom: 12px; color: var(--accent); }
+.team-card p  { font-size: 18px; color: var(--white); line-height: 1.6; }
 
-.cta-section { background: var(--bg-alt); border-top: 1px solid var(--border); }
-.cta-section__inner {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
+@media (max-width: 1024px) { .team-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px)  {
+  .team-top { grid-template-columns: 1fr; gap: 32px; }
+  .team-top__img { height: 300px; }
 }
-.cta-section__inner p { color: var(--text-muted); }
-.cta-section__inner .btn { margin-top: 8px; }
+@media (max-width: 640px)  { .team-cards { grid-template-columns: 1fr; } }
+
+/* ── CTA SECTION: two-column split ─────────────────────────────────────────── */
+.cta-section { border-top: 1px solid var(--border); overflow: hidden; }
+
+/* Container full-bleed: rimuove padding e max-width per far sì che le colonne
+   colorino fino ai bordi della viewport */
+.cta-section .container {
+  padding-inline: 0;
+  max-width: 100%;
+}
+
+.cta-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 360px;
+}
+
+/* Blocco rosso — padding-left in vw così corrisponde al 10% del viewport
+   come fa il .container della pagina, non il 10% del blocco (che è solo 50vw) */
+.cta-left {
+  background: var(--accent);
+  padding: 80px 8% 80px 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.cta-left h2 { color: var(--white); line-height: 1.05; }
+
+/* Blocco scuro */
+.cta-right {
+  background: var(--bg-card);
+  padding: 80px 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* evita che i figli si stretchino a piena larghezza */
+  justify-content: center;
+  gap: 36px;
+}
+.cta-right__text {
+  font-size: 18px;
+  color: var(--white);
+  max-width: 440px;
+  line-height: 1.85;
+}
+
+/* Neon rotating border per il bottone CTA */
+.cta-btn-wrap {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.cta-btn-wrap::before,
+.cta-btn-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.cta-btn-wrap::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
+
+/* Bottone interno: stesso stile dell'hero — sfondo più scuro del blocco */
+.cta-btn-inner {
+  position: relative;
+  z-index: 1;
+  background: var(--bg);
+  padding: 16px 36px;
+  font-size: 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.cta-btn-inner:hover { background: var(--accent); }
+
+@media (max-width: 768px) {
+  .cta-section__grid { grid-template-columns: 1fr; }
+  .cta-left, .cta-right { padding: 60px 24px; }
+}
 
 @media (max-width: 1024px) { .detail-grid { grid-template-columns: 1fr; max-width: 560px; } }
 @media (max-width: 900px) {
