@@ -326,12 +326,6 @@
   position: relative; overflow: hidden;
   transition: background .2s, transform .1s;
 }
-.gp-btn-red::after {
-  content: ''; position: absolute; top: 0; left: -100%; width: 55%; height: 100%;
-  background: linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-  animation: gpShimmer 3.5s ease-in-out 1s infinite; pointer-events: none;
-}
-@keyframes gpShimmer { 0%{left:-100%} 40%{left:150%} 100%{left:150%} }
 .gp-btn-red:hover { background: #C42020; }
 .gp-btn-red:active { transform: scale(.98); }
 .gp-btn-red:disabled { opacity: .6; pointer-events: none; }

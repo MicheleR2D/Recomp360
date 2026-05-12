@@ -365,12 +365,6 @@
   position: relative; overflow: hidden;
   transition: background .2s, transform .1s;
 }
-.ct-btn-red::after {
-  content: ''; position: absolute; top: 0; left: -100%; width: 55%; height: 100%;
-  background: linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);
-  animation: ctShimmer 3.5s ease-in-out 1s infinite; pointer-events: none;
-}
-@keyframes ctShimmer { 0%{left:-100%} 40%{left:150%} 100%{left:150%} }
 .ct-btn-red:hover { background: #C42020; }
 .ct-btn-red:active { transform: scale(.98); }
 .ct-btn-red:disabled { opacity: .6; pointer-events: none; }

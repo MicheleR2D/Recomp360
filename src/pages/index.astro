@@ -47,22 +47,27 @@ const reviews = [
     </div>
     <canvas id="hero-particles" aria-hidden="true"></canvas>
     <div class="container hero__content">
-      <p class="hero__eyebrow">Roma · Zona Prenestina</p>
       <h1 class="hero__title">
         <span class="hero__line hero__line--1">IL METODO CHE</span><br />
         <span class="hero__line hero__line--2 text-accent hero__glitch" data-text="TRASFORMA">TRASFORMA</span><br />
         <span class="hero__line hero__line--3">I TUOI OBIETTIVI</span>
       </h1>
-      <p class="hero__sub">Non una palestra. Un metodo.</p>
+      <p class="hero__sub"><span class="hero__sub--white">Non una palestra.</span> <span class="text-accent">Un metodo.</span></p>
       <div class="hero__ctas">
-        <button class="btn-primary magnetic gp-trigger">
-          Inizia Ora — €17
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-        <button class="btn-outline magnetic contact-trigger">Contattaci</button>
+        <div class="cta-glow-wrap">
+          <button class="btn-primary hero__cta-primary gp-trigger">
+            Inizia Ora — €17
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <button class="btn-outline contact-trigger">Contattaci</button>
       </div>
     </div>
-    <div class="hero__scroll"><div class="hero__scroll-line"></div><span>Scroll</span></div>
+    <div class="hero__scroll">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+      </svg>
+    </div>
   </section>
 
   <!-- ─── PHILOSOPHY ────────────────────────────────────────────────────── -->
@@ -257,10 +262,12 @@ const reviews = [
           <li><span>✓</span> Accesso a tutte le zone</li>
           <li><span>✓</span> 14 giorni dall'attivazione</li>
         </ul>
-        <button class="btn-primary offer-btn gp-trigger">
-          Attiva la Prova — €17
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+        <div class="cta-glow-wrap offer-btn-wrap">
+          <button class="btn-primary offer-btn gp-trigger">
+            Attiva la Prova — €17
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -299,7 +306,8 @@ const reviews = [
 /* ── HERO ──────────────────────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  height: calc(100svh - 72px);
+  height: calc(100dvh - 72px);
   overflow: hidden;
 }
 .hero__bg { position: absolute; inset: 0; z-index: 0; }
@@ -333,14 +341,6 @@ const reviews = [
   max-width: min(580px, 48vw);
   z-index: 2;
 }
-.hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
-  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both;
-}
 .hero__title {
   color: var(--white);
   font-size: clamp(26px, 3.4vw, 56px);
@@ -350,6 +350,7 @@ const reviews = [
 }
 .hero__line {
   display: inline-block;
+  white-space: nowrap;
 }
 .hero__line--1 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
 .hero__line--2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
@@ -361,22 +362,20 @@ const reviews = [
   line-height: 1.6;
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s both;
 }
+.hero__sub--white { color: var(--white); }
 .hero__ctas {
   display: flex; gap: 16px; flex-wrap: wrap;
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.1s both;
 }
 .hero__scroll {
-  position: absolute; bottom: 40px; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  position: absolute; bottom: 32px; right: 40px;
   z-index: 2;
-  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.4s both;
+  display: flex; align-items: center; justify-content: center;
+  animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.4s both, scrollBounce 2s ease-in-out 2.5s infinite;
 }
-.hero__scroll span { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text-sub-30); }
-.hero__scroll-line {
-  width: 1px; height: 48px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
 }
 
 /* TRASFORMA glitch effect */
@@ -462,26 +461,6 @@ const reviews = [
   width: 48px !important;
 }
 
-/* ── SHIMMER ON PRIMARY BUTTON ─────────────────────────────────────────────── */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-}
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 55%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-  animation: shimmer 3.5s ease-in-out 1.5s infinite;
-  pointer-events: none;
-}
-@keyframes shimmer {
-  0%   { left: -100%; }
-  40%  { left: 150%; }
-  100% { left: 150%; }
-}
 
 /* ── 3D TILT CARDS ─────────────────────────────────────────────────────────── */
 .tilt-card {
@@ -756,7 +735,45 @@ const reviews = [
   font-size: 15px; color: var(--text-muted);
 }
 .offer-list span { color: var(--accent); font-weight: 700; }
-.offer-btn { width: 100%; justify-content: center; }
+.offer-btn { width: 100%; justify-content: center; position: relative; z-index: 1; background: var(--bg-card); }
+.hero__cta-primary { position: relative; z-index: 1; background: var(--bg-card); }
+
+/* ── CTA NEON BORDER (offer + hero Inizia Ora) ────────────────────────────── */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes borderRotate { to { --angle: 360deg; } }
+
+.cta-glow-wrap {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.offer-btn-wrap { width: 100%; }
+.cta-glow-wrap::before,
+.cta-glow-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.cta-glow-wrap::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
 
 /* ── REVIEWS ───────────────────────────────────────────────────────────────── */
 .reviews-grid {
@@ -801,12 +818,13 @@ const reviews = [
 @media (max-width: 768px) {
   .hero__content {
     left: 0; right: 0;
-    bottom: 60px;
+    bottom: 40px;
     width: 100%;
     max-width: 100%;
     padding: 0 24px;
     box-sizing: border-box;
   }
+  .hero__scroll { right: 20px; bottom: 20px; }
 }
 @media (max-width: 640px) {
   .carousel-slide        { flex: 0 0 calc(50% - 8px); }
@@ -817,15 +835,16 @@ const reviews = [
   .stats-row             { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .stat-card__value      { font-size: 32px; }
   .hero__ctas            { flex-direction: column; }
+  .hero__ctas .cta-glow-wrap { width: 100%; }
   .hero__ctas .btn-primary,
   .hero__ctas .btn-outline { width: 100%; justify-content: center; }
 }
 
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .hero__eyebrow, .hero__line, .hero__sub, .hero__ctas, .hero__scroll,
+  .reveal, .hero__line, .hero__sub, .hero__ctas, .hero__scroll,
   .hero__glitch, .hero__glitch::before, .hero__glitch::after,
-  .anim-divider, .btn-primary::after { animation: none !important; transition: none !important; }
+  .anim-divider, .cta-glow-wrap::before, .cta-glow-wrap::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
   .anim-divider { width: 48px !important; }
 }
@@ -940,20 +959,16 @@ const reviews = [
   });
 })();
 
-// ── MAGNETIC BUTTONS ────────────────────────────────────────────────────────
+// ── BUTTON HOVER ZOOM ───────────────────────────────────────────────────────
 (function () {
-  const STRENGTH = 0.35;
-  document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const r = btn.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width  / 2);
-      const dy = e.clientY - (r.top  + r.height / 2);
-      btn.style.transform = `translate(${dx * STRENGTH}px, ${dy * STRENGTH}px)`;
-      btn.style.transition = 'transform 0.15s ease';
-    }, { passive: true });
+  document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transform = 'scale(1.05)';
+      btn.style.transition = 'transform 0.2s ease';
+    });
     btn.addEventListener('mouseleave', () => {
       btn.style.transform = '';
-      btn.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
+      btn.style.transition = 'transform 0.25s ease';
     });
   });
 })();
