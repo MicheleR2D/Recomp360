@@ -49,14 +49,17 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
       <div class="detail-inner">
 
         <div class="detail-section-header reveal">
-          <p class="section__label">Il Metodo Proprietario</p>
           <h2>MY<span class="text-accent">RECOMP</span></h2>
           <div class="divider anim-divider"></div>
+          <p class="detail-section-desc">Personal training 1:1, small group e sala libera con attrezzatura last-gen: tre livelli di supporto, un unico obiettivo. Valutazione tecnica inclusa, percorso su misura, supporto nutrizionale integrato.</p>
         </div>
 
         <!-- Featured: Personal Training — orizzontale con neon border -->
         <div class="cta-glow-wrap detail-featured-wrap reveal">
           <div class="detail-card detail-card--featured">
+            <div class="detail-card__img-wrap">
+              <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="detail-card__img" loading="lazy" />
+            </div>
             <div class="detail-card__body">
               <span class="badge">Core</span>
               <h3>PERSONAL TRAINING</h3>
@@ -68,9 +71,6 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
                 <li><span class="check">✓</span> Supporto diretto con il nutrizionista</li>
                 <li><span class="check">✓</span> Revisione e aggiornamento scheda nel tempo</li>
               </ul>
-            </div>
-            <div class="detail-card__img-wrap">
-              <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="detail-card__img" loading="lazy" />
             </div>
           </div>
         </div>
@@ -200,11 +200,15 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 /* Override specifico per l'immagine hero di questa pagina */
 .page-hero__img { object-position: center 20%; }
 
-/* ── DETAIL INNER — larghezza allineata alla hero ──────────────────────────── */
-.detail-inner { max-width: 900px; }
-
 /* ── DETAIL SECTION HEADER ─────────────────────────────────────────────────── */
 .detail-section-header { margin-bottom: 48px; }
+.detail-section-desc {
+  margin-top: 20px;
+  font-size: 18px;
+  color: var(--white);
+  max-width: 640px;
+  line-height: 1.7;
+}
 
 /* ── NEON BORDER per la featured card ─────────────────────────────────────── */
 @property --angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
@@ -303,11 +307,11 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 }
 
 /* ── CARD TYPOGRAPHY ───────────────────────────────────────────────────────── */
-.detail-card h3 { margin: 16px 0 14px; }
-.detail-card p  { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+.detail-card h3 { margin: 16px 0 14px; color: var(--accent); }
+.detail-card p  { font-size: 18px; color: var(--white); line-height: 1.7; margin-bottom: 28px; }
 
 .feature-list { display: flex; flex-direction: column; gap: 12px; }
-.feature-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); }
+.feature-list li { display: flex; align-items: center; gap: 10px; font-size: 18px; color: var(--white); }
 .check { color: var(--accent); font-weight: 700; }
 
 .badge {
