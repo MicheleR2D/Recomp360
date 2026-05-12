@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ContactModal from '../components/ContactModal.astro';
+import GuestPassModal from '../components/GuestPassModal.astro';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -11,18 +12,26 @@ const base = import.meta.env.BASE_URL;
   <Nav />
 
   <div class="page-hero">
-    <div class="container">
-      <a href={base} class="back-link">
+    <div class="page-hero__content">
+      <a href={base} class="page-hero__back">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Home
       </a>
-      <p class="section__label">Chi Siamo</p>
+      <p class="page-hero__label">Chi Siamo</p>
       <h1>PALESTRA. MA NON SOLO.<br /><span class="text-accent">360°.</span></h1>
-      <div class="divider"></div>
       <p class="page-hero__sub">
         Roma, zona Prenestina. Un concept ibrido che unisce la libertà della sala attrezzi
         con l'organizzazione e l'expertise di uno studio di personal training.
       </p>
+      <div class="hero__ctas">
+        <div class="cta-glow-wrap">
+          <button class="btn-primary hero__cta-primary gp-trigger">
+            Inizia Ora — €17
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <button class="btn-outline contact-trigger">Contattaci</button>
+      </div>
     </div>
   </div>
 
@@ -103,32 +112,20 @@ const base = import.meta.env.BASE_URL;
     <div class="container cta-inner">
       <h2>VIENI A<br /><span class="text-accent">CONOSCERCI</span></h2>
       <p>Prova il metodo con 7 allenamenti a €17. Valutazione tecnica inclusa.</p>
-      <button class="btn-primary contact-trigger">
-        Inizia Ora
+      <button class="cta-primary contact-trigger">
+        Inizia Ora — €17
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      </button>
     </div>
   </section>
 
   <Footer />
   <ContactModal />
+  <GuestPassModal />
 </Layout>
 
 <style>
 .text-accent { color: var(--accent); }
-.page-hero {
-  padding-top: 140px; padding-bottom: 80px;
-  min-height: 400px;
-  background: var(--bg-alt); border-bottom: 1px solid var(--border);
-}
-.page-hero__sub { margin-top: 24px; font-size: 18px; color: var(--text-muted); max-width: 560px; line-height: 1.7; }
-.back-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-  color: var(--text-muted); margin-bottom: 32px; transition: color .2s;
-}
-.back-link:hover { color: var(--accent); }
-.back-link svg { width: 16px; height: 16px; }
 
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;

@@ -3,9 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ContactModal from '../components/ContactModal.astro';
+import GuestPassModal from '../components/GuestPassModal.astro';
 
 const base = import.meta.env.BASE_URL;
-const TYPEFORM_URL = '#';
+const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 ---
 
 <Layout title="Il Metodo MyRecomp — Recomp360" description="Scopri il metodo MyRecomp: personal training, small group e sala libera per la tua ricomposizione corporea.">
@@ -25,15 +26,14 @@ const TYPEFORM_URL = '#';
       <p class="page-hero__label">IL METODO</p>
       <h1>MY<span class="text-accent">RECOMP</span></h1>
       <p class="page-hero__sub">Un programma strutturato con valutazione tecnica, percorso progressivo e monitoraggio costante.</p>
-      <div class="page-hero__ctas">
-        <a href={TYPEFORM_URL} class="btn-primary">
-          Inizia Ora — €17
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#metodo-detail" class="btn--ghost">
-          Scopri di Più
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      <div class="hero__ctas">
+        <div class="cta-glow-wrap">
+          <button class="btn-primary hero__cta-primary gp-trigger">
+            Inizia Ora — €17
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <button class="btn-outline contact-trigger">Contattaci</button>
       </div>
     </div>
     <div class="page-hero__scroll" aria-hidden="true">
@@ -122,112 +122,23 @@ const TYPEFORM_URL = '#';
     <div class="container cta-section__inner">
       <h2>INIZIA CON<br /><span class="text-accent">7 ALLENAMENTI</span><br />A €17</h2>
       <p>Valutazione tecnica inclusa. 14 giorni per scoprire il metodo.</p>
-      <button class="btn-primary contact-trigger">
-        Attiva la Prova
+      <button class="cta-primary contact-trigger">
+        Inizia Ora — €17
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      </button>
     </div>
   </section>
 
   <Footer />
   <ContactModal />
+  <GuestPassModal />
 </Layout>
 
 <style>
 .text-accent { color: var(--accent); }
 
-/* ── PAGE HERO ─────────────────────────────────────────────────────────────── */
-.page-hero {
-  position: relative;
-  height: 100svh;
-  overflow: hidden;
-}
-.page-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.page-hero__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.page-hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-.page-hero__overlay--left {
-  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, transparent 60%);
-}
-.page-hero__overlay--bottom {
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 100%);
-}
-.page-hero__content {
-  position: absolute;
-  bottom: 80px;
-  left: 10%;
-  max-width: min(580px, 48vw);
-  z-index: 2;
-  border-left: 4px solid var(--accent);
-  padding-left: 28px;
-}
-.page-hero__label {
-  font-family: var(--font-head);
-  font-size: 20px;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 12px;
-  max-width: none;
-}
-.page-hero__content h1 {
-  color: var(--white);
-  margin-bottom: 20px;
-}
-.page-hero__sub {
-  font-size: 20px;
-  color: var(--white);
-  max-width: 560px;
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-.page-hero__ctas {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-}
-.page-hero__scroll {
-  position: absolute;
-  bottom: 40px;
-  right: 48px;
-  z-index: 2;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-.page-hero__scroll:hover { opacity: 1; }
-
-@media (max-width: 768px) {
-  .page-hero__content {
-    left: 0;
-    right: 0;
-    bottom: 40px;
-    max-width: 100%;
-    padding: 0 24px 0 20px;
-    border-left: 4px solid var(--accent);
-    box-sizing: border-box;
-  }
-  .page-hero__ctas {
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .page-hero__scroll {
-    right: 20px;
-    bottom: 20px;
-  }
-}
+/* Override specifico per l'immagine hero di questa pagina */
+.page-hero__img { object-position: center 20%; }
 
 .detail-grid {
   display: grid;

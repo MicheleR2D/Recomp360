@@ -172,9 +172,253 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
   border-bottom-color: var(--accent);
 }
 
+/* ── CTA text-links — master style ──────────────────────────────────────────
+   .cta-primary   → conversione (peso 700, colore testo principale)
+   .cta-secondary → navigazione/esplorazione (peso 400, colore muted)
+   Entrambi: uppercase, letter-spacing 1.5px, font-size 14px,
+   underline che si espande al hover
+─────────────────────────────────────────────────────────────────────────── */
+.cta-primary,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.cta-primary  { font-weight: 700; color: var(--text); }
+.cta-secondary { font-weight: 400; color: var(--text-muted); }
+
+/* Underline animato: scaleX 0 → 1 al hover */
+.cta-primary::after,
+.cta-secondary::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.cta-primary:hover::after,
+.cta-secondary:hover::after { transform: scaleX(1); }
+
+/* Mantieni il colore al hover (l'underline è l'unico feedback visivo) */
+.cta-primary:hover  { color: var(--text); }
+.cta-secondary:hover { color: var(--text-muted); }
+
 .btn-primary svg,
 .btn-outline svg,
-.btn--ghost svg { width: 16px; height: 16px; flex-shrink: 0; }
+.btn--ghost svg,
+.cta-primary svg,
+.cta-secondary svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ─── Hero CTA block ─────────────────────────────────────────────────────── */
+/* Layout del contenitore e sizing dei bottoni nelle sezioni hero.           */
+/* Definito qui globalmente così non servono sovrascritture locali.          */
+.hero__ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-top: 40px;
+}
+.hero__ctas .btn-primary,
+.hero__ctas .btn-outline {
+  padding: 16px 36px;
+  font-size: 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.hero__ctas .btn-primary svg,
+.hero__ctas .btn-outline svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .hero__ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero__ctas .btn-primary,
+  .hero__ctas .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ─── Page Hero — inner pages ──────────────────────────────────────────── */
+/* Tutte le pagine interne: hero a tutto schermo, sfondo scuro.             */
+/* Metodo usa .page-hero__bg con immagine; about/classi usano sfondo solido. */
+
+.page-hero {
+  position: relative;
+  height: calc(100svh - 72px);
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+/* Layer background (immagine + overlay) */
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.page-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.page-hero__overlay--left {
+  background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, transparent 60%);
+}
+.page-hero__overlay--bottom {
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+/* Blocco contenuto — ancorato in basso a sinistra su tutti i tipi di hero */
+.page-hero__content {
+  position: absolute;
+  bottom: 80px;
+  left: 8%;
+  max-width: min(580px, 48vw);
+  z-index: 2;
+}
+
+/* Label eyebrow sopra h1 */
+.page-hero__label {
+  font-family: var(--font-head);
+  font-size: 20px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  max-width: none;
+}
+
+/* h1 nel hero */
+.page-hero__content h1 {
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+/* Sub-paragrafo */
+.page-hero__sub {
+  font-size: 20px;
+  color: var(--text-sub-60);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Back-link (hero banner) */
+.page-hero__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.page-hero__back:hover { color: var(--accent); }
+.page-hero__back svg   { width: 16px; height: 16px; }
+
+/* Indicatore scroll (hero full-screen) */
+.page-hero__scroll {
+  position: absolute;
+  bottom: 40px;
+  right: 48px;
+  z-index: 2;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.page-hero__scroll:hover { opacity: 1; }
+
+@media (max-width: 768px) {
+  .page-hero__content {
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    max-width: 100%;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+  .page-hero__scroll {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+/* ─── Neon CTA glow wrap (hero + offer) ─────────────────────────────────── */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes borderRotate { to { --angle: 360deg; } }
+
+.cta-glow-wrap {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+.cta-glow-wrap::before,
+.cta-glow-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 0;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.cta-glow-wrap::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
+
+/* Bottone primario all'interno del glow wrap */
+.hero__cta-primary {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-card);
+}
 
 /* ─── Cards ──────────────────────────────────────────────────────────────── */
 .card {
