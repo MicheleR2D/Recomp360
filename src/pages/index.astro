@@ -171,16 +171,21 @@ const reviews = [
   <!-- ─── CLASSES ───────────────────────────────────────────────────────── -->
   <section id="classes" class="section">
     <div class="container">
-      <div class="classes-header reveal">
-        <div>
+      <!-- Intro: immagine sx, label+heading+testo+bottone dx -->
+      <div class="classes-intro reveal">
+        <div class="classes-intro__img-wrap">
+          <img src={`${base}images/fitness recomp.jpg`} alt="Corsi fitness Recomp360" class="classes-intro__img" loading="lazy" />
+        </div>
+        <div class="classes-intro__text">
           <p class="section__label">Attività di Gruppo</p>
           <h2>CLASSI <span class="text-accent">FITNESS</span></h2>
           <div class="divider anim-divider"></div>
+          <p class="classes-intro__desc">8 discipline di gruppo per allenarti con continuità e varietà. Dal Cross Cardio al Pilates, dall'Interval Training alla Zumba — ogni corso è guidato da trainer specializzati e pensato per migliorare resistenza, forza e benessere a tutto tondo. Orari diversificati, gruppi a numero limitato.</p>
+          <a href="/classi" class="cta-secondary" style="margin-top:32px">
+            Vedi tutti i corsi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-        <a href="/classi" class="cta-secondary classes-header__cta">
-          Vedi tutti i corsi
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
 
       <div class="carousel-wrap reveal">
@@ -212,10 +217,12 @@ const reviews = [
   <!-- ─── GYM ───────────────────────────────────────────────────────────── -->
   <section id="gym" class="section section--alt">
     <div class="container">
-      <div class="gym__text reveal">
-        <p class="section__label">Sala Attrezzi</p>
-        <h2>ATTREZZATURA<br /><span class="text-accent">LAST-GEN</span></h2>
-        <div class="divider anim-divider"></div>
+      <div class="gym__header reveal">
+        <div class="gym__title-col">
+          <p class="section__label">Sala Attrezzi</p>
+          <h2>ATTREZZATURA<br /><span class="text-accent">LAST-GEN</span></h2>
+          <div class="divider anim-divider"></div>
+        </div>
         <ul class="gym-features">
           <li><span class="check-icon">✓</span> Macchinari di ultima generazione</li>
           <li><span class="check-icon">✓</span> Zone dedicate functional + metabolico</li>
@@ -248,42 +255,21 @@ const reviews = [
     </div>
   </section>
 
-  <!-- ─── OFFER ─────────────────────────────────────────────────────────── -->
-  <section id="offer" class="section offer-section">
-    <div class="container offer-section__inner">
-      <div class="offer-section__text reveal">
-        <p class="section__label">Inizia Adesso</p>
-        <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
-        <div class="divider anim-divider"></div>
-        <p style="margin-top:24px;color:var(--text-muted)">
-          7 allenamenti + valutazione tecnica inclusa.<br />Valido 14 giorni dall'attivazione.
-        </p>
-      </div>
-      <div class="offer-section__cta reveal reveal-delay-2">
-        <ul class="offer-list">
-          <li><span>✓</span> 7 sessioni di allenamento</li>
-          <li><span>✓</span> Valutazione tecnica inclusa</li>
-          <li><span>✓</span> Accesso a tutte le zone</li>
-          <li><span>✓</span> 14 giorni dall'attivazione</li>
-        </ul>
-        <div class="cta-glow-wrap offer-btn-wrap">
-          <button class="btn-primary offer-btn gp-trigger">
-            Attiva la Prova — €17
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ─── REVIEWS ──────────────────────────────────────────────────────── -->
   <section id="reviews" class="section section--alt">
     <div class="container">
-      <div class="section__header reveal">
-        <p class="section__label">Recensioni</p>
-        <h2>COSA DICONO<br /><span class="text-accent">I NOSTRI CLIENTI</span></h2>
-        <div class="divider anim-divider"></div>
+      <!-- Intro: immagine sx, header dx -->
+      <div class="reviews-intro reveal">
+        <div class="reviews-intro__img-wrap">
+          <img src={`${base}images/recensioni.jpg`} alt="Clienti Recomp360" class="reviews-intro__img" loading="lazy" />
+        </div>
+        <div class="reviews-intro__text">
+          <p class="section__label">Recensioni</p>
+          <h2>COSA DICONO<br /><span class="text-accent">I NOSTRI CLIENTI</span></h2>
+          <div class="divider anim-divider"></div>
+        </div>
       </div>
+      <!-- Card recensioni -->
       <div class="reviews-grid">
         {reviews.map((r, i) => (
           <div class={`review-card reveal reveal-delay-${i + 1} tilt-card`}>
@@ -292,6 +278,34 @@ const reviews = [
             <strong class="review-card__name">{r.name}</strong>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OFFER ─────────────────────────────────────────────────────────── -->
+  <section id="offer" class="offer-section">
+    <div class="container offer-section__container">
+      <div class="offer-section__grid">
+        <div class="offer-section__left">
+          <p class="section__label offer-section__label">Inizia Adesso</p>
+          <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
+          <div class="divider"></div>
+          <p class="offer-section__desc">Valido 14 giorni dall'attivazione.</p>
+        </div>
+        <div class="offer-section__right">
+          <ul class="offer-list">
+            <li><span class="check-icon">✓</span> 7 sessioni di allenamento</li>
+            <li><span class="check-icon">✓</span> Valutazione tecnica inclusa</li>
+            <li><span class="check-icon">✓</span> Accesso a tutte le zone</li>
+            <li><span class="check-icon">✓</span> 14 giorni dall'attivazione</li>
+          </ul>
+          <div class="cta-glow-wrap offer-btn-wrap">
+            <button class="btn-primary offer-btn gp-trigger">
+              Attiva la Prova — €17
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -594,12 +608,41 @@ const reviews = [
 }
 .badge--muted { color: var(--text-muted); }
 
-/* ── CLASSES CAROUSEL ──────────────────────────────────────────────────────── */
-.classes-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 24px; margin-bottom: 72px;
+/* ── CLASSES INTRO ─────────────────────────────────────────────────────────── */
+.classes-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 64px;
 }
-.classes-header__cta { flex-shrink: 0; }
+.classes-intro__img-wrap {
+  overflow: hidden;
+  border-radius: 4px;
+}
+.classes-intro__img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.classes-intro__img-wrap:hover .classes-intro__img { transform: scale(1.04); }
+.classes-intro__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.classes-intro__desc {
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.8;
+  max-width: 520px;
+  margin-top: 24px;
+}
+
+/* ── CLASSES CAROUSEL ──────────────────────────────────────────────────────── */
 
 .carousel-wrap {
   position: relative; display: flex; align-items: center; gap: 12px;
@@ -642,15 +685,15 @@ const reviews = [
 }
 .class-card__icon svg { display: block; }
 .class-card__name {
-  font-size: 14px; font-weight: 700; letter-spacing: 0.4px;
-  color: var(--white); margin-bottom: 8px; line-height: 1.3;
+  font-size: 18px; font-weight: 700; letter-spacing: 0.4px;
+  color: var(--accent); margin-bottom: 10px; line-height: 1.2;
 }
 .class-card__desc {
-  font-size: 12px; color: var(--text-muted); line-height: 1.6;
-  flex: 1; margin-bottom: 16px;
+  font-size: 18px; color: var(--white); line-height: 1.6;
+  flex: 1; margin-bottom: 20px;
 }
 .class-card__cta {
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  font-size: 18px; font-weight: 700; letter-spacing: 1px;
   text-transform: uppercase; color: var(--accent);
   transition: letter-spacing .2s;
 }
@@ -679,14 +722,25 @@ const reviews = [
 :global(.carousel-dot.active) { background: var(--accent); transform: scale(1.4); }
 
 /* ── GYM ───────────────────────────────────────────────────────────────────── */
-.gym__text { margin-bottom: 56px; }
-.gym-features { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+.gym__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 88px;
+}
+.gym__title-col .divider { margin-top: 20px; }
+/* lista allineata all'h2: il label è ~36px (font 12px + margin-bottom 16px + line-height) */
+.gym-features {
+  display: flex; flex-direction: column; gap: 18px;
+  padding-top: 40px;
+  padding-left: 12%;
+}
 .gym-features li {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 15px; color: var(--text-muted); list-style: none;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 18px; color: var(--white); list-style: none;
 }
 .check-icon { color: var(--accent); font-weight: 700; flex-shrink: 0; }
-.gym__text .divider { margin-top: 20px; }
 
 /* ── GYM 3D SPATIAL CAROUSEL ───────────────────────────────────────────────── */
 .gym3d {
@@ -761,23 +815,78 @@ const reviews = [
 :global(.gym3d__dot.active) { background: var(--accent); transform: scale(1.4); }
 
 /* ── OFFER ─────────────────────────────────────────────────────────────────── */
-.offer-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.offer-section__inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: center;
+.offer-section { border-top: 1px solid var(--border); overflow: hidden; }
+/* Container full-bleed: rimuove padding così le colonne colorano fino ai bordi */
+.offer-section__container { padding-inline: 0; max-width: 100%; }
+.offer-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 360px;
 }
-.offer-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+/* Blocco rosso — padding-left in vw per allinearlo al container del resto della pagina */
+.offer-section__left {
+  background: var(--accent);
+  padding: 80px 8% 80px 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.offer-section__left h2 { color: var(--white); line-height: 1.05; margin-top: 12px; }
+.offer-section__left .divider { display: none; }
+/* Label nel blocco rosso: bianco invece di accent (lo sfondo è già rosso) */
+.offer-section__label { color: var(--white) !important; }
+.offer-section__desc {
+  margin-top: 0;
+  font-size: 18px;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.75;
+  max-width: 440px;
+}
+/* Blocco scuro */
+.offer-section__right {
+  background: var(--bg-card);
+  padding: 80px 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 36px;
+}
+/* Lista offerta */
+.offer-list { display: flex; flex-direction: column; gap: 16px; }
 .offer-list li {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 15px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 12px;
+  font-size: 18px; color: var(--white); list-style: none;
 }
-.offer-list span { color: var(--accent); font-weight: 700; }
-.offer-btn { width: 100%; justify-content: center; position: relative; z-index: 1; background: var(--bg-card); }
-
-/* ── CTA NEON BORDER — offer-specific overrides ───────────────────────────── */
-.offer-btn-wrap { width: 100%; }
+.offer-btn { position: relative; z-index: 1; background: var(--bg); white-space: nowrap; padding: 16px 36px; font-size: 20px; }
+.offer-btn:hover { background: var(--accent); }
+.offer-btn-wrap { display: inline-block; isolation: isolate; position: relative; }
 
 /* ── REVIEWS ───────────────────────────────────────────────────────────────── */
+.reviews-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+.reviews-intro__img-wrap {
+  overflow: hidden;
+  border-radius: 4px;
+}
+.reviews-intro__img {
+  width: 100%; height: 420px;
+  object-fit: cover; object-position: center 20%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.reviews-intro__img-wrap:hover .reviews-intro__img { transform: scale(1.04); }
+.reviews-intro__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .reviews-grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
 }
@@ -790,12 +899,12 @@ const reviews = [
   border-color: var(--accent);
   box-shadow: 0 8px 24px rgba(229,51,50,0.08);
 }
-.review-card__stars { color: var(--star); font-size: 16px; letter-spacing: 2px; margin-bottom: 16px; }
+.review-card__stars { color: var(--accent); font-size: 18px; letter-spacing: 2px; margin-bottom: 16px; }
 .review-card__text {
-  font-size: 15px; color: var(--text-muted);
+  font-size: 16px; color: var(--white);
   font-style: italic; line-height: 1.7; margin-bottom: 20px;
 }
-.review-card__name { font-size: 13px; font-weight: 700; color: var(--text); }
+.review-card__name { font-size: 14px; font-weight: 700; color: var(--accent); }
 
 /* ── DEG SYMBOL (Microgramma non ha °) ────────────────────────────────────── */
 .deg { font-family: var(--font-body); font-size: 0.85em; vertical-align: super; }
@@ -836,14 +945,22 @@ const reviews = [
   .classes-header { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 900px) {
+  .classes-intro        { grid-template-columns: 1fr; gap: 32px; }
+  .classes-intro__img   { height: 280px; }
+  .gym__header          { grid-template-columns: 1fr; gap: 32px; }
+  .gym-features         { padding-top: 0; padding-left: 0; }
   .philosophy__grid     { grid-template-columns: 1fr; gap: 40px; }
   .philosophy__img      { height: 320px; }
   .stats-row            { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gym3d__viewport      { height: 260px; }
   .gym3d__card          { width: 70%; }
   .gym3d::before, .gym3d::after { height: 260px; width: 60px; }
+  .reviews-intro        { grid-template-columns: 1fr; gap: 32px; }
+  .reviews-intro__img   { height: 280px; }
   .reviews-grid         { grid-template-columns: 1fr; }
-  .offer-section__inner { grid-template-columns: 1fr; gap: 40px; }
+  .offer-section__grid  { grid-template-columns: 1fr; }
+  .offer-section__left,
+  .offer-section__right { padding: 60px 24px; }
 }
 @media (max-width: 768px) {
   .hero__content {
