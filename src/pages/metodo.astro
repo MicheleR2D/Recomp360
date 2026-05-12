@@ -154,26 +154,29 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
     </div>
   </section>
 
-  <section class="cta-section">
-    <div class="container">
-      <div class="cta-section__grid">
-
-        <!-- Blocco rosso: testo promo -->
-        <div class="cta-left">
-          <h2>PROVA IL METODO<br />MYRECOMP</h2>
+  <section id="offer" class="offer-section">
+    <div class="container offer-section__container">
+      <div class="offer-section__grid">
+        <div class="offer-section__left">
+          <p class="section__label offer-section__label">Inizia Adesso</p>
+          <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
+          <div class="divider"></div>
+          <p class="offer-section__desc">Valido 14 giorni dall'attivazione.</p>
         </div>
-
-        <!-- Blocco scuro: dettagli + CTA -->
-        <div class="cta-right">
-          <p class="cta-right__text">Una sessione di valutazione con il tuo personal&nbsp;trainer.<br />Nessun impegno.</p>
-          <div class="cta-btn-wrap">
-            <button class="btn-primary cta-btn-inner gp-trigger">
-              Inizia Ora — €17
+        <div class="offer-section__right">
+          <ul class="offer-list">
+            <li><span class="check-icon">✓</span> 7 sessioni di allenamento</li>
+            <li><span class="check-icon">✓</span> Valutazione tecnica inclusa</li>
+            <li><span class="check-icon">✓</span> Accesso a tutte le zone</li>
+            <li><span class="check-icon">✓</span> 14 giorni dall'attivazione</li>
+          </ul>
+          <div class="cta-glow-wrap offer-btn-wrap">
+            <button class="btn-primary offer-btn gp-trigger">
+              Attiva la Prova — €17
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -405,96 +408,53 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 }
 @media (max-width: 640px)  { .team-cards { grid-template-columns: 1fr; } }
 
-/* ── CTA SECTION: two-column split ─────────────────────────────────────────── */
-.cta-section { border-top: 1px solid var(--border); overflow: hidden; }
-
-/* Container full-bleed: rimuove padding e max-width per far sì che le colonne
-   colorino fino ai bordi della viewport */
-.cta-section .container {
-  padding-inline: 0;
-  max-width: 100%;
-}
-
-.cta-section__grid {
+/* ── OFFER ─────────────────────────────────────────────────────────────────── */
+.offer-section { border-top: 1px solid var(--border); overflow: hidden; }
+.offer-section__container { padding-inline: 0; max-width: 100%; }
+.offer-section__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 360px;
 }
-
-/* Blocco rosso — padding-left in vw così corrisponde al 10% del viewport
-   come fa il .container della pagina, non il 10% del blocco (che è solo 50vw) */
-.cta-left {
+.offer-section__left {
   background: var(--accent);
   padding: 80px 8% 80px 10vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
 }
-.cta-left h2 { color: var(--white); line-height: 1.05; }
-
-/* Blocco scuro */
-.cta-right {
+.offer-section__left h2 { color: var(--white); line-height: 1.05; margin-top: 12px; }
+.offer-section__left .divider { display: none; }
+.offer-section__label { color: var(--white) !important; }
+.offer-section__desc {
+  margin-top: 0;
+  font-size: 18px;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.75;
+  max-width: 440px;
+}
+.offer-section__right {
   background: var(--bg-card);
   padding: 80px 8%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;   /* evita che i figli si stretchino a piena larghezza */
+  align-items: flex-start;
   justify-content: center;
   gap: 36px;
 }
-.cta-right__text {
-  font-size: 18px;
-  color: var(--white);
-  max-width: 440px;
-  line-height: 1.85;
+.offer-list { display: flex; flex-direction: column; gap: 16px; }
+.offer-list li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 18px; color: var(--white); list-style: none;
 }
-
-/* Neon rotating border per il bottone CTA */
-.cta-btn-wrap {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-}
-.cta-btn-wrap::before,
-.cta-btn-wrap::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: conic-gradient(
-    from var(--angle),
-    transparent 20%,
-    var(--accent) 40%,
-    #ff8080 50%,
-    #ffffff 55%,
-    var(--accent) 60%,
-    transparent 80%
-  );
-  animation: borderRotate 3s linear infinite;
-  z-index: 0;
-}
-.cta-btn-wrap::after {
-  filter: blur(8px) opacity(0.6);
-  z-index: -1;
-}
-
-/* Bottone interno: stesso stile dell'hero — sfondo più scuro del blocco */
-.cta-btn-inner {
-  position: relative;
-  z-index: 1;
-  background: var(--bg);
-  padding: 16px 36px;
-  font-size: 20px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-.cta-btn-inner:hover { background: var(--accent); }
-
-@media (max-width: 768px) {
-  .cta-section__grid { grid-template-columns: 1fr; }
-  .cta-left, .cta-right { padding: 60px 24px; }
+.check-icon { color: var(--accent); font-weight: 700; }
+.offer-btn { position: relative; z-index: 1; background: var(--bg); white-space: nowrap; padding: 16px 36px; font-size: 20px; }
+.offer-btn:hover { background: var(--accent); }
+.offer-btn-wrap { display: inline-block; isolation: isolate; position: relative; }
+@media (max-width: 900px) {
+  .offer-section__grid { grid-template-columns: 1fr; }
+  .offer-section__left,
+  .offer-section__right { padding: 60px 24px; }
 }
 
 @media (max-width: 1024px) { .detail-grid { grid-template-columns: 1fr; max-width: 560px; } }
