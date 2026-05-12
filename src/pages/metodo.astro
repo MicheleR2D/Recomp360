@@ -45,46 +45,73 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
   <section id="metodo-detail" class="section">
     <div class="container">
-      <div class="detail-grid">
 
-        <div class="detail-card detail-card--featured">
-          <span class="badge">Core</span>
-          <h3>PERSONAL TRAINING</h3>
-          <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — tenendo conto del tuo corpo, dei tuoi obiettivi e del tuo stile di vita.</p>
-          <ul class="feature-list">
-            <li><span class="check">✓</span> Valutazione tecnica iniziale completa</li>
-            <li><span class="check">✓</span> Scheda di allenamento personalizzata</li>
-            <li><span class="check">✓</span> Monitoraggio progressi periodico</li>
-            <li><span class="check">✓</span> Supporto diretto con il nutrizionista</li>
-            <li><span class="check">✓</span> Revisione e aggiornamento scheda nel tempo</li>
-          </ul>
+      <div class="detail-inner">
+
+        <div class="detail-section-header reveal">
+          <p class="section__label">Il Metodo Proprietario</p>
+          <h2>MY<span class="text-accent">RECOMP</span></h2>
+          <div class="divider anim-divider"></div>
         </div>
 
-        <div class="detail-card">
-          <span class="badge badge--muted">Gruppo</span>
-          <h3>SMALL GROUP TRAINING</h3>
-          <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione, per garantire attenzione individuale senza rinunciare alla motivazione collettiva.</p>
-          <ul class="feature-list">
-            <li><span class="check">✓</span> Gruppi di massimo 6 persone</li>
-            <li><span class="check">✓</span> Lavoro tecnico e metabolico</li>
-            <li><span class="check">✓</span> Trainer dedicato per ogni sessione</li>
-            <li><span class="check">✓</span> Orari flessibili</li>
-          </ul>
+        <!-- Featured: Personal Training — orizzontale con neon border -->
+        <div class="cta-glow-wrap detail-featured-wrap reveal">
+          <div class="detail-card detail-card--featured">
+            <div class="detail-card__body">
+              <span class="badge">Core</span>
+              <h3>PERSONAL TRAINING</h3>
+              <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — tenendo conto del tuo corpo, dei tuoi obiettivi e del tuo stile di vita.</p>
+              <ul class="feature-list">
+                <li><span class="check">✓</span> Valutazione tecnica iniziale completa</li>
+                <li><span class="check">✓</span> Scheda di allenamento personalizzata</li>
+                <li><span class="check">✓</span> Monitoraggio progressi periodico</li>
+                <li><span class="check">✓</span> Supporto diretto con il nutrizionista</li>
+                <li><span class="check">✓</span> Revisione e aggiornamento scheda nel tempo</li>
+              </ul>
+            </div>
+            <div class="detail-card__img-wrap">
+              <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="detail-card__img" loading="lazy" />
+            </div>
+          </div>
         </div>
 
-        <div class="detail-card">
-          <span class="badge badge--muted">Accesso</span>
-          <h3>SALA ATTREZZI LIBERA</h3>
-          <p>Accesso alla sala con attrezzatura last-generation. Alleni nei tuoi tempi, con la sicurezza di uno staff qualificato sempre presente e zone dedicate per ogni tipo di lavoro.</p>
-          <ul class="feature-list">
-            <li><span class="check">✓</span> Macchinari last-generation</li>
-            <li><span class="check">✓</span> Zona functional training</li>
-            <li><span class="check">✓</span> Zona metabolica dedicata</li>
-            <li><span class="check">✓</span> Staff sempre presente</li>
-          </ul>
+        <!-- Due card affiancate con thumbnail in cima -->
+        <div class="detail-grid-small">
+          <div class="detail-card tilt-card reveal reveal-delay-1">
+            <div class="detail-card__img-wrap">
+              <img src={`${base}images/Metodo recomp 2.jpg`} alt="Small Group Training Recomp360" class="detail-card__img" loading="lazy" />
+            </div>
+            <div class="detail-card__body">
+              <span class="badge badge--muted">Gruppo</span>
+              <h3>SMALL GROUP TRAINING</h3>
+              <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione, per garantire attenzione individuale senza rinunciare alla motivazione collettiva.</p>
+              <ul class="feature-list">
+                <li><span class="check">✓</span> Gruppi di massimo 6 persone</li>
+                <li><span class="check">✓</span> Lavoro tecnico e metabolico</li>
+                <li><span class="check">✓</span> Trainer dedicato per ogni sessione</li>
+                <li><span class="check">✓</span> Orari flessibili</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-card tilt-card reveal reveal-delay-2">
+            <div class="detail-card__img-wrap">
+              <img src={`${base}images/Metodo recomp 3.jpg`} alt="Sala Attrezzi Recomp360" class="detail-card__img" loading="lazy" />
+            </div>
+            <div class="detail-card__body">
+              <span class="badge badge--muted">Accesso</span>
+              <h3>SALA ATTREZZI LIBERA</h3>
+              <p>Accesso alla sala con attrezzatura last-generation. Alleni nei tuoi tempi, con la sicurezza di uno staff qualificato sempre presente e zone dedicate per ogni tipo di lavoro.</p>
+              <ul class="feature-list">
+                <li><span class="check">✓</span> Macchinari last-generation</li>
+                <li><span class="check">✓</span> Zona functional training</li>
+                <li><span class="check">✓</span> Zona metabolica dedicata</li>
+                <li><span class="check">✓</span> Staff sempre presente</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-      </div>
+      </div><!-- /detail-inner -->
     </div>
   </section>
 
@@ -134,28 +161,150 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   <GuestPassModal />
 </Layout>
 
+<script>
+// ── SCROLL REVEAL + DIVIDER DRAW ────────────────────────────────────────────
+(function () {
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('visible');
+      if (e.target.classList.contains('anim-divider')) e.target.classList.add('drawn');
+      io.unobserve(e.target);
+    }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .anim-divider').forEach(el => io.observe(el));
+})();
+
+// ── 3D TILT ON CARDS ────────────────────────────────────────────────────────
+(function () {
+  const MAX = 9;
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+      card.style.transform = `perspective(700px) rotateY(${x * MAX}deg) rotateX(${-y * MAX}deg) translateY(-4px)`;
+      card.style.transition = 'transform 0.1s ease, border-color 0.3s ease, box-shadow 0.3s ease';
+    }, { passive: true });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.3s ease, box-shadow 0.3s ease';
+    });
+  });
+})();
+</script>
+
 <style>
 .text-accent { color: var(--accent); }
 
 /* Override specifico per l'immagine hero di questa pagina */
 .page-hero__img { object-position: center 20%; }
 
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* ── DETAIL INNER — larghezza allineata alla hero ──────────────────────────── */
+.detail-inner { max-width: 900px; }
+
+/* ── DETAIL SECTION HEADER ─────────────────────────────────────────────────── */
+.detail-section-header { margin-bottom: 48px; }
+
+/* ── NEON BORDER per la featured card ─────────────────────────────────────── */
+@property --angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes borderRotate { to { --angle: 360deg; } }
+
+.detail-featured-wrap {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+  isolation: isolate;
 }
+.detail-featured-wrap::before,
+.detail-featured-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.detail-featured-wrap::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
+
+/* ── CARD BASE ─────────────────────────────────────────────────────────────── */
 .detail-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 40px 32px;
-  transition: border-color .2s;
+  overflow: hidden;
+  transition: border-color .3s, box-shadow .3s;
 }
-.detail-card:hover { border-color: var(--accent); }
-.detail-card--featured { border-color: var(--accent-dim-40); }
+.detail-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(229,51,50,0.10);
+}
+
+/* ── FEATURED CARD — horizontal ────────────────────────────────────────────── */
+.detail-card--featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-color: var(--accent-dim-40);
+  position: relative;
+  z-index: 1;
+  min-height: 420px;
+}
+.detail-card--featured .detail-card__body {
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.detail-card--featured .detail-card__img-wrap {
+  min-height: 420px;
+}
+
+/* ── SMALL CARDS GRID ──────────────────────────────────────────────────────── */
+.detail-grid-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.detail-grid-small .detail-card__body {
+  padding: 28px 32px 36px;
+}
+
+/* ── IMAGE WRAP + ZOOM HOVER ───────────────────────────────────────────────── */
+.detail-card__img-wrap { overflow: hidden; }
+.detail-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.detail-grid-small .detail-card__img { height: 260px; }
+.detail-card:hover .detail-card__img { transform: scale(1.06); }
+
+/* ── TILT CARD ─────────────────────────────────────────────────────────────── */
+.tilt-card { transform-style: preserve-3d; will-change: transform; }
+.tilt-card.visible {
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.15s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}
+
+/* ── CARD TYPOGRAPHY ───────────────────────────────────────────────────────── */
 .detail-card h3 { margin: 16px 0 14px; }
-.detail-card > p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
+.detail-card p  { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; }
 
 .feature-list { display: flex; flex-direction: column; gap: 12px; }
 .feature-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); }
@@ -167,6 +316,13 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   color: var(--accent);
 }
 .badge--muted { color: var(--text-muted); }
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .detail-card--featured { grid-template-columns: 1fr; }
+  .detail-card--featured .detail-card__img-wrap { min-height: 280px; }
+  .detail-grid-small { grid-template-columns: 1fr; }
+}
 
 .team-grid {
   display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;
