@@ -75,11 +75,13 @@ const reviews = [
     <div class="container">
       <div class="philosophy__grid">
         <div class="philosophy__image-col reveal">
-          <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
+          <div class="philosophy__glow">
+            <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
+          </div>
         </div>
         <div class="philosophy__text-col reveal reveal-delay-2">
           <p class="section__label">Chi Siamo</p>
-          <h2>PALESTRA.<br />MA NON SOLO.<br /><span class="text-accent">360<span class="deg">°</span>.</span></h2>
+          <h2>LIBERTÀ. METODO.<br /><span class="text-accent">RISULTATI A 360<span class="deg">°</span></span></h2>
           <div class="divider anim-divider"></div>
           <p class="philosophy__text">
             Libertà della sala attrezzi + expertise del personal training studio.
@@ -133,7 +135,7 @@ const reviews = [
       <div class="method-featured-wrap cta-glow-wrap reveal reveal-delay-1">
         <div class="method-card method-card--featured">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="method-card__img" loading="lazy" />
+            <img src={`${base}images/myrecomp.jpg`} alt="Personal Training Recomp360" class="method-card__img" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge">Core</span>
@@ -146,7 +148,7 @@ const reviews = [
       <div class="method-grid-small">
         <div class="method-card tilt-card reveal reveal-delay-2">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/Metodo recomp 2.jpg`} alt="Small Group Training Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
+            <img src={`${base}images/myrecomp (1).jpg`} alt="Small Group Training Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Gruppo</span>
@@ -156,7 +158,7 @@ const reviews = [
         </div>
         <div class="method-card tilt-card reveal reveal-delay-3">
           <div class="method-card__img-wrap">
-            <img src={`${base}images/Metodo recomp 3.jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
+            <img src={`${base}images/myrecomp (2).jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Accesso</span>
@@ -507,7 +509,37 @@ const reviews = [
   max-width: 520px;
 }
 .philosophy__image-col { position: relative; }
+
+/* Glow wrapper philosophy */
+.philosophy__glow {
+  position: relative;
+  isolation: isolate;
+}
+.philosophy__glow::before,
+.philosophy__glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 6px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.philosophy__glow::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
 .philosophy__img {
+  position: relative;
+  z-index: 1;
   width: 100%; height: 420px;
   object-fit: cover; object-position: center top;
   border-radius: 4px;
