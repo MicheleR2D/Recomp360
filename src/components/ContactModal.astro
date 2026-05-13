@@ -268,20 +268,20 @@
 .ct-track { height: 3px; background: #1c1c1c; border-radius: 2px; margin-bottom: 26px; overflow: hidden; }
 .ct-fill  { height: 100%; background: #E53332; border-radius: 2px; transition: width .5s cubic-bezier(.16,1,.3,1); }
 
-/* ── Step nav ── */
+/* ── Step nav — elementi creati via JS, richiedono :global() ── */
 .ct-nav { display: flex; align-items: center; margin-bottom: 28px; }
-.ct-connector { flex: 1; height: 1px; background: #1e1e1e; margin: 0 8px 20px; }
-.ct-dot { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.ct-dot span {
+:global(.ct-connector) { flex: 1; height: 1px; background: #1e1e1e; margin: 0 8px 20px; }
+:global(.ct-dot) { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+:global(.ct-dot span) {
   width: 28px; height: 28px; border-radius: 50%;
   background: #181818; border: 1.5px solid #2a2a2a;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 700; color: #444; transition: all .3s;
 }
-.ct-dot small { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #3a3a3a; transition: color .3s; }
-.ct-dot.active span { background: #E53332; border-color: #E53332; color: #fff; }
-.ct-dot.active small { color: #E53332; }
-.ct-dot.done span { background: rgba(76,175,80,.15); border-color: rgba(76,175,80,.4); color: #4caf50; }
+:global(.ct-dot small) { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #3a3a3a; transition: color .3s; }
+:global(.ct-dot.active span) { background: #E53332; border-color: #E53332; color: #fff; }
+:global(.ct-dot.active small) { color: #E53332; }
+:global(.ct-dot.done span) { background: rgba(76,175,80,.15); border-color: rgba(76,175,80,.4); color: #4caf50; }
 
 /* ── Typography ── */
 .ct-eye { font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #E53332; margin-bottom: 6px; }
@@ -479,23 +479,23 @@
 .ct-thanks-summary { width: 100%; margin: 20px 0 24px; text-align: left; }
 .ct-thanks .ct-btn-ghost { margin: 0 auto; display: flex; }
 
-/* Summary riepilogo */
-.ct-summary {
+/* Summary riepilogo — elementi creati via JS, richiedono :global() */
+:global(.ct-summary) {
   background: #111; border: 1px solid #242424;
   border-radius: 4px; overflow: hidden;
 }
-.ct-summary-row {
+:global(.ct-summary-row) {
   display: flex; flex-direction: column; gap: 3px;
   padding: 10px 14px; border-bottom: 1px solid #1c1c1c;
 }
-.ct-summary-row:last-child { border-bottom: none; }
-.ct-summary-row span {
+:global(.ct-summary-row:last-child) { border-bottom: none; }
+:global(.ct-summary-row span) {
   font-family: var(--font-body, sans-serif);
   font-size: 9px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
   color: #E53332;
 }
-.ct-summary-row strong {
+:global(.ct-summary-row strong) {
   font-family: var(--font-body, sans-serif);
   font-size: 13px; font-weight: 400;
   color: #d0d0d0; line-height: 1.5;
