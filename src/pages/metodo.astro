@@ -23,10 +23,10 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
       <div class="page-hero__overlay page-hero__overlay--bottom"></div>
     </div>
     <div class="page-hero__content">
-      <p class="page-hero__label">IL METODO</p>
-      <h1>MY<span class="text-accent">RECOMP</span></h1>
-      <p class="page-hero__sub">Un programma strutturato con valutazione tecnica, percorso progressivo e monitoraggio costante.</p>
-      <div class="hero__ctas">
+      <p class="page-hero__label m-line m-line--1">IL METODO</p>
+      <h1><span class="m-line m-line--2">MY</span><span class="m-line m-line--3 text-accent">RECOMP</span></h1>
+      <p class="page-hero__sub m-sub">Un programma strutturato con valutazione tecnica, percorso progressivo e monitoraggio costante.</p>
+      <div class="hero__ctas m-ctas">
         <div class="cta-glow-wrap">
           <button class="btn-primary hero__cta-primary gp-trigger">
             Inizia Ora — €17
@@ -120,10 +120,10 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
       <!-- Top: immagine sinistra + testo destra -->
       <div class="team-top">
-        <div class="team-top__img-wrap">
+        <div class="team-top__img-wrap reveal-left">
           <img src={`${base}images/pt recomp.jpeg`} alt="Personal Trainer Recomp360" class="team-top__img" loading="lazy" />
         </div>
-        <div class="team-top__text">
+        <div class="team-top__text reveal-right">
           <p class="section__label">Il Team</p>
           <h2 class="team-heading">ESPERTI <span class="text-accent">A 360<span class="deg">°</span></span></h2>
           <div class="divider"></div>
@@ -133,19 +133,19 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
       <!-- 4 card su una riga -->
       <div class="team-cards">
-        <div class="team-card">
+        <div class="team-card reveal reveal-delay-1">
           <h4>PERSONAL TRAINER</h4>
           <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
         </div>
-        <div class="team-card">
+        <div class="team-card reveal reveal-delay-2">
           <h4>NUTRIZIONISTA</h4>
           <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
         </div>
-        <div class="team-card">
+        <div class="team-card reveal reveal-delay-3">
           <h4>FISIOTERAPIA</h4>
           <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
         </div>
-        <div class="team-card">
+        <div class="team-card reveal reveal-delay-4">
           <h4>POSTUROLOGIA &amp; OSTEOPATIA</h4>
           <p>Valutazione posturale completa e trattamenti osteopatici.</p>
         </div>
@@ -157,20 +157,20 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   <section id="offer" class="offer-section">
     <div class="container offer-section__container">
       <div class="offer-section__grid">
-        <div class="offer-section__left">
+        <div class="offer-section__left reveal-left">
           <p class="section__label offer-section__label">Inizia Adesso</p>
           <h2>PROVA<br />RECOMP360<br /><span class="text-accent">A €17</span></h2>
           <div class="divider"></div>
           <p class="offer-section__desc">Valido 14 giorni dall'attivazione.</p>
         </div>
-        <div class="offer-section__right">
+        <div class="offer-section__right reveal-right">
           <ul class="offer-list">
-            <li><span class="check-icon">✓</span> 7 sessioni di allenamento</li>
-            <li><span class="check-icon">✓</span> Valutazione tecnica inclusa</li>
-            <li><span class="check-icon">✓</span> Accesso a tutte le zone</li>
-            <li><span class="check-icon">✓</span> 14 giorni dall'attivazione</li>
+            <li class="reveal reveal-delay-1"><span class="check-icon">✓</span> 7 sessioni di allenamento</li>
+            <li class="reveal reveal-delay-2"><span class="check-icon">✓</span> Valutazione tecnica inclusa</li>
+            <li class="reveal reveal-delay-3"><span class="check-icon">✓</span> Accesso a tutte le zone</li>
+            <li class="reveal reveal-delay-4"><span class="check-icon">✓</span> 14 giorni dall'attivazione</li>
           </ul>
-          <div class="cta-glow-wrap offer-btn-wrap">
+          <div class="cta-glow-wrap offer-btn-wrap reveal reveal-delay-4">
             <button class="btn-primary offer-btn gp-trigger">
               Attiva la Prova — €17
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -187,7 +187,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 </Layout>
 
 <script>
-// ── SCROLL REVEAL + DIVIDER DRAW ────────────────────────────────────────────
+// ── SCROLL REVEAL + LATERAL REVEAL + DIVIDER DRAW ───────────────────────────
 (function () {
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
@@ -196,8 +196,9 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
       if (e.target.classList.contains('anim-divider')) e.target.classList.add('drawn');
       io.unobserve(e.target);
     }
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal, .anim-divider').forEach(el => io.observe(el));
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .anim-divider')
+    .forEach(el => io.observe(el));
 })();
 
 // ── 3D TILT ON CARDS ────────────────────────────────────────────────────────
@@ -224,6 +225,72 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
 /* Override specifico per l'immagine hero di questa pagina */
 .page-hero__img { object-position: center 20%; }
+
+/* Titolo: stessa dimensione del hero della homepage */
+.page-hero__content h1 {
+  font-size: clamp(26px, 3.4vw, 56px);
+  white-space: nowrap;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+/* Sottotitolo: bianco pieno */
+.page-hero__sub { color: var(--white); }
+
+/* ── HERO ENTRANCE — identica alla homepage ────────────────────────────────── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* Titolo: 3 elementi staggerati come le 3 righe della homepage */
+.m-line   { display: inline-block; }
+.m-line--1 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+.m-line--2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
+.m-line--3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
+/* Subtitle: stessa timing della homepage */
+.m-sub  { animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s both; }
+/* CTA: solo fade in, nessun movimento */
+.m-ctas { animation: heroFadeIn 0.8s ease 1.1s both; }
+
+/* ── SCROLL REVEAL — verticale (già in global, override transizione) ────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+              transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Delays stagger */
+.reveal-delay-1 { transition-delay: 0.10s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.34s; }
+.reveal-delay-4 { transition-delay: 0.46s; }
+
+/* ── SCROLL REVEAL — laterale ──────────────────────────────────────────────── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Divider draw */
+.anim-divider { width: 0; transition: width 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s; }
+.anim-divider.drawn { width: 48px; }
 
 /* ── DETAIL SECTION HEADER ─────────────────────────────────────────────────── */
 .detail-section-header { margin-bottom: 48px; }

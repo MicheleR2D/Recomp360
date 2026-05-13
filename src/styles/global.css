@@ -270,7 +270,7 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
 
 .page-hero {
   position: relative;
-  height: calc(100svh - 72px);
+  height: 100svh;
   overflow: hidden;
   background: var(--bg-alt);
 }

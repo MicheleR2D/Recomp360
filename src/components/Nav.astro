@@ -8,7 +8,7 @@ const pathname = Astro.url.pathname;
 
     <!-- ── Logo ── -->
     <a href={base} class="nav__logo" aria-label="Recomp360 home">
-      <img src={`${base}images/logo.png`} alt="Recomp360" />
+      <img src={`${base}images/recomp%20logo.png`} alt="Recomp360" />
     </a>
 
     <!-- ── Desktop links ── -->
@@ -72,14 +72,18 @@ const pathname = Astro.url.pathname;
 <style>
 /* ── SHELL ─────────────────────────────────────────────────────────────────── */
 .nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.3s ease;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 .nav.scrolled {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
@@ -98,8 +102,7 @@ const pathname = Astro.url.pathname;
 }
 
 .nav__logo img {
-  height: 56px;
-  padding-top: 5px;
+  height: 84px;
   width: auto;
   display: block;
 }
