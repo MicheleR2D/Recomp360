@@ -160,7 +160,7 @@ const reviews = [
           </div>
           <div class="method-card__body">
             <span class="badge badge--muted">Accesso</span>
-            <h3>Sala Libera</h3>
+            <h3>Gym Floor</h3>
             <p>Accesso libero con attrezzatura last-generation. Zone dedicate al functional training e al metabolico, staff qualificato sempre presente in sala.</p>
           </div>
         </div>
@@ -173,8 +173,10 @@ const reviews = [
     <div class="container">
       <!-- Intro: immagine sx, label+heading+testo+bottone dx -->
       <div class="classes-intro reveal">
-        <div class="classes-intro__img-wrap">
-          <img src={`${base}images/fitness recomp.jpg`} alt="Corsi fitness Recomp360" class="classes-intro__img" loading="lazy" />
+        <div class="classes-intro__glow">
+          <div class="classes-intro__img-wrap">
+            <img src={`${base}images/fitness recomp.jpg`} alt="Corsi fitness Recomp360" class="classes-intro__img" loading="lazy" />
+          </div>
         </div>
         <div class="classes-intro__text">
           <p class="section__label">Attività di Gruppo</p>
@@ -617,7 +619,36 @@ const reviews = [
   align-items: center;
   margin-bottom: 64px;
 }
+/* Glow wrapper — applica bordo neon rotante intorno all'immagine */
+.classes-intro__glow {
+  position: relative;
+  isolation: isolate;
+}
+.classes-intro__glow::before,
+.classes-intro__glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 6px;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 20%,
+    var(--accent) 40%,
+    #ff8080 50%,
+    #ffffff 55%,
+    var(--accent) 60%,
+    transparent 80%
+  );
+  animation: borderRotate 3s linear infinite;
+  z-index: 0;
+}
+.classes-intro__glow::after {
+  filter: blur(8px) opacity(0.6);
+  z-index: -1;
+}
 .classes-intro__img-wrap {
+  position: relative;
+  z-index: 1;
   overflow: hidden;
   border-radius: 4px;
 }
