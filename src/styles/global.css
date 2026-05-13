@@ -1,5 +1,39 @@
-/* ─── Google Fonts ────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* ─── Rajdhani — font locale ─────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani.light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani.regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani.medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani.semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rajdhani';
+  src: url('/fonts/rajdhani.bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ─── Design Tokens ──────────────────────────────────────────────────────── */
 :root {
@@ -24,7 +58,7 @@
   --star:          #FFD600;
 
   --font-head: 'Microgramma', 'Arial Black', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
 
   --radius:   6px;
   --radius-lg: 12px;

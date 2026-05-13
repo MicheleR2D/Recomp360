@@ -39,7 +39,7 @@ const reviews = [
   <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
   <section id="hero" class="hero">
     <div class="hero__bg">
-      <video class="hero__video" autoplay muted loop playsinline webkit-playsinline poster={`${base}images/hero-poster.jpg`}>
+      <video class="hero__video" autoplay muted playsinline webkit-playsinline poster={`${base}images/hero-poster.jpg`}>
         <source src={`${base}video/hero.mp4`} type="video/mp4" />
       </video>
       <img src={`${base}images/hero-poster.jpg`} alt="" class="hero-bg-img" aria-hidden="true" />
@@ -378,7 +378,7 @@ const reviews = [
 .hero__line--2 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both; }
 .hero__line--3 { animation: heroFadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.7s both; }
 .hero__sub {
-  font-size: 20px; font-weight: 400;
+  font-size: 25px; font-weight: 400;
   color: var(--text-muted);
   margin-bottom: 40px;
   line-height: 1.6;
@@ -386,6 +386,7 @@ const reviews = [
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.9s both;
 }
 .hero__sub--white { color: var(--white); }
+.hero__sub .text-accent { font-weight: 700; }
 .hero__ctas {
   animation: heroFadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 1.1s both;
 }
@@ -1301,14 +1302,23 @@ const reviews = [
   resetAuto();
 })();
 
-// ── HERO VIDEO MOBILE FORCE-PLAY ─────────────────────────────────────────────
+// ── HERO VIDEO: loop con taglio a -2s ────────────────────────────────────────
 (function () {
   const video = document.querySelector('.hero__video');
   if (!video) return;
+
+  const CUT = 2; // secondi prima della fine a cui ripartire
+
   const tryPlay = () => video.play().catch(() => {});
-  // Script runs after DOM is ready — call immediately, then retry on first touch as fallback
   tryPlay();
   document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+
+  video.addEventListener('timeupdate', () => {
+    if (video.duration && video.currentTime >= video.duration - CUT) {
+      video.currentTime = 0;
+      tryPlay();
+    }
+  });
 })();
 
 // ── HERO VIDEO PARALLAX ─────────────────────────────────────────────────────
