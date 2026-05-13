@@ -1,5 +1,7 @@
 ---
-// ContactModal — 3-step contact form
+// ContactModal — multi-step form with conditional logic
+// Flow NO:  p0 → p1(interessi) → p2(testo) → p3(canale) → p4(dati) → thanks
+// Flow SÌ:  p0 → p2(testo) → p4(dati) → thanks
 ---
 
 <div id="ct-modal" class="ct-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ct-title">
@@ -10,24 +12,38 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
 
-    <!-- Progress -->
-    <div class="ct-track"><div class="ct-fill" id="ct-fill" style="width:33%"></div></div>
-
-    <!-- Step nav -->
-    <div class="ct-nav">
-      <div class="ct-dot active" data-s="1"><span>1</span><small>Interessi</small></div>
-      <div class="ct-connector"></div>
-      <div class="ct-dot" data-s="2"><span>2</span><small>Dati</small></div>
-      <div class="ct-connector"></div>
-      <div class="ct-dot" data-s="3"><span>3</span><small>Contatto</small></div>
+    <!-- Progress bar (hidden on p0) -->
+    <div class="ct-track ct-h" id="ct-track">
+      <div class="ct-fill" id="ct-fill" style="width:0%"></div>
     </div>
 
-    <!-- ─── STEP 1: Interessi ─────────────────────── -->
-    <div class="ct-pane" id="ct-p1">
-      <p class="ct-eye">Step 1 di 3</p>
-      <h2 id="ct-title">COSA <span class="ca">CERCHI?</span></h2>
+    <!-- Step nav (built by JS after iscritto choice) -->
+    <div class="ct-nav ct-h" id="ct-nav"></div>
 
-      <!-- Multi-select: Attività -->
+    <!-- ─── STEP 0: Sei iscritto? ──────────────────── -->
+    <div class="ct-pane" id="ct-p0">
+      <p class="ct-eye">Benvenuto</p>
+      <h2 id="ct-title">SEI GIÀ <span class="ca">ISCRITTO?</span></h2>
+      <p class="ct-sub">Seleziona per procedere nel modo più adatto a te.</p>
+      <div class="ct-iscritto-grid">
+        <button class="ct-iscritto-card" id="ct-si-btn" type="button">
+          <span class="ct-iscritto-icon">💪</span>
+          <strong>SÌ</strong>
+          <small>Sono già iscritto</small>
+        </button>
+        <button class="ct-iscritto-card" id="ct-no-btn" type="button">
+          <span class="ct-iscritto-icon">👋</span>
+          <strong>NO</strong>
+          <small>Sono nuovo qui</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 1: Cosa cerchi (solo NO) ─────────── -->
+    <div class="ct-pane ct-h" id="ct-p1">
+      <p class="ct-eye" id="ct-eye1">Step 1 di 4</p>
+      <h2>COSA <span class="ca">CERCHI?</span></h2>
+
       <div class="ct-field">
         <label class="ct-label">Attività di interesse <span class="ca-req">*</span></label>
         <div class="ms-wrap">
@@ -36,7 +52,6 @@
             <svg class="ms-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
         </div>
-        <!-- Dropdown — portato in body via JS, struttura qui solo per reference -->
         <div class="ms-dropdown" id="ms-att-drop" role="listbox" aria-multiselectable="true" hidden>
           {['Sala Pesi','Personal Training','Small Group','Cross Cardio','Functional Training','Interval Training','Met-Con','Pilates','Postural','Pre-Boxing','Zumba'].map(a => (
             <label class="ms-option" role="option">
@@ -48,7 +63,6 @@
         </div>
       </div>
 
-      <!-- Multi-select: Obiettivo -->
       <div class="ct-field" style="margin-top:8px">
         <label class="ct-label">Obiettivo <span class="ca-req">*</span></label>
         <div class="ms-wrap">
@@ -69,15 +83,74 @@
       </div>
 
       <div class="ct-err" id="ct-err1" hidden></div>
-      <button type="button" class="ct-btn-red" id="ct-next1">
-        Avanti
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
+      <div class="ct-btn-row">
+        <button type="button" class="ct-btn-ghost" id="ct-back1">← Indietro</button>
+        <button type="button" class="ct-btn-red" id="ct-next1">
+          Avanti
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
     </div>
 
-    <!-- ─── STEP 2: Dati + Privacy ────────────────── -->
+    <!-- ─── STEP 2: Testo libero (tutti) ──────────── -->
     <div class="ct-pane ct-h" id="ct-p2">
-      <p class="ct-eye">Step 2 di 3</p>
+      <p class="ct-eye" id="ct-eye2">Step 2 di 4</p>
+      <h2>RACCONTACI <span class="ca">DI TE</span></h2>
+      <div class="ct-field">
+        <label class="ct-label" for="ct-richiesta">Come possiamo aiutarti? <span class="ca-req">*</span></label>
+        <textarea
+          id="ct-richiesta"
+          name="richiesta"
+          rows="5"
+          placeholder="Descrivici il tuo obiettivo, le tue esigenze, o qualsiasi cosa vuoi che il nostro team sappia prima di ricontattarti…"
+        ></textarea>
+      </div>
+      <div class="ct-err" id="ct-err2" hidden></div>
+      <div class="ct-btn-row">
+        <button type="button" class="ct-btn-ghost" id="ct-back2">← Indietro</button>
+        <button type="button" class="ct-btn-red" id="ct-next2">
+          Avanti
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 3: Canale (solo NO) ──────────────── -->
+    <div class="ct-pane ct-h" id="ct-p3">
+      <p class="ct-eye" id="ct-eye3">Step 3 di 4</p>
+      <h2>COME TI <span class="ca">RICONTATTIAMO?</span></h2>
+      <p class="ct-sub">Scegli il modo in cui preferisci che ti risponda il team Recomp360.</p>
+
+      <div class="ct-canale-grid">
+        {[
+          { v: 'Email',    icon: '✉️', desc: 'Ricevi tutti i dettagli via email' },
+          { v: 'WhatsApp', icon: '💬', desc: 'Ti scriviamo su WhatsApp' },
+          { v: 'Telefono', icon: '📞', desc: 'Ti chiamiamo direttamente' },
+        ].map(c => (
+          <label class="ct-canale-card">
+            <input type="radio" name="canale" value={c.v} />
+            <div class="ct-canale-inner">
+              <span class="ct-canale-icon">{c.icon}</span>
+              <strong>{c.v}</strong>
+              <small>{c.desc}</small>
+            </div>
+          </label>
+        ))}
+      </div>
+
+      <div class="ct-err" id="ct-err3" hidden></div>
+      <div class="ct-btn-row">
+        <button type="button" class="ct-btn-ghost" id="ct-back3">← Indietro</button>
+        <button type="button" class="ct-btn-red" id="ct-next3">
+          Avanti
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── STEP 4: Dati personali (tutti) ────────── -->
+    <div class="ct-pane ct-h" id="ct-p4">
+      <p class="ct-eye" id="ct-eye4">Step 4 di 4</p>
       <h2>I TUOI <span class="ca">DATI</span></h2>
       <div class="ct-row2">
         <div class="ct-field">
@@ -126,42 +199,9 @@
         <span>Accetto il trattamento dei dati come da <a href="https://www.recomp360.it/privacy" target="_blank" rel="noopener" class="ct-prv-link">Privacy Policy</a> <span class="ca-req">*</span></span>
       </label>
 
-      <div class="ct-err" id="ct-err2" hidden></div>
+      <div class="ct-err" id="ct-err4" hidden></div>
       <div class="ct-btn-row">
-        <button type="button" class="ct-btn-ghost" id="ct-back2">← Indietro</button>
-        <button type="button" class="ct-btn-red" id="ct-next2">
-          Avanti
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- ─── STEP 3: Canale preferito ─────────────── -->
-    <div class="ct-pane ct-h" id="ct-p3">
-      <p class="ct-eye">Step 3 di 3</p>
-      <h2>COME TI <span class="ca">RICONTATTIAMO?</span></h2>
-      <p class="ct-sub">Scegli il modo in cui preferisci che ti risponda il team Recomp360.</p>
-
-      <div class="ct-canale-grid">
-        {[
-          { v: 'Email',    icon: '✉️', desc: 'Ricevi tutti i dettagli via email' },
-          { v: 'WhatsApp', icon: '💬', desc: 'Ti scriviamo su WhatsApp' },
-          { v: 'Telefono', icon: '📞', desc: 'Ti chiamiamo direttamente' },
-        ].map(c => (
-          <label class="ct-canale-card">
-            <input type="radio" name="canale" value={c.v} />
-            <div class="ct-canale-inner">
-              <span class="ct-canale-icon">{c.icon}</span>
-              <strong>{c.v}</strong>
-              <small>{c.desc}</small>
-            </div>
-          </label>
-        ))}
-      </div>
-
-      <div class="ct-err" id="ct-err3" hidden></div>
-      <div class="ct-btn-row">
-        <button type="button" class="ct-btn-ghost" id="ct-back3">← Indietro</button>
+        <button type="button" class="ct-btn-ghost" id="ct-back4">← Indietro</button>
         <button type="button" class="ct-btn-red" id="ct-sub">
           <span id="ct-sub-txt">Invia richiesta</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -174,8 +214,9 @@
       <div class="ct-thanks">
         <div class="ct-thanks__icon">✓</div>
         <p class="ct-eye">Ricevuto!</p>
-        <h2>A PRESTO <span class="ca">:)</span></h2>
-        <p class="ct-sub">Ti ricontatteremo il prima possibile nel modo che hai indicato.</p>
+        <h2 id="ct-thanks-title">A PRESTO <span class="ca">:)</span></h2>
+        <p class="ct-sub" id="ct-thanks-sub">Ti ricontatteremo il prima possibile.</p>
+        <div class="ct-thanks-summary" id="ct-thanks-summary"></div>
         <button class="ct-btn-ghost" id="ct-thanks-close">Chiudi</button>
       </div>
     </div>
@@ -254,6 +295,34 @@
 .ca-req { color: #E53332; font-size: .85em; }
 .ct-sub { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 24px; }
 
+/* ── Iscritto cards ── */
+.ct-iscritto-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;
+}
+.ct-iscritto-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: #141414; border: 1.5px solid #2a2a2a; border-radius: 8px;
+  padding: 28px 16px; cursor: pointer; text-align: center; width: 100%;
+  transition: border-color .2s, background .2s;
+}
+.ct-iscritto-card:hover {
+  border-color: #E53332; background: rgba(229,51,50,.05);
+}
+.ct-iscritto-card.selected {
+  border-color: #E53332; background: rgba(229,51,50,.08);
+}
+.ct-iscritto-icon { font-size: 32px; }
+.ct-iscritto-card strong {
+  font-size: 22px; font-weight: 900;
+  font-family: var(--font-head, 'Arial Black', sans-serif);
+  color: #f0f0f0; letter-spacing: 1px;
+}
+.ct-iscritto-card small {
+  font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 1px;
+}
+.ct-iscritto-card:hover strong,
+.ct-iscritto-card.selected strong { color: #E53332; }
+
 /* ── Form fields ── */
 .ct-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
 .ct-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
@@ -267,6 +336,18 @@
 }
 .ct-field input:focus { border-color: #E53332; box-shadow: 0 0 0 3px rgba(229,51,50,.1); }
 .ct-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ── Textarea ── */
+.ct-field textarea {
+  background: #121212; border: 1px solid #262626; border-radius: 4px;
+  padding: 12px 13px; color: #f0f0f0;
+  font-family: var(--font-body, sans-serif); font-size: 14px;
+  outline: none; width: 100%; color-scheme: dark;
+  resize: vertical; min-height: 130px; line-height: 1.6;
+  transition: border-color .2s, box-shadow .2s;
+}
+.ct-field textarea:focus { border-color: #E53332; box-shadow: 0 0 0 3px rgba(229,51,50,.1); }
+.ct-field textarea::placeholder { color: #3a3a3a; }
 
 /* ── Tel ── */
 .ct-tel-row { display: flex; }
@@ -299,7 +380,6 @@
 
 /* ── Multi-select ── */
 .ms-wrap { position: relative; }
-
 .ms-trigger {
   width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
   background: #121212; border: 1px solid #262626; border-radius: 4px;
@@ -321,7 +401,6 @@
   overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,.6);
 }
 .ms-dropdown[hidden] { display: none; }
-
 .ms-option {
   display: flex; align-items: center; gap: 10px;
   padding: 10px 14px; cursor: pointer;
@@ -370,9 +449,6 @@
 .ct-btn-red:disabled { opacity: .6; pointer-events: none; }
 .ct-btn-red svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-/* step 1 button solo (no back) */
-#ct-p1 .ct-btn-red { width: 100%; flex: none; }
-
 .ct-btn-ghost {
   display: inline-flex; align-items: center; justify-content: center;
   background: transparent; color: #555;
@@ -399,8 +475,21 @@
   font-size: 26px; color: #E53332; margin: 0 auto 18px;
 }
 .ct-thanks h2 { margin-bottom: 10px; }
-.ct-thanks .ct-sub { margin: 0 auto 24px; max-width: 360px; }
+.ct-thanks .ct-sub { margin: 0 auto 20px; max-width: 360px; }
+.ct-thanks-summary { width: 100%; margin-bottom: 20px; text-align: left; }
 .ct-thanks .ct-btn-ghost { margin: 0 auto; }
+
+/* Summary table */
+.ct-summary {
+  background: #0a0a0a; border: 1px solid #1e1e1e; border-radius: 6px; overflow: hidden;
+}
+.ct-summary-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 8px 14px; border-bottom: 1px solid #151515; font-size: 12px;
+}
+.ct-summary-row:last-child { border-bottom: none; }
+.ct-summary-row span { color: #555; text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
+.ct-summary-row strong { color: #ccc; text-align: right; word-break: break-word; }
 
 /* ── Utils ── */
 .ct-h { display: none !important; }
@@ -411,6 +500,8 @@
   .ct-box { padding: 24px 18px 20px; }
   .ct-row2 { grid-template-columns: 1fr; }
   .ct-canale-grid { grid-template-columns: 1fr; }
+  .ct-iscritto-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ct-iscritto-card { padding: 20px 10px; }
 }
 </style>
 
@@ -419,39 +510,127 @@
   const WEBHOOK = 'https://automazione.n8ndevelop.it/webhook/recomp360/contatto';
 
   /* ─── State ─── */
+  let iscritto = null; // 'si' | 'no'
   const sel = { attivita: new Set(), obiettivo: new Set() };
-  let canale = '';
 
-  /* ─── DOM ─── */
+  /* ─── DOM refs ─── */
   const modal    = document.getElementById('ct-modal');
   const backdrop = document.getElementById('ct-backdrop');
   const fill     = document.getElementById('ct-fill');
-  const dots     = document.querySelectorAll('.ct-dot');
+  const track    = document.getElementById('ct-track');
+  const navEl    = document.getElementById('ct-nav');
+  const p0 = document.getElementById('ct-p0');
   const p1 = document.getElementById('ct-p1');
   const p2 = document.getElementById('ct-p2');
   const p3 = document.getElementById('ct-p3');
+  const p4 = document.getElementById('ct-p4');
   const pt = document.getElementById('ct-thanks');
+  const allPanes = [p0, p1, p2, p3, p4, pt];
 
-  /* ─── Step nav helpers ─── */
-  function showPane(p) {
-    [p1,p2,p3,pt].forEach(x => x.classList.add('ct-h'));
-    p.classList.remove('ct-h');
+  /* ─── Flow helpers ─── */
+  function getFlow() {
+    if (iscritto === 'no')  return [p1, p2, p3, p4];
+    if (iscritto === 'si')  return [p2, p4];
+    return [];
   }
-  function setStep(n) {
-    fill.style.width = ['33%','66%','100%'][n-1];
-    dots.forEach(d => {
-      const s = +d.dataset.s;
-      d.classList.toggle('active', s === n);
-      d.classList.toggle('done',   s < n);
+
+  const NAV_LABELS = { 'ct-p1': 'Interessi', 'ct-p2': 'Richiesta', 'ct-p3': 'Contatto', 'ct-p4': 'Dati' };
+
+  function buildNav() {
+    const flow = getFlow();
+    if (!flow.length) { navEl.innerHTML = ''; navEl.classList.add('ct-h'); return; }
+    let html = '';
+    flow.forEach((pane, i) => {
+      if (i > 0) html += '<div class="ct-connector"></div>';
+      html += `<div class="ct-dot" data-i="${i}"><span>${i + 1}</span><small>${NAV_LABELS[pane.id]}</small></div>`;
+    });
+    navEl.innerHTML = html;
+    navEl.classList.remove('ct-h');
+  }
+
+  function updateProgress(currentPane) {
+    const flow = getFlow();
+    const idx  = flow.indexOf(currentPane);
+    if (idx < 0) return;
+    fill.style.width = Math.round(((idx + 1) / flow.length) * 100) + '%';
+    navEl.querySelectorAll('.ct-dot').forEach((dot, i) => {
+      dot.classList.remove('active', 'done');
+      if (i === idx)     dot.classList.add('active');
+      else if (i < idx)  dot.classList.add('done');
     });
   }
 
-  /* ─── Modal open/close ─── */
+  function showPane(pane) {
+    allPanes.forEach(p => p.classList.add('ct-h'));
+    pane.classList.remove('ct-h');
+    if (pane === p0) {
+      track.classList.add('ct-h');
+      navEl.classList.add('ct-h');
+    } else if (pane === pt) {
+      track.classList.remove('ct-h');
+      fill.style.width = '100%';
+    } else {
+      track.classList.remove('ct-h');
+      updateProgress(pane);
+    }
+  }
+
+  function goToP0() {
+    iscritto = null;
+    navEl.innerHTML = '';
+    navEl.classList.add('ct-h');
+    track.classList.add('ct-h');
+    fill.style.width = '0%';
+    document.getElementById('ct-si-btn').classList.remove('selected');
+    document.getElementById('ct-no-btn').classList.remove('selected');
+    showPane(p0);
+  }
+
+  /* ─── Modal open / close ─── */
+  function resetModal() {
+    sel.attivita.clear();
+    sel.obiettivo.clear();
+
+    ['ct-richiesta','ct-nome','ct-cognome','ct-email','ct-num'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    const prv = document.getElementById('ct-prv');
+    if (prv) prv.checked = false;
+    document.querySelectorAll('input[name="canale"]').forEach(r => r.checked = false);
+
+    // Reset multi-select labels
+    const attLbl = document.getElementById('ms-att-label');
+    if (attLbl) { attLbl.className = 'ms-placeholder'; attLbl.textContent = 'Seleziona una o più attività…'; }
+    const objLbl = document.getElementById('ms-obj-label');
+    if (objLbl) { objLbl.className = 'ms-placeholder'; objLbl.textContent = 'Seleziona uno o più obiettivi…'; }
+
+    // Uncheck dropdown options
+    document.querySelectorAll('[data-group="attivita"], [data-group="obiettivo"]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.ms-option')?.classList.remove('checked');
+    });
+
+    // Clear errors
+    ['ct-err1','ct-err2','ct-err3','ct-err4'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.hidden = true;
+    });
+
+    // Reset submit button
+    const subTxt = document.getElementById('ct-sub-txt');
+    const sub    = document.getElementById('ct-sub');
+    if (subTxt) subTxt.textContent = 'Invia richiesta';
+    if (sub)    sub.disabled = false;
+
+    goToP0();
+  }
+
   function openModal() {
     modal.setAttribute('aria-hidden','false');
     modal.classList.add('ct-open');
     document.body.style.overflow = 'hidden';
-    showPane(p1); setStep(1);
+    resetModal();
   }
   function closeModal() {
     modal.setAttribute('aria-hidden','true');
@@ -472,146 +651,105 @@
   function showErr(el, msg) { el.textContent = msg; el.hidden = false; }
   function clearErr(el)     { el.hidden = true; }
 
-  /* ──────────────────────────────────────────────────────────
-     MULTI-SELECT DROPDOWN (position:fixed, portato in body)
-  ──────────────────────────────────────────────────────────── */
-  const dropdowns = {};
+  /* ─── STEP 0: iscritto? ─── */
+  document.getElementById('ct-si-btn').addEventListener('click', () => {
+    iscritto = 'si';
+    document.getElementById('ct-si-btn').classList.add('selected');
+    document.getElementById('ct-no-btn').classList.remove('selected');
+    buildNav();
+    // Eyebrow labels for SÌ path (2 steps)
+    document.getElementById('ct-eye2').textContent = 'Step 1 di 2';
+    document.getElementById('ct-eye4').textContent = 'Step 2 di 2';
+    showPane(p2);
+  });
 
-  function initDropdown(btnId, dropId, group, labelId) {
-    const btn   = document.getElementById(btnId);
-    const drop  = document.getElementById(dropId);
-    const label = document.getElementById(labelId);
+  document.getElementById('ct-no-btn').addEventListener('click', () => {
+    iscritto = 'no';
+    document.getElementById('ct-no-btn').classList.add('selected');
+    document.getElementById('ct-si-btn').classList.remove('selected');
+    buildNav();
+    // Eyebrow labels for NO path (4 steps)
+    document.getElementById('ct-eye1').textContent = 'Step 1 di 4';
+    document.getElementById('ct-eye2').textContent = 'Step 2 di 4';
+    document.getElementById('ct-eye3').textContent = 'Step 3 di 4';
+    document.getElementById('ct-eye4').textContent = 'Step 4 di 4';
+    showPane(p1);
+  });
 
-    // Sposta il dropdown nel body per evitare il clipping dell'overflow del modal
-    document.body.appendChild(drop);
-
-    const state = { open: false };
-    dropdowns[group] = state;
-
-    function positionDrop() {
-      const r = btn.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - r.bottom - 8;
-      const maxH = Math.min(260, spaceBelow > 120 ? spaceBelow : window.innerHeight * 0.4);
-      drop.style.top    = (spaceBelow > 120 ? r.bottom + 4 : r.top - Math.min(260, window.innerHeight * 0.4) - 4) + 'px';
-      drop.style.left   = r.left + 'px';
-      drop.style.width  = r.width + 'px';
-      drop.style.maxHeight = maxH + 'px';
-    }
-
-    function openDrop() {
-      closeAllDropdowns();
-      state.open = true;
-      drop.hidden = false;
-      btn.classList.add('open');
-      btn.setAttribute('aria-expanded','true');
-      positionDrop();
-    }
-    function closeDrop() {
-      state.open = false;
-      drop.hidden = true;
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-    }
-
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      state.open ? closeDrop() : openDrop();
-    });
-
-    // Aggiorna label trigger
-    function refresh() {
-      const chosen = [...sel[group]];
-      if (chosen.length === 0) {
-        label.className = 'ms-placeholder';
-        label.textContent = btnId === 'ms-att-btn' ? 'Seleziona una o più attività…' : 'Seleziona uno o più obiettivi…';
-      } else {
-        label.className = 'ms-selected-txt';
-        label.textContent = chosen.length === 1 ? chosen[0] : `${chosen.length} selezionati`;
-      }
-    }
-
-    // Checkbox options
-    drop.querySelectorAll('.ms-option').forEach(opt => {
-      const cb = opt.querySelector('input[type="checkbox"]');
-      opt.addEventListener('click', e => {
-        e.stopPropagation();
-        e.preventDefault();
-        if (sel[group].has(cb.value)) {
-          sel[group].delete(cb.value);
-          opt.classList.remove('checked');
-        } else {
-          sel[group].add(cb.value);
-          opt.classList.add('checked');
-        }
-        refresh();
-      });
-    });
-
-    state.close = closeDrop;
-    return { openDrop, closeDrop };
-  }
-
-  function closeAllDropdowns() {
-    Object.values(dropdowns).forEach(d => d.close?.());
-  }
-
-  document.addEventListener('click', closeAllDropdowns);
-  window.addEventListener('scroll', () => { closeAllDropdowns(); }, true);
-  window.addEventListener('resize', closeAllDropdowns);
-
-  initDropdown('ms-att-btn','ms-att-drop','attivita','ms-att-label');
-  initDropdown('ms-obj-btn','ms-obj-drop','obiettivo','ms-obj-label');
-
-  /* ─── STEP 1 → 2 ─── */
+  /* ─── STEP 1 → 2 (NO only) ─── */
   document.getElementById('ct-next1').addEventListener('click', () => {
     clearErr(document.getElementById('ct-err1'));
     closeAllDropdowns();
-    if (sel.attivita.size === 0) return showErr(document.getElementById('ct-err1'), 'Seleziona almeno un\'attività di interesse.');
+    if (sel.attivita.size === 0) return showErr(document.getElementById('ct-err1'), "Seleziona almeno un'attività di interesse.");
     if (sel.obiettivo.size === 0) return showErr(document.getElementById('ct-err1'), 'Seleziona almeno un obiettivo.');
-    showPane(p2); setStep(2);
+    showPane(p2);
+  });
+  document.getElementById('ct-back1').addEventListener('click', () => {
+    closeAllDropdowns();
+    goToP0();
   });
 
-  /* ─── STEP 2 → 3 ─── */
+  /* ─── STEP 2 → next ─── */
   document.getElementById('ct-next2').addEventListener('click', () => {
     clearErr(document.getElementById('ct-err2'));
+    if (!document.getElementById('ct-richiesta').value.trim())
+      return showErr(document.getElementById('ct-err2'), 'Raccontaci come possiamo aiutarti per procedere.');
+    showPane(iscritto === 'no' ? p3 : p4);
+  });
+  document.getElementById('ct-back2').addEventListener('click', () => {
+    if (iscritto === 'no') showPane(p1);
+    else goToP0();
+  });
+
+  /* ─── STEP 3 → 4 (NO only) ─── */
+  document.getElementById('ct-next3').addEventListener('click', () => {
+    clearErr(document.getElementById('ct-err3'));
+    if (!document.querySelector('input[name="canale"]:checked'))
+      return showErr(document.getElementById('ct-err3'), 'Scegli come preferisci essere ricontattato.');
+    showPane(p4);
+  });
+  document.getElementById('ct-back3').addEventListener('click', () => showPane(p2));
+
+  /* ─── STEP 4 → submit ─── */
+  document.getElementById('ct-back4').addEventListener('click', () => {
+    showPane(iscritto === 'no' ? p3 : p2);
+  });
+
+  document.getElementById('ct-sub').addEventListener('click', async () => {
+    clearErr(document.getElementById('ct-err4'));
     const nome    = document.getElementById('ct-nome').value.trim();
     const cognome = document.getElementById('ct-cognome').value.trim();
     const email   = document.getElementById('ct-email').value.trim();
     const numero  = document.getElementById('ct-num').value.trim();
     const privacy = document.getElementById('ct-prv').checked;
-    if (!nome || !cognome || !email || !numero) return showErr(document.getElementById('ct-err2'), 'Compila tutti i campi obbligatori.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr(document.getElementById('ct-err2'), 'Inserisci un indirizzo email valido.');
-    if (!privacy) return showErr(document.getElementById('ct-err2'), 'Devi accettare il trattamento dei dati per continuare.');
-    showPane(p3); setStep(3);
-  });
 
-  /* ─── Back buttons ─── */
-  document.getElementById('ct-back2').addEventListener('click', () => { showPane(p1); setStep(1); });
-  document.getElementById('ct-back3').addEventListener('click', () => { showPane(p2); setStep(2); });
-
-  /* ─── STEP 3 → Submit ─── */
-  document.getElementById('ct-sub').addEventListener('click', async () => {
-    clearErr(document.getElementById('ct-err3'));
-    canale = document.querySelector('input[name="canale"]:checked')?.value || '';
-    if (!canale) return showErr(document.getElementById('ct-err3'), 'Scegli come preferisci essere ricontattato.');
+    if (!nome || !cognome || !email || !numero)
+      return showErr(document.getElementById('ct-err4'), 'Compila tutti i campi obbligatori.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return showErr(document.getElementById('ct-err4'), 'Inserisci un indirizzo email valido.');
+    if (!privacy)
+      return showErr(document.getElementById('ct-err4'), 'Devi accettare il trattamento dei dati per continuare.');
 
     const sub    = document.getElementById('ct-sub');
     const subTxt = document.getElementById('ct-sub-txt');
     sub.disabled = true;
     subTxt.textContent = 'Invio in corso…';
 
-    const prefisso = document.getElementById('ct-prefix').value;
-    const numero   = document.getElementById('ct-num').value.trim();
+    const prefisso    = document.getElementById('ct-prefix').value;
+    const canaleScelto = document.querySelector('input[name="canale"]:checked')?.value || '';
+    const richiesta   = document.getElementById('ct-richiesta').value.trim();
 
     const payload = {
-      attivita:        [...sel.attivita],
-      obiettivo:       [...sel.obiettivo],
-      nome:            document.getElementById('ct-nome').value.trim(),
-      cognome:         document.getElementById('ct-cognome').value.trim(),
-      email:           document.getElementById('ct-email').value.trim(),
-      telefono:        `${prefisso} ${numero}`,
-      canale_preferito: canale,
-      timestamp:       new Date().toISOString(),
+      iscritto,
+      ...(iscritto === 'no' && {
+        attivita:         [...sel.attivita],
+        obiettivo:        [...sel.obiettivo],
+        canale_preferito: canaleScelto,
+      }),
+      richiesta,
+      nome, cognome, email,
+      telefono:  `${prefisso} ${numero}`,
+      timestamp: new Date().toISOString(),
     };
 
     try {
@@ -623,7 +761,109 @@
       });
     } catch (_) {}
 
-    showPane(pt); setStep(3);
+    /* ── Build thanks page ── */
+    const thanksTitle   = document.getElementById('ct-thanks-title');
+    const thanksSub     = document.getElementById('ct-thanks-sub');
+    const thanksSummary = document.getElementById('ct-thanks-summary');
+
+    const row = (label, value) =>
+      `<div class="ct-summary-row"><span>${label}</span><strong>${value}</strong></div>`;
+
+    if (iscritto === 'si') {
+      thanksTitle.innerHTML = 'RICHIESTA <span class="ca">RICEVUTA</span>';
+      thanksSub.textContent = 'La tua richiesta verrà gestita nel più breve tempo possibile dal nostro staff.';
+      thanksSummary.innerHTML = `<div class="ct-summary">
+        ${row('Nome', `${nome} ${cognome}`)}
+        ${row('Email', email)}
+        ${row('Telefono', `${prefisso} ${numero}`)}
+      </div>`;
+    } else {
+      const attStr = [...sel.attivita].join(', ');
+      const objStr = [...sel.obiettivo].join(', ');
+      thanksTitle.innerHTML = 'A PRESTO <span class="ca">:)</span>';
+      thanksSub.innerHTML   = `Verrai ricontattato via <strong>${canaleScelto}</strong>.`;
+      thanksSummary.innerHTML = `<div class="ct-summary">
+        ${row('Nome', `${nome} ${cognome}`)}
+        ${row('Email', email)}
+        ${row('Telefono', `${prefisso} ${numero}`)}
+        ${attStr ? row('Attività', attStr) : ''}
+        ${objStr ? row('Obiettivo', objStr) : ''}
+        ${row('Contatto', canaleScelto)}
+      </div>`;
+    }
+
+    showPane(pt);
   });
+
+  /* ──────────────────────────────────────────────────────────
+     MULTI-SELECT DROPDOWNS (portati in body per evitare clipping)
+  ──────────────────────────────────────────────────────────── */
+  const dropdowns = {};
+
+  function initDropdown(btnId, dropId, group, labelId) {
+    const btn   = document.getElementById(btnId);
+    const drop  = document.getElementById(dropId);
+    const label = document.getElementById(labelId);
+    document.body.appendChild(drop);
+
+    const state = { open: false };
+    dropdowns[group] = state;
+
+    function positionDrop() {
+      const r = btn.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - r.bottom - 8;
+      const maxH = Math.min(260, spaceBelow > 120 ? spaceBelow : window.innerHeight * 0.4);
+      drop.style.top       = (spaceBelow > 120 ? r.bottom + 4 : r.top - maxH - 4) + 'px';
+      drop.style.left      = r.left + 'px';
+      drop.style.width     = r.width + 'px';
+      drop.style.maxHeight = maxH + 'px';
+    }
+    function openDrop() {
+      closeAllDropdowns();
+      state.open = true; drop.hidden = false;
+      btn.classList.add('open'); btn.setAttribute('aria-expanded','true');
+      positionDrop();
+    }
+    function closeDrop() {
+      state.open = false; drop.hidden = true;
+      btn.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+    }
+
+    btn.addEventListener('click', e => { e.stopPropagation(); state.open ? closeDrop() : openDrop(); });
+
+    function refresh() {
+      const chosen = [...sel[group]];
+      if (!chosen.length) {
+        label.className   = 'ms-placeholder';
+        label.textContent = group === 'attivita' ? 'Seleziona una o più attività…' : 'Seleziona uno o più obiettivi…';
+      } else {
+        label.className   = 'ms-selected-txt';
+        label.textContent = chosen.length === 1 ? chosen[0] : `${chosen.length} selezionati`;
+      }
+    }
+
+    drop.querySelectorAll('.ms-option').forEach(opt => {
+      const cb = opt.querySelector('input[type="checkbox"]');
+      opt.addEventListener('click', e => {
+        e.stopPropagation(); e.preventDefault();
+        if (sel[group].has(cb.value)) { sel[group].delete(cb.value); opt.classList.remove('checked'); }
+        else                          { sel[group].add(cb.value);    opt.classList.add('checked'); }
+        refresh();
+      });
+    });
+
+    state.close = closeDrop;
+  }
+
+  function closeAllDropdowns() {
+    Object.values(dropdowns).forEach(d => d.close?.());
+  }
+
+  document.addEventListener('click', closeAllDropdowns);
+  window.addEventListener('scroll', closeAllDropdowns, true);
+  window.addEventListener('resize', closeAllDropdowns);
+
+  initDropdown('ms-att-btn', 'ms-att-drop', 'attivita', 'ms-att-label');
+  initDropdown('ms-obj-btn', 'ms-obj-drop', 'obiettivo', 'ms-obj-label');
 })();
 </script>
