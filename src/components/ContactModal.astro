@@ -467,29 +467,39 @@
 }
 
 /* ── Thanks ── */
-.ct-thanks { text-align: center; padding: 20px 0; }
+.ct-thanks { text-align: center; padding: 20px 0 4px; }
 .ct-thanks__icon {
-  width: 60px; height: 60px;
+  width: 56px; height: 56px;
   background: rgba(229,51,50,.1); border: 2px solid #E53332;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 26px; color: #E53332; margin: 0 auto 18px;
+  font-size: 22px; color: #E53332; margin: 0 auto 16px;
 }
-.ct-thanks h2 { margin-bottom: 10px; }
-.ct-thanks .ct-sub { margin: 0 auto 20px; max-width: 360px; }
-.ct-thanks-summary { width: 100%; margin-bottom: 20px; text-align: left; }
-.ct-thanks .ct-btn-ghost { margin: 0 auto; }
+.ct-thanks h2 { margin-bottom: 8px; }
+.ct-thanks .ct-sub { margin: 0 auto 0; max-width: 380px; }
+.ct-thanks-summary { width: 100%; margin: 20px 0 24px; text-align: left; }
+.ct-thanks .ct-btn-ghost { margin: 0 auto; display: flex; }
 
-/* Summary table */
+/* Summary riepilogo */
 .ct-summary {
-  background: #0a0a0a; border: 1px solid #1e1e1e; border-radius: 6px; overflow: hidden;
+  background: #111; border: 1px solid #242424;
+  border-radius: 4px; overflow: hidden;
 }
 .ct-summary-row {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-  padding: 8px 14px; border-bottom: 1px solid #151515; font-size: 12px;
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 10px 14px; border-bottom: 1px solid #1c1c1c;
 }
 .ct-summary-row:last-child { border-bottom: none; }
-.ct-summary-row span { color: #555; text-transform: uppercase; letter-spacing: .5px; white-space: nowrap; }
-.ct-summary-row strong { color: #ccc; text-align: right; word-break: break-word; }
+.ct-summary-row span {
+  font-family: var(--font-body, sans-serif);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #E53332;
+}
+.ct-summary-row strong {
+  font-family: var(--font-body, sans-serif);
+  font-size: 13px; font-weight: 400;
+  color: #d0d0d0; line-height: 1.5;
+}
 
 /* ── Utils ── */
 .ct-h { display: none !important; }
