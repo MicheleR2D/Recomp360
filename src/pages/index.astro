@@ -84,7 +84,7 @@ const reviews = [
         <div class="philosophy__image-col reveal">
           <div class="philosophy__glow">
             <!-- CTA sopra l'immagine — solo mobile -->
-            <a href="/about" class="philosophy__cta-over">
+            <a href={`${base}about`} class="philosophy__cta-over">
               Chi siamo
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
@@ -97,7 +97,7 @@ const reviews = [
             Libertà della sala attrezzi + expertise del personal training studio.
             Un team di specialisti — trainer, nutrizionista, fisioterapista — per seguirti davvero a tutto tondo.
           </p>
-          <a href="/about" class="cta-secondary philosophy__cta-main" style="margin-top:32px">
+          <a href={`${base}about`} class="cta-secondary philosophy__cta-main" style="margin-top:32px">
             Chi siamo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -135,7 +135,7 @@ const reviews = [
           <div class="divider anim-divider"></div>
           <p class="method-header__desc" style="margin-top:16px;font-size:18px;color:var(--white)">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
-        <a href="/metodo" class="cta-secondary method-header__cta">
+        <a href={`${base}metodo`} class="cta-secondary method-header__cta">
           Scopri il Metodo
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -146,14 +146,13 @@ const reviews = [
         <div class="method-card method-card--featured">
           <div class="method-card__img-wrap">
             <!-- CTA sopra l'immagine — visibile solo mobile -->
-            <a href="/metodo" class="method-card__cta-overlay">
+            <a href={`${base}metodo`} class="method-card__cta-overlay">
               Scopri il Metodo
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
             <img src={`${base}images/myrecomp.jpg`} alt="Personal Training Recomp360" class="method-card__img" loading="lazy" />
           </div>
           <div class="method-card__body">
-            <span class="badge">Core</span>
             <h3>Personal Training</h3>
             <!-- Testo descrittivo — visibile solo mobile (sul desktop è in method-header) -->
             <p class="method-card__desc-mobile">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
@@ -168,7 +167,6 @@ const reviews = [
             <img src={`${base}images/myrecomp (1).jpg`} alt="Small Group Training Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
-            <span class="badge badge--muted">Gruppo</span>
             <h3>Small Group</h3>
             <p>Massimo 6 persone per sessione. L'attenzione del personal trainer con l'energia del gruppo, orari flessibili e lavoro tecnico e metabolico.</p>
           </div>
@@ -178,7 +176,6 @@ const reviews = [
             <img src={`${base}images/myrecomp (2).jpg`} alt="Sala Attrezzi Recomp360" class="method-card__img method-card__img--small" loading="lazy" />
           </div>
           <div class="method-card__body">
-            <span class="badge badge--muted">Accesso</span>
             <h3>Gym Floor</h3>
             <p>Accesso libero con attrezzatura last-generation. Zone dedicate al functional training e al metabolico, staff qualificato sempre presente in sala.</p>
           </div>
@@ -201,7 +198,7 @@ const reviews = [
         <!-- Immagine — dopo il titolo su mobile -->
         <div class="classes-intro__glow">
           <!-- CTA sopra l'immagine — solo mobile -->
-          <a href="/classi" class="classes-intro__cta-over">
+          <a href={`${base}classi`} class="classes-intro__cta-over">
             Vedi tutti i corsi
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -212,7 +209,7 @@ const reviews = [
         <!-- Descrizione + CTA desktop -->
         <div class="classes-intro__body">
           <p class="classes-intro__desc">8 discipline di gruppo per allenarti con continuità e varietà. Dal Cross Cardio al Pilates, dall'Interval Training alla Zumba — ogni corso è guidato da trainer specializzati e pensato per migliorare resistenza, forza e benessere a tutto tondo. Orari diversificati, gruppi a numero limitato.</p>
-          <a href="/classi" class="cta-secondary classes-intro__cta-main" style="margin-top:32px">
+          <a href={`${base}classi`} class="cta-secondary classes-intro__cta-main" style="margin-top:32px">
             Vedi tutti i corsi
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -224,7 +221,7 @@ const reviews = [
           <div class="carousel-track" id="cls-track">
             {classes.map((c) => (
               <div class="carousel-slide">
-                <a href="/classi" class="class-card">
+                <a href={`${base}classi`} class="class-card">
                   <div class="class-card__icon" set:html={c.icon} />
                   <h4 class="class-card__name">{c.name}</h4>
                   <p class="class-card__desc">{c.desc}</p>

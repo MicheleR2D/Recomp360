@@ -61,7 +61,6 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
               <img src={`${base}images/Metodo recomp 1.jpg`} alt="Personal Training Recomp360" class="detail-card__img" loading="lazy" />
             </div>
             <div class="detail-card__body">
-              <span class="badge">Core</span>
               <h3>PERSONAL TRAINING</h3>
               <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — tenendo conto del tuo corpo, dei tuoi obiettivi e del tuo stile di vita.</p>
               <ul class="feature-list">
@@ -82,7 +81,6 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
               <img src={`${base}images/Metodo recomp 2.jpg`} alt="Small Group Training Recomp360" class="detail-card__img" loading="lazy" />
             </div>
             <div class="detail-card__body">
-              <span class="badge badge--muted">Gruppo</span>
               <h3>SMALL GROUP TRAINING</h3>
               <p>L'efficacia del personal training nell'energia di un piccolo gruppo. Massimo 6 persone per sessione, per garantire attenzione individuale senza rinunciare alla motivazione collettiva.</p>
               <ul class="feature-list">
@@ -98,7 +96,6 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
               <img src={`${base}images/Metodo recomp 3.jpg`} alt="Sala Attrezzi Recomp360" class="detail-card__img" loading="lazy" />
             </div>
             <div class="detail-card__body">
-              <span class="badge badge--muted">Accesso</span>
               <h3>SALA ATTREZZI LIBERA</h3>
               <p>Accesso alla sala con attrezzatura last-generation. Alleni nei tuoi tempi, con la sicurezza di uno staff qualificato sempre presente e zone dedicate per ogni tipo di lavoro.</p>
               <ul class="feature-list">
@@ -118,15 +115,20 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   <section class="section section--alt">
     <div class="container">
 
-      <!-- Top: immagine sinistra + testo destra -->
+      <!-- Top: layout title→img→text su mobile -->
       <div class="team-top">
-        <div class="team-top__img-wrap reveal-left">
-          <img src={`${base}images/pt recomp.jpeg`} alt="Personal Trainer Recomp360" class="team-top__img" loading="lazy" />
-        </div>
-        <div class="team-top__text reveal-right">
+        <!-- Titolo — sempre primo su mobile -->
+        <div class="team-top__header reveal-right">
           <p class="section__label">Il Team</p>
           <h2 class="team-heading">ESPERTI <span class="text-accent">A 360<span class="deg">°</span></span></h2>
           <div class="divider"></div>
+        </div>
+        <!-- Immagine — dopo il titolo su mobile -->
+        <div class="team-top__img-wrap reveal-left">
+          <img src={`${base}images/pt recomp.jpeg`} alt="Personal Trainer Recomp360" class="team-top__img" loading="lazy" />
+        </div>
+        <!-- Testo — dopo l'immagine su mobile -->
+        <div class="team-top__body reveal-right">
           <p class="team-desc">Il nostro staff è composto da personal trainer certificati specializzati in ricomposizione corporea, affiancati da nutrizionisti, fisioterapisti e osteopati. Un team integrato che lavora insieme per seguirti a 360 gradi — dall'allenamento alla postura, dall'alimentazione alla prevenzione degli infortuni.</p>
         </div>
       </div>
@@ -420,15 +422,20 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
   .detail-grid-small { grid-template-columns: 1fr; }
 }
 
-/* ── TEAM TOP: immagine + testo ────────────────────────────────────────────── */
+/* ── TEAM TOP: layout title→img→text su mobile ─────────────────────────────── */
 .team-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: flex-start;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "img header"
+    "img body";
+  gap: 0 60px;
   margin-bottom: 48px;
 }
-.team-top__img-wrap { overflow: hidden; border-radius: 4px; }
+.team-top__img-wrap { grid-area: img; overflow: hidden; border-radius: 4px; }
+.team-top__header   { grid-area: header; align-self: end; }
+.team-top__body     { grid-area: body; align-self: start; }
 .team-top__img {
   width: 100%; height: 420px;
   object-fit: cover; object-position: center center;
@@ -470,8 +477,16 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 
 @media (max-width: 1024px) { .team-cards { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px)  {
-  .team-top { grid-template-columns: 1fr; gap: 32px; }
-  .team-top__img { height: 300px; }
+  .team-top {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "img" "body";
+    gap: 24px;
+  }
+  .team-top__header { align-self: auto; }
+  .team-top__body   { padding-top: 0; }
+  .team-top__img    { height: 300px; }
+  /* PT featured card body: stesso padding delle small card */
+  .detail-card--featured .detail-card__body { padding: 28px 32px 36px; }
 }
 @media (max-width: 640px)  { .team-cards { grid-template-columns: 1fr; } }
 

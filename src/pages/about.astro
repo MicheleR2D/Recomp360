@@ -46,6 +46,13 @@ const base = import.meta.env.BASE_URL;
   <section class="section">
     <div class="container">
       <div class="about-grid">
+        <!-- Titolo — sempre primo su mobile -->
+        <div class="about-header reveal reveal-delay-1">
+          <p class="section__label">La Nostra Filosofia</p>
+          <h2>NON SEI<br />UN <span class="text-accent">NUMERO</span></h2>
+          <div class="divider anim-divider"></div>
+        </div>
+        <!-- Immagine — dopo il titolo su mobile -->
         <div class="about-img-glow reveal">
           <img
             src={`${base}images/chi siamo 2.jpg`}
@@ -53,11 +60,9 @@ const base = import.meta.env.BASE_URL;
             class="about-img"
           />
         </div>
-        <div class="about-text reveal reveal-delay-2">
-          <p class="section__label">La Nostra Filosofia</p>
-          <h2>NON SEI<br />UN <span class="text-accent">NUMERO</span></h2>
-          <div class="divider anim-divider"></div>
-          <p style="margin-top:28px">
+        <!-- Testo — dopo l'immagine su mobile -->
+        <div class="about-body reveal reveal-delay-2">
+          <p>
             Recomp360 nasce dall'idea che ogni persona meriti un percorso costruito su misura.
             Non basta aprire le porte di una palestra: serve un metodo, un team, una visione.
           </p>
@@ -75,8 +80,15 @@ const base = import.meta.env.BASE_URL;
   <section class="section section--alt">
     <div class="container">
 
-      <!-- RIGA SUPERIORE: immagine sx / titolo+testo dx — come homepage -->
+      <!-- RIGA SUPERIORE: immagine sx / titolo+testo dx — con layout mobile title→img→text -->
       <div class="team-intro-row reveal">
+        <!-- Titolo — sempre primo su mobile -->
+        <div class="team-intro-header">
+          <p class="section__label">Il Team</p>
+          <h2>PROFESSIONISTI<br /><span class="text-accent">SPECIALIZZATI</span></h2>
+          <div class="divider anim-divider"></div>
+        </div>
+        <!-- Immagine — dopo il titolo su mobile -->
         <div class="team-img-glow">
           <img
             src={`${base}images/chi siamo 3.jpg`}
@@ -84,10 +96,8 @@ const base = import.meta.env.BASE_URL;
             class="team-img"
           />
         </div>
-        <div class="team-intro-text">
-          <p class="section__label">Il Team</p>
-          <h2>PROFESSIONISTI<br /><span class="text-accent">SPECIALIZZATI</span></h2>
-          <div class="divider anim-divider"></div>
+        <!-- Testo — dopo l'immagine su mobile -->
+        <div class="team-intro-body">
           <p class="team-intro__desc">
             Ogni figura lavora in sinergia con le altre: dal personal trainer alla nutrizionista,
             dal fisioterapista alla posturologa. Un team integrato che copre ogni aspetto
@@ -222,6 +232,8 @@ const base = import.meta.env.BASE_URL;
 
 <style>
 .text-accent { color: var(--accent); }
+/* Hero subtitle bianco */
+.page-hero__sub { color: var(--white); }
 
 /* ── HERO ENTRANCE ─────────────────────────────────────────────────────────── */
 @keyframes heroFadeUp {
@@ -272,9 +284,16 @@ const base = import.meta.env.BASE_URL;
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "img header"
+    "img body";
+  gap: 0 80px;
 }
+.about-img-glow { grid-area: img; }
+.about-header   { grid-area: header; align-self: end; }
+.about-body     { grid-area: body; align-self: start; padding-top: 24px; }
+.about-body p { font-size: 18px; color: var(--white); line-height: 1.7; max-width: 480px; }
 
 /* ── IMMAGINE CON GLOW (come philosophy__glow in homepage) ─────────────────── */
 .about-img-glow {
@@ -324,19 +343,20 @@ const base = import.meta.env.BASE_URL;
   max-width: 480px;
 }
 
-/* ── TEAM INTRO ROW (immagine sx / testo dx — come philosophy in homepage) ─── */
+/* ── TEAM INTRO ROW (immagine sx / titolo+testo dx — layout mobile title→img→text) ─── */
 .team-intro-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "img header"
+    "img body";
+  gap: 0 64px;
   margin-bottom: 64px;
 }
-.team-intro-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+.team-img-glow     { grid-area: img; }
+.team-intro-header { grid-area: header; align-self: end; }
+.team-intro-body   { grid-area: body; align-self: start; }
 .team-intro__desc {
   font-size: 18px;
   color: var(--white);
@@ -532,15 +552,28 @@ const base = import.meta.env.BASE_URL;
 
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .team-intro-row { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
-  .team-img       { height: 300px; }
-  .team-grid      { grid-template-columns: repeat(2, 1fr); }
+  .team-intro-row {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "img" "body";
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .team-intro-header { align-self: auto; }
+  .team-intro-body   { padding-top: 0; }
+  .team-img          { height: 300px; }
+  .team-grid         { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
-  .about-grid  { grid-template-columns: 1fr; gap: 40px; }
-  .about-img   { height: 320px; }
-  .values-grid { grid-template-columns: 1fr; gap: 20px; }
-  .value-block { min-height: 260px; }
+  .about-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "img" "body";
+    gap: 24px;
+  }
+  .about-header  { align-self: auto; }
+  .about-body    { padding-top: 0; }
+  .about-img     { height: 320px; }
+  .values-grid   { grid-template-columns: 1fr; gap: 20px; }
+  .value-block   { min-height: 260px; }
   .offer-section__grid { grid-template-columns: 1fr; }
   .offer-section__left,
   .offer-section__right { padding: 60px 24px; }
