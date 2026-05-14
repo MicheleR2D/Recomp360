@@ -123,7 +123,7 @@ const reviews = [
           <p class="section__label">Il Metodo Proprietario</p>
           <h2>MY<span class="text-accent">RECOMP</span></h2>
           <div class="divider anim-divider"></div>
-          <p style="margin-top:16px;font-size:18px;color:var(--white)">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
+          <p class="method-header__desc" style="margin-top:16px;font-size:18px;color:var(--white)">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
         </div>
         <a href="/metodo" class="cta-secondary method-header__cta">
           Scopri il Metodo
@@ -135,11 +135,18 @@ const reviews = [
       <div class="method-featured-wrap cta-glow-wrap reveal reveal-delay-1">
         <div class="method-card method-card--featured">
           <div class="method-card__img-wrap">
+            <!-- CTA sopra l'immagine — visibile solo mobile -->
+            <a href="/metodo" class="method-card__cta-overlay">
+              Scopri il Metodo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
             <img src={`${base}images/myrecomp.jpg`} alt="Personal Training Recomp360" class="method-card__img" loading="lazy" />
           </div>
           <div class="method-card__body">
             <span class="badge">Core</span>
             <h3>Personal Training</h3>
+            <!-- Testo descrittivo — visibile solo mobile (sul desktop è in method-header) -->
+            <p class="method-card__desc-mobile">Ricomposizione corporea strutturata. Valutazione tecnica, percorso progressivo, risultati misurabili.</p>
             <p>Il fulcro del metodo MyRecomp. Sessioni 1:1 con un trainer dedicato che costruisce il tuo programma su misura — scheda personalizzata, monitoraggio progressi e supporto nutrizionale integrato.</p>
           </div>
         </div>
@@ -175,17 +182,27 @@ const reviews = [
     <div class="container">
       <!-- Intro: immagine sx, label+heading+testo+bottone dx -->
       <div class="classes-intro reveal">
+        <!-- Titolo — sempre primo su mobile -->
+        <div class="classes-intro__header">
+          <p class="section__label">Attività di Gruppo</p>
+          <h2>CORSI <span class="text-accent">FITNESS</span></h2>
+          <div class="divider anim-divider"></div>
+        </div>
+        <!-- Immagine — dopo il titolo su mobile -->
         <div class="classes-intro__glow">
+          <!-- CTA sopra l'immagine — solo mobile -->
+          <a href="/classi" class="classes-intro__cta-over">
+            Vedi tutti i corsi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
           <div class="classes-intro__img-wrap">
             <img src={`${base}images/fitness recomp.jpg`} alt="Corsi fitness Recomp360" class="classes-intro__img" loading="lazy" />
           </div>
         </div>
-        <div class="classes-intro__text">
-          <p class="section__label">Attività di Gruppo</p>
-          <h2>CORSI <span class="text-accent">FITNESS</span></h2>
-          <div class="divider anim-divider"></div>
+        <!-- Descrizione + CTA desktop -->
+        <div class="classes-intro__body">
           <p class="classes-intro__desc">8 discipline di gruppo per allenarti con continuità e varietà. Dal Cross Cardio al Pilates, dall'Interval Training alla Zumba — ogni corso è guidato da trainer specializzati e pensato per migliorare resistenza, forza e benessere a tutto tondo. Orari diversificati, gruppi a numero limitato.</p>
-          <a href="/classi" class="cta-secondary" style="margin-top:32px">
+          <a href="/classi" class="cta-secondary classes-intro__cta-main" style="margin-top:32px">
             Vedi tutti i corsi
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -647,10 +664,16 @@ const reviews = [
 .classes-intro {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "img header"
+    "img body";
+  gap: 0 60px;
   margin-bottom: 64px;
 }
+.classes-intro__glow   { grid-area: img; }
+.classes-intro__header { grid-area: header; align-self: end; }
+.classes-intro__body   { grid-area: body; align-self: start; padding-top: 24px; }
 /* Glow wrapper — applica bordo neon rotante intorno all'immagine */
 .classes-intro__glow {
   position: relative;
@@ -693,17 +716,48 @@ const reviews = [
   transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
 .classes-intro__img-wrap:hover .classes-intro__img { transform: scale(1.04); }
-.classes-intro__text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* CTA overlay sull'immagine — solo mobile */
+.classes-intro__cta-over {
+  display: none;
+  position: absolute;
+  bottom: 16px; left: 16px;
+  z-index: 3;
+  background: rgba(0,0,0,0.65);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  align-items: center; gap: 8px;
+  padding: 8px 14px;
 }
+.classes-intro__cta-over svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* method-card CTA overlay sull'immagine — solo mobile */
+.method-card__cta-overlay {
+  display: none;
+  position: absolute;
+  bottom: 16px; left: 16px;
+  z-index: 3;
+  background: rgba(0,0,0,0.65);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  align-items: center; gap: 8px;
+  padding: 8px 14px;
+}
+.method-card__cta-overlay svg { width: 14px; height: 14px; flex-shrink: 0; }
+.method-card__img-wrap { position: relative; overflow: hidden; }
+
+/* Descrizione mobile nella featured card — solo mobile */
+.method-card__desc-mobile { display: none !important; }
+
 .classes-intro__desc {
   font-size: 18px;
   color: var(--white);
   line-height: 1.8;
   max-width: 520px;
-  margin-top: 24px;
+  margin-top: 0;
 }
 
 /* ── CLASSES CAROUSEL ──────────────────────────────────────────────────────── */
@@ -1009,8 +1063,16 @@ const reviews = [
   .classes-header { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 900px) {
-  .classes-intro        { grid-template-columns: 1fr; gap: 32px; }
-  .classes-intro__img   { height: 280px; }
+  .classes-intro {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "img" "body";
+    gap: 24px;
+  }
+  .classes-intro__header { align-self: auto; }
+  .classes-intro__body   { padding-top: 0; }
+  .classes-intro__img    { height: 280px; }
+  .classes-intro__cta-over  { display: inline-flex; }
+  .classes-intro__cta-main  { display: none; }
   .gym__header          { grid-template-columns: 1fr; gap: 32px; }
   .gym-features         { padding-top: 0; padding-left: 0; }
   .philosophy__grid     { grid-template-columns: 1fr; gap: 40px; }
@@ -1038,8 +1100,25 @@ const reviews = [
   .hero__scroll { right: 20px; bottom: 20px; }
 }
 @media (max-width: 640px) {
-  .carousel-slide        { flex: 0 0 calc(50% - 8px); }
-  .carousel-arrow        { display: none; }
+  /* Carosello: 1 slide a schermo, solo freccia destra rossa */
+  .carousel-slide          { flex: 0 0 100%; }
+  .carousel-arrow--prev    { display: none; }
+  .carousel-arrow--next    {
+    display: flex;
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+  .carousel-arrow--next:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+  /* MyRecomp mobile */
+  .method-card--featured   { grid-template-columns: 1fr; height: auto; }
+  .method-card--featured .method-card__img-wrap { height: 260px; }
+  .method-card--featured .method-card__body { padding: 24px 20px; }
+  .method-card__cta-overlay  { display: inline-flex; }
+  .method-card__desc-mobile  { display: block !important; margin-bottom: 12px; font-size: 15px !important; color: var(--text-muted) !important; }
+  .method-header__cta        { display: none; }
+  .method-header__desc       { display: none; }
   .gym3d__viewport       { height: 230px; }
   .gym3d__card           { width: 82%; }
   .gym3d::before, .gym3d::after { height: 230px; width: 36px; }
@@ -1203,7 +1282,7 @@ const reviews = [
 
   function getVisible() {
     const w = window.innerWidth;
-    return w > 1024 ? 4 : w > 640 ? 3 : 2;
+    return w > 1024 ? 4 : w > 640 ? 3 : 1;
   }
 
   function getMax() { return Math.max(0, total - getVisible()); }
