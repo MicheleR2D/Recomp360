@@ -74,20 +74,30 @@ const reviews = [
   <section id="philosophy" class="section">
     <div class="container">
       <div class="philosophy__grid">
-        <div class="philosophy__image-col reveal">
-          <div class="philosophy__glow">
-            <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
-          </div>
-        </div>
-        <div class="philosophy__text-col reveal reveal-delay-2">
+        <!-- Titolo — sempre primo su mobile -->
+        <div class="philosophy__header reveal reveal-delay-1">
           <p class="section__label">Chi Siamo</p>
           <h2>LIBERTÀ. METODO.<br /><span class="text-accent">RISULTATI A 360<span class="deg">°</span></span></h2>
           <div class="divider anim-divider"></div>
+        </div>
+        <!-- Immagine — dopo il titolo su mobile -->
+        <div class="philosophy__image-col reveal">
+          <div class="philosophy__glow">
+            <!-- CTA sopra l'immagine — solo mobile -->
+            <a href="/about" class="philosophy__cta-over">
+              Chi siamo
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <img src={`${base}images/pt-session.jpg`} alt="Personal training session Recomp360" class="philosophy__img" />
+          </div>
+        </div>
+        <!-- Testo + CTA — dopo immagine su mobile -->
+        <div class="philosophy__body reveal reveal-delay-2">
           <p class="philosophy__text">
             Libertà della sala attrezzi + expertise del personal training studio.
             Un team di specialisti — trainer, nutrizionista, fisioterapista — per seguirti davvero a tutto tondo.
           </p>
-          <a href="/about" class="cta-secondary" style="margin-top:32px">
+          <a href="/about" class="cta-secondary philosophy__cta-main" style="margin-top:32px">
             Chi siamo
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -516,16 +526,39 @@ const reviews = [
 
 /* ── PHILOSOPHY ────────────────────────────────────────────────────────────── */
 .philosophy__grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 64px; align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "img header"
+    "img body";
+  gap: 0 64px;
   margin-bottom: 48px;
 }
+.philosophy__image-col { grid-area: img; position: relative; }
+.philosophy__header    { grid-area: header; align-self: end; }
+.philosophy__body      { grid-area: body; align-self: start; padding-top: 24px; }
 .philosophy__text {
-  margin-top: 24px; font-size: 18px;
+  margin-top: 0; font-size: 18px;
   color: var(--white); line-height: 1.7;
   max-width: 520px;
 }
-.philosophy__image-col { position: relative; }
+
+/* CTA overlay sull'immagine — solo mobile */
+.philosophy__cta-over {
+  display: none;
+  position: absolute;
+  bottom: 16px; left: 16px;
+  z-index: 3;
+  background: rgba(0,0,0,0.65);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  align-items: center; gap: 8px;
+  padding: 8px 14px;
+}
+.philosophy__cta-over svg { width: 14px; height: 14px; flex-shrink: 0; }
 
 /* Glow wrapper philosophy */
 .philosophy__glow {
@@ -1075,7 +1108,15 @@ const reviews = [
   .classes-intro__cta-main  { display: none; }
   .gym__header          { grid-template-columns: 1fr; gap: 32px; }
   .gym-features         { padding-top: 0; padding-left: 0; }
-  .philosophy__grid     { grid-template-columns: 1fr; gap: 40px; }
+  .philosophy__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header" "img" "body";
+    gap: 24px;
+  }
+  .philosophy__header  { align-self: auto; }
+  .philosophy__body    { padding-top: 0; }
+  .philosophy__cta-over { display: inline-flex; }
+  .philosophy__cta-main { display: none; }
   .philosophy__img      { height: 320px; }
   .stats-row            { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gym3d__viewport      { height: 260px; }
@@ -1098,6 +1139,9 @@ const reviews = [
     box-sizing: border-box;
   }
   .hero__scroll { right: 20px; bottom: 20px; }
+  /* Rimuovi nowrap per evitare overflow orizzontale */
+  .hero__line { white-space: normal; }
+  .hero__sub  { white-space: normal; font-size: 18px; }
 }
 @media (max-width: 640px) {
   /* Carosello: 1 slide a schermo, solo freccia destra rossa */
@@ -1116,7 +1160,7 @@ const reviews = [
   .method-card--featured .method-card__img-wrap { height: 260px; }
   .method-card--featured .method-card__body { padding: 24px 20px; }
   .method-card__cta-overlay  { display: inline-flex; }
-  .method-card__desc-mobile  { display: block !important; margin-bottom: 12px; font-size: 15px !important; color: var(--text-muted) !important; }
+  .method-card__desc-mobile  { display: block !important; margin-bottom: 12px; font-size: 18px !important; color: var(--white) !important; }
   .method-header__cta        { display: none; }
   .method-header__desc       { display: none; }
   .gym3d__viewport       { height: 230px; }
