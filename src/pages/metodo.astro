@@ -136,18 +136,50 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
       <!-- 4 card su una riga -->
       <div class="team-cards">
         <div class="team-card reveal reveal-delay-1">
+          <div class="team-card__avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+              <rect x="2" y="10" width="3" height="4" rx="1"/>
+              <rect x="19" y="10" width="3" height="4" rx="1"/>
+              <rect x="4" y="8" width="3" height="8" rx="1"/>
+              <rect x="17" y="8" width="3" height="8" rx="1"/>
+              <line x1="7" y1="12" x2="17" y2="12"/>
+            </svg>
+          </div>
           <h4>PERSONAL TRAINER</h4>
           <p>Specializzati in ricomposizione corporea e allenamento funzionale.</p>
         </div>
         <div class="team-card reveal reveal-delay-2">
+          <div class="team-card__avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+              <path d="M12 21C8 21 4 17.5 4 13c0-4.5 3-8 6-9 1 .5 1.5 1.5 2 1.5s1-.5 2-1.5c3 1 6 4.5 6 9 0 4.5-4 8-8 8z"/>
+              <path d="M12 4V2"/>
+              <path d="M10 2c1 0 2 .5 2 2"/>
+            </svg>
+          </div>
           <h4>NUTRIZIONISTA</h4>
           <p>Piani alimentari personalizzati integrati con il programma di allenamento.</p>
         </div>
         <div class="team-card reveal reveal-delay-3">
+          <div class="team-card__avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
           <h4>FISIOTERAPIA</h4>
           <p>Prevenzione, recupero infortuni e ottimizzazione del movimento.</p>
         </div>
         <div class="team-card reveal reveal-delay-4">
+          <div class="team-card__avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+              <circle cx="12" cy="4" r="2"/>
+              <line x1="12" y1="2" x2="12" y2="22" stroke-dasharray="2 3" opacity="0.4"/>
+              <path d="M12 6v6"/>
+              <path d="M9 9h6"/>
+              <path d="M10 22l2-7 2 7"/>
+              <path d="M9 15c-2 .5-3.5.5-4.5 0"/>
+              <path d="M15 15c2 .5 3.5.5 4.5 0"/>
+            </svg>
+          </div>
           <h4>POSTUROLOGIA &amp; OSTEOPATIA</h4>
           <p>Valutazione posturale completa e trattamenti osteopatici.</p>
         </div>
@@ -466,14 +498,26 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 .team-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 4px; padding: 28px 24px;
+  text-align: center;
   transition: border-color .2s, box-shadow .2s;
 }
 .team-card:hover {
   border-color: var(--accent);
   box-shadow: 0 8px 24px rgba(229,51,50,0.08);
 }
+.team-card__avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  margin: 0 auto 24px;
+  transition: background 0.2s;
+}
+.team-card:hover .team-card__avatar { background: rgba(229,51,50,0.18); }
 .team-card h4 { margin-bottom: 12px; color: var(--accent); }
-.team-card p  { font-size: 18px; color: var(--white); line-height: 1.6; }
+.team-card p  { font-size: 18px; color: var(--white); line-height: 1.6; max-width: none; }
 
 @media (max-width: 1024px) { .team-cards { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px)  {
