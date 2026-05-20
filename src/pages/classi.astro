@@ -7,56 +7,180 @@ import GuestPassModal from '../components/GuestPassModal.astro';
 
 const base = import.meta.env.BASE_URL;
 
+const scheduleLabels = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB'];
+
+const schedule = [
+  {
+    time: '9:00',
+    cells: [
+      { name: 'POSTURALE', level: 1 },
+      null,
+      { name: 'POSTURALE', level: 1 },
+      null,
+      { name: 'POSTURALE', level: 1 },
+      null,
+    ],
+  },
+  {
+    time: '10:00',
+    cells: [
+      { name: 'PILATES', level: 1 },
+      { name: 'INTERVAL TRAINING', level: 3 },
+      { name: 'PILATES', level: 1 },
+      { name: 'INTERVAL TRAINING', level: 3 },
+      { name: 'PILATES', level: 1 },
+      { name: 'FUNZIONALE', level: 3, altTime: '10:10' },
+    ],
+  },
+  {
+    time: '11:10',
+    cells: [null, null, null, null, null, { name: 'PILATES', level: 1 }],
+  },
+  {
+    time: '13:30',
+    cells: [
+      null,
+      { name: 'CROSS CARDIO', level: 3 },
+      null,
+      { name: 'CROSS CARDIO', level: 3 },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '18:00',
+    cells: [
+      { name: 'FUNZIONALE', level: 3 },
+      { name: 'PILATES', level: 1 },
+      { name: 'FUNZIONALE', level: 3 },
+      null,
+      { name: 'INTERVAL TRAINING', level: 3 },
+      null,
+    ],
+  },
+  {
+    time: '19:00',
+    cells: [
+      null,
+      { name: 'FUNZIONALE', level: 2 },
+      { name: 'PILATES', level: 1, room: 'Sala Rebalance' },
+      { name: 'INTERVAL TRAINING', level: 3 },
+      { name: 'PILATES', level: 4, room: 'Sala Rebalance' },
+      null,
+    ],
+  },
+  {
+    time: '19:10',
+    cells: [
+      null,
+      null,
+      { name: 'PREPUGILISTICA', level: 4, room: 'Sala Energy' },
+      null,
+      { name: 'PREPUGILISTICA', level: 4, room: 'Sala Energy' },
+      null,
+    ],
+  },
+  {
+    time: '20:00',
+    cells: [
+      null,
+      { name: 'ZUMBA', level: 3 },
+      null,
+      { name: 'ZUMBA', level: 3 },
+      null,
+      null,
+    ],
+  },
+  {
+    time: '20:10',
+    cells: [
+      { name: 'METCON', level: 4 },
+      null,
+      { name: 'METCON', level: 4 },
+      null,
+      { name: 'METCON', level: 4 },
+      null,
+    ],
+  },
+];
+
+const intensityLegend = [
+  { level: 1, label: 'Bassa intensità' },
+  { level: 2, label: 'Media intensità' },
+  { level: 3, label: 'Alta intensità' },
+  { level: 4, label: 'Massima intensità' },
+];
+
 const classes = [
   {
     name: 'CROSS CARDIO',
     icon: '⚡',
     desc: 'Allenamento cardiovascolare ad alta intensità con esercizi funzionali. Brucia calorie, migliora la resistenza e il coordinamento.',
     level: 'Tutti i livelli',
+    intensity: 3,
   },
   {
     name: 'FUNCTIONAL TRAINING',
     icon: '🏋️',
     desc: 'Movimenti multi-articolari che replicano i gesti quotidiani. Migliora forza, stabilità e mobilità in modo completo.',
     level: 'Tutti i livelli',
+    intensity: 3,
   },
   {
     name: 'INTERVAL TRAINING',
     icon: '🔥',
     desc: 'Alternanza di fasi ad alta intensità e recupero attivo. Massimizza il consumo calorico e la performance cardiovascolare.',
     level: 'Intermedio / Avanzato',
+    intensity: 3,
   },
   {
     name: 'MET-CON',
     icon: '💥',
     desc: 'Metabolic Conditioning: circuiti che combinano forza e cardio per un effetto brucia-grassi prolungato nelle ore successive.',
     level: 'Intermedio / Avanzato',
+    intensity: 4,
   },
   {
     name: 'PILATES',
     icon: '🧘',
     desc: 'Disciplina che rafforza il core, migliora la postura e aumenta la flessibilità attraverso movimenti controllati e precisi.',
     level: 'Tutti i livelli',
+    intensity: 1,
   },
   {
     name: 'POSTURAL',
     icon: '⚖️',
     desc: 'Lavoro specifico sulla postura e sulla mobilità articolare. Ideale per chi soffre di dolori o vuole prevenirli.',
     level: 'Tutti i livelli',
+    intensity: 1,
   },
   {
     name: 'PRE-BOXING',
     icon: '🥊',
     desc: 'Tecnica boxe applicata al fitness: coordinazione, velocità e potenza senza contatto. Sfogo totale e divertimento garantito.',
     level: 'Tutti i livelli',
+    intensity: 4,
   },
   {
     name: 'ZUMBA',
     icon: '🎵',
     desc: 'Fitness dance che unisce movimenti di danza latina e internazionale. Efficace, coinvolgente e perfetto per chi odia la palestra classica.',
     level: 'Tutti i livelli',
+    intensity: 3,
   },
 ];
+
+// mappa nome-schedula → dati corso (dopo classes per evitare TDZ)
+const classLookup: Record<string, typeof classes[0]> = {
+  'POSTURALE':         classes.find(c => c.name === 'POSTURAL')!,
+  'PILATES':           classes.find(c => c.name === 'PILATES')!,
+  'INTERVAL TRAINING': classes.find(c => c.name === 'INTERVAL TRAINING')!,
+  'FUNZIONALE':        classes.find(c => c.name === 'FUNCTIONAL TRAINING')!,
+  'CROSS CARDIO':      classes.find(c => c.name === 'CROSS CARDIO')!,
+  'PREPUGILISTICA':    classes.find(c => c.name === 'PRE-BOXING')!,
+  'ZUMBA':             classes.find(c => c.name === 'ZUMBA')!,
+  'METCON':            classes.find(c => c.name === 'MET-CON')!,
+};
 ---
 
 <Layout title="Corsi Fitness — Recomp360" description="8 discipline di gruppo per ogni obiettivo: Cross Cardio, Functional Training, Pilates, Pre-Boxing e molto altro.">
@@ -87,22 +211,90 @@ const classes = [
     </div>
   </div>
 
-  <section class="section">
+  <section class="section classes-section">
     <div class="container">
       <div class="classes-detail-grid">
         {classes.map(c => (
           <div class="class-card">
-            <div class="class-card__header">
+            <div class="class-card__img">
               <span class="class-card__icon">{c.icon}</span>
-              <div>
-                <h3>{c.name}</h3>
-                <span class="class-card__level">{c.level}</span>
-              </div>
             </div>
-            <p>{c.desc}</p>
+            <div class="class-card__body">
+              <h3 class="class-card__name">{c.name}</h3>
+              <span class="class-card__level">{c.level}</span>
+              <p>{c.desc}</p>
+            </div>
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR SECTION -->
+  <section class="section schedule-section reveal">
+    <div class="container">
+      <h2>ORARI <span class="text-accent">CORSI</span></h2>
+
+      <div class="schedule-scroll">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th class="sch-th-time"></th>
+              {scheduleLabels.map(d => <th>{d}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {schedule.map(row => (
+              <tr>
+                <td class="sch-td-time">{row.time}</td>
+                {row.cells.map(cell => {
+                  const course = cell ? classLookup[cell.name] : null;
+                  return (
+                    <td
+                      class={`sch-td ${cell ? 'sch-td--filled sch-clickable' : 'sch-td--empty'}`}
+                      data-name={cell?.name ?? ''}
+                      data-icon={course?.icon ?? ''}
+                      data-intensity={String(course?.intensity ?? 0)}
+                      data-desc={course?.desc ?? ''}
+                      data-room={cell?.room ?? ''}
+                    >
+                      {cell && (
+                        <div class="sch-cell">
+                          {cell.altTime && <span class="sch-cell__alt-time">{cell.altTime}</span>}
+                          <span class="sch-cell__name">{cell.name}</span>
+                          {cell.room && <span class="sch-cell__room">{cell.room}</span>}
+                          <div class="sch-dots">
+                            {[1,2,3,4].map(i => (
+                              <span class={`dot ${i <= cell.level ? 'dot--on' : 'dot--off'}`}></span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="schedule-legend">
+        {intensityLegend.map(({ level, label }) => (
+          <div class="legend-item">
+            <div class="sch-dots">
+              {[1,2,3,4].map(i => (
+                <span class={`dot ${i <= level ? 'dot--on' : 'dot--off'}`}></span>
+              ))}
+            </div>
+            <span class="legend-label">{label}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="schedule-disclaimer">
+        Gli istruttori, gli orari e la tipologia di lezione possono variare durante l'anno per garantire la qualità del servizio.
+      </p>
     </div>
   </section>
 
@@ -132,6 +324,31 @@ const classes = [
       </div>
     </div>
   </section>
+
+  <!-- COURSE MODAL -->
+  <div id="course-modal" class="course-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="course-modal__backdrop"></div>
+    <div class="course-modal__card">
+      <button class="course-modal__close" aria-label="Chiudi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="course-modal__header">
+        <span class="course-modal__icon" id="modal-icon"></span>
+        <div>
+          <h3 class="course-modal__name" id="modal-name"></h3>
+          <div class="course-modal__intensity">
+            <div class="sch-dots" id="modal-dots"></div>
+            <span class="course-modal__intensity-label" id="modal-intensity-label"></span>
+          </div>
+        </div>
+      </div>
+      <p class="course-modal__desc" id="modal-desc"></p>
+      <div class="course-modal__room-wrap" id="modal-room-wrap">
+        <span class="course-modal__room-tag">Sala</span>
+        <span id="modal-room"></span>
+      </div>
+    </div>
+  </div>
 
   <Footer />
   <ContactModal />
@@ -164,20 +381,27 @@ const classes = [
 }
 .class-card {
   background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: 4px; padding: 32px 28px;
+  border-radius: 4px; overflow: hidden;
+  display: flex; flex-direction: column;
   transition: border-color .2s;
 }
 .class-card:hover { border-color: var(--accent); }
-.class-card__header {
-  display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+.class-card__img {
+  width: 100%; height: 200px;
+  background: var(--bg-alt);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
 }
-.class-card__icon { font-size: 32px; flex-shrink: 0; }
-.class-card h3 { margin: 0 0 4px; }
+.class-card__icon { font-size: 56px; }
+.class-card__body { padding: 24px 28px; flex: 1; }
+.class-card__name { color: var(--accent); margin: 0 0 6px; }
 .class-card__level {
-  font-size: 11px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--accent);
+  display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
 }
-.class-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+.class-card p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+
+.classes-section { padding-bottom: 0; }
 
 /* ── OFFER ─────────────────────────────────────────────────────────────────── */
 .offer-section { border-top: 1px solid var(--border); overflow: hidden; }
@@ -229,4 +453,272 @@ const classes = [
 }
 
 @media (max-width: 768px) { .classes-detail-grid { grid-template-columns: 1fr; } }
+
+/* ── SCHEDULE TABLE ──────────────────────────────────────────────────────── */
+.schedule-section { border-top: 1px solid var(--border); }
+
+.schedule-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-radius: 4px;
+}
+
+.schedule-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.schedule-table thead th {
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 55%),
+    var(--accent);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  padding: 16px 8px;
+  border-bottom: 2px solid #a01f1f;
+  border-right: 1px solid rgba(0,0,0,0.20);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.20), 0 4px 10px rgba(0,0,0,0.45);
+  position: relative;
+  z-index: 1;
+}
+.sch-th-time { width: 72px; }
+
+.schedule-table td {
+  border: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sch-td-time {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 1px;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.20) 0%, transparent 60%),
+    var(--accent);
+  border-right: 2px solid #a01f1f;
+  border-bottom: 1px solid rgba(0,0,0,0.20);
+  padding: 0 12px;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow: inset 1px 0 0 rgba(0,0,0,0.20), 3px 0 8px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.sch-td {
+  padding: 0;
+  height: 88px;
+}
+.sch-td--filled { background: var(--bg-card); }
+.sch-td--empty  { background: var(--bg); }
+
+.sch-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 6px;
+  height: 100%;
+}
+
+.sch-cell__alt-time {
+  font-size: 10px;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.sch-cell__name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-align: center;
+}
+.sch-cell__room {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.sch-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+:global(.dot) {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+:global(.dot--on)  { background: var(--accent); }
+:global(.dot--off) { background: rgba(255,255,255,0.12); }
+
+/* Legend */
+.schedule-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 36px;
+  margin-top: 28px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.legend-label {
+  font-size: 11px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+.schedule-disclaimer {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--white);
+  font-style: italic;
+  max-width: 100%;
+}
+
+/* Hover su celle schedula */
+.sch-clickable { cursor: pointer; transition: background .15s, border-color .15s; }
+.sch-clickable:hover { background: var(--accent-dim) !important; outline: 1px solid var(--accent); outline-offset: -1px; }
+
+/* ── COURSE MODAL ─────────────────────────────────────────────────────────── */
+.course-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s;
+}
+.course-modal.is-open { opacity: 1; pointer-events: auto; }
+
+.course-modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+.course-modal__card {
+  position: relative; z-index: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: 4px;
+  padding: 36px 32px;
+  width: min(480px, 90vw);
+  transform: translateY(12px);
+  transition: transform .2s;
+}
+.course-modal.is-open .course-modal__card { transform: translateY(0); }
+
+.course-modal__close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted); transition: color .15s;
+  padding: 4px;
+}
+.course-modal__close:hover { color: var(--white); }
+
+.course-modal__header {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 20px;
+}
+.course-modal__icon { font-size: 36px; flex-shrink: 0; }
+.course-modal__name {
+  color: var(--accent); margin: 0 0 4px; font-size: clamp(16px,1.6vw,22px);
+}
+.course-modal__intensity {
+  display: flex; align-items: center; gap: 8px; margin-top: 4px;
+}
+.course-modal__intensity-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.course-modal__desc {
+  font-size: 15px; color: rgba(255,255,255,0.85);
+  line-height: 1.75; margin: 0 0 16px; max-width: 100%;
+}
+.course-modal__room-wrap {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.course-modal__room-tag {
+  background: var(--accent-dim); color: var(--accent);
+  padding: 2px 8px; border-radius: 2px;
+  font-weight: 700; font-size: 10px; letter-spacing: 1.5px;
+}
 </style>
+
+<script>
+const modal           = document.getElementById('course-modal')!;
+const backdrop        = modal.querySelector('.course-modal__backdrop')!;
+const closeBtn        = modal.querySelector('.course-modal__close')!;
+const elIcon          = document.getElementById('modal-icon')!;
+const elName          = document.getElementById('modal-name')!;
+const elDots          = document.getElementById('modal-dots')!;
+const elIntensityLabel= document.getElementById('modal-intensity-label')!;
+const elDesc          = document.getElementById('modal-desc')!;
+const elRoom          = document.getElementById('modal-room')!;
+const elRoomWrap      = document.getElementById('modal-room-wrap')!;
+
+const intensityLabels: Record<number, string> = {
+  1: 'Bassa intensità',
+  2: 'Media intensità',
+  3: 'Alta intensità',
+  4: 'Massima intensità',
+};
+
+function openModal(td: HTMLElement) {
+  elIcon.textContent = td.dataset.icon ?? '';
+  elName.textContent = td.dataset.name ?? '';
+  elDesc.textContent = td.dataset.desc ?? '';
+
+  const lvl = parseInt(td.dataset.intensity ?? '0', 10);
+  elDots.innerHTML = [1,2,3,4].map(i =>
+    `<span class="dot ${i <= lvl ? 'dot--on' : 'dot--off'}"></span>`
+  ).join('');
+  elIntensityLabel.textContent = intensityLabels[lvl] ?? '';
+
+  const room = td.dataset.room ?? '';
+  elRoom.textContent = room;
+  (elRoomWrap as HTMLElement).style.display = room ? 'flex' : 'none';
+
+  modal.setAttribute('aria-hidden', 'false');
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.setAttribute('aria-hidden', 'true');
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
+  td.addEventListener('click', () => openModal(td));
+});
+
+backdrop.addEventListener('click', closeModal);
+closeBtn.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
