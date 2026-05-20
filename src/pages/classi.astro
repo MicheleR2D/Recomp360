@@ -178,6 +178,13 @@ const classes = [
   },
 ];
 
+// slot per giorno (usato dalla vista mobile a tab)
+const daySlots = scheduleLabels.map((_, dayIdx) =>
+  schedule
+    .filter(row => row.cells[dayIdx] !== null)
+    .map(row => ({ time: row.time, cell: row.cells[dayIdx]! }))
+);
+
 // mappa nome-schedula → dati corso (dopo classes per evitare TDZ)
 const classLookup: Record<string, typeof classes[0]> = {
   'POSTURALE':         classes.find(c => c.name === 'POSTURAL')!,
@@ -300,6 +307,62 @@ const classLookup: Record<string, typeof classes[0]> = {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <!-- ── Mobile: day tabs ─────────────────────────────────────────────── -->
+      <div class="mobile-schedule">
+        <div class="day-tabs" role="tablist">
+          {scheduleLabels.map((label, i) => (
+            <button
+              class={`day-tab${i === 0 ? ' is-active' : ''}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              data-day={String(i)}
+            >{label}</button>
+          ))}
+        </div>
+        <div class="day-panels">
+          {daySlots.map((slots, dayIdx) => (
+            <div
+              class={`day-panel${dayIdx === 0 ? ' is-active' : ''}`}
+              role="tabpanel"
+              data-day={String(dayIdx)}
+            >
+              {slots.length === 0 ? (
+                <p class="day-panel__empty">Nessun corso programmato</p>
+              ) : (
+                slots.map(({ time, cell }) => {
+                  const course = classLookup[cell.name];
+                  return (
+                    <div
+                      class="day-slot sch-clickable"
+                      data-name={cell.name}
+                      data-icon={course?.icon ?? ''}
+                      data-intensity={String(course?.intensity ?? 0)}
+                      data-desc={course?.desc ?? ''}
+                      data-room={cell.room ?? ''}
+                      data-image={course?.image ?? ''}
+                    >
+                      <span class="day-slot__time">{cell.altTime ?? time}</span>
+                      <div class="day-slot__body">
+                        <span class="day-slot__name">{cell.name}</span>
+                        {cell.room && <span class="day-slot__room">{cell.room}</span>}
+                      </div>
+                      <div class="day-slot__right">
+                        <div class="sch-dots">
+                          {[1,2,3,4].map(i => (
+                            <span class={`dot ${i <= cell.level ? 'dot--on' : 'dot--off'}`}></span>
+                          ))}
+                        </div>
+                        <svg class="day-slot__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div class="schedule-legend">
@@ -642,6 +705,125 @@ const classLookup: Record<string, typeof classes[0]> = {
 .sch-clickable { cursor: pointer; transition: background .15s, border-color .15s; }
 .sch-clickable:hover { background: var(--accent-dim) !important; outline: 1px solid var(--accent); outline-offset: -1px; }
 
+/* ── MOBILE SCHEDULE (day tabs) ───────────────────────────────────────────── */
+.mobile-schedule { display: none; margin-top: 28px; }
+
+@media (max-width: 768px) {
+  .schedule-scroll { display: none; }
+  .mobile-schedule  { display: block; }
+}
+
+/* Tab row */
+.day-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--accent);
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.day-tabs::-webkit-scrollbar { display: none; }
+
+.day-tab {
+  flex: 1;
+  min-width: 48px;
+  padding: 10px 6px;
+  background: var(--bg-card);
+  border: none;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.day-tab:first-child { border-left: 1px solid var(--border); }
+
+.day-tab.is-active {
+  background: var(--accent);
+  color: var(--white);
+  border-top-color: var(--accent);
+  border-right-color: rgba(0,0,0,0.2);
+}
+.day-tab:not(.is-active):hover { background: var(--bg-alt); color: var(--white); }
+
+/* Panels */
+.day-panels {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-bottom: 2px solid var(--accent);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+
+.day-panel { display: none; }
+.day-panel.is-active { display: block; }
+
+.day-panel__empty {
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Slot rows */
+.day-slot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  transition: background .15s;
+}
+.day-slot:last-child { border-bottom: none; }
+.day-slot:hover { background: var(--accent-dim) !important; }
+
+.day-slot__time {
+  flex-shrink: 0;
+  width: 44px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.day-slot__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.day-slot__name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.day-slot__room {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.day-slot__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.day-slot__chevron { color: var(--text-muted); opacity: 0.5; }
+
 /* ── COURSE MODAL ─────────────────────────────────────────────────────────── */
 .course-modal {
   position: fixed; inset: 0; z-index: 200;
@@ -783,4 +965,21 @@ document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
 backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Day tabs ────────────────────────────────────────────────────────────────
+const dayTabs   = Array.from(document.querySelectorAll<HTMLElement>('.day-tab'));
+const dayPanels = Array.from(document.querySelectorAll<HTMLElement>('.day-panel'));
+
+dayTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const day = tab.dataset.day!;
+    dayTabs.forEach(t => {
+      t.classList.toggle('is-active', t.dataset.day === day);
+      t.setAttribute('aria-selected', String(t.dataset.day === day));
+    });
+    dayPanels.forEach(p => {
+      p.classList.toggle('is-active', p.dataset.day === day);
+    });
+  });
+});
 </script>
