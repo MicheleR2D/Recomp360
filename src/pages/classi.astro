@@ -349,7 +349,7 @@ const classLookup: Record<string, typeof classes[0]> = {
   </section>
 
   <!-- COURSE MODAL -->
-  <div id="course-modal" class="course-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="course-modal" class="course-modal" role="dialog" aria-modal="true" aria-hidden="true" data-base={base}>
     <div class="course-modal__backdrop"></div>
     <div class="course-modal__card">
       <button class="course-modal__close" aria-label="Chiudi">
@@ -721,6 +721,7 @@ const classLookup: Record<string, typeof classes[0]> = {
 
 <script>
 const modal           = document.getElementById('course-modal')!;
+const BASE            = modal.dataset.base ?? '/';
 const backdrop        = modal.querySelector('.course-modal__backdrop')!;
 const closeBtn        = modal.querySelector('.course-modal__close')!;
 const elIcon          = document.getElementById('modal-icon')!;
@@ -747,7 +748,7 @@ function openModal(td: HTMLElement) {
 
   const img = td.dataset.image ?? '';
   if (img) {
-    elImg.src = `images/${img}`;
+    elImg.src = `${BASE}images/${img}`;
     elImg.alt = td.dataset.name ?? '';
     elImgWrap.style.display = 'block';
   } else {
