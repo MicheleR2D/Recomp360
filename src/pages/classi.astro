@@ -226,6 +226,26 @@ const classLookup: Record<string, typeof classes[0]> = {
     </div>
   </div>
 
+  <!-- INTRO SECTION -->
+  <section class="section intro-section">
+    <div class="container intro-section__inner">
+      <div>
+        <h2 class="intro-section__title">CORSI <span class="text-accent">FITNESS</span></h2>
+        <p class="intro-section__text">
+          8 discipline progettate per ogni obiettivo, livello e stile di vita.
+          Dai corsi ad alta intensità come MET-CON e Interval Training, alle sessioni
+          di movimento controllato come Pilates e Posturale — ogni lezione è guidata
+          da istruttori specializzati e pensata per darti risultati concreti, settimana
+          dopo settimana.
+        </p>
+      </div>
+      <a href="#schedule" class="btn-outline intro-section__cta">
+        Vai agli orari
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      </a>
+    </div>
+  </section>
+
   <section class="section classes-section">
     <div class="container">
       <div class="classes-detail-grid">
@@ -260,7 +280,7 @@ const classLookup: Record<string, typeof classes[0]> = {
   </section>
 
   <!-- CALENDAR SECTION -->
-  <section class="section schedule-section reveal">
+  <section id="schedule" class="section schedule-section reveal">
     <div class="container">
       <h2>ORARI <span class="text-accent">CORSI</span></h2>
 
@@ -307,6 +327,16 @@ const classLookup: Record<string, typeof classes[0]> = {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <!-- scroll arrows (desktop) -->
+      <div class="sch-nav" id="sch-nav" aria-hidden="true">
+        <button class="sch-nav__btn" id="sch-prev" aria-label="Scorri a sinistra">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="sch-nav__btn" id="sch-next" aria-label="Scorri a destra">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
 
       <!-- ── Mobile: day tabs ─────────────────────────────────────────────── -->
@@ -447,6 +477,42 @@ const classLookup: Record<string, typeof classes[0]> = {
 <style>
 .text-accent { color: var(--accent); }
 
+/* ── INTRO SECTION ─────────────────────────────────────────────────────────── */
+.intro-section {
+  border-bottom: 1px solid var(--border);
+}
+.intro-section__inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+.intro-section__title {
+  margin-bottom: 20px;
+}
+.intro-section__text {
+  font-size: 17px;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.75;
+  max-width: 680px;
+  margin: 0;
+}
+.intro-section__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  .intro-section__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
 /* ── HERO ENTRANCE ─────────────────────────────────────────────────────────── */
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(40px); }
@@ -566,13 +632,53 @@ const classLookup: Record<string, typeof classes[0]> = {
   border-bottom: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
   border-radius: 4px;
+  /* bleed beyond container padding for extra width */
+  margin-inline: -40px;
+}
+@media (max-width: 900px) {
+  .schedule-scroll { margin-inline: -20px; }
 }
 
 .schedule-table {
   width: 100%;
-  min-width: 680px;
+  min-width: 760px;
   border-collapse: collapse;
   table-layout: fixed;
+}
+
+/* ── Scroll arrows ─────────────────────────────────────────────────────────── */
+.sch-nav {
+  display: none; /* hidden on mobile */
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 14px;
+}
+@media (min-width: 769px) {
+  .sch-nav { display: flex; }
+}
+.sch-nav__btn {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.sch-nav__btn:hover {
+  background: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+.sch-nav__btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.sch-nav__btn:disabled:hover {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border-color: var(--border);
 }
 
 .schedule-table thead th {
@@ -965,6 +1071,27 @@ document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
 backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Schedule scroll arrows ──────────────────────────────────────────────────
+const schScroll = document.querySelector<HTMLElement>('.schedule-scroll');
+const btnPrev   = document.getElementById('sch-prev') as HTMLButtonElement | null;
+const btnNext   = document.getElementById('sch-next') as HTMLButtonElement | null;
+const STEP      = 220;
+
+function updateArrows() {
+  if (!schScroll || !btnPrev || !btnNext) return;
+  btnPrev.disabled = schScroll.scrollLeft <= 0;
+  btnNext.disabled = schScroll.scrollLeft >= schScroll.scrollWidth - schScroll.clientWidth - 1;
+}
+
+btnPrev?.addEventListener('click', () => {
+  schScroll?.scrollBy({ left: -STEP, behavior: 'smooth' });
+});
+btnNext?.addEventListener('click', () => {
+  schScroll?.scrollBy({ left: STEP, behavior: 'smooth' });
+});
+schScroll?.addEventListener('scroll', updateArrows, { passive: true });
+updateArrows();
 
 // ── Day tabs ────────────────────────────────────────────────────────────────
 const dayTabs   = Array.from(document.querySelectorAll<HTMLElement>('.day-tab'));
