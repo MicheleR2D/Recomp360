@@ -635,9 +635,8 @@ const classLookup: Record<string, typeof classes[0]> = {
   /* bleed beyond container padding for extra width */
   margin-inline: -40px;
 }
-@media (max-width: 900px) {
-  .schedule-scroll { margin-inline: -20px; }
-}
+@media (max-width: 900px) { .schedule-scroll { margin-inline: -20px; } }
+@media (max-width: 600px) { .schedule-scroll { margin-inline: -16px; } }
 
 .schedule-table {
   width: 100%;
@@ -648,13 +647,10 @@ const classLookup: Record<string, typeof classes[0]> = {
 
 /* ── Scroll arrows ─────────────────────────────────────────────────────────── */
 .sch-nav {
-  display: none; /* hidden on mobile */
+  display: flex;
   justify-content: flex-end;
   gap: 8px;
   margin-top: 14px;
-}
-@media (min-width: 769px) {
-  .sch-nav { display: flex; }
 }
 .sch-nav__btn {
   width: 38px; height: 38px;
@@ -811,13 +807,8 @@ const classLookup: Record<string, typeof classes[0]> = {
 .sch-clickable { cursor: pointer; transition: background .15s, border-color .15s; }
 .sch-clickable:hover { background: var(--accent-dim) !important; outline: 1px solid var(--accent); outline-offset: -1px; }
 
-/* ── MOBILE SCHEDULE (day tabs) ───────────────────────────────────────────── */
-.mobile-schedule { display: none; margin-top: 28px; }
-
-@media (max-width: 768px) {
-  .schedule-scroll { display: none; }
-  .mobile-schedule  { display: block; }
-}
+/* ── MOBILE SCHEDULE (day tabs) — disabilitato: si usa la tabella ovunque ── */
+.mobile-schedule { display: none !important; }
 
 /* Tab row */
 .day-tabs {
