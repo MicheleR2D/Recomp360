@@ -115,6 +115,7 @@ const classes = [
   {
     name: 'CROSS CARDIO',
     icon: '⚡',
+    image: 'gym-cardio.jpg',
     desc: 'Allenamento cardiovascolare ad alta intensità con esercizi funzionali. Brucia calorie, migliora la resistenza e il coordinamento.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -122,6 +123,7 @@ const classes = [
   {
     name: 'FUNCTIONAL TRAINING',
     icon: '🏋️',
+    image: 'metodo-hero.jpg',
     desc: 'Movimenti multi-articolari che replicano i gesti quotidiani. Migliora forza, stabilità e mobilità in modo completo.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -129,6 +131,7 @@ const classes = [
   {
     name: 'INTERVAL TRAINING',
     icon: '🔥',
+    image: 'Metodo recomp 1.jpg',
     desc: 'Alternanza di fasi ad alta intensità e recupero attivo. Massimizza il consumo calorico e la performance cardiovascolare.',
     level: 'Intermedio / Avanzato',
     intensity: 3,
@@ -136,6 +139,7 @@ const classes = [
   {
     name: 'MET-CON',
     icon: '💥',
+    image: '1000204789-scaled.jpg',
     desc: 'Metabolic Conditioning: circuiti che combinano forza e cardio per un effetto brucia-grassi prolungato nelle ore successive.',
     level: 'Intermedio / Avanzato',
     intensity: 4,
@@ -143,6 +147,7 @@ const classes = [
   {
     name: 'PILATES',
     icon: '🧘',
+    image: 'Metodo recomp 2.jpg',
     desc: 'Disciplina che rafforza il core, migliora la postura e aumenta la flessibilità attraverso movimenti controllati e precisi.',
     level: 'Tutti i livelli',
     intensity: 1,
@@ -150,6 +155,7 @@ const classes = [
   {
     name: 'POSTURAL',
     icon: '⚖️',
+    image: 'pt-session.jpg',
     desc: 'Lavoro specifico sulla postura e sulla mobilità articolare. Ideale per chi soffre di dolori o vuole prevenirli.',
     level: 'Tutti i livelli',
     intensity: 1,
@@ -157,6 +163,7 @@ const classes = [
   {
     name: 'PRE-BOXING',
     icon: '🥊',
+    image: 'fitness recomp.jpg',
     desc: 'Tecnica boxe applicata al fitness: coordinazione, velocità e potenza senza contatto. Sfogo totale e divertimento garantito.',
     level: 'Tutti i livelli',
     intensity: 4,
@@ -164,6 +171,7 @@ const classes = [
   {
     name: 'ZUMBA',
     icon: '🎵',
+    image: '1000204752-scaled.jpg',
     desc: 'Fitness dance che unisce movimenti di danza latina e internazionale. Efficace, coinvolgente e perfetto per chi odia la palestra classica.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -217,7 +225,12 @@ const classLookup: Record<string, typeof classes[0]> = {
         {classes.map(c => (
           <div class="class-card">
             <div class="class-card__img">
-              <span class="class-card__icon">{c.icon}</span>
+              <img
+                src={`${base}images/${c.image}`}
+                alt={c.name}
+                class="class-card__photo"
+                loading="lazy"
+              />
             </div>
             <div class="class-card__body">
               <h3 class="class-card__name">{c.name}</h3>
@@ -389,10 +402,18 @@ const classLookup: Record<string, typeof classes[0]> = {
 .class-card__img {
   width: 100%; height: 200px;
   background: var(--bg-alt);
-  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
   border-bottom: 1px solid var(--border);
+  position: relative;
 }
-.class-card__icon { font-size: 56px; }
+.class-card__photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .4s ease;
+}
+.class-card:hover .class-card__photo { transform: scale(1.04); }
 .class-card__body { padding: 24px 28px; flex: 1; }
 .class-card__name { color: var(--accent); margin: 0 0 6px; }
 .class-card__level {
