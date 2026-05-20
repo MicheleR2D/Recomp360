@@ -918,7 +918,7 @@ const btnNext    = document.getElementById('sch-next') as HTMLButtonElement;
 const navLabel   = document.getElementById('sch-nav-label')!;
 let currentDay   = 0;
 
-function goToDay(idx: number) {
+function goToDay(idx: number, scrollTab = true) {
   currentDay = idx;
   const key = String(idx);
   dayTabs.forEach(t => {
@@ -932,8 +932,10 @@ function goToDay(idx: number) {
   btnPrev.disabled = idx === 0;
   btnNext.disabled = idx === dayTabs.length - 1;
 
-  // scorri il tab attivo in vista
-  dayTabs[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  // scorri il tab attivo in vista (solo su interazione utente, non al caricamento)
+  if (scrollTab) {
+    dayTabs[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
 }
 
 dayTabs.forEach(tab => {
@@ -943,5 +945,5 @@ dayTabs.forEach(tab => {
 btnPrev.addEventListener('click', () => { if (currentDay > 0) goToDay(currentDay - 1); });
 btnNext.addEventListener('click', () => { if (currentDay < dayTabs.length - 1) goToDay(currentDay + 1); });
 
-goToDay(0); // inizializza stato frecce e label
+goToDay(0, false); // inizializza stato senza scrollare
 </script>
