@@ -284,63 +284,9 @@ const classLookup: Record<string, typeof classes[0]> = {
     <div class="container">
       <h2>ORARI <span class="text-accent">CORSI</span></h2>
 
-      <div class="schedule-scroll">
-        <table class="schedule-table">
-          <thead>
-            <tr>
-              <th class="sch-th-time"></th>
-              {scheduleLabels.map(d => <th>{d}</th>)}
-            </tr>
-          </thead>
-          <tbody>
-            {schedule.map(row => (
-              <tr>
-                <td class="sch-td-time">{row.time}</td>
-                {row.cells.map(cell => {
-                  const course = cell ? classLookup[cell.name] : null;
-                  return (
-                    <td
-                      class={`sch-td ${cell ? 'sch-td--filled sch-clickable' : 'sch-td--empty'}`}
-                      data-name={cell?.name ?? ''}
-                      data-icon={course?.icon ?? ''}
-                      data-intensity={String(course?.intensity ?? 0)}
-                      data-desc={course?.desc ?? ''}
-                      data-room={cell?.room ?? ''}
-                      data-image={course?.image ?? ''}
-                    >
-                      {cell && (
-                        <div class="sch-cell">
-                          {cell.altTime && <span class="sch-cell__alt-time">{cell.altTime}</span>}
-                          <span class="sch-cell__name">{cell.name}</span>
-                          {cell.room && <span class="sch-cell__room">{cell.room}</span>}
-                          <div class="sch-dots">
-                            {[1,2,3,4].map(i => (
-                              <span class={`dot ${i <= cell.level ? 'dot--on' : 'dot--off'}`}></span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <!-- ── Orario: day tabs + frecce (tutti i breakpoint) ─────────────────── -->
+      <div class="day-schedule">
 
-      <!-- scroll arrows (desktop) -->
-      <div class="sch-nav" id="sch-nav" aria-hidden="true">
-        <button class="sch-nav__btn" id="sch-prev" aria-label="Scorri a sinistra">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="sch-nav__btn" id="sch-next" aria-label="Scorri a destra">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
-      <!-- ── Mobile: day tabs ─────────────────────────────────────────────── -->
-      <div class="mobile-schedule">
         <div class="day-tabs" role="tablist">
           {scheduleLabels.map((label, i) => (
             <button
@@ -351,6 +297,7 @@ const classLookup: Record<string, typeof classes[0]> = {
             >{label}</button>
           ))}
         </div>
+
         <div class="day-panels">
           {daySlots.map((slots, dayIdx) => (
             <div
@@ -393,6 +340,18 @@ const classLookup: Record<string, typeof classes[0]> = {
             </div>
           ))}
         </div>
+
+        <!-- frecce navigazione giorni -->
+        <div class="sch-nav">
+          <button class="sch-nav__btn" id="sch-prev" aria-label="Giorno precedente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <span class="sch-nav__label" id="sch-nav-label">LUN</span>
+          <button class="sch-nav__btn" id="sch-next" aria-label="Giorno successivo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
       </div>
 
       <div class="schedule-legend">
@@ -620,145 +579,8 @@ const classLookup: Record<string, typeof classes[0]> = {
 
 @media (max-width: 768px) { .classes-detail-grid { grid-template-columns: 1fr; } }
 
-/* ── SCHEDULE TABLE ──────────────────────────────────────────────────────── */
+/* ── SCHEDULE ─────────────────────────────────────────────────────────────── */
 .schedule-section { border-top: 1px solid var(--border); }
-
-.schedule-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  margin-top: 40px;
-  border-top: 1px solid var(--border);
-  border-left: 1px solid var(--border);
-  border-bottom: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
-  border-radius: 4px;
-  /* bleed beyond container padding for extra width */
-  margin-inline: -40px;
-}
-@media (max-width: 900px) { .schedule-scroll { margin-inline: -20px; } }
-@media (max-width: 600px) { .schedule-scroll { margin-inline: -16px; } }
-
-.schedule-table {
-  width: 100%;
-  min-width: 760px;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-/* ── Scroll arrows ─────────────────────────────────────────────────────────── */
-.sch-nav {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 14px;
-}
-.sch-nav__btn {
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.sch-nav__btn:hover {
-  background: var(--accent);
-  color: var(--white);
-  border-color: var(--accent);
-}
-.sch-nav__btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-.sch-nav__btn:disabled:hover {
-  background: var(--bg-card);
-  color: var(--text-muted);
-  border-color: var(--border);
-}
-
-.schedule-table thead th {
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 55%),
-    var(--accent);
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  padding: 16px 8px;
-  border-bottom: 2px solid #a01f1f;
-  border-right: 1px solid rgba(0,0,0,0.20);
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  box-shadow: inset 0 1px 0 rgba(0,0,0,0.20), 0 4px 10px rgba(0,0,0,0.45);
-  position: relative;
-  z-index: 1;
-}
-.sch-th-time { width: 72px; }
-
-.schedule-table td {
-  border: 1px solid var(--border);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.sch-td-time {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--white);
-  letter-spacing: 1px;
-  background:
-    linear-gradient(to right, rgba(0,0,0,0.20) 0%, transparent 60%),
-    var(--accent);
-  border-right: 2px solid #a01f1f;
-  border-bottom: 1px solid rgba(0,0,0,0.20);
-  padding: 0 12px;
-  white-space: nowrap;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  box-shadow: inset 1px 0 0 rgba(0,0,0,0.20), 3px 0 8px rgba(0,0,0,0.4);
-  position: relative;
-  z-index: 1;
-}
-
-.sch-td {
-  padding: 0;
-  height: 88px;
-}
-.sch-td--filled { background: var(--bg-card); }
-.sch-td--empty  { background: var(--bg); }
-
-.sch-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 10px 6px;
-  height: 100%;
-}
-
-.sch-cell__alt-time {
-  font-size: 10px;
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-.sch-cell__name {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--white);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  line-height: 1.3;
-  text-align: center;
-}
-.sch-cell__room {
-  font-size: 9px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
 
 .sch-dots {
   display: flex;
@@ -803,22 +625,54 @@ const classLookup: Record<string, typeof classes[0]> = {
   max-width: 100%;
 }
 
+/* Frecce navigazione giorni */
+.sch-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.sch-nav__btn {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.sch-nav__btn:hover { background: var(--accent); color: var(--white); border-color: var(--accent); }
+.sch-nav__btn:disabled { opacity: 0.25; cursor: default; pointer-events: none; }
+.sch-nav__label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 /* Hover su celle schedula */
-.sch-clickable { cursor: pointer; transition: background .15s, border-color .15s; }
-.sch-clickable:hover { background: var(--accent-dim) !important; outline: 1px solid var(--accent); outline-offset: -1px; }
+.sch-clickable { cursor: pointer; transition: background .15s; }
+.sch-clickable:hover { background: var(--accent-dim) !important; }
 
-/* ── MOBILE SCHEDULE (day tabs) ───────────────────────────────────────────── */
-.mobile-schedule { display: none; margin-top: 28px; }
-
-@media (max-width: 768px) {
-  .mobile-schedule { display: block; }
+/* ── DAY-SCHEDULE (day tabs + frecce, tutti i breakpoint) ─────────────────── */
+.day-schedule {
+  margin-top: 40px;
+  border: 1px solid var(--border);
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 /* Tab row */
 .day-tabs {
   display: flex;
   border-bottom: 2px solid var(--accent);
-  gap: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -827,40 +681,32 @@ const classLookup: Record<string, typeof classes[0]> = {
 
 .day-tab {
   flex: 1;
-  min-width: 48px;
-  padding: 10px 6px;
+  min-width: 52px;
+  padding: 14px 8px;
   background: var(--bg-card);
   border: none;
-  border-top: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  border-bottom: none;
   color: var(--text-muted);
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
   transition: background .15s, color .15s;
+  white-space: nowrap;
 }
-.day-tab:first-child { border-left: 1px solid var(--border); }
+.day-tab:last-child { border-right: none; }
 
 .day-tab.is-active {
-  background: var(--accent);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 55%), var(--accent);
   color: var(--white);
-  border-top-color: var(--accent);
-  border-right-color: rgba(0,0,0,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 .day-tab:not(.is-active):hover { background: var(--bg-alt); color: var(--white); }
 
 /* Panels */
-.day-panels {
-  border: 1px solid var(--border);
-  border-top: none;
-  border-bottom: 2px solid var(--accent);
-  border-radius: 0 0 4px 4px;
-  overflow: hidden;
-}
+.day-panels { background: var(--bg); }
 
 .day-panel { display: none; }
 .day-panel.is-active { display: block; }
@@ -1067,41 +913,38 @@ backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ── Schedule scroll arrows ──────────────────────────────────────────────────
-const schScroll = document.querySelector<HTMLElement>('.schedule-scroll');
-const btnPrev   = document.getElementById('sch-prev') as HTMLButtonElement | null;
-const btnNext   = document.getElementById('sch-next') as HTMLButtonElement | null;
-const STEP      = 220;
+// ── Day tabs + frecce navigazione ──────────────────────────────────────────
+const dayTabs    = Array.from(document.querySelectorAll<HTMLElement>('.day-tab'));
+const dayPanels  = Array.from(document.querySelectorAll<HTMLElement>('.day-panel'));
+const btnPrev    = document.getElementById('sch-prev') as HTMLButtonElement;
+const btnNext    = document.getElementById('sch-next') as HTMLButtonElement;
+const navLabel   = document.getElementById('sch-nav-label')!;
+let currentDay   = 0;
 
-function updateArrows() {
-  if (!schScroll || !btnPrev || !btnNext) return;
-  btnPrev.disabled = schScroll.scrollLeft <= 0;
-  btnNext.disabled = schScroll.scrollLeft >= schScroll.scrollWidth - schScroll.clientWidth - 1;
+function goToDay(idx: number) {
+  currentDay = idx;
+  const key = String(idx);
+  dayTabs.forEach(t => {
+    t.classList.toggle('is-active', t.dataset.day === key);
+    t.setAttribute('aria-selected', String(t.dataset.day === key));
+  });
+  dayPanels.forEach(p => {
+    p.classList.toggle('is-active', p.dataset.day === key);
+  });
+  navLabel.textContent = dayTabs[idx]?.textContent ?? '';
+  btnPrev.disabled = idx === 0;
+  btnNext.disabled = idx === dayTabs.length - 1;
+
+  // scorri il tab attivo in vista
+  dayTabs[idx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
-btnPrev?.addEventListener('click', () => {
-  schScroll?.scrollBy({ left: -STEP, behavior: 'smooth' });
-});
-btnNext?.addEventListener('click', () => {
-  schScroll?.scrollBy({ left: STEP, behavior: 'smooth' });
-});
-schScroll?.addEventListener('scroll', updateArrows, { passive: true });
-updateArrows();
-
-// ── Day tabs ────────────────────────────────────────────────────────────────
-const dayTabs   = Array.from(document.querySelectorAll<HTMLElement>('.day-tab'));
-const dayPanels = Array.from(document.querySelectorAll<HTMLElement>('.day-panel'));
-
 dayTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    const day = tab.dataset.day!;
-    dayTabs.forEach(t => {
-      t.classList.toggle('is-active', t.dataset.day === day);
-      t.setAttribute('aria-selected', String(t.dataset.day === day));
-    });
-    dayPanels.forEach(p => {
-      p.classList.toggle('is-active', p.dataset.day === day);
-    });
-  });
+  tab.addEventListener('click', () => goToDay(Number(tab.dataset.day)));
 });
+
+btnPrev.addEventListener('click', () => { if (currentDay > 0) goToDay(currentDay - 1); });
+btnNext.addEventListener('click', () => { if (currentDay < dayTabs.length - 1) goToDay(currentDay + 1); });
+
+goToDay(0); // inizializza stato frecce e label
 </script>
