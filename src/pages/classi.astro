@@ -807,8 +807,12 @@ const classLookup: Record<string, typeof classes[0]> = {
 .sch-clickable { cursor: pointer; transition: background .15s, border-color .15s; }
 .sch-clickable:hover { background: var(--accent-dim) !important; outline: 1px solid var(--accent); outline-offset: -1px; }
 
-/* ── MOBILE SCHEDULE (day tabs) — disabilitato: si usa la tabella ovunque ── */
-.mobile-schedule { display: none !important; }
+/* ── MOBILE SCHEDULE (day tabs) ───────────────────────────────────────────── */
+.mobile-schedule { display: none; margin-top: 28px; }
+
+@media (max-width: 768px) {
+  .mobile-schedule { display: block; }
+}
 
 /* Tab row */
 .day-tabs {
