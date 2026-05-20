@@ -279,6 +279,7 @@ const classLookup: Record<string, typeof classes[0]> = {
                       data-intensity={String(course?.intensity ?? 0)}
                       data-desc={course?.desc ?? ''}
                       data-room={cell?.room ?? ''}
+                      data-image={course?.image ?? ''}
                     >
                       {cell && (
                         <div class="sch-cell">
@@ -354,6 +355,9 @@ const classLookup: Record<string, typeof classes[0]> = {
       <button class="course-modal__close" aria-label="Chiudi">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
+      <div class="course-modal__img-wrap" id="modal-img-wrap">
+        <img id="modal-img" src="" alt="" class="course-modal__img" />
+      </div>
       <div class="course-modal__header">
         <span class="course-modal__icon" id="modal-icon"></span>
         <div>
@@ -664,6 +668,19 @@ const classLookup: Record<string, typeof classes[0]> = {
 }
 .course-modal.is-open .course-modal__card { transform: translateY(0); }
 
+.course-modal__img-wrap {
+  margin: -36px -32px 24px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+}
+.course-modal__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .course-modal__close {
   position: absolute; top: 16px; right: 16px;
   background: none; border: none; cursor: pointer;
@@ -713,6 +730,8 @@ const elIntensityLabel= document.getElementById('modal-intensity-label')!;
 const elDesc          = document.getElementById('modal-desc')!;
 const elRoom          = document.getElementById('modal-room')!;
 const elRoomWrap      = document.getElementById('modal-room-wrap')!;
+const elImg           = document.getElementById('modal-img') as HTMLImageElement;
+const elImgWrap       = document.getElementById('modal-img-wrap')!;
 
 const intensityLabels: Record<number, string> = {
   1: 'Bassa intensità',
@@ -725,6 +744,15 @@ function openModal(td: HTMLElement) {
   elIcon.textContent = td.dataset.icon ?? '';
   elName.textContent = td.dataset.name ?? '';
   elDesc.textContent = td.dataset.desc ?? '';
+
+  const img = td.dataset.image ?? '';
+  if (img) {
+    elImg.src = `images/${img}`;
+    elImg.alt = td.dataset.name ?? '';
+    elImgWrap.style.display = 'block';
+  } else {
+    elImgWrap.style.display = 'none';
+  }
 
   const lvl = parseInt(td.dataset.intensity ?? '0', 10);
   elDots.innerHTML = [1,2,3,4].map(i =>
