@@ -234,7 +234,16 @@ const classLookup: Record<string, typeof classes[0]> = {
             </div>
             <div class="class-card__body">
               <h3 class="class-card__name">{c.name}</h3>
-              <span class="class-card__level">{c.level}</span>
+              <div class="class-card__intensity">
+                <div class="sch-dots">
+                  {[1,2,3,4].map(i => (
+                    <span class={`dot ${i <= c.intensity ? 'dot--on' : 'dot--off'}`}></span>
+                  ))}
+                </div>
+                <span class="class-card__intensity-label">
+                  {['','Bassa intensità','Media intensità','Alta intensità','Massima intensità'][c.intensity]}
+                </span>
+              </div>
               <p>{c.desc}</p>
             </div>
           </div>
@@ -415,12 +424,15 @@ const classLookup: Record<string, typeof classes[0]> = {
 }
 .class-card:hover .class-card__photo { transform: scale(1.04); }
 .class-card__body { padding: 24px 28px; flex: 1; }
-.class-card__name { color: var(--accent); margin: 0 0 6px; }
-.class-card__level {
-  display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+.class-card__name { color: var(--accent); margin: 0 0 8px; }
+.class-card__intensity {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
 }
-.class-card p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+.class-card__intensity-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.class-card p { font-size: 17px; color: rgba(255,255,255,0.85); line-height: 1.7; }
 
 .classes-section { padding-bottom: 0; }
 
