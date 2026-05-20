@@ -411,7 +411,6 @@ const classLookup: Record<string, typeof classes[0]> = {
         <img id="modal-img" src="" alt="" class="course-modal__img" />
       </div>
       <div class="course-modal__header">
-        <span class="course-modal__icon" id="modal-icon"></span>
         <div>
           <h3 class="course-modal__name" id="modal-name"></h3>
           <div class="course-modal__intensity">
@@ -853,7 +852,6 @@ const modal           = document.getElementById('course-modal')!;
 const BASE            = modal.dataset.base ?? '/';
 const backdrop        = modal.querySelector('.course-modal__backdrop')!;
 const closeBtn        = modal.querySelector('.course-modal__close')!;
-const elIcon          = document.getElementById('modal-icon')!;
 const elName          = document.getElementById('modal-name')!;
 const elDots          = document.getElementById('modal-dots')!;
 const elIntensityLabel= document.getElementById('modal-intensity-label')!;
@@ -871,7 +869,6 @@ const intensityLabels: Record<number, string> = {
 };
 
 function openModal(td: HTMLElement) {
-  elIcon.textContent = td.dataset.icon ?? '';
   elName.textContent = td.dataset.name ?? '';
   elDesc.textContent = td.dataset.desc ?? '';
 
