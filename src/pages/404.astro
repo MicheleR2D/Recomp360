@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ContactModal from '../components/ContactModal.astro';
+import GuestPassModal from '../components/GuestPassModal.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="404 — Pagina Non Trovata | Recomp360" description="La pagina che stai cercando non esiste o è stata spostata.">
+  <Nav />
+
+  <div class="notfound">
+    <div class="container notfound__inner">
+
+      <p class="section__label">Errore</p>
+
+      <div class="notfound__num">404</div>
+
+      <h1 class="notfound__title">PAGINA<br /><span class="text-accent">NON TROVATA</span></h1>
+
+      <p class="notfound__sub">
+        La pagina che stai cercando non esiste o è stata spostata.<br />
+        Torna alla home e riprendi il tuo percorso.
+      </p>
+
+      <div class="notfound__actions">
+        <a href={base} class="btn-primary notfound__btn">
+          Torna alla Home
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <button class="btn-outline notfound__btn contact-trigger">
+          Contattaci
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <Footer />
+  <ContactModal />
+  <GuestPassModal />
+</Layout>
+
+<style>
+.text-accent { color: var(--accent); }
+
+.notfound {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding-top: 72px;
+}
+
+.notfound__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-block: 80px;
+}
+
+.notfound__num {
+  font-family: var(--font-head);
+  font-size: clamp(120px, 20vw, 220px);
+  color: var(--accent);
+  line-height: 0.85;
+  letter-spacing: -4px;
+  margin-bottom: 32px;
+  opacity: 0.15;
+  user-select: none;
+  pointer-events: none;
+}
+
+.notfound__title {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: 2px;
+  margin-top: -48px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.notfound__sub {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--white);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 48px;
+}
+
+.notfound__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.notfound__btn {
+  min-width: 180px;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .notfound__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .notfound__btn {
+    width: 100%;
+  }
+}
+</style>

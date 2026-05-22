@@ -1,0 +1,174 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ContactModal from '../components/ContactModal.astro';
+import GuestPassModal from '../components/GuestPassModal.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Privacy Policy — Recomp360" description="Informativa sul trattamento dei dati personali di Recomp360, ai sensi del GDPR.">
+  <Nav />
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+  <div class="priv-hero">
+    <div class="container">
+      <h1>PRIVACY<br /><span class="text-accent">POLICY</span></h1>
+    </div>
+  </div>
+
+  <!-- ─── CONTENUTO ────────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container priv-container">
+
+      <p class="priv-intro">
+        Ai sensi dell'art. 13 del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003
+        come modificato dal D.Lgs. 101/2018, il Titolare del trattamento fornisce
+        le seguenti informazioni sul trattamento dei dati personali.
+      </p>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">01 —</span> TITOLARE DEL TRATTAMENTO</h2>
+        <p>
+          Il titolare del trattamento è <strong>Maddaloni Società Sportivo Dilettantistica</strong>.
+        </p>
+        <p>
+          Per esercitare i propri diritti o per qualsiasi comunicazione relativa al trattamento
+          dei dati personali contattare:
+          <a href="mailto:privacy@recomp360.it" class="priv-link">privacy@recomp360.it</a>
+        </p>
+      </div>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">02 —</span> FINALITÀ E BASE GIURIDICA DEL TRATTAMENTO</h2>
+        <p>Il Titolare tratta i dati personali per le seguenti finalità:</p>
+        <p>
+          <strong>Esecuzione del contratto.</strong> Formulazione di offerte commerciali e conclusione
+          del rapporto contrattuale di abbonamento, su richiesta dell'interessato.
+          Base giuridica: esecuzione di un contratto — art. 6, par. 1, lett. b GDPR.
+        </p>
+        <p>
+          <strong>Attività di marketing.</strong> Invio di materiali promozionali, conduzione di ricerche
+          di mercato e comunicazioni commerciali relative ai servizi offerti.
+          Base giuridica: consenso dell'interessato — art. 6, par. 1, lett. a GDPR.
+        </p>
+      </div>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">03 —</span> DATI TRATTATI</h2>
+        <p>
+          I dati personali raccolti includono: nome, cognome, numero di telefono,
+          indirizzo email, canale di provenienza (referral), qualifica
+          (nuovo socio / rinnovo / ex socio).
+        </p>
+      </div>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">04 —</span> CONSERVAZIONE DEI DATI</h2>
+        <p>
+          <strong>Fase pre-contrattuale:</strong> i dati sono conservati per il tempo necessario alla formulazione dell'offerta commerciale.
+        </p>
+        <p>
+          <strong>Accordo concluso:</strong> i dati saranno trattati secondo l'informativa clienti dedicata, consegnata al momento della stipula.
+        </p>
+        <p>
+          <strong>Nessun accordo raggiunto:</strong> i dati vengono cancellati al termine della fase di trattativa.
+        </p>
+        <p>
+          <strong>Consenso marketing:</strong> i dati sono conservati per 36 mesi dalla data di rilascio del consenso.
+        </p>
+      </div>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">05 —</span> DIRITTI DELL'INTERESSATO</h2>
+        <p>
+          L'interessato può esercitare in qualsiasi momento i seguenti diritti
+          ai sensi degli artt. 15–22 GDPR: accesso ai propri dati personali,
+          rettifica o aggiornamento dei dati inesatti, cancellazione dei dati (diritto all'oblio),
+          limitazione del trattamento, portabilità dei dati, revoca del consenso al marketing
+          in qualsiasi momento, proposizione di reclamo al Garante per la Protezione dei Dati Personali.
+        </p>
+      </div>
+
+      <div class="priv-block">
+        <h2><span class="text-accent">06 —</span> CONTATTI</h2>
+        <p>
+          Per esercitare i propri diritti o per qualsiasi domanda relativa al trattamento
+          dei dati personali, è possibile contattare il Titolare scrivendo a:
+          <a href="mailto:privacy@recomp360.it" class="priv-link">privacy@recomp360.it</a>
+        </p>
+        <p>
+          La presente informativa può essere aggiornata periodicamente.
+          La versione vigente è sempre disponibile su questo sito.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+  <ContactModal />
+  <GuestPassModal />
+</Layout>
+
+<style>
+.text-accent { color: var(--accent); }
+
+/* ── Hero ── */
+.priv-hero {
+  background: var(--bg);
+  padding-top: calc(72px + 72px);
+  padding-bottom: 64px;
+}
+.priv-hero h1 {
+  font-size: clamp(36px, 5vw, 72px);
+  color: var(--white);
+  line-height: 1.05;
+}
+
+/* ── Container ── */
+.priv-container { max-width: 720px; }
+
+/* ── Intro ── */
+.priv-intro {
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.75;
+  margin-bottom: 56px;
+}
+
+/* ── Block ── */
+.priv-block {
+  margin-bottom: 48px;
+}
+.priv-block h2 {
+  font-family: var(--font-head);
+  font-size: clamp(14px, 1.6vw, 20px);
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.priv-block p {
+  font-size: 17px;
+  color: var(--white);
+  line-height: 1.75;
+  margin-top: 12px;
+}
+.priv-block p:first-of-type { margin-top: 0; }
+
+/* ── Link ── */
+.priv-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.priv-link:hover { color: var(--white); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .priv-hero { padding-top: calc(72px + 40px); padding-bottom: 40px; }
+}
+</style>
