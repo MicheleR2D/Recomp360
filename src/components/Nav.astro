@@ -44,7 +44,7 @@ const pathname = Astro.url.pathname;
     <!-- ── Destra: CTA + burger ── -->
     <div class="nav__right">
       <button class="btn-outline nav__cta contact-trigger">Contattaci</button>
-      <button class="btn-primary nav__cta contact-trigger">
+      <button class="btn-primary nav__cta gp-trigger">
         Inizia Ora
       </button>
       <button class="nav__burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false">
@@ -57,7 +57,7 @@ const pathname = Astro.url.pathname;
 
 <!-- ── Pulsanti fissi in fondo al menu mobile ── -->
 <div class="nav__mobile-actions" id="nav-mobile-actions" aria-hidden="true">
-  <button class="btn-primary nav__mob-btn contact-trigger">
+  <button class="btn-primary nav__mob-btn gp-trigger">
     Inizia Ora
   </button>
   <button class="btn-outline nav__mob-btn contact-trigger">
@@ -378,10 +378,12 @@ const pathname = Astro.url.pathname;
   }
 }
 
-/* ── Desktop: nascondi il Contattaci su mobile (la barra lo sostituisce) ── */
-.nav__cta.contact-trigger { display: inline-flex; }
+/* ── Desktop: mostra CTA nav, nascondile su mobile (la barra le sostituisce) ── */
+.nav__cta.contact-trigger,
+.nav__cta.gp-trigger { display: inline-flex; }
 @media (max-width: 768px) {
-  .nav__cta.contact-trigger { display: none; }
+  .nav__cta.contact-trigger,
+  .nav__cta.gp-trigger { display: none; }
 }
 
 /* ── Barra pulsanti mobile (fixed in fondo) ── */
