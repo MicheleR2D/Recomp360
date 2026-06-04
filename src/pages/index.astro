@@ -1497,12 +1497,12 @@ const reviews = [
   resetAuto();
 })();
 
-// ── HERO VIDEO: loop con taglio a -2s ────────────────────────────────────────
+// ── HERO VIDEO: loop con taglio a -4s ────────────────────────────────────────
 (function () {
   const video = document.querySelector('.hero__video');
   if (!video) return;
 
-  const CUT = 2; // secondi prima della fine a cui ripartire
+  const CUT = 4; // secondi prima della fine a cui ripartire
 
   const tryPlay = () => video.play().catch(() => {});
   tryPlay();
