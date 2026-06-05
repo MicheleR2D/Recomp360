@@ -105,6 +105,12 @@ h4 { font-size: clamp(15px, 1.8vw, 22px); letter-spacing: 0.5px; }
 
 p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
 
+/* Degree symbol — Microgramma non ha il glifo, usa Rajdhani */
+.deg {
+  font-family: var(--font-body);
+  font-weight: 700;
+}
+
 /* ─── Layout Utilities ───────────────────────────────────────────────────── */
 .container {
   width: 100%;
