@@ -111,6 +111,24 @@ p { font-size: 17px; color: var(--text-muted); max-width: 640px; }
   font-weight: 700;
 }
 
+/* Bottone + desc inline nella sezione offer */
+.offer-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Logo nella sezione offer */
+.offer-logo {
+  display: block;
+  max-height: clamp(80px, 12vw, 160px);
+  width: auto !important;
+  max-width: 100%;
+  object-fit: contain;
+  margin-block: 4px;
+}
+
 /* ─── Layout Utilities ───────────────────────────────────────────────────── */
 .container {
   width: 100%;

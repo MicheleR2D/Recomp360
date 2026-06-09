@@ -4,82 +4,117 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
-  <div class="container footer__inner">
+  <div class="footer__container">
 
-    <!-- Col 1 — Logo + claim -->
-    <div class="footer__brand">
-      <a href={base} aria-label="Recomp360 home">
-        <img src={`${base}images/logo%20recomp360.png`} alt="Recomp360" class="footer__logo" />
-      </a>
-      <p>La palestra ibrida di Roma.<br />Libertà + expertise, a 360°.</p>
-    </div>
+    <!-- ── ROW 1 ─────────────────────────────────────────────────────────── -->
+    <div class="footer__row1">
 
-    <!-- Col 2 — Link utili -->
-    <div class="footer__col">
-      <h4>Navigazione</h4>
-      <ul>
-        <li><a href={`${base}about`}>Chi Siamo</a></li>
-        <li><a href={`${base}metodo`}>Il Metodo</a></li>
-        <li><a href={`${base}classi`}>Corsi Fitness</a></li>
-        <li><a href={`${base}privacy`}>Privacy Policy</a></li>
-      </ul>
-    </div>
-
-    <!-- Col 3 — Contatti -->
-    <div class="footer__col">
-      <h4>Contatti</h4>
-      <ul>
-        <li><button class="footer__link-btn contact-trigger">Richiedi Informazioni</button></li>
-      </ul>
-    </div>
-
-    <!-- Col 4 — Social / CTA -->
-    <div class="footer__col">
-      <h4>Seguici</h4>
-      <div class="footer__social">
-        <a href="https://instagram.com/recomp360/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <!-- Col 1: Logo + tagline + nav -->
+      <div class="footer__col">
+        <a href={base} aria-label="Recomp360 home">
+          <img src={`${base}images/logo%20recomp360.png`} alt="Recomp360" class="footer__logo" />
         </a>
-        <a href="https://facebook.com/Recomp360/" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="https://youtube.com/@recomp360amministrazione6" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-        </a>
+        <p class="footer__tagline">La palestra ibrida di Roma.<br />Libertà + expertise, a 360°.</p>
+        <span class="footer__label">Navigazione</span>
+        <ul class="footer__nav">
+          <li><a href={`${base}about`}>Chi Siamo</a></li>
+          <li><a href={`${base}metodo`}>Il Metodo</a></li>
+          <li><a href={`${base}classi`}>Corsi Fitness</a></li>
+          <li><a href={`${base}privacy`}>Privacy Policy</a></li>
+        </ul>
       </div>
-      <div class="neon-wrap">
-        <button class="btn-primary footer__cta gp-trigger">
-          Inizia Ora — €17
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
+
+      <!-- Col 2: Orari -->
+      <div class="footer__col">
+        <span class="footer__label">Orari</span>
+        <ul class="footer__hours">
+          <li>
+            <span class="footer__hours-day">Lun – Ven</span>
+            <span class="footer__hours-time">7:00 – 23:00</span>
+          </li>
+          <li>
+            <span class="footer__hours-day">Sabato</span>
+            <span class="footer__hours-time">10:00 – 19:00</span>
+          </li>
+          <li>
+            <span class="footer__hours-day">Domenica</span>
+            <span class="footer__hours-time">10:00 – 14:00</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Contatti + social + CTA -->
+      <div class="footer__col">
+        <span class="footer__label">Contatti</span>
+        <button class="footer__text-btn contact-trigger">Richiedi Informazioni</button>
+        <span class="footer__label footer__label--gap">Seguici</span>
+        <div class="footer__social">
+          <a href="https://instagram.com/recomp360/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/Recomp360/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://youtube.com/@recomp360amministrazione6" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+        <div class="neon-wrap footer__cta-wrap">
+          <button class="btn-primary footer__cta gp-trigger">
+            Inizia Ora — €17
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── ROW 2 ─────────────────────────────────────────────────────────── -->
+    <div class="footer__row2">
+      <div class="footer__map">
+        <iframe
+          src="https://maps.google.com/maps?q=Via+Prenestina+278+B,+00177+Roma&z=16&output=embed"
+          width="100%"
+          height="180"
+          style="border:0; display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Recomp360 su Google Maps"
+        ></iframe>
+      </div>
+      <div class="footer__address">
+        <p class="footer__address-text">Via Prenestina 278 B, Roma</p>
+        <a
+          href="https://maps.google.com/?q=Via+Prenestina+278+B,+00177+Roma"
+          target="_blank"
+          rel="noopener"
+          class="footer__portami"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Portami qui
+        </a>
       </div>
     </div>
 
   </div>
 
+  <!-- ── COPYRIGHT ─────────────────────────────────────────────────────── -->
   <div class="footer__bottom">
-    <div class="container">
-      <p>© {year} Recomp360. Tutti i diritti riservati. Roma, zona Prenestina.</p>
+    <div class="footer__container">
+      <p>© {year} Recomp360. Tutti i diritti riservati.</p>
     </div>
   </div>
 </footer>
 
 <style>
-/* ── Neon-wrap ── */
-@property --angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-@keyframes borderRotate {
-  to { --angle: 360deg; }
-}
-
+/* ── Neon wrap ── */
+@property --angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes borderRotate { to { --angle: 360deg; } }
 .neon-wrap {
   position: relative;
   display: inline-block;
   isolation: isolate;
-  border-radius: 0;
   width: 100%;
 }
 .neon-wrap::before,
@@ -87,73 +122,106 @@ const year = new Date().getFullYear();
   content: '';
   position: absolute;
   inset: -2px;
-  border-radius: 0;
   background: conic-gradient(
     from var(--angle),
-    transparent 20%,
-    var(--accent)  40%,
-    #ff8080        50%,
-    var(--white)   55%,
-    var(--accent)  60%,
-    transparent    80%
+    transparent 20%, #e63030 40%, #ff8080 50%, #fff 55%, #e63030 60%, transparent 80%
   );
   animation: borderRotate 3s linear infinite;
   z-index: 0;
 }
-.neon-wrap::after {
-  filter: blur(8px);
-  opacity: 0.6;
-}
+.neon-wrap::after { filter: blur(8px); opacity: 0.6; }
 
+/* ── Shell ── */
 .footer {
-  background: #000000;
+  background: #000;
   border-top: 1px solid var(--border);
-  padding-top: 80px;
+  padding-top: 72px;
 }
 
-.footer__inner {
+.footer__container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: 10%;
+}
+
+/* ── Row 1 ── */
+.footer__row1 {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px;
-  padding-bottom: 60px;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+  padding-bottom: 48px;
 }
 
-/* ── Col 1: Brand ── */
-.footer__logo { height: 44px; width: auto; margin-bottom: 20px; }
+/* ── Logo ── */
+.footer__logo {
+  height: 48px;
+  width: auto;
+  display: block;
+  margin-bottom: 14px;
+}
 
-.footer__logo { height: 52px; width: auto; margin-bottom: 20px; }
-
-.footer__brand p {
-  font-size: 17px;
+/* ── Tagline ── */
+.footer__tagline {
+  font-size: 14px;
   color: var(--white);
-  line-height: 1.6;
-  max-width: 260px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 220px;
 }
 
-/* ── Col 2–4: standard columns ── */
-.footer__col h4 {
+/* ── Section labels ── */
+.footer__label {
+  display: block;
   font-family: var(--font-body);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
+  color: #e63030;
+  margin-bottom: 14px;
 }
+.footer__label--gap { margin-top: 28px; }
 
-.footer__col ul { display: flex; flex-direction: column; gap: 12px; }
-
-.footer__col a {
+/* ── Nav list ── */
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+.footer__nav a {
   font-family: var(--font-body);
   font-size: 14px;
-  font-weight: 400;
   color: var(--white);
-  transition: color 200ms ease;
+  text-decoration: none;
+  transition: color 200ms;
+}
+.footer__nav a:hover { color: #e63030; }
+
+/* ── Orari ── */
+.footer__hours {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+}
+.footer__hours li { display: flex; flex-direction: column; gap: 2px; }
+.footer__hours-day {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #e63030;
+}
+.footer__hours-time {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
 }
 
-.footer__col a:hover { color: var(--accent); }
-
-.footer__link-btn {
+/* ── Contatti btn ── */
+.footer__text-btn {
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--white);
@@ -163,95 +231,100 @@ const year = new Date().getFullYear();
   cursor: pointer;
   text-align: left;
   transition: color 0.2s;
+  margin-bottom: 4px;
+  display: block;
 }
-.footer__link-btn:hover { color: var(--accent); }
+.footer__text-btn:hover { color: #e63030; }
 
-.footer__addr {
-  font-size: 14px;
-  color: var(--white);
-  font-style: normal;
-}
-
-/* ── Col 4: Social / CTA ── */
-.footer__social {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
+/* ── Social ── */
+.footer__social { display: flex; gap: 12px; margin-bottom: 4px; }
 .footer__social a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--accent);
+  width: 40px; height: 40px;
+  border: 1px solid #e63030;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent);
-  transition: border-color 200ms ease, color 200ms ease, background 200ms ease;
+  display: flex; align-items: center; justify-content: center;
+  color: #e63030;
+  transition: background 200ms, color 200ms;
 }
-
-.footer__social a:hover {
-  background: var(--accent);
-  color: var(--white);
-}
-
+.footer__social a:hover { background: #e63030; color: #fff; }
 .footer__social svg { width: 18px; height: 18px; }
 
+/* ── CTA ── */
+.footer__cta-wrap { margin-top: 20px; }
 .footer__cta {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  justify-content: center;
+  position: relative; z-index: 1;
+  width: 100%; justify-content: center;
   background: var(--bg-card);
   white-space: nowrap;
 }
 .footer__cta:hover { background: var(--bg-card); }
 
-/* ── Bottom bar ── */
+/* ── Row 2 ── */
+.footer__row2 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.footer__map { border-right: 1px solid var(--border); }
+.footer__map iframe {
+  filter: grayscale(1) invert(0.88) contrast(0.9);
+  display: block;
+  width: 100%;
+}
+.footer__address {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 36px;
+}
+.footer__address-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--white);
+  max-width: none;
+}
+.footer__portami {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e63030;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer__portami:hover { color: var(--white); }
+.footer__portami svg { width: 14px; height: 14px; }
+
+/* ── Bottom ── */
 .footer__bottom {
   border-top: 1px solid var(--border);
   padding-block: 24px;
+  margin-top: 0;
 }
-
 .footer__bottom p {
   font-family: var(--font-body);
   font-size: 12px;
-  font-weight: 400;
   color: var(--text-muted);
   max-width: none;
 }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .footer__inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
+  .footer__row1 { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer__col:first-child { grid-column: 1 / -1; }
 }
 
 @media (max-width: 768px) {
-  .footer { padding-top: 40px; }
-}
-
-@media (max-width: 560px) {
-  .footer__inner {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 20px;
-  }
-  .footer__brand {
-    grid-column: 1 / -1;
-  }
-  /* Navigazione occupa col 1 (righe 2–3) */
-  .footer__col:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2 / 4;
-  }
-  /* Contatti e Seguici in colonna a destra */
-  .footer__col:nth-child(3) { grid-column: 2; grid-row: 2; }
-  .footer__col:nth-child(4) { grid-column: 2; grid-row: 3; }
-
-  .footer__cta { width: 100%; justify-content: center; }
-  .neon-wrap   { width: 100%; }
+  .footer { padding-top: 48px; }
+  .footer__row1 { grid-template-columns: 1fr; gap: 32px; }
+  .footer__row2 { grid-template-columns: 1fr; }
+  .footer__map { border-right: none; border-bottom: 1px solid var(--border); }
+  .footer__address { padding: 24px 0; }
 }
 </style>
