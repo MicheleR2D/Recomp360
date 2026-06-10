@@ -8,7 +8,12 @@ import GuestPassModal from '../components/GuestPassModal.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Privacy Policy — Recomp360" description="Informativa sul trattamento dei dati personali di Recomp360, ai sensi del GDPR.">
+<Layout
+  title="Privacy Policy — Recomp360"
+  description="Informativa sul trattamento dei dati personali di Recomp360 ai sensi del Regolamento UE 2016/679 (GDPR)."
+  canonical="https://www.recomp360.it/privacy"
+  noindex={true}
+>
   <Nav />
 
   <!-- ─── HERO ─────────────────────────────────────────────────────────── -->

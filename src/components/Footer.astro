@@ -30,9 +30,16 @@ const year = new Date().getFullYear();
             referrerpolicy="no-referrer-when-downgrade"
             title="Recomp360 su Google Maps"
           ></iframe>
+          <a
+            href="https://maps.app.goo.gl/m9t6TmWrdXRUN6o87?g_st=ic"
+            target="_blank"
+            rel="noopener"
+            aria-label="Apri la posizione in Google Maps"
+            class="footer__map-overlay"
+          ></a>
         </div>
         <a
-          href="https://maps.google.com/?q=Via+Prenestina+278+B,+00177+Roma"
+          href="https://maps.app.goo.gl/m9t6TmWrdXRUN6o87?g_st=ic"
           target="_blank"
           rel="noopener"
           class="footer__addr-link"
@@ -168,6 +175,7 @@ const year = new Date().getFullYear();
 
 /* ── Mappa ── */
 .footer__map-square {
+  position: relative;
   width: 100%;
   height: 260px;
   overflow: hidden;
@@ -178,7 +186,15 @@ const year = new Date().getFullYear();
 .footer__map-square iframe {
   width: 100%;
   height: 100%;
-  filter: sepia(1) hue-rotate(310deg) saturate(3) brightness(0.5);
+  filter: sepia(0.8) hue-rotate(310deg) saturate(1.5) brightness(0.55);
+  display: block;
+}
+/* Overlay trasparente: cattura i click sull'iframe e apre Google Maps */
+.footer__map-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
   display: block;
 }
 .footer__addr-link {
@@ -291,5 +307,7 @@ const year = new Date().getFullYear();
   .footer__row1 { grid-template-columns: 1fr; align-items: start; }
   .footer__col--flex { justify-content: flex-start; }
   .footer__sub { margin-top: 32px; padding-top: 0; }
+  /* Su mobile: nessun filtro colorato, la mappa rimane leggibile */
+  .footer__map-square iframe { filter: brightness(0.85); }
 }
 </style>
