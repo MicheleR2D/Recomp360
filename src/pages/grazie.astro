@@ -90,30 +90,27 @@ import Footer from '../components/Footer.astro';
 
 <script>
 (function () {
-  const WEBHOOK_ACQUISTO = 'https://automazione.n8ndevelop.it/webhook/recomp360/acquisto';
-
-  // Leggo session_id dalla URL
-  const params = new URLSearchParams(window.location.search);
+  const params    = new URLSearchParams(window.location.search);
   const sessionId = params.get('session_id');
-
   if (!sessionId) return;
 
-  // Mostro dettagli dall'URL se presenti (opzionale, Stripe non passa metadata nell'URL)
   const detailsEl = document.getElementById('grazie-details');
-  if (detailsEl && sessionId) {
-    detailsEl.innerHTML = `<strong>ID sessione:</strong> ${sessionId}`;
-  }
 
-  // Webhook 2 — notifica acquisto completato
-  fetch(WEBHOOK_ACQUISTO, {
+  fetch('/api/checkout-success', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      step: 'acquisto_completato',
-      session_id: sessionId,
-      timestamp: new Date().toISOString(),
-    }),
-    mode: 'no-cors',
-  }).catch(() => {});
+    body: JSON.stringify({ session_id: sessionId }),
+  })
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (!data?.ok || !detailsEl) return;
+      const righe = [
+        data.nome      && `<div><strong>Nome:</strong> ${data.nome} ${data.cognome ?? ''}</div>`,
+        data.email     && `<div><strong>Email:</strong> ${data.email}</div>`,
+        data.startdate && `<div><strong>Inizio Guest Pass:</strong> ${data.startdate}</div>`,
+      ].filter(Boolean).join('');
+      if (righe) detailsEl.innerHTML = righe;
+    })
+    .catch(() => {});
 })();
 </script>

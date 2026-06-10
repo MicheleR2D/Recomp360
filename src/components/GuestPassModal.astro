@@ -227,46 +227,46 @@
 
 /* ── Typography ── */
 .gp-eye {
-  font-size: 10px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
   color: #E53332; margin-bottom: 6px;
 }
 .gp-pane h2 {
   font-family: var(--font-head, 'Arial Black', sans-serif);
-  font-size: clamp(20px, 3.5vw, 30px);
+  font-size: clamp(22px, 3.5vw, 32px);
   font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
-  color: #f0f0f0; line-height: 1; margin-bottom: 22px;
+  color: #ffffff; line-height: 1; margin-bottom: 22px;
 }
 .ga { color: #E53332; }
 .ga-req { color: #E53332; font-size: .85em; }
-.gp-sub { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 26px; max-width: 100%; }
+.gp-sub { font-size: 15px; color: #aaa; line-height: 1.7; margin-bottom: 26px; max-width: 100%; }
 
 /* ── Info box ── */
 .gp-infobox {
   background: #111; border: 1px solid #212121; border-radius: 8px;
   padding: 18px; margin-bottom: 22px;
 }
-.gp-infobox__title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; margin-bottom: 12px; }
+.gp-infobox__title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #888; margin-bottom: 12px; }
 .gp-checklist { display: flex; flex-direction: column; gap: 9px; }
-.gp-checklist li { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: #bbb; }
+.gp-checklist li { display: flex; align-items: flex-start; gap: 9px; font-size: 15px; color: #ddd; }
 .gp-checklist .ga { flex-shrink: 0; margin-top: 1px; font-weight: 700; }
 .gp-warn {
   display: flex; align-items: flex-start; gap: 9px;
   background: rgba(229,51,50,.07); border: 1px solid rgba(229,51,50,.18);
   border-radius: 6px; padding: 11px 13px; margin-top: 14px;
-  font-size: 12px; color: #999; line-height: 1.6;
+  font-size: 13px; color: #bbb; line-height: 1.6;
 }
 .gp-warn svg { flex-shrink: 0; margin-top: 2px; color: #E53332; }
-.gp-warn strong { color: #ddd; }
+.gp-warn strong { color: #fff; }
 
 /* ── Form ── */
 .gp-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .gp-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
-.gp-field label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #888; }
-.gp-hint { font-size: 11px; color: #444; margin-top: -2px; }
+.gp-field label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #bbb; }
+.gp-hint { font-size: 12px; color: #888; margin-top: -2px; }
 .gp-field input {
   background: #121212; border: 1px solid #262626; border-radius: 4px;
-  padding: 11px 13px; color: #f0f0f0;
-  font-family: var(--font-body, sans-serif); font-size: 14px;
+  padding: 12px 14px; color: #ffffff;
+  font-family: var(--font-body, sans-serif); font-size: 15px;
   outline: none; width: 100%; color-scheme: dark;
   transition: border-color .2s, box-shadow .2s;
 }
@@ -277,8 +277,8 @@
 .gp-prefix-select {
   background: #121212; border: 1px solid #262626; border-right: none;
   border-radius: 4px 0 0 4px;
-  padding: 11px 10px; color: #f0f0f0;
-  font-family: var(--font-body, sans-serif); font-size: 14px;
+  padding: 12px 10px; color: #ffffff;
+  font-family: var(--font-body, sans-serif); font-size: 15px;
   outline: none; cursor: pointer; flex-shrink: 0;
   color-scheme: dark;
   transition: border-color .2s;
@@ -297,7 +297,7 @@
 
 /* ── Privacy ── */
 .gp-privacy {
-  font-size: 11px; color: #444; line-height: 1.6;
+  font-size: 12px; color: #777; line-height: 1.6;
   background: #090909; border: 1px solid #1a1a1a; border-radius: 4px;
   padding: 10px 12px; margin-bottom: 10px;
 }
@@ -305,7 +305,7 @@
 .gp-prv-link { color: #E53332; text-decoration: underline; }
 .gp-check {
   display: flex; align-items: flex-start; gap: 9px;
-  font-size: 12px; color: #888; cursor: pointer; margin-bottom: 16px; line-height: 1.5;
+  font-size: 13px; color: #bbb; cursor: pointer; margin-bottom: 16px; line-height: 1.5;
 }
 .gp-check input[type="checkbox"] { width: 15px; height: 15px; accent-color: #E53332; flex-shrink: 0; margin-top: 1px; }
 
@@ -321,8 +321,8 @@
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
   background: #E53332; color: #fff;
   font-family: var(--font-body, sans-serif);
-  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  padding: 14px 20px; border: none; border-radius: 2px; cursor: pointer;
+  font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 15px 20px; border: none; border-radius: 2px; cursor: pointer;
   position: relative; overflow: hidden;
   transition: background .2s, transform .1s;
 }
@@ -333,10 +333,10 @@
 
 .gp-btn-ghost {
   width: 100%; display: flex; align-items: center; justify-content: center;
-  background: transparent; color: #666;
+  background: transparent; color: #aaa;
   font-family: var(--font-body, sans-serif);
-  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-  padding: 12px 20px; border: 1.5px solid #282828; border-radius: 2px; cursor: pointer;
+  font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 13px 20px; border: 1.5px solid #383838; border-radius: 2px; cursor: pointer;
   transition: border-color .2s, color .2s;
 }
 .gp-btn-ghost:hover { border-color: #E53332; color: #E53332; }
@@ -368,8 +368,7 @@
 
 <script>
 (function () {
-  const WEBHOOK_LEAD    = 'https://automazione.n8ndevelop.it/webhook/prova-recomp';
-  const WEBHOOK_ACQUISTO= 'https://automazione.n8ndevelop.it/webhook/prova-recomp';
+  const WEBHOOK = 'https://automazione.n8ndevelop.it/webhook/prova-recomp';
 
   const store = {};
 
@@ -467,7 +466,7 @@
   document.getElementById('gp-close-thanks')?.addEventListener('click', closeModal);
 
   /* ── STEP 1 ──────────────────────── */
-  form1.addEventListener('submit', async e => {
+  form1.addEventListener('submit', e => {
     e.preventDefault();
     clearErr(err1);
 
@@ -488,10 +487,6 @@
 
     Object.assign(store, { nome, cognome, telefono, email });
 
-    setLoading(sub1, sub1txt, 'Invio in corso…', true);
-    await webhook(WEBHOOK_LEAD, { ...store, step: 'lead' });
-    setLoading(sub1, sub1txt, 'Continua', false);
-
     showPane(p2); setStep(2);
   });
 
@@ -502,7 +497,7 @@
   });
 
   document.getElementById('gp-no').addEventListener('click', async () => {
-    await webhook(WEBHOOK_LEAD, { ...store, step: 'no_activation' });
+    await webhook(WEBHOOK, { ...store, esito: 'contatto_richiesto' });
     showPane(pt); setStep(2);
   });
 
@@ -549,6 +544,7 @@
 
       const json = await res.json();
       if (json.url) {
+        await webhook(WEBHOOK, { ...store, esito: 'checkout_avviato' });
         window.location.href = json.url;
       } else {
         throw new Error(json.error || 'Errore nella creazione della sessione di pagamento.');
