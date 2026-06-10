@@ -455,17 +455,24 @@
     txtEl.textContent = txt;
   }
 
+  function toLocalISO(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
   function initDateConstraints() {
     const today = new Date(); today.setHours(0,0,0,0);
     const maxBirth = new Date(today);
     maxBirth.setFullYear(today.getFullYear() - 18);
-    birth.max = maxBirth.toISOString().split('T')[0];
+    birth.max = toLocalISO(maxBirth);
 
     const maxStart = new Date(today);
     maxStart.setDate(today.getDate() + 30);
-    start.min = today.toISOString().split('T')[0];
-    start.max = maxStart.toISOString().split('T')[0];
-    start.value = today.toISOString().split('T')[0];
+    start.min   = toLocalISO(today);
+    start.max   = toLocalISO(maxStart);
+    start.value = toLocalISO(today);
   }
 
   /* ── open triggers ───────────────── */

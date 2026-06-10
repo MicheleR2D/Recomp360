@@ -55,6 +55,7 @@ const year = new Date().getFullYear();
         </div>
         <div class="footer__sub">
           <span class="footer__label">Contatti</span>
+          <a href="tel:+390629061" class="footer__phone">06 290614</a>
           <button class="footer__text-btn contact-trigger">Richiedi Informazioni</button>
         </div>
       </div>
@@ -215,10 +216,22 @@ const year = new Date().getFullYear();
 .footer__hours-time { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--white); }
 
 /* ── Contatti ── */
+.footer__phone {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+.footer__phone:hover { color: #e63030; }
 .footer__text-btn {
   font-family: var(--font-body);
   font-size: 14px;
-  color: var(--white);
+  color: var(--text-muted);
   background: none;
   border: none;
   padding: 0;
