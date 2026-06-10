@@ -540,6 +540,13 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(store),
       });
+
+      // Controlla che la risposta sia JSON prima di parsare
+      const contentType = res.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('Servizio di pagamento temporaneamente non disponibile. Contattaci direttamente al numero in pagina.');
+      }
+
       const json = await res.json();
       if (json.url) {
         window.location.href = json.url;
