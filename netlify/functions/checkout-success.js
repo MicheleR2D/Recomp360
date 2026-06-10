@@ -60,12 +60,14 @@ export default async (req) => {
       timestamp:  new Date().toISOString(),
     };
 
-    // Notifica n8n — fire & forget
-    fetch(WEBHOOK_ACQUISTO, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    }).catch(() => {});
+    // Notifica n8n — aspetta che la chiamata completi prima di chiudere la funzione
+    try {
+      await fetch(WEBHOOK_ACQUISTO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+    } catch (_) {}
 
     return new Response(
       JSON.stringify({ ok: true, nome, cognome, email, startdate }),
