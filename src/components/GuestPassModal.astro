@@ -544,7 +544,6 @@
 
       const json = await res.json();
       if (json.url) {
-        await webhook(WEBHOOK, { ...store, esito: 'checkout_avviato' });
         window.location.href = json.url;
       } else {
         throw new Error(json.error || 'Errore nella creazione della sessione di pagamento.');

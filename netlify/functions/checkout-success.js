@@ -4,7 +4,7 @@
 
 import Stripe from 'stripe';
 
-const WEBHOOK_ACQUISTO = 'https://automazione.n8ndevelop.it/webhook/recomp360/acquisto';
+const WEBHOOK_ACQUISTO = 'https://automazione.n8ndevelop.it/webhook/prova-recomp';
 
 export default async (req) => {
   if (req.method !== 'POST') {
