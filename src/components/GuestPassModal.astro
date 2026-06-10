@@ -12,19 +12,21 @@
     </button>
 
     <!-- Progress track -->
-    <div class="gp-track"><div class="gp-fill" id="gp-fill" style="width:33%"></div></div>
+    <div class="gp-track"><div class="gp-fill" id="gp-fill" style="width:25%"></div></div>
 
     <!-- Step dots -->
     <div class="gp-nav">
-      <div class="gp-dot active" data-s="1"><span>1</span><small>Dati</small></div>
+      <div class="gp-dot active" data-s="1"><span>1</span><small>Info</small></div>
       <div class="gp-connector"></div>
-      <div class="gp-dot" data-s="2"><span>2</span><small>Attivazione</small></div>
+      <div class="gp-dot" data-s="2"><span>2</span><small>Dati</small></div>
       <div class="gp-connector"></div>
-      <div class="gp-dot" data-s="3"><span>3</span><small>Pagamento</small></div>
+      <div class="gp-dot" data-s="3"><span>3</span><small>Attivazione</small></div>
+      <div class="gp-connector"></div>
+      <div class="gp-dot" data-s="4"><span>4</span><small>Pagamento</small></div>
     </div>
 
-    <!-- ─── STEP 1: Dati + Termini ─────────────────────── -->
-    <div class="gp-pane" id="gp-p1">
+    <!-- ─── STEP 1: Info + Condizioni ────────────────────── -->
+    <div class="gp-pane" id="gp-p0">
       <p class="gp-eye">Guest Pass</p>
       <h2 id="gp-title">INIZIA A <span class="ga">€17</span></h2>
 
@@ -40,6 +42,17 @@
           <span>Il Guest Pass è riservato a chi <strong>non ha e non ha avuto un abbonamento Recomp360 negli ultimi 12 mesi</strong>. In caso contrario la richiesta sarà annullata e l'importo rimborsato integralmente.</span>
         </div>
       </div>
+
+      <button class="gp-btn-red" id="gp-next0">
+        Continua
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+
+    <!-- ─── STEP 2: Dati + Consenso ──────────────────────── -->
+    <div class="gp-pane gp-h" id="gp-p1">
+      <p class="gp-eye">I tuoi dati</p>
+      <h2>CHI <span class="ga">SEI?</span></h2>
 
       <form id="gp-form1" novalidate>
         <div class="gp-row2">
@@ -378,6 +391,7 @@
   const fill    = document.getElementById('gp-fill');
   const dots    = document.querySelectorAll('.gp-dot');
 
+  const p0 = document.getElementById('gp-p0');
   const p1 = document.getElementById('gp-p1');
   const p2 = document.getElementById('gp-p2');
   const p3 = document.getElementById('gp-p3');
@@ -396,12 +410,12 @@
 
   /* ── helpers ─────────────────────── */
   function showPane(p) {
-    [p1,p2,p3,pt].forEach(x => x.classList.add('gp-h'));
+    [p0,p1,p2,p3,pt].forEach(x => x.classList.add('gp-h'));
     p.classList.remove('gp-h');
   }
 
   function setStep(n) {
-    fill.style.width = ['33%','66%','100%'][n-1];
+    fill.style.width = ['25%','50%','75%','100%'][n-1];
     dots.forEach(d => {
       const s = +d.dataset.s;
       d.classList.toggle('active', s === n);
@@ -413,7 +427,7 @@
     modal.setAttribute('aria-hidden','false');
     modal.classList.add('gp-open');
     document.body.style.overflow = 'hidden';
-    showPane(p1); setStep(1);
+    showPane(p0); setStep(1);
   }
 
   function closeModal() {
@@ -465,7 +479,12 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   document.getElementById('gp-close-thanks')?.addEventListener('click', closeModal);
 
-  /* ── STEP 1 ──────────────────────── */
+  /* ── STEP 1 → 2 ─────────────────── */
+  document.getElementById('gp-next0').addEventListener('click', () => {
+    showPane(p1); setStep(2);
+  });
+
+  /* ── STEP 2 ──────────────────────── */
   form1.addEventListener('submit', e => {
     e.preventDefault();
     clearErr(err1);
@@ -487,18 +506,18 @@
 
     Object.assign(store, { nome, cognome, telefono, email });
 
-    showPane(p2); setStep(2);
+    showPane(p2); setStep(3);
   });
 
-  /* ── STEP 2 ──────────────────────── */
+  /* ── STEP 3 ──────────────────────── */
   document.getElementById('gp-yes').addEventListener('click', () => {
     initDateConstraints();
-    showPane(p3); setStep(3);
+    showPane(p3); setStep(4);
   });
 
   document.getElementById('gp-no').addEventListener('click', async () => {
     await webhook(WEBHOOK, { ...store, esito: 'contatto_richiesto' });
-    showPane(pt); setStep(2);
+    showPane(pt); setStep(3);
   });
 
   /* ── STEP 3 ──────────────────────── */
