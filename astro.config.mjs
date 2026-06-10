@@ -7,6 +7,6 @@ export default defineConfig({
   output: 'static',
   site: isGitHubActions
     ? 'https://micheler2d.github.io'
-    : 'https://recomp360.netlify.app',
+    : 'https://recomprm.netlify.app',
   base: isGitHubActions ? '/Recomp360/' : '/',
 });

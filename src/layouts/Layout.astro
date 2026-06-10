@@ -14,10 +14,14 @@ const SITE = 'https://www.recomp360.it';
 const {
   title       = 'Palestra Roma Est Prenestina | Recomp360 — Personal Training & Sala Pesi',
   description = 'Recomp360 è la palestra di Roma Est in zona Prenestina con personal training, sala pesi, corsi fitness e percorsi personalizzati. Prova 7 allenamenti a €17.',
-  image       = `${SITE}/images/myrecomp-sala.jpg`,
+  image       = '/images/myrecomp-sala.jpg',
   canonical,
   noindex     = false,
 } = Astro.props;
+
+// OG image: se assoluto usalo as-is, altrimenti costruisce dall'origine corrente
+// (funziona su Netlify preview, staging e produzione senza toccare nulla)
+const ogImage = image.startsWith('http') ? image : `${Astro.url.origin}${image}`;
 
 const canonicalUrl = canonical ?? `${SITE}${Astro.url.pathname.replace(/\/$/, '') || '/'}`;
 const base = import.meta.env.BASE_URL;
@@ -105,7 +109,7 @@ const jsonLd = {
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url"         content={canonicalUrl} />
-    <meta property="og:image"       content={image} />
+    <meta property="og:image"       content={ogImage} />
     <meta property="og:image:width"  content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt"    content="Recomp360 — Palestra Roma Est Prenestina" />
@@ -114,7 +118,7 @@ const jsonLd = {
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={image} />
+    <meta name="twitter:image"       content={ogImage} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
