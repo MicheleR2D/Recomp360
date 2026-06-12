@@ -977,6 +977,13 @@ document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
   // mostra il primo frame appena i metadati sono pronti
   video.addEventListener('loadedmetadata', () => { video.currentTime = 18; });
 
+  // loop anticipato: riparte 2 secondi prima della fine
+  video.addEventListener('timeupdate', () => {
+    if (video.duration && video.currentTime >= video.duration - 2) {
+      video.currentTime = 0;
+    }
+  });
+
   const card = video.closest<HTMLElement>('.class-card__img')!;
   card.addEventListener('mouseenter', () => video.play());
   card.addEventListener('mouseleave', () => {
