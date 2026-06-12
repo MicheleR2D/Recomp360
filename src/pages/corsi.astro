@@ -262,13 +262,11 @@ const classLookup: Record<string, typeof classes[0]> = {
                 <>
                   <video
                     src={`${base}video/${(c as any).video}`}
-                    class="class-card__photo"
-                    poster={`${base}images/${c.image}`}
-                    autoplay
+                    class="class-card__photo card-video"
                     muted
                     loop
                     playsinline
-                    preload="none"
+                    preload="metadata"
                   />
                   <button class="media-fs-btn" aria-label="Schermo intero">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
@@ -973,6 +971,19 @@ document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
 backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Hover play/pause su video card ─────────────────────────────────────────
+document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
+  // mostra il primo frame appena i metadati sono pronti
+  video.addEventListener('loadedmetadata', () => { video.currentTime = 18; });
+
+  const card = video.closest<HTMLElement>('.class-card__img')!;
+  card.addEventListener('mouseenter', () => video.play());
+  card.addEventListener('mouseleave', () => {
+    video.pause();
+    video.currentTime = 18;
+  });
+});
 
 // ── Fullscreen su video card ────────────────────────────────────────────────
 document.querySelectorAll<HTMLButtonElement>('.media-fs-btn').forEach(btn => {
