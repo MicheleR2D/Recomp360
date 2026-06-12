@@ -203,7 +203,7 @@ const reviews = [
         <!-- Immagine — dopo il titolo su mobile -->
         <div class="classes-intro__glow">
           <!-- CTA sopra l'immagine — solo mobile -->
-          <a href={`${base}classi`} class="classes-intro__cta-over">
+          <a href={`${base}corsi`} class="classes-intro__cta-over">
             Vedi tutti i corsi
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -214,7 +214,7 @@ const reviews = [
         <!-- Descrizione + CTA desktop -->
         <div class="classes-intro__body">
           <p class="classes-intro__desc">8 discipline di gruppo per allenarti con continuità e varietà. Dal Cross Cardio al Pilates, dall'Interval Training alla Zumba — ogni corso è guidato da trainer specializzati e pensato per migliorare resistenza, forza e benessere a tutto tondo. Orari diversificati, gruppi a numero limitato.</p>
-          <a href={`${base}classi`} class="cta-secondary classes-intro__cta-main" style="margin-top:32px">
+          <a href={`${base}corsi`} class="cta-secondary classes-intro__cta-main" style="margin-top:32px">
             Vedi tutti i corsi
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
@@ -226,7 +226,7 @@ const reviews = [
           <div class="carousel-track" id="cls-track">
             {classes.map((c) => (
               <div class="carousel-slide">
-                <a href={`${base}classi`} class="class-card">
+                <a href={`${base}corsi`} class="class-card">
                   <div class="class-card__icon" set:html={c.icon} />
                   <h4 class="class-card__name">{c.name}</h4>
                   <p class="class-card__desc">{c.desc}</p>
