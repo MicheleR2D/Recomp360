@@ -164,6 +164,7 @@ const classes = [
     name: 'PRE-BOXING',
     icon: '🥊',
     image: 'fitness recomp.jpg',
+    video: 'Box-recomp.mp4',
     desc: 'Tecnica boxe applicata al fitness: coordinazione, velocità e potenza senza contatto. Sfogo totale e divertimento garantito.',
     level: 'Tutti i livelli',
     intensity: 4,
@@ -252,12 +253,30 @@ const classLookup: Record<string, typeof classes[0]> = {
         {classes.map(c => (
           <div class="class-card">
             <div class="class-card__img">
-              <img
-                src={`${base}images/${c.image}`}
-                alt={c.name}
-                class="class-card__photo"
-                loading="lazy"
-              />
+              {c.video ? (
+                <>
+                  <video
+                    src={`${base}video/${c.video}`}
+                    class="class-card__photo"
+                    poster={`${base}images/${c.image}`}
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                  />
+                  <button class="media-fs-btn" aria-label="Schermo intero">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                  </button>
+                </>
+              ) : (
+                <img
+                  src={`${base}images/${c.image}`}
+                  alt={c.name}
+                  class="class-card__photo"
+                  loading="lazy"
+                />
+              )}
             </div>
             <div class="class-card__body">
               <h3 class="class-card__name">{c.name}</h3>
@@ -319,6 +338,7 @@ const classLookup: Record<string, typeof classes[0]> = {
                       data-desc={course?.desc ?? ''}
                       data-room={cell.room ?? ''}
                       data-image={course?.image ?? ''}
+                      data-video={(course as any)?.video ?? ''}
                     >
                       <span class="day-slot__time">{cell.altTime ?? time}</span>
                       <div class="day-slot__body">
@@ -409,6 +429,10 @@ const classLookup: Record<string, typeof classes[0]> = {
       </button>
       <div class="course-modal__img-wrap" id="modal-img-wrap">
         <img id="modal-img" src="" alt="" class="course-modal__img" />
+        <video id="modal-video" src="" class="course-modal__img" autoplay muted loop playsinline preload="none" style="display:none;background:#000"></video>
+        <button class="media-fs-btn" id="modal-fs-btn" aria-label="Schermo intero" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </button>
       </div>
       <div class="course-modal__header">
         <div>
@@ -514,6 +538,24 @@ const classLookup: Record<string, typeof classes[0]> = {
   display: block;
   transition: transform .4s ease;
 }
+video.class-card__photo { background: #000; }
+
+/* Bottone schermo intero su video */
+:global(.media-fs-btn) {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  color: var(--white);
+  cursor: pointer;
+  transition: background .15s;
+  z-index: 2;
+}
+:global(.media-fs-btn:hover) { background: var(--accent); border-color: var(--accent); }
 .class-card:hover .class-card__photo { transform: scale(1.04); }
 .class-card__body { padding: 24px 28px; flex: 1; }
 .class-card__name { color: var(--accent); margin: 0 0 8px; }
@@ -862,6 +904,7 @@ const elDesc          = document.getElementById('modal-desc')!;
 const elRoom          = document.getElementById('modal-room')!;
 const elRoomWrap      = document.getElementById('modal-room-wrap')!;
 const elImg           = document.getElementById('modal-img') as HTMLImageElement;
+const elVideo         = document.getElementById('modal-video') as HTMLVideoElement;
 const elImgWrap       = document.getElementById('modal-img-wrap')!;
 
 const intensityLabels: Record<number, string> = {
@@ -875,13 +918,24 @@ function openModal(td: HTMLElement) {
   elName.textContent = td.dataset.name ?? '';
   elDesc.textContent = td.dataset.desc ?? '';
 
+  const vid = td.dataset.video ?? '';
   const img = td.dataset.image ?? '';
-  if (img) {
+  if (vid) {
+    elVideo.src = `${BASE}video/${vid}`;
+    elVideo.style.display = 'block';
+    elImg.style.display = 'none';
+    elImgWrap.style.display = 'block';
+    modalFsBtn.style.display = 'flex';
+  } else if (img) {
     elImg.src = `${BASE}images/${img}`;
     elImg.alt = td.dataset.name ?? '';
+    elImg.style.display = 'block';
+    elVideo.style.display = 'none';
     elImgWrap.style.display = 'block';
+    modalFsBtn.style.display = 'none';
   } else {
     elImgWrap.style.display = 'none';
+    modalFsBtn.style.display = 'none';
   }
 
   const lvl = parseInt(td.dataset.intensity ?? '0', 10);
@@ -903,6 +957,8 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
   modal.classList.remove('is-open');
   document.body.style.overflow = '';
+  elVideo.pause();
+  elVideo.src = '';
 }
 
 document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
@@ -912,6 +968,24 @@ document.querySelectorAll<HTMLElement>('.sch-clickable').forEach(td => {
 backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Fullscreen su video card ────────────────────────────────────────────────
+document.querySelectorAll<HTMLButtonElement>('.media-fs-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const video = btn.previousElementSibling as HTMLVideoElement | null;
+    if (!video) return;
+    if (video.requestFullscreen) video.requestFullscreen();
+    else (video as any).webkitRequestFullscreen?.();
+  });
+});
+
+// Bottone fullscreen modal
+const modalFsBtn = document.getElementById('modal-fs-btn') as HTMLButtonElement;
+modalFsBtn?.addEventListener('click', () => {
+  if (elVideo.requestFullscreen) elVideo.requestFullscreen();
+  else (elVideo as any).webkitRequestFullscreen?.();
+});
 
 // ── Day tabs + frecce navigazione ──────────────────────────────────────────
 const dayTabs    = Array.from(document.querySelectorAll<HTMLElement>('.day-tab'));
