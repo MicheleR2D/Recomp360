@@ -8,7 +8,12 @@ import GuestPassModal from '../components/GuestPassModal.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Chi Siamo — Recomp360" description="Recomp360: la palestra ibrida di Roma zona Prenestina. Un team di esperti per seguirti a 360 gradi.">
+<Layout
+  title="Chi Siamo | Recomp360 — Palestra Personal Training Roma Prenestina"
+  description="Scopri il team di Recomp360, palestra di Roma Est in zona Prenestina. Personal trainer certificati, nutrizionisti e fisioterapisti per seguirti a 360 gradi nel tuo percorso."
+  image="/images/myrecomp-pt.jpg"
+  canonical="https://www.recomp360.it/about"
+>
   <Nav />
 
   <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
@@ -16,7 +21,7 @@ const base = import.meta.env.BASE_URL;
     <div class="page-hero__bg">
       <img
         src={`${base}images/chi siamo.jpg`}
-        alt="Chi Siamo Recomp360"
+        alt="Team e staff palestra Recomp360 Via Prenestina 278 B Roma Est"
         class="page-hero__img"
       />
       <div class="page-hero__overlay page-hero__overlay--bottom"></div>
@@ -56,7 +61,7 @@ const base = import.meta.env.BASE_URL;
         <div class="about-img-glow reveal">
           <img
             src={`${base}images/chi siamo 2.jpg`}
-            alt="Recomp360 — Non sei un numero"
+            alt="Allenamento personalizzato percorso su misura Recomp360 Roma Prenestina"
             class="about-img"
           />
         </div>
@@ -92,7 +97,7 @@ const base = import.meta.env.BASE_URL;
         <div class="team-img-glow">
           <img
             src={`${base}images/chi siamo 3.jpg`}
-            alt="Il team Recomp360"
+            alt="Personal trainer e staff certificato palestra Recomp360 Roma Est Prenestina"
             class="team-img"
           />
         </div>

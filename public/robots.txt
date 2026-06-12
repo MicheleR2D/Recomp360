@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /grazie
+Disallow: /privacy
+
+Sitemap: https://www.recomp360.it/sitemap.xml
