@@ -258,10 +258,10 @@ const classLookup: Record<string, typeof classes[0]> = {
         {classes.map(c => (
           <div class="class-card">
             <div class="class-card__img">
-              {c.video ? (
+              {(c as any).video ? (
                 <>
                   <video
-                    src={`${base}video/${c.video}`}
+                    src={`${base}video/${(c as any).video}`}
                     class="class-card__photo"
                     poster={`${base}images/${c.image}`}
                     autoplay

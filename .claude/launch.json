@@ -1,1 +1,11 @@
-{"version":"0.0.1","configurations":[{"name":"recomp360","runtimeExecutable":"npm","runtimeArgs":["run","dev"],"port":4321}]}
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "recomp360",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 4321
+    }
+  ]
+}
