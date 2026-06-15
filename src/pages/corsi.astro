@@ -115,7 +115,8 @@ const classes = [
   {
     name: 'CROSS CARDIO',
     icon: '⚡',
-    image: 'gym-cardio.jpg',
+    image: 'Cross Cardio.jpg',
+    video: 'Cross Cardio.mp4',
     desc: 'Allenamento cardiovascolare ad alta intensità con esercizi funzionali. Brucia calorie, migliora la resistenza e il coordinamento.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -123,7 +124,8 @@ const classes = [
   {
     name: 'FUNCTIONAL TRAINING',
     icon: '🏋️',
-    image: 'metodo-hero.jpg',
+    image: 'Functional Training.jpg',
+    video: 'Functional Training.mp4',
     desc: 'Movimenti multi-articolari che replicano i gesti quotidiani. Migliora forza, stabilità e mobilità in modo completo.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -131,7 +133,8 @@ const classes = [
   {
     name: 'INTERVAL TRAINING',
     icon: '🔥',
-    image: 'Metodo recomp 1.jpg',
+    image: 'Interval Training.jpg',
+    video: 'Interval Training.mp4',
     desc: 'Alternanza di fasi ad alta intensità e recupero attivo. Massimizza il consumo calorico e la performance cardiovascolare.',
     level: 'Intermedio / Avanzato',
     intensity: 3,
@@ -139,7 +142,8 @@ const classes = [
   {
     name: 'MET-CON',
     icon: '💥',
-    image: '1000204789-scaled.jpg',
+    image: 'Met Con.jpg',
+    video: 'Met-Con.mp4',
     desc: 'Metabolic Conditioning: circuiti che combinano forza e cardio per un effetto brucia-grassi prolungato nelle ore successive.',
     level: 'Intermedio / Avanzato',
     intensity: 4,
@@ -147,7 +151,8 @@ const classes = [
   {
     name: 'PILATES',
     icon: '🧘',
-    image: 'Metodo recomp 2.jpg',
+    image: 'Pilates.jpg',
+    video: 'Pilates.mp4',
     desc: 'Disciplina che rafforza il core, migliora la postura e aumenta la flessibilità attraverso movimenti controllati e precisi.',
     level: 'Tutti i livelli',
     intensity: 1,
@@ -155,7 +160,8 @@ const classes = [
   {
     name: 'POSTURAL',
     icon: '⚖️',
-    image: 'pt-session.jpg',
+    image: 'Posturale.jpg',
+    video: 'Posturale.mp4',
     desc: 'Lavoro specifico sulla postura e sulla mobilità articolare. Ideale per chi soffre di dolori o vuole prevenirli.',
     level: 'Tutti i livelli',
     intensity: 1,
@@ -164,7 +170,8 @@ const classes = [
     name: 'PRE-BOXING',
     icon: '🥊',
     image: 'fitness recomp.jpg',
-    video: 'Box-recomp.mp4',
+    video: 'Box.mp4',
+    frame: 18,
     desc: 'Tecnica boxe applicata al fitness: coordinazione, velocità e potenza senza contatto. Sfogo totale e divertimento garantito.',
     level: 'Tutti i livelli',
     intensity: 4,
@@ -263,10 +270,12 @@ const classLookup: Record<string, typeof classes[0]> = {
                   <video
                     src={`${base}video/${(c as any).video}`}
                     class="class-card__photo card-video"
+                    poster={(c as any).frame ? undefined : `${base}images/${c.image}`}
+                    data-frame={(c as any).frame ? String((c as any).frame) : undefined}
                     muted
                     loop
                     playsinline
-                    preload="metadata"
+                    preload={(c as any).frame ? 'metadata' : 'none'}
                   />
                   <button class="media-fs-btn" aria-label="Schermo intero">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
@@ -850,6 +859,10 @@ video.class-card__photo { background: #000; }
   overflow: hidden;
   border-radius: 4px 4px 0 0;
 }
+.course-modal__img-wrap.has-video {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
 .course-modal__img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -928,6 +941,7 @@ function openModal(td: HTMLElement) {
     elVideo.style.display = 'block';
     elImg.style.display = 'none';
     elImgWrap.style.display = 'block';
+    elImgWrap.classList.add('has-video');
     modalFsBtn.style.display = 'flex';
   } else if (img) {
     elImg.src = `${BASE}images/${img}`;
@@ -935,9 +949,11 @@ function openModal(td: HTMLElement) {
     elImg.style.display = 'block';
     elVideo.style.display = 'none';
     elImgWrap.style.display = 'block';
+    elImgWrap.classList.remove('has-video');
     modalFsBtn.style.display = 'none';
   } else {
     elImgWrap.style.display = 'none';
+    elImgWrap.classList.remove('has-video');
     modalFsBtn.style.display = 'none';
   }
 
@@ -974,8 +990,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 // ── Hover play/pause su video card ─────────────────────────────────────────
 document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
-  // mostra il primo frame appena i metadati sono pronti
-  video.addEventListener('loadedmetadata', () => { video.currentTime = 18; });
+  const frame = video.dataset.frame ? parseFloat(video.dataset.frame) : null;
+
+  // se ha un frame specifico, posizionati lì appena i metadati sono pronti
+  if (frame !== null) {
+    video.addEventListener('loadedmetadata', () => { video.currentTime = frame; }, { once: true });
+  }
 
   // loop anticipato: riparte 2 secondi prima della fine
   video.addEventListener('timeupdate', () => {
@@ -988,7 +1008,11 @@ document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
   card.addEventListener('mouseenter', () => video.play());
   card.addEventListener('mouseleave', () => {
     video.pause();
-    video.currentTime = 18;
+    if (frame !== null) {
+      video.currentTime = frame; // torna al frame specifico
+    } else {
+      video.load(); // ripristina il poster
+    }
   });
 });
 
