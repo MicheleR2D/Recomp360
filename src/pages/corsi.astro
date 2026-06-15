@@ -1057,7 +1057,7 @@ document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
 document.querySelectorAll<HTMLButtonElement>('.media-fs-btn').forEach(btn => {
   btn.addEventListener('click', e => {
     e.stopPropagation();
-    const video = btn.previousElementSibling as HTMLVideoElement | null;
+    const video = btn.closest('.class-card__img')?.querySelector<HTMLVideoElement>('.card-video') ?? null;
     if (!video) return;
     if (video.requestFullscreen) video.requestFullscreen();
     else (video as any).webkitRequestFullscreen?.();
