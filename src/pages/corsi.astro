@@ -209,7 +209,7 @@ const classLookup: Record<string, typeof classes[0]> = {
 <Layout
   title="Corsi Fitness Roma Est | Cross Cardio, Pilates, Funzionale | Recomp360"
   description="8 corsi fitness di gruppo a Roma Est zona Prenestina: Cross Cardio, Functional Training, Interval Training, Met-Con, Pilates, Postural, Pre-Boxing, Zumba. Scopri gli orari."
-  image="/images/myrecomp-group.jpg"
+  image="/images/og/og-corsi.jpg"
   canonical="https://www.recomp360.it/corsi"
 >
   <Nav />
@@ -221,6 +221,8 @@ const classLookup: Record<string, typeof classes[0]> = {
         alt="Corsi fitness di gruppo palestra Recomp360 Roma Est zona Prenestina"
         class="page-hero__img"
         style="object-position: 75% center;"
+        loading="eager"
+        fetchpriority="high"
       />
       <div class="page-hero__overlay page-hero__overlay--left"></div>
     </div>

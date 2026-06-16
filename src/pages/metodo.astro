@@ -12,7 +12,7 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
 <Layout
   title="Metodo MyRecomp — Personal Training Roma Prenestina | Recomp360"
   description="Il metodo MyRecomp di Recomp360: percorsi personalizzati con personal training one-to-one, small group e sala pesi a Roma Est zona Prenestina. Ricomposizione corporea garantita."
-  image="/images/metodo-hero.jpg"
+  image="/images/og/og-metodo.jpg"
   canonical="https://www.recomp360.it/metodo"
 >
   <Nav />
@@ -23,6 +23,8 @@ const TYPEFORM_URL = 'https://zgcrbhl8m6b.typeform.com/InfoBody';
         src={`${base}images/metodo-hero.jpg`}
         alt="Allenamento TRX con personal trainer Recomp360 palestra Roma Prenestina"
         class="page-hero__img"
+        loading="eager"
+        fetchpriority="high"
       />
       <div class="page-hero__overlay page-hero__overlay--left"></div>
       <div class="page-hero__overlay page-hero__overlay--bottom"></div>

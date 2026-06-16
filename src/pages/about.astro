@@ -11,7 +11,7 @@ const base = import.meta.env.BASE_URL;
 <Layout
   title="Chi Siamo | Recomp360 — Palestra Personal Training Roma Prenestina"
   description="Scopri il team di Recomp360, palestra di Roma Est in zona Prenestina. Personal trainer certificati, nutrizionisti e fisioterapisti per seguirti a 360 gradi nel tuo percorso."
-  image="/images/myrecomp-pt.jpg"
+  image="/images/og/og-about.jpg"
   canonical="https://www.recomp360.it/about"
 >
   <Nav />
@@ -23,6 +23,8 @@ const base = import.meta.env.BASE_URL;
         src={`${base}images/chi siamo.jpg`}
         alt="Team e staff palestra Recomp360 Via Prenestina 278 B Roma Est"
         class="page-hero__img"
+        loading="eager"
+        fetchpriority="high"
       />
       <div class="page-hero__overlay page-hero__overlay--bottom"></div>
     </div>

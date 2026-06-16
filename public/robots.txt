@@ -3,4 +3,4 @@ Allow: /
 Disallow: /grazie
 Disallow: /privacy
 
-Sitemap: https://www.recomp360.it/sitemap.xml
+Sitemap: https://www.recomp360.it/sitemap-index.xml
