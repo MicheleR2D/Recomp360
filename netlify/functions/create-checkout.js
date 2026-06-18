@@ -44,7 +44,7 @@ export default async (req, context) => {
         {
           price_data: {
             currency: 'eur',
-            unit_amount: 50, // €0.50 — ⚠️ TEST TEMPORANEO, RIPRISTINARE A 1700
+            unit_amount: 1700, // €17.00
             product_data: {
               name: 'Guest Pass Recomp360',
               description: `7 ingressi in 14 giorni — inizio ${startdate}`,
