@@ -157,7 +157,7 @@ const classes = [
   {
     name: 'PILATES',
     icon: '🧘',
-    image: 'Pilates.jpg',
+    image: 'pilates cover.jpg',
     video: 'Pilates.mp4',
     desc: 'Disciplina che rafforza il core, migliora la postura e aumenta la flessibilità attraverso movimenti controllati e precisi.',
     level: 'Tutti i livelli',
@@ -279,13 +279,13 @@ const classLookup: Record<string, typeof classes[0]> = {
                   <video
                     src={`${base}video/${(c as any).video}`}
                     class="class-card__photo card-video"
-                    poster={(c as any).frame ? undefined : `${base}images/${c.image}`}
+                    poster={`${base}images/${c.image}`}
                     data-frame={(c as any).frame ? String((c as any).frame) : undefined}
                     data-frame-end={(c as any).frameEnd ? String((c as any).frameEnd) : undefined}
                     muted
                     loop
                     playsinline
-                    preload={(c as any).frame ? 'metadata' : 'none'}
+                    preload="none"
                   />
                   <button class="media-play-btn" aria-label="Riproduci">
                     <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
