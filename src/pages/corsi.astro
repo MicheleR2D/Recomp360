@@ -117,6 +117,8 @@ const classes = [
     icon: '⚡',
     image: 'Cross Cardio.jpg',
     video: 'Cross Cardio.mp4',
+    frame: 1,
+    frameEnd: 11,
     desc: 'Allenamento cardiovascolare ad alta intensità con esercizi funzionali. Brucia calorie, migliora la resistenza e il coordinamento.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -126,6 +128,7 @@ const classes = [
     icon: '🏋️',
     image: 'Functional Training.jpg',
     video: 'Functional Training.mp4',
+    frame: 3,
     desc: 'Movimenti multi-articolari che replicano i gesti quotidiani. Migliora forza, stabilità e mobilità in modo completo.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -135,6 +138,8 @@ const classes = [
     icon: '🔥',
     image: 'Interval Training.jpg',
     video: 'Interval Training.mp4',
+    frame: 1,
+    frameEnd: 8,
     desc: 'Alternanza di fasi ad alta intensità e recupero attivo. Massimizza il consumo calorico e la performance cardiovascolare.',
     level: 'Intermedio / Avanzato',
     intensity: 3,
@@ -144,6 +149,7 @@ const classes = [
     icon: '💥',
     image: 'Met Con.jpg',
     video: 'Met-Con.mp4',
+    frame: 3,
     desc: 'Metabolic Conditioning: circuiti che combinano forza e cardio per un effetto brucia-grassi prolungato nelle ore successive.',
     level: 'Intermedio / Avanzato',
     intensity: 4,
@@ -180,6 +186,7 @@ const classes = [
     name: 'ZUMBA',
     icon: '🎵',
     image: '1000204752-scaled.jpg',
+    video: 'Zumba.mp4',
     desc: 'Fitness dance che unisce movimenti di danza latina e internazionale. Efficace, coinvolgente e perfetto per chi odia la palestra classica.',
     level: 'Tutti i livelli',
     intensity: 3,
@@ -274,6 +281,7 @@ const classLookup: Record<string, typeof classes[0]> = {
                     class="class-card__photo card-video"
                     poster={(c as any).frame ? undefined : `${base}images/${c.image}`}
                     data-frame={(c as any).frame ? String((c as any).frame) : undefined}
+                    data-frame-end={(c as any).frameEnd ? String((c as any).frameEnd) : undefined}
                     muted
                     loop
                     playsinline
@@ -1013,7 +1021,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
 // ── Hover play/pause su video card ─────────────────────────────────────────
 document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
-  const frame    = video.dataset.frame ? parseFloat(video.dataset.frame) : null;
+  const frame    = video.dataset.frame    ? parseFloat(video.dataset.frame)    : null;
+  const frameEnd = video.dataset.frameEnd ? parseFloat(video.dataset.frameEnd) : null;
   const card     = video.closest<HTMLElement>('.class-card__img')!;
   const playBtn  = card.querySelector<HTMLButtonElement>('.media-play-btn')!;
   const iconPlay  = playBtn?.querySelector<SVGElement>('.icon-play')!;
@@ -1023,10 +1032,12 @@ document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
     video.addEventListener('loadedmetadata', () => { video.currentTime = frame; }, { once: true });
   }
 
-  // loop anticipato: riparte 2 secondi prima della fine
+  // loop: usa frameEnd se definito, altrimenti 2s prima della fine naturale
   video.addEventListener('timeupdate', () => {
-    if (video.duration && video.currentTime >= video.duration - 2) {
-      video.currentTime = 0;
+    const loopBack = frame ?? 0;
+    const loopEnd  = frameEnd ?? (video.duration ? video.duration - 2 : null);
+    if (loopEnd !== null && video.currentTime >= loopEnd) {
+      video.currentTime = loopBack;
     }
   });
 
