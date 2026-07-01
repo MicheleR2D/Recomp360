@@ -14,6 +14,11 @@ const pathname = Astro.url.pathname;
     <!-- ── Desktop links ── -->
     <ul class="nav__links" id="nav-links">
 
+      <!-- Logo mobile (visibile solo nell'overlay) -->
+      <li class="nav__mobile-logo" aria-hidden="true">
+        <img src={`${base}images/logo%20recomp360.png`} alt="" />
+      </li>
+
       <!-- Chi Siamo — link semplice -->
       <li class="nav__item">
         <a
@@ -348,14 +353,14 @@ const pathname = Astro.url.pathname;
     color: var(--accent);
     margin-bottom: 2px;
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  /* Animazione ingresso a cascata — simboli */
-  .nav__links.is-open .nav__item:nth-child(1)::before { opacity: 1; transform: translateY(0); transition-delay: 0.10s; }
-  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
-  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(0); transition-delay: 0.30s; }
+  /* Animazione ingresso a cascata — simboli (logo è nth-child 1, voci da 2 a 4) */
+  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.15s; }
+  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.25s; }
+  .nav__links.is-open .nav__item:nth-child(4)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.35s; }
 
   .nav__link {
     font-family: var(--font-head);
@@ -373,9 +378,9 @@ const pathname = Astro.url.pathname;
   }
 
   /* Animazione ingresso a cascata — testi */
-  .nav__links.is-open .nav__item:nth-child(1) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
-  .nav__links.is-open .nav__item:nth-child(2) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
-  .nav__links.is-open .nav__item:nth-child(3) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.32s; }
+  .nav__links.is-open .nav__item:nth-child(2) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.17s; }
+  .nav__links.is-open .nav__item:nth-child(3) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.27s; }
+  .nav__links.is-open .nav__item:nth-child(4) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.37s; }
 
   /* Linea che si espande dal centro all'hover */
   .nav__link::after {
@@ -431,6 +436,31 @@ const pathname = Astro.url.pathname;
   .mega-menu__col a {
     padding-block: 5px;
     font-size: 13px;
+  }
+}
+
+/* Logo nell'overlay mobile — nascosto su desktop */
+.nav__mobile-logo { display: none; }
+
+@media (max-width: 768px) {
+  .nav__mobile-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    border-bottom: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav__links.is-open .nav__mobile-logo {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.05s;
+  }
+  .nav__mobile-logo img {
+    height: 72px;
+    width: auto;
   }
 }
 
