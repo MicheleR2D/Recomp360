@@ -19,7 +19,7 @@ const pathname = Astro.url.pathname;
         <a
           href={`${base}about`}
           class:list={['nav__link', { 'is-active': pathname.includes('/about') }]}
-        >Chi Siamo</a>
+        >Chi Si<span class="nav__accent-end">amo</span></a>
       </li>
 
       <!-- Il Metodo — link semplice -->
@@ -27,7 +27,7 @@ const pathname = Astro.url.pathname;
         <a
           href={`${base}metodo`}
           class:list={['nav__link', { 'is-active': pathname.includes('/metodo') }]}
-        >Il Metodo</a>
+        >Il Met<span class="nav__accent-end">odo</span></a>
       </li>
 
       <!-- Corsi — link semplice -->
@@ -35,7 +35,7 @@ const pathname = Astro.url.pathname;
         <a
           href={`${base}corsi`}
           class:list={['nav__link', { 'is-active': pathname.includes('/corsi') }]}
-        >Corsi</a>
+        >Co<span class="nav__accent-end">rsi</span></a>
       </li>
 
 
@@ -321,7 +321,6 @@ const pathname = Astro.url.pathname;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 99;
-    counter-reset: nav-item;
   }
 
   /* Glow rosso centrato sullo sfondo */
@@ -337,29 +336,30 @@ const pathname = Astro.url.pathname;
 
   .nav__item {
     border-bottom: none;
-    counter-increment: nav-item;
     text-align: center;
   }
 
-  /* Numero progressivo sopra ogni voce */
+  /* Puntino decorativo sopra ogni voce */
   .nav__item::before {
-    content: '0' counter(nav-item);
+    content: '';
     display: block;
-    font-family: var(--font-body);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: var(--accent);
-    margin-bottom: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin: 0 auto 10px;
     opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: translateY(16px) scale(0);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Animazione ingresso a cascata — numeri */
-  .nav__links.is-open .nav__item:nth-child(1)::before { opacity: 1; transform: translateY(0); transition-delay: 0.10s; }
-  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
-  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(0); transition-delay: 0.30s; }
+  /* Animazione ingresso a cascata — puntini */
+  .nav__links.is-open .nav__item:nth-child(1)::before { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.10s; }
+  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.20s; }
+  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.30s; }
+
+  /* Ultime 3 lettere in rosso — stile logo */
+  .nav__accent-end { color: var(--accent); }
 
   .nav__link {
     font-family: var(--font-head);
