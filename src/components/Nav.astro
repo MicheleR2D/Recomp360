@@ -348,19 +348,20 @@ const pathname = Astro.url.pathname;
   .nav__item::before {
     content: '°';
     display: block;
-    font-size: 28px;
-    line-height: 1;
+    font-size: 18px;
+    line-height: 0.55;
+    text-align: center;
     color: var(--accent);
-    margin-bottom: 2px;
+    margin-bottom: 6px;
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(16px);
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Animazione ingresso a cascata — simboli (logo è nth-child 1, voci da 2 a 4) */
-  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.15s; }
-  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.25s; }
-  .nav__links.is-open .nav__item:nth-child(4)::before { opacity: 1; transform: translateY(6px); transition-delay: 0.35s; }
+  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+  .nav__links.is-open .nav__item:nth-child(4)::before { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
 
   .nav__link {
     font-family: var(--font-head);
@@ -444,22 +445,21 @@ const pathname = Astro.url.pathname;
 
 @media (max-width: 768px) {
   .nav__mobile-logo {
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translate(-50%, -8px);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 40px;
-    border-bottom: none;
     opacity: 0;
-    transform: translateY(20px);
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nav__links.is-open .nav__mobile-logo {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
     transition-delay: 0.05s;
   }
   .nav__mobile-logo img {
-    height: 72px;
+    height: 44px;
     width: auto;
   }
 }
