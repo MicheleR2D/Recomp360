@@ -365,7 +365,7 @@ const pathname = Astro.url.pathname;
 
   .nav__link {
     font-family: var(--font-head);
-    font-size: clamp(36px, 10vw, 52px);
+    font-size: clamp(36px, 6.5vw, 80px);
     letter-spacing: 4px;
     padding: 8px 40px 16px;
     width: auto;
@@ -446,20 +446,20 @@ const pathname = Astro.url.pathname;
 @media (max-width: 768px) {
   .nav__mobile-logo {
     position: absolute;
-    top: 28px;
-    left: 50%;
-    transform: translate(-50%, -8px);
+    top: 10px;
+    left: 24px;
+    transform: translateY(-8px);
     display: flex;
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .nav__links.is-open .nav__mobile-logo {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translateY(0);
     transition-delay: 0.05s;
   }
   .nav__mobile-logo img {
-    height: 44px;
+    height: 52px;
     width: auto;
   }
 }

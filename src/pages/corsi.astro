@@ -1024,8 +1024,11 @@ document.querySelectorAll<HTMLButtonElement>('.media-fs-btn').forEach(btn => {
     e.stopPropagation();
     const video = btn.closest('.class-card__img')?.querySelector<HTMLVideoElement>('.card-video') ?? null;
     if (!video) return;
-    if (video.requestFullscreen) video.requestFullscreen();
-    else (video as any).webkitRequestFullscreen?.();
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if ((video as any).webkitEnterFullscreen) {
+      (video as any).webkitEnterFullscreen();
+    }
   });
 });
 
