@@ -279,18 +279,14 @@ const classLookup: Record<string, typeof classes[0]> = {
                   <video
                     src={`${base}video/${(c as any).video}`}
                     class="class-card__photo card-video"
-                    poster={`${base}images/${c.image}`}
                     data-frame={(c as any).frame ? String((c as any).frame) : undefined}
                     data-frame-end={(c as any).frameEnd ? String((c as any).frameEnd) : undefined}
                     muted
+                    autoplay
                     loop
                     playsinline
-                    preload="none"
+                    preload="auto"
                   />
-                  <button class="media-play-btn" aria-label="Riproduci">
-                    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-                  </button>
                   <button class="media-fs-btn" aria-label="Schermo intero">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
                   </button>
@@ -565,23 +561,6 @@ const classLookup: Record<string, typeof classes[0]> = {
   transition: transform .4s ease;
 }
 video.class-card__photo { background: #000; }
-
-/* Bottone play su video card */
-:global(.media-play-btn) {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 36px; height: 36px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 4px;
-  color: var(--white);
-  cursor: pointer;
-  transition: background .15s;
-  z-index: 2;
-}
-:global(.media-play-btn:hover) { background: var(--accent); border-color: var(--accent); }
 
 /* Bottone schermo intero su video */
 :global(.media-fs-btn) {
@@ -1019,51 +998,24 @@ backdrop.addEventListener('click', closeModal);
 closeBtn.addEventListener('click', closeModal);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-// ── Hover play/pause su video card ─────────────────────────────────────────
+// ── Autoplay video card: posiziona al frame iniziale e gestisce loop custom ─
 document.querySelectorAll<HTMLVideoElement>('.card-video').forEach(video => {
   const frame    = video.dataset.frame    ? parseFloat(video.dataset.frame)    : null;
   const frameEnd = video.dataset.frameEnd ? parseFloat(video.dataset.frameEnd) : null;
-  const card     = video.closest<HTMLElement>('.class-card__img')!;
-  const playBtn  = card.querySelector<HTMLButtonElement>('.media-play-btn')!;
-  const iconPlay  = playBtn?.querySelector<SVGElement>('.icon-play')!;
-  const iconPause = playBtn?.querySelector<SVGElement>('.icon-pause')!;
 
   if (frame !== null) {
     video.addEventListener('loadedmetadata', () => { video.currentTime = frame; }, { once: true });
   }
 
-  // loop: usa frameEnd se definito, altrimenti 2s prima della fine naturale
-  video.addEventListener('timeupdate', () => {
-    const loopBack = frame ?? 0;
-    const loopEnd  = frameEnd ?? (video.duration ? video.duration - 2 : null);
-    if (loopEnd !== null && video.currentTime >= loopEnd) {
-      video.currentTime = loopBack;
-    }
-  });
-
-  function setPlaying(playing: boolean) {
-    iconPlay.style.display  = playing ? 'none' : '';
-    iconPause.style.display = playing ? ''     : 'none';
+  if (frame !== null || frameEnd !== null) {
+    video.addEventListener('timeupdate', () => {
+      const loopBack = frame ?? 0;
+      const loopEnd  = frameEnd ?? (video.duration ? video.duration - 2 : null);
+      if (loopEnd !== null && video.currentTime >= loopEnd) {
+        video.currentTime = loopBack;
+      }
+    });
   }
-
-  function stopVideo() {
-    video.pause();
-    if (frame !== null) { video.currentTime = frame; } else { video.load(); }
-    setPlaying(false);
-  }
-
-  const isMobile = () => window.matchMedia('(hover: none)').matches;
-
-  // Desktop: hover
-  card.addEventListener('mouseenter', () => { if (!isMobile()) { video.play(); setPlaying(true); } });
-  card.addEventListener('mouseleave', () => { if (!isMobile()) stopVideo(); });
-
-  // Play button: funziona su desktop e mobile
-  playBtn?.addEventListener('click', e => {
-    e.stopPropagation();
-    if (video.paused) { video.play(); setPlaying(true); }
-    else              { stopVideo(); }
-  });
 });
 
 // ── Fullscreen su video card ────────────────────────────────────────────────
