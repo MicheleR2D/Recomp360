@@ -306,35 +306,96 @@ const pathname = Astro.url.pathname;
 @media (max-width: 768px) {
   .nav__logo img { height: 52px; }
 
-  .nav__bar {
-    grid-template-columns: 1fr auto;
-  }
+  .nav__bar { grid-template-columns: 1fr auto; }
 
-  /* Menu slide-in laterale */
+  /* Overlay full-screen */
   .nav__links {
     position: fixed;
-    inset: 72px 0 0;
+    inset: 0;
     background: var(--bg);
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     overflow-y: auto;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 99;
+    counter-reset: nav-item;
   }
+
+  /* Glow rosso centrato sullo sfondo */
+  .nav__links::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 90% 60% at 50% 50%, rgba(229, 51, 50, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
   .nav__links.is-open { transform: translateX(0); }
 
-  .nav__item { border-bottom: 1px solid var(--border); }
+  .nav__item {
+    border-bottom: none;
+    counter-increment: nav-item;
+    text-align: center;
+  }
+
+  /* Numero progressivo sopra ogni voce */
+  .nav__item::before {
+    content: '0' counter(nav-item);
+    display: block;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 4px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* Animazione ingresso a cascata — numeri */
+  .nav__links.is-open .nav__item:nth-child(1)::before { opacity: 1; transform: translateY(0); transition-delay: 0.10s; }
+  .nav__links.is-open .nav__item:nth-child(2)::before { opacity: 1; transform: translateY(0); transition-delay: 0.20s; }
+  .nav__links.is-open .nav__item:nth-child(3)::before { opacity: 1; transform: translateY(0); transition-delay: 0.30s; }
 
   .nav__link {
-    font-size: 14px;
-    padding: 18px 24px;
-    width: 100%;
-    justify-content: space-between;
+    font-family: var(--font-head);
+    font-size: clamp(36px, 10vw, 52px);
+    letter-spacing: 4px;
+    padding: 8px 40px 16px;
+    width: auto;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: color 0.2s ease,
+                opacity  0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .nav__link.is-active::after { display: none; }
+
+  /* Animazione ingresso a cascata — testi */
+  .nav__links.is-open .nav__item:nth-child(1) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.12s; }
+  .nav__links.is-open .nav__item:nth-child(2) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.22s; }
+  .nav__links.is-open .nav__item:nth-child(3) .nav__link { opacity: 1; transform: translateY(0); transition-delay: 0.32s; }
+
+  /* Linea che si espande dal centro all'hover */
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    right: auto;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: translateX(-50%);
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav__link:hover::after  { width: 50%; }
+  .nav__link.is-active::after { width: 36%; }
 
   .nav__cta { display: none; }
   .nav__burger { display: flex; }
@@ -367,7 +428,6 @@ const pathname = Astro.url.pathname;
     border-top: 1px solid var(--border);
     padding: 16px 0;
   }
-  /* primo col non ha border-top (div:first-of-type perché panel è <a>) */
   .mega-menu__col:first-of-type { border-top: none; padding-top: 8px; }
 
   .mega-menu__col-label { margin-bottom: 12px; }
