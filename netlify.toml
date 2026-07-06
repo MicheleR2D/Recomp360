@@ -6,6 +6,26 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+[[redirects]]
+  from = "/recomp-web"
+  to   = "/"
+  status = 301
+
+[[redirects]]
+  from = "/corsi-fitness.html"
+  to   = "/corsi"
+  status = 301
+
+[[redirects]]
+  from = "/metodo-recomp.html"
+  to   = "/metodo"
+  status = 301
+
+[[redirects]]
+  from = "/sala-pesi.html"
+  to   = "/"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
