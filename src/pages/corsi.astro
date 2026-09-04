@@ -14,9 +14,9 @@ const schedule = [
     time: '9:00',
     cells: [
       { name: 'POSTURALE', level: 1 },
-      null,
+      { name: 'REFORMER', level: 2 },
       { name: 'POSTURALE', level: 1 },
-      null,
+      { name: 'REFORMER', level: 2 },
       { name: 'POSTURALE', level: 1 },
       null,
     ],
@@ -37,6 +37,10 @@ const schedule = [
     cells: [null, null, null, null, null, { name: 'PILATES', level: 1 }],
   },
   {
+    time: '12:10',
+    cells: [null, null, null, null, null, { name: 'REFORMER', level: 2 }],
+  },
+  {
     time: '13:30',
     cells: [
       null,
@@ -54,7 +58,7 @@ const schedule = [
       { name: 'PILATES', level: 1 },
       { name: 'FUNZIONALE', level: 3 },
       null,
-      { name: 'INTERVAL TRAINING', level: 3 },
+      { name: 'FUNZIONALE', level: 3 },
       null,
     ],
   },
@@ -62,10 +66,10 @@ const schedule = [
     time: '19:00',
     cells: [
       null,
-      { name: 'FUNZIONALE', level: 2 },
-      { name: 'PILATES', level: 1, room: 'Sala Rebalance' },
       { name: 'INTERVAL TRAINING', level: 3 },
-      { name: 'PILATES', level: 4, room: 'Sala Rebalance' },
+      { name: 'PILATES', level: 1, room: 'Sala Rebalance' },
+      { name: 'REFORMER', level: 2 },
+      { name: 'PILATES', level: 1, room: 'Sala Rebalance', altTime: '18:00' },
       null,
     ],
   },
@@ -84,9 +88,9 @@ const schedule = [
     time: '20:00',
     cells: [
       null,
-      { name: 'ZUMBA', level: 3 },
+      { name: 'REFORMER', level: 2 },
       null,
-      { name: 'ZUMBA', level: 3 },
+      { name: 'INTERVAL TRAINING', level: 3 },
       null,
       null,
     ],
@@ -191,6 +195,14 @@ const classes = [
     level: 'Tutti i livelli',
     intensity: 3,
   },
+  {
+    name: 'REFORMER',
+    icon: '🎯',
+    image: 'pilates cover.jpg',
+    desc: 'Allenamento sul macchinario Pilates Reformer: esercizi guidati da cavi e molle per migliorare forza, flessibilità e allineamento posturale in modo preciso e progressivo.',
+    level: 'Tutti i livelli',
+    intensity: 2,
+  },
 ];
 
 // slot per giorno (usato dalla vista mobile a tab)
@@ -210,6 +222,7 @@ const classLookup: Record<string, typeof classes[0]> = {
   'PREPUGILISTICA':    classes.find(c => c.name === 'PRE-BOXING')!,
   'ZUMBA':             classes.find(c => c.name === 'ZUMBA')!,
   'METCON':            classes.find(c => c.name === 'MET-CON')!,
+  'REFORMER':          classes.find(c => c.name === 'REFORMER')!,
 };
 ---
 
