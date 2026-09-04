@@ -195,14 +195,6 @@ const classes = [
     level: 'Tutti i livelli',
     intensity: 3,
   },
-  {
-    name: 'REFORMER',
-    icon: '🎯',
-    image: 'pilates cover.jpg',
-    desc: 'Allenamento sul macchinario Pilates Reformer: esercizi guidati da cavi e molle per migliorare forza, flessibilità e allineamento posturale in modo preciso e progressivo.',
-    level: 'Tutti i livelli',
-    intensity: 2,
-  },
 ];
 
 // slot per giorno (usato dalla vista mobile a tab)
@@ -222,7 +214,6 @@ const classLookup: Record<string, typeof classes[0]> = {
   'PREPUGILISTICA':    classes.find(c => c.name === 'PRE-BOXING')!,
   'ZUMBA':             classes.find(c => c.name === 'ZUMBA')!,
   'METCON':            classes.find(c => c.name === 'MET-CON')!,
-  'REFORMER':          classes.find(c => c.name === 'REFORMER')!,
 };
 ---
 
