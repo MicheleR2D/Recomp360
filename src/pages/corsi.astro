@@ -186,15 +186,6 @@ const classes = [
     level: 'Tutti i livelli',
     intensity: 4,
   },
-  {
-    name: 'ZUMBA',
-    icon: '🎵',
-    image: 'zumba cover.jpg',
-    video: 'Zumba.mp4',
-    desc: 'Fitness dance che unisce movimenti di danza latina e internazionale. Efficace, coinvolgente e perfetto per chi odia la palestra classica.',
-    level: 'Tutti i livelli',
-    intensity: 3,
-  },
 ];
 
 // slot per giorno (usato dalla vista mobile a tab)
@@ -212,7 +203,6 @@ const classLookup: Record<string, typeof classes[0]> = {
   'FUNZIONALE':        classes.find(c => c.name === 'FUNCTIONAL TRAINING')!,
   'CROSS CARDIO':      classes.find(c => c.name === 'CROSS CARDIO')!,
   'PREPUGILISTICA':    classes.find(c => c.name === 'PRE-BOXING')!,
-  'ZUMBA':             classes.find(c => c.name === 'ZUMBA')!,
   'METCON':            classes.find(c => c.name === 'MET-CON')!,
 };
 ---
