@@ -65,10 +65,10 @@ const schedule = [
   {
     time: '19:00',
     cells: [
-      null,
+      { name: 'REFORMER', level: 2, room: 'Sala Rebalance' },
       { name: 'INTERVAL TRAINING', level: 3 },
       { name: 'PILATES', level: 1, room: 'Sala Rebalance' },
-      { name: 'REFORMER', level: 2 },
+      { name: 'REFORMER', level: 2, room: 'Sala Rebalance' },
       { name: 'PILATES', level: 1, room: 'Sala Rebalance' },
       null,
     ],
@@ -186,6 +186,15 @@ const classes = [
     level: 'Tutti i livelli',
     intensity: 4,
   },
+  {
+    name: 'REFORMER',
+    icon: '🤸',
+    image: 'reformer cover.jpg',
+    video: 'Reformer.mp4',
+    desc: 'Pilates su macchinario Reformer: il carrello scorrevole e le molle regolabili guidano ogni movimento per rafforzare il core, migliorare postura e mobilità e tonificare tutto il corpo con la massima precisione.',
+    level: 'Tutti i livelli',
+    intensity: 2,
+  },
 ];
 
 // slot per giorno (usato dalla vista mobile a tab)
@@ -204,12 +213,13 @@ const classLookup: Record<string, typeof classes[0]> = {
   'CROSS CARDIO':      classes.find(c => c.name === 'CROSS CARDIO')!,
   'PREPUGILISTICA':    classes.find(c => c.name === 'PRE-BOXING')!,
   'METCON':            classes.find(c => c.name === 'MET-CON')!,
+  'REFORMER':          classes.find(c => c.name === 'REFORMER')!,
 };
 ---
 
 <Layout
   title="Corsi Fitness Roma Est | Cross Cardio, Pilates, Funzionale | Recomp360"
-  description="8 corsi fitness di gruppo a Roma Est zona Prenestina: Cross Cardio, Functional Training, Interval Training, Met-Con, Pilates, Postural, Pre-Boxing, Zumba. Scopri gli orari."
+  description="8 corsi fitness di gruppo a Roma Est zona Prenestina: Cross Cardio, Functional Training, Interval Training, Met-Con, Pilates, Postural, Pre-Boxing, Reformer. Scopri gli orari."
   image="/images/og/og-corsi.jpg"
   canonical="https://www.recomp360.it/corsi"
 >
